@@ -19,7 +19,7 @@ export async function fetchBlogPosts(params: FetchBlogPostsParams = {}): Promise
   const url = `${API_URL}/api/blog${searchParams.toString() ? `?${searchParams}` : ''}`
 
   const response = await fetch(url, {
-    next: { revalidate: 60 },
+    next: { revalidate: 3600 },
     headers: getHeaders(),
   })
 
@@ -57,7 +57,7 @@ export async function fetchBlogPostBySlug(slug: string): Promise<BlogPostDetail 
   const url = `${API_URL}/api/blog/${slug}`
 
   const response = await fetch(url, {
-    next: { revalidate: 60 },
+    next: { revalidate: 3600 },
     headers: getHeaders(),
   })
 

@@ -31,6 +31,23 @@ const nextConfig: NextConfig = {
     ];
   },
   images: {
+    /**
+     * Optimizacion de imagenes: el costo se paga por transformacion nueva y por
+     * escritura de cache, no por lectura. Con el catalogo creciendo, cada modelo
+     * multiplica sus variantes por cada breakpoint, cada quality y cada formato.
+     *
+     * minimumCacheTTL a 31 dias: las fotos de un vehiculo no cambian una vez
+     * cargadas, y si cambian el slug cambia con ellas.
+     * deviceSizes recortado a los cuatro anchos que el diseno usa de verdad
+     * (se cayeron 750, 1080, 2048 y 3840).
+     * imageSizes cubre los `sizes` fijos de 160px y 240px a 1x y 2x.
+     * qualities con un solo valor: no hay ningun `quality=` en el codigo.
+     */
+    minimumCacheTTL: 2678400,
+    formats: ['image/webp'],
+    deviceSizes: [640, 828, 1200, 1920],
+    imageSizes: [160, 256, 320, 384],
+    qualities: [75],
     remotePatterns: [
       {
         protocol: 'https',

@@ -230,7 +230,7 @@ export async function fetchVehicles(params: FetchVehiclesParams = {}): Promise<{
     const retry = params.retryAttempt && params.retryAttempt > 1 ? params.retryAttempt : undefined
 
     const response = await fetch(url, {
-        ...(retry ? { cache: 'no-store' as const } : { next: { revalidate: 60 } }),
+        ...(retry ? { cache: 'no-store' as const } : { next: { revalidate: 3600 } }),
         headers: {
             ...getHeaders(vehicleTypeHeader),
             ...(retry ? { 'X-Retry-Attempt': String(retry) } : {}),
@@ -253,7 +253,7 @@ export async function fetchVehicleBySlug(slug: string, vehicleType?: string): Pr
     const url = `${API_URL}/api/vehicles/${slug}`
 
     const response = await fetch(url, {
-        next: { revalidate: 60 },
+        next: { revalidate: 3600 },
         headers: getHeaders(vehicleType)
     })
 
@@ -284,7 +284,7 @@ export async function fetchCarouselItems(category?: Category): Promise<Vehicle[]
     const url = `${API_URL}/api/carousel${searchParams.toString() ? `?${searchParams}` : ''}`
 
     const response = await fetch(url, {
-        next: { revalidate: 60 },
+        next: { revalidate: 3600 },
         headers: getHeaders('all')
     })
 
