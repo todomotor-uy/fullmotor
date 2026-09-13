@@ -9,6 +9,7 @@ import {
 } from '@/types/classified'
 import { getStoredToken } from './auth'
 import { ApiError } from './api-error'
+import { MAX_UPLOAD_FILE_BYTES, planUploadBatches, prepareImageForUpload } from './image-upload'
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL || 'https://api.todomotor.uy'
 const COUNTRY = process.env.NEXT_PUBLIC_COUNTRY || 'uy'
@@ -331,19 +332,22 @@ export interface UploadImagesResult {
   errors: string[]
 }
 
-/**
- * Files per request.
- *
- * Not a style choice: MAX_IMAGE_SIZE_BYTES is 10 MB and the API's body limit is
- * 50 MB, so five maximum-size photos already sit exactly on the ceiling. A
- * dealership sending its twenty in one request would have the whole thing
- * rejected before any handler ran — with an error that never reaches the
- * Spanish translation layer, because it is not a JSON response.
- */
+/** Files per request, at most. */
 const UPLOAD_BATCH_SIZE = 5
 
 /**
- * Uploads in batches and merges the results.
+ * Bytes per request, at most.
+ *
+ * Not a style choice: the API runs on Vercel, which rejects any request body
+ * over 4.5 MB before a handler ever runs — with an HTML 413 that never reaches
+ * the Spanish translation layer. Four leaves room for the multipart framing.
+ * Photos are recompressed client-side first (see image-upload.ts), so a batch
+ * normally holds two or three of them.
+ */
+const UPLOAD_REQUEST_BYTES = 4 * 1024 * 1024
+
+/**
+ * Prepares each photo, uploads in batches and merges the results.
  *
  * Sequential rather than parallel: the batches append to the same listing, and
  * concurrent appends would race on the images array.
@@ -352,13 +356,23 @@ export async function uploadClassifiedImages(
   id: string,
   files: File[]
 ): Promise<UploadImagesResult> {
-  if (files.length <= UPLOAD_BATCH_SIZE) {
-    return uploadClassifiedImageBatch(id, files)
+  const merged: UploadImagesResult = { uploaded: [], totalImages: 0, errors: [] }
+
+  const ready: File[] = []
+  for (const file of files) {
+    const prepared = await prepareImageForUpload(file)
+    if (prepared.size > MAX_UPLOAD_FILE_BYTES) {
+      // Reported the same way the API reports a per-file failure, so the
+      // uploader shows it as "N de M no se pudieron subir" rather than
+      // sending a request that is guaranteed to be refused.
+      merged.errors.push(`${file.name}: too large even after compression`)
+      continue
+    }
+    ready.push(prepared)
   }
 
-  const merged: UploadImagesResult = { uploaded: [], totalImages: 0, errors: [] }
-  for (let i = 0; i < files.length; i += UPLOAD_BATCH_SIZE) {
-    const result = await uploadClassifiedImageBatch(id, files.slice(i, i + UPLOAD_BATCH_SIZE))
+  for (const batch of planUploadBatches(ready, UPLOAD_REQUEST_BYTES, UPLOAD_BATCH_SIZE)) {
+    const result = await uploadClassifiedImageBatch(id, batch)
     merged.uploaded.push(...result.uploaded)
     merged.errors.push(...result.errors)
     // The last batch knows the true total; earlier ones are already stale.
