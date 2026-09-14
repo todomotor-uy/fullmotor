@@ -10,7 +10,7 @@
 
 import type { CuratedNode } from '@/lib/buying-guide/types'
 
-export const PICKS_UPDATED_AT = '2026-08-17'
+export const PICKS_UPDATED_AT = '2026-09-14'
 
 export const CURATED_PICKS: CuratedNode[] = [
   // ───────────────────────────── FAMILIA ─────────────────────────────
@@ -28,7 +28,7 @@ export const CURATED_PICKS: CuratedNode[] = [
     picks: [
       { slug: 'uy-volkswagen-virtus-2025-1-0-tsi-comfortline-a-t', why: ['Baúl de 521 L, el más grande de su clase', '6 airbags y control crucero adaptativo', 'Motor 1.0 TSI de 116 hp con caja automática'] },
       { slug: 'uy-jetour-x70-2025-comfort-15t-m-t', why: ['SUV mediano de 4,72 m por precio de compacto', '6 airbags, frenado autónomo y detector de punto ciego', 'Cámara 360 y techo panorámico de serie'], note: 'Caja manual; la Luxury DCT queda en 29.990.' },
-      { slug: 'uy-haval-jolion-2025-hev-elite-1-5-gdi-dht', why: ['Híbrido de 187 hp con muy bajo consumo urbano', '8 airbags, punto ciego y asistente de carril', 'Cámara 360 y techo panorámico'] },
+      { slug: 'uy-jeep-avenger-2026-longitude-t200-hybrid-mhev-10-cvt', why: ['6 asistencias: frenado autónomo, carril y crucero adaptativo', 'Micro-híbrido MHEV 1.0 turbo de 116 hp y 200 Nm', 'Respaldo de la red Jeep/Stellantis en Uruguay'] },
       { slug: 'uy-chevrolet-tracker-2025-lt-1-2-turbo-a-t', why: ['6 airbags y motor 1.2 turbo de 133 hp', 'Baúl de 390 L y climatizador', 'Red Chevrolet en todo el país'] },
       { slug: 'uy-kia-k3-sed-n-2025-ex-1-4-a-t', why: ['Baúl de 544 L, ideal para valijas y cochecito', '6 airbags, frenado autónomo y asistente de carril', 'Caja automática y climatizador de serie'] },
     ],
