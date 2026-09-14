@@ -13,6 +13,11 @@
  * against the live catalogue and prints what did not match so aliases can be
  * added in src/lib/buying-guide/sales.ts.
  *
+ * Column layout isn't assumed by position: each sheet's Marca/Modelo/
+ * Total_Cantidad/month columns are located by header name (findColumns),
+ * since ACAU has silently reordered them before (a "Nombre_Socio" column
+ * inserted before Marca in Sep 2026 shifted everything else one over).
+ *
  * No dependencies: the .xlsx (a zip of XML) is read with node:zlib.
  */
 
@@ -108,8 +113,35 @@ function readXlsx(buf: Buffer): Sheet[] {
 
 /* ---------------- ACAU specifics ---------------- */
 
-const SHEET_TO_TYPE: Record<string, GuideType> = { AUTOS: 'cars', SUV: 'suvs', UTILITARIOS: 'pickups' }
-const MONTH_COLS = ['M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X']
+const SHEET_TO_TYPE: Record<string, GuideType> = { AUTO: 'cars', AUTOS: 'cars', SUV: 'suvs', SUVS: 'suvs', UTILITARIO: 'pickups', UTILITARIOS: 'pickups' }
+
+/** Month name (both "septiembre" and the older "setiembre" spelling) → 0-based index. */
+const MONTH_INDEX: Record<string, number> = {
+  ENERO: 0, FEBRERO: 1, MARZO: 2, ABRIL: 3, MAYO: 4, JUNIO: 5, JULIO: 6, AGOSTO: 7,
+  SEPTIEMBRE: 8, SETIEMBRE: 8, OCTUBRE: 9, NOVIEMBRE: 10, DICIEMBRE: 11,
+}
+
+interface ColMap { brand: string; model: string; total: string; months: string[] }
+
+/** Locates the header row of an ACAU sheet by column *names* (not fixed
+ *  letters) so a reordered/inserted column doesn't silently misread data —
+ *  this is exactly the kind of change that broke the previous hardcoded
+ *  C/D/Y mapping when ACAU added a "Nombre_Socio" column in Sep 2026. */
+function findColumns(rows: Map<string, string>[]): { cols: ColMap; dataStart: number } | undefined {
+  for (let i = 0; i < rows.length; i++) {
+    let brand: string | undefined, model: string | undefined, total: string | undefined
+    const months = new Array(12).fill(undefined) as (string | undefined)[]
+    for (const [col, val] of rows[i]) {
+      const v = val.trim().toUpperCase()
+      if (v === 'MARCA') brand = col
+      else if (v === 'MODELO') model = col
+      else if (v === 'TOTAL_CANTIDAD' || v === 'TOTAL') total = col
+      else if (v in MONTH_INDEX) months[MONTH_INDEX[v]] = col
+    }
+    if (brand && model && total && months.every(Boolean)) return { cols: { brand, model, total, months: months as string[] }, dataStart: i + 1 }
+  }
+  return undefined
+}
 
 async function resolveUrl(): Promise<string> {
   const explicit = opt('--url')
@@ -157,14 +189,17 @@ async function main() {
   for (const sh of sheets) {
     const seg = SHEET_TO_TYPE[sh.name.trim().toUpperCase()]
     if (!seg) continue
-    for (const r of sh.rows) {
-      const brand = r.get('C')?.trim(), model = r.get('D')?.trim(), total = r.get('Y')
-      if (!brand || !model || brand === 'Marca' || total == null) continue
+    const found = findColumns(sh.rows)
+    if (!found) { console.warn(`hoja ${sh.name}: no encontré las columnas Marca/Modelo/Total_Cantidad — se omite`); continue }
+    const { cols, dataStart } = found
+    for (const r of sh.rows.slice(dataStart)) {
+      const brand = r.get(cols.brand)?.trim(), model = r.get(cols.model)?.trim(), total = r.get(cols.total)
+      if (!brand || !model || total == null) continue
       const units = Math.round(parseFloat(total))
       if (!Number.isFinite(units)) continue
       rows.push({ seg, brand, model, units })
       segments[seg] += units
-      MONTH_COLS.forEach((c, i) => { const v = parseFloat(r.get(c) || '0'); if (v > 0 && i + 1 > monthsCovered) monthsCovered = i + 1 })
+      cols.months.forEach((c, i) => { const v = parseFloat(r.get(c) || '0'); if (v > 0 && i + 1 > monthsCovered) monthsCovered = i + 1 })
     }
   }
   if (!rows.length) throw new Error('el archivo no tiene filas AUTOS/SUV/UTILITARIOS — ¿cambió el formato?')

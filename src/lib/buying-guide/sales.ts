@@ -103,7 +103,7 @@ export const SALES_ALIASES: Record<string, string | string[]> = {
   'foton|tunland v 9': ['tunland v 9'],
   'jac|ytterby': ['es 3 ytterby'],
   'toyota|yaris hatch': ['yaris hb'],
-  'geely|ex 5 max': ['ex 5 max', 'ex 5 pro'],
+  'geely|ex 5 urban': ['ex 5 max', 'ex 5 pro', 'ex 5 emi max'],
   'geely|ex 2 max': ['ex 2 max', 'ex 2 pro'],
   'gacmotor|aion es': ['aion es', 'aion ut', 'aion ut max'],
   'renault|kardian': ['kardian', 'kardian premiere edition'],
@@ -113,7 +113,6 @@ export const SALES_ALIASES: Record<string, string | string[]> = {
   'lynkco|09': ['lynk co 09 halo'],
   'citroen|c 3 aircross': ['c 3 aircross t 200 shine', 'c 3 aircross vti feel', 'c 3 aircross vti shine'],
   'citroen|c 3 aircross 7': ['c 3 aircross t 200 shine 7'],
-  'geely|ex 5 emi': ['ex 5 max', 'ex 5 pro'],
   'bmw|x 3': ['x 3', 'x 3 20'],
 }
 

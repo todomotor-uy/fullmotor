@@ -1,13 +1,13 @@
 {
  "source": "ACAU — Compilado 2026 (operaciones realizadas por empresas representantes de marca)",
- "url": "https://www.acau.com.uy/panel/estadisticas/17_29_38ar1.xlsx",
+ "url": "https://www.acau.com.uy/panel/estadisticas/16_27_42ar1.xlsx",
  "year": 2026,
- "monthsCovered": 7,
- "updatedAt": "2026-08-15",
+ "monthsCovered": 8,
+ "updatedAt": "2026-09-14",
  "segments": {
-  "cars": 14570,
-  "suvs": 17238,
-  "pickups": 10608
+  "cars": 15647,
+  "suvs": 21305,
+  "pickups": 11931
  },
  "models": [
   {
@@ -16,7 +16,7 @@
    "brandKey": "byd",
    "model": "Seagull",
    "modelKey": "seagull",
-   "units": 1764,
+   "units": 2095,
    "rank": 1,
    "versions": 3
   },
@@ -26,7 +26,7 @@
    "brandKey": "hyundai",
    "model": "HB 20 Hatch",
    "modelKey": "hb 20 hatch",
-   "units": 1306,
+   "units": 1405,
    "rank": 2,
    "versions": 5
   },
@@ -36,7 +36,7 @@
    "brandKey": "suzuki",
    "model": "Dzire",
    "modelKey": "dzire",
-   "units": 1087,
+   "units": 1108,
    "rank": 3,
    "versions": 2
   },
@@ -46,39 +46,9 @@
    "brandKey": "renault",
    "model": "Kwid",
    "modelKey": "kwid",
-   "units": 961,
+   "units": 1096,
    "rank": 4,
    "versions": 3
-  },
-  {
-   "seg": "cars",
-   "brand": "Chevrolet",
-   "brandKey": "chevrolet",
-   "model": "Onix HB",
-   "modelKey": "onix hb",
-   "units": 842,
-   "rank": 5,
-   "versions": 5
-  },
-  {
-   "seg": "cars",
-   "brand": "Geely",
-   "brandKey": "geely",
-   "model": "EX 2 Max",
-   "modelKey": "ex 2 max",
-   "units": 795,
-   "rank": 6,
-   "versions": 1
-  },
-  {
-   "seg": "cars",
-   "brand": "JMC",
-   "brandKey": "jmc",
-   "model": "Jmev",
-   "modelKey": "jmev",
-   "units": 671,
-   "rank": 7,
-   "versions": 1
   },
   {
    "seg": "cars",
@@ -86,48 +56,28 @@
    "brandKey": "dongfeng",
    "model": "Nammi 330",
    "modelKey": "nammi 330",
-   "units": 669,
-   "rank": 8,
+   "units": 948,
+   "rank": 5,
    "versions": 1
   },
   {
    "seg": "cars",
-   "brand": "Suzuki",
-   "brandKey": "suzuki",
-   "model": "Swift",
-   "modelKey": "swift",
-   "units": 484,
-   "rank": 9,
-   "versions": 4
+   "brand": "Chevrolet",
+   "brandKey": "chevrolet",
+   "model": "Onix HB",
+   "modelKey": "onix hb",
+   "units": 865,
+   "rank": 6,
+   "versions": 5
   },
   {
    "seg": "cars",
-   "brand": "Fiat",
-   "brandKey": "fiat",
-   "model": "Mobi",
-   "modelKey": "mobi",
-   "units": 450,
-   "rank": 10,
-   "versions": 2
-  },
-  {
-   "seg": "cars",
-   "brand": "BYD",
-   "brandKey": "byd",
-   "model": "E 2",
-   "modelKey": "e 2",
-   "units": 444,
-   "rank": 11,
-   "versions": 3
-  },
-  {
-   "seg": "cars",
-   "brand": "Dongfeng",
-   "brandKey": "dongfeng",
-   "model": "Nammi 430",
-   "modelKey": "nammi 430",
-   "units": 392,
-   "rank": 12,
+   "brand": "JMC",
+   "brandKey": "jmc",
+   "model": "Jmev",
+   "modelKey": "jmev",
+   "units": 718,
+   "rank": 7,
    "versions": 1
   },
   {
@@ -136,19 +86,49 @@
    "brandKey": "gacmotor",
    "model": "Aion UT Max",
    "modelKey": "aion ut max",
-   "units": 389,
-   "rank": 13,
+   "units": 687,
+   "rank": 8,
    "versions": 1
   },
   {
    "seg": "cars",
-   "brand": "Volkswagen",
-   "brandKey": "volkswagen",
-   "model": "Polo Track",
-   "modelKey": "polo track",
-   "units": 383,
-   "rank": 14,
+   "brand": "BYD",
+   "brandKey": "byd",
+   "model": "E 2",
+   "modelKey": "e 2",
+   "units": 540,
+   "rank": 9,
+   "versions": 3
+  },
+  {
+   "seg": "cars",
+   "brand": "Suzuki",
+   "brandKey": "suzuki",
+   "model": "Swift",
+   "modelKey": "swift",
+   "units": 508,
+   "rank": 10,
+   "versions": 4
+  },
+  {
+   "seg": "cars",
+   "brand": "Fiat",
+   "brandKey": "fiat",
+   "model": "Mobi",
+   "modelKey": "mobi",
+   "units": 487,
+   "rank": 11,
    "versions": 2
+  },
+  {
+   "seg": "cars",
+   "brand": "Dongfeng",
+   "brandKey": "dongfeng",
+   "model": "Nammi 430",
+   "modelKey": "nammi 430",
+   "units": 441,
+   "rank": 12,
+   "versions": 1
   },
   {
    "seg": "cars",
@@ -156,8 +136,18 @@
    "brandKey": "suzuki",
    "model": "Celerio",
    "modelKey": "celerio",
-   "units": 349,
-   "rank": 15,
+   "units": 424,
+   "rank": 13,
+   "versions": 2
+  },
+  {
+   "seg": "cars",
+   "brand": "Volkswagen",
+   "brandKey": "volkswagen",
+   "model": "Polo Track",
+   "modelKey": "polo track",
+   "units": 424,
+   "rank": 14,
    "versions": 2
   },
   {
@@ -166,28 +156,8 @@
    "brandKey": "jac",
    "model": "ES 3 Ytterby",
    "modelKey": "es 3 ytterby",
-   "units": 310,
-   "rank": 16,
-   "versions": 1
-  },
-  {
-   "seg": "cars",
-   "brand": "GWM",
-   "brandKey": "gwm",
-   "model": "Ora 03",
-   "modelKey": "ora 03",
-   "units": 232,
-   "rank": 17,
-   "versions": 3
-  },
-  {
-   "seg": "cars",
-   "brand": "Geely",
-   "brandKey": "geely",
-   "model": "EX 2 Pro",
-   "modelKey": "ex 2 pro",
-   "units": 230,
-   "rank": 18,
+   "units": 330,
+   "rank": 15,
    "versions": 1
   },
   {
@@ -196,8 +166,18 @@
    "brandKey": "chevrolet",
    "model": "Onix Plus",
    "modelKey": "onix plus",
-   "units": 228,
-   "rank": 19,
+   "units": 245,
+   "rank": 16,
+   "versions": 3
+  },
+  {
+   "seg": "cars",
+   "brand": "GWM",
+   "brandKey": "gwm",
+   "model": "Ora 03",
+   "modelKey": "ora 03",
+   "units": 236,
+   "rank": 17,
    "versions": 3
   },
   {
@@ -206,8 +186,8 @@
    "brandKey": "gacmotor",
    "model": "Aion UT",
    "modelKey": "aion ut",
-   "units": 205,
-   "rank": 20,
+   "units": 235,
+   "rank": 18,
    "versions": 1
   },
   {
@@ -216,9 +196,29 @@
    "brandKey": "renault",
    "model": "Kwid Bitono",
    "modelKey": "kwid bitono",
-   "units": 198,
-   "rank": 21,
+   "units": 216,
+   "rank": 19,
    "versions": 1
+  },
+  {
+   "seg": "cars",
+   "brand": "Hyundai",
+   "brandKey": "hyundai",
+   "model": "HB 20 Sedan",
+   "modelKey": "hb 20 sedan",
+   "units": 206,
+   "rank": 20,
+   "versions": 5
+  },
+  {
+   "seg": "cars",
+   "brand": "GWM",
+   "brandKey": "gwm",
+   "model": "Ora 5",
+   "modelKey": "ora 5",
+   "units": 206,
+   "rank": 21,
+   "versions": 2
   },
   {
    "seg": "cars",
@@ -232,23 +232,13 @@
   },
   {
    "seg": "cars",
-   "brand": "Hyundai",
-   "brandKey": "hyundai",
-   "model": "HB 20 Sedan",
-   "modelKey": "hb 20 sedan",
-   "units": 159,
+   "brand": "JMC",
+   "brandKey": "jmc",
+   "model": "Jmev 2",
+   "modelKey": "jmev 2",
+   "units": 188,
    "rank": 23,
-   "versions": 5
-  },
-  {
-   "seg": "cars",
-   "brand": "Nissan",
-   "brandKey": "nissan",
-   "model": "Versa",
-   "modelKey": "versa",
-   "units": 151,
-   "rank": 24,
-   "versions": 6
+   "versions": 1
   },
   {
    "seg": "cars",
@@ -256,9 +246,19 @@
    "brandKey": "fiat",
    "model": "Argo",
    "modelKey": "argo",
-   "units": 150,
-   "rank": 25,
+   "units": 169,
+   "rank": 24,
    "versions": 4
+  },
+  {
+   "seg": "cars",
+   "brand": "Nissan",
+   "brandKey": "nissan",
+   "model": "Versa",
+   "modelKey": "versa",
+   "units": 164,
+   "rank": 25,
+   "versions": 9
   },
   {
    "seg": "cars",
@@ -266,7 +266,7 @@
    "brandKey": "peugeot",
    "model": "208",
    "modelKey": "208",
-   "units": 148,
+   "units": 160,
    "rank": 26,
    "versions": 2
   },
@@ -276,7 +276,7 @@
    "brandKey": "mg",
    "model": "MG 3",
    "modelKey": "mg 3",
-   "units": 128,
+   "units": 142,
    "rank": 27,
    "versions": 1
   },
@@ -286,29 +286,9 @@
    "brandKey": "citroen",
    "model": "C 3",
    "modelKey": "c 3",
-   "units": 120,
+   "units": 124,
    "rank": 28,
    "versions": 4
-  },
-  {
-   "seg": "cars",
-   "brand": "JMC",
-   "brandKey": "jmc",
-   "model": "Jmev 2",
-   "modelKey": "jmev 2",
-   "units": 97,
-   "rank": 29,
-   "versions": 1
-  },
-  {
-   "seg": "cars",
-   "brand": "GWM",
-   "brandKey": "gwm",
-   "model": "Ora 5",
-   "modelKey": "ora 5",
-   "units": 94,
-   "rank": 30,
-   "versions": 2
   },
   {
    "seg": "cars",
@@ -316,8 +296,8 @@
    "brandKey": "changan",
    "model": "Lumin",
    "modelKey": "lumin",
-   "units": 91,
-   "rank": 31,
+   "units": 107,
+   "rank": 29,
    "versions": 1
   },
   {
@@ -326,8 +306,8 @@
    "brandKey": "volkswagen",
    "model": "Polo",
    "modelKey": "polo",
-   "units": 75,
-   "rank": 32,
+   "units": 80,
+   "rank": 30,
    "versions": 2
   },
   {
@@ -337,18 +317,8 @@
    "model": "D 1",
    "modelKey": "d 1",
    "units": 65,
-   "rank": 33,
+   "rank": 31,
    "versions": 1
-  },
-  {
-   "seg": "cars",
-   "brand": "Nissan",
-   "brandKey": "nissan",
-   "model": "Sentra",
-   "modelKey": "sentra",
-   "units": 55,
-   "rank": 34,
-   "versions": 4
   },
   {
    "seg": "cars",
@@ -356,9 +326,19 @@
    "brandKey": "toyota",
    "model": "Yaris HB",
    "modelKey": "yaris hb",
-   "units": 51,
-   "rank": 35,
+   "units": 61,
+   "rank": 32,
    "versions": 2
+  },
+  {
+   "seg": "cars",
+   "brand": "Nissan",
+   "brandKey": "nissan",
+   "model": "Sentra",
+   "modelKey": "sentra",
+   "units": 60,
+   "rank": 33,
+   "versions": 4
   },
   {
    "seg": "cars",
@@ -366,8 +346,18 @@
    "brandKey": "gacmotor",
    "model": "Aion ES",
    "modelKey": "aion es",
-   "units": 46,
-   "rank": 36,
+   "units": 55,
+   "rank": 34,
+   "versions": 1
+  },
+  {
+   "seg": "cars",
+   "brand": "Suzuki",
+   "brandKey": "suzuki",
+   "model": "Alto 1 0",
+   "modelKey": "alto 1 0",
+   "units": 47,
+   "rank": 35,
    "versions": 1
   },
   {
@@ -377,7 +367,7 @@
    "model": "Hongguang",
    "modelKey": "hongguang",
    "units": 42,
-   "rank": 37,
+   "rank": 36,
    "versions": 2
   },
   {
@@ -387,8 +377,28 @@
    "model": "Bingo",
    "modelKey": "bingo",
    "units": 42,
-   "rank": 38,
+   "rank": 37,
    "versions": 1
+  },
+  {
+   "seg": "cars",
+   "brand": "MG",
+   "brandKey": "mg",
+   "model": "MG 4",
+   "modelKey": "mg 4",
+   "units": 33,
+   "rank": 38,
+   "versions": 3
+  },
+  {
+   "seg": "cars",
+   "brand": "Toyota",
+   "brandKey": "toyota",
+   "model": "Corolla",
+   "modelKey": "corolla",
+   "units": 33,
+   "rank": 39,
+   "versions": 3
   },
   {
    "seg": "cars",
@@ -397,28 +407,8 @@
    "model": "Binguo",
    "modelKey": "binguo",
    "units": 32,
-   "rank": 39,
-   "versions": 1
-  },
-  {
-   "seg": "cars",
-   "brand": "Suzuki",
-   "brandKey": "suzuki",
-   "model": "Alto 1 0",
-   "modelKey": "alto 1 0",
-   "units": 31,
    "rank": 40,
    "versions": 1
-  },
-  {
-   "seg": "cars",
-   "brand": "Toyota",
-   "brandKey": "toyota",
-   "model": "Corolla",
-   "modelKey": "corolla",
-   "units": 29,
-   "rank": 41,
-   "versions": 3
   },
   {
    "seg": "cars",
@@ -426,19 +416,9 @@
    "brandKey": "changan",
    "model": "Eado Plus",
    "modelKey": "eado plus",
-   "units": 28,
-   "rank": 42,
+   "units": 31,
+   "rank": 41,
    "versions": 2
-  },
-  {
-   "seg": "cars",
-   "brand": "Peugeot",
-   "brandKey": "peugeot",
-   "model": "301",
-   "modelKey": "301",
-   "units": 21,
-   "rank": 43,
-   "versions": 1
   },
   {
    "seg": "cars",
@@ -446,8 +426,8 @@
    "brandKey": "arcfox",
    "model": "T 1 LV 3",
    "modelKey": "t 1 lv 3",
-   "units": 21,
-   "rank": 44,
+   "units": 30,
+   "rank": 42,
    "versions": 1
   },
   {
@@ -456,9 +436,29 @@
    "brandKey": "suzuki",
    "model": "Alto 1 0 GA 6 AB",
    "modelKey": "alto 1 0 ga 6 ab",
-   "units": 20,
-   "rank": 45,
+   "units": 22,
+   "rank": 43,
    "versions": 1
+  },
+  {
+   "seg": "cars",
+   "brand": "Peugeot",
+   "brandKey": "peugeot",
+   "model": "301",
+   "modelKey": "301",
+   "units": 22,
+   "rank": 44,
+   "versions": 1
+  },
+  {
+   "seg": "cars",
+   "brand": "Volkswagen",
+   "brandKey": "volkswagen",
+   "model": "Virtus",
+   "modelKey": "virtus",
+   "units": 21,
+   "rank": 45,
+   "versions": 4
   },
   {
    "seg": "cars",
@@ -482,22 +482,12 @@
   },
   {
    "seg": "cars",
-   "brand": "Volkswagen",
-   "brandKey": "volkswagen",
-   "model": "Virtus",
-   "modelKey": "virtus",
-   "units": 17,
-   "rank": 48,
-   "versions": 4
-  },
-  {
-   "seg": "cars",
    "brand": "Peugeot",
    "brandKey": "peugeot",
    "model": "208 Allure",
    "modelKey": "208 allure",
    "units": 16,
-   "rank": 49,
+   "rank": 48,
    "versions": 2
   },
   {
@@ -506,7 +496,17 @@
    "brandKey": "bmw",
    "model": "118 I Hatch",
    "modelKey": "118 i hatch",
-   "units": 15,
+   "units": 16,
+   "rank": 49,
+   "versions": 1
+  },
+  {
+   "seg": "cars",
+   "brand": "BAIC",
+   "brandKey": "baic",
+   "model": "EU 5",
+   "modelKey": "eu 5",
+   "units": 14,
    "rank": 50,
    "versions": 1
   },
@@ -522,13 +522,13 @@
   },
   {
    "seg": "cars",
-   "brand": "Kia",
-   "brandKey": "kia",
-   "model": "Soluto",
-   "modelKey": "soluto",
-   "units": 11,
+   "brand": "Volkswagen",
+   "brandKey": "volkswagen",
+   "model": "Vento",
+   "modelKey": "vento",
+   "units": 13,
    "rank": 52,
-   "versions": 1
+   "versions": 2
   },
   {
    "seg": "cars",
@@ -536,9 +536,19 @@
    "brandKey": "mini",
    "model": "Cooper",
    "modelKey": "cooper",
-   "units": 11,
+   "units": 12,
    "rank": 53,
-   "versions": 2
+   "versions": 3
+  },
+  {
+   "seg": "cars",
+   "brand": "Kia",
+   "brandKey": "kia",
+   "model": "Soluto",
+   "modelKey": "soluto",
+   "units": 11,
+   "rank": 54,
+   "versions": 1
   },
   {
    "seg": "cars",
@@ -547,7 +557,7 @@
    "model": "ES 1",
    "modelKey": "es 1",
    "units": 10,
-   "rank": 54,
+   "rank": 55,
    "versions": 1
   },
   {
@@ -557,18 +567,8 @@
    "model": "Berlingo Plus L 2",
    "modelKey": "berlingo plus l 2",
    "units": 10,
-   "rank": 55,
-   "versions": 1
-  },
-  {
-   "seg": "cars",
-   "brand": "Volkswagen",
-   "brandKey": "volkswagen",
-   "model": "Vento",
-   "modelKey": "vento",
-   "units": 9,
    "rank": 56,
-   "versions": 2
+   "versions": 1
   },
   {
    "seg": "cars",
@@ -586,7 +586,7 @@
    "brandKey": "arcfox",
    "model": "T 1 LV 2",
    "modelKey": "t 1 lv 2",
-   "units": 7,
+   "units": 8,
    "rank": 58,
    "versions": 1
   },
@@ -596,17 +596,17 @@
    "brandKey": "kia",
    "model": "K 3 Gtline",
    "modelKey": "k 3 gtline",
-   "units": 5,
+   "units": 6,
    "rank": 59,
    "versions": 1
   },
   {
    "seg": "cars",
-   "brand": "BAIC",
-   "brandKey": "baic",
-   "model": "EU 5",
-   "modelKey": "eu 5",
-   "units": 5,
+   "brand": "Mercedes-Benz",
+   "brandKey": "mercedesbenz",
+   "model": "Cle Cabrio 300",
+   "modelKey": "cle cabrio 300",
+   "units": 6,
    "rank": 60,
    "versions": 1
   },
@@ -622,12 +622,22 @@
   },
   {
    "seg": "cars",
+   "brand": "Toyota",
+   "brandKey": "toyota",
+   "model": "GR Yaris",
+   "modelKey": "gr yaris",
+   "units": 5,
+   "rank": 62,
+   "versions": 2
+  },
+  {
+   "seg": "cars",
    "brand": "Citroen",
    "brandKey": "citroen",
    "model": "Ami Tonic",
    "modelKey": "ami tonic",
    "units": 5,
-   "rank": 62,
+   "rank": 63,
    "versions": 1
   },
   {
@@ -637,7 +647,7 @@
    "model": "420 I Convertible",
    "modelKey": "420 i convertible",
    "units": 5,
-   "rank": 63,
+   "rank": 64,
    "versions": 1
   },
   {
@@ -647,7 +657,7 @@
    "model": "Seal",
    "modelKey": "seal",
    "units": 4,
-   "rank": 64,
+   "rank": 65,
    "versions": 1
   },
   {
@@ -657,7 +667,7 @@
    "model": "001",
    "modelKey": "001",
    "units": 4,
-   "rank": 65,
+   "rank": 66,
    "versions": 2
   },
   {
@@ -667,7 +677,7 @@
    "model": "A 3 SB",
    "modelKey": "a 3 sb",
    "units": 4,
-   "rank": 66,
+   "rank": 67,
    "versions": 2
   },
   {
@@ -677,7 +687,17 @@
    "model": "M 240 I Coupe MX",
    "modelKey": "m 240 i coupe mx",
    "units": 4,
-   "rank": 67,
+   "rank": 68,
+   "versions": 1
+  },
+  {
+   "seg": "cars",
+   "brand": "MINI",
+   "brandKey": "mini",
+   "model": "Cooper C",
+   "modelKey": "cooper c",
+   "units": 4,
+   "rank": 69,
    "versions": 1
   },
   {
@@ -687,7 +707,7 @@
    "model": "Geometry C",
    "modelKey": "geometry c",
    "units": 4,
-   "rank": 68,
+   "rank": 70,
    "versions": 1
   },
   {
@@ -697,7 +717,7 @@
    "model": "Wrx",
    "modelKey": "wrx",
    "units": 4,
-   "rank": 69,
+   "rank": 71,
    "versions": 3
   },
   {
@@ -707,7 +727,7 @@
    "model": "Ibiza Reference",
    "modelKey": "ibiza reference",
    "units": 3,
-   "rank": 70,
+   "rank": 72,
    "versions": 1
   },
   {
@@ -716,26 +736,6 @@
    "brandKey": "mercedesbenz",
    "model": "Cle 300",
    "modelKey": "cle 300",
-   "units": 3,
-   "rank": 71,
-   "versions": 1
-  },
-  {
-   "seg": "cars",
-   "brand": "Mercedes-Benz",
-   "brandKey": "mercedesbenz",
-   "model": "Cle Cabrio 300",
-   "modelKey": "cle cabrio 300",
-   "units": 3,
-   "rank": 72,
-   "versions": 1
-  },
-  {
-   "seg": "cars",
-   "brand": "Toyota",
-   "brandKey": "toyota",
-   "model": "GR Yaris",
-   "modelKey": "gr yaris",
    "units": 3,
    "rank": 73,
    "versions": 1
@@ -752,12 +752,22 @@
   },
   {
    "seg": "cars",
+   "brand": "Audi",
+   "brandKey": "audi",
+   "model": "RS Etron",
+   "modelKey": "rs etron",
+   "units": 3,
+   "rank": 75,
+   "versions": 1
+  },
+  {
+   "seg": "cars",
    "brand": "Dongfeng Forthing",
    "brandKey": "dongfeng",
    "model": "S 7",
    "modelKey": "s 7",
    "units": 3,
-   "rank": 75,
+   "rank": 76,
    "versions": 1
   },
   {
@@ -767,7 +777,7 @@
    "model": "M 3 Competition",
    "modelKey": "m 3 competition",
    "units": 3,
-   "rank": 76,
+   "rank": 77,
    "versions": 1
   },
   {
@@ -777,7 +787,7 @@
    "model": "330 E Sedan",
    "modelKey": "330 e sedan",
    "units": 3,
-   "rank": 77,
+   "rank": 78,
    "versions": 1
   },
   {
@@ -786,16 +796,6 @@
    "brandKey": "bmw",
    "model": "530 E",
    "modelKey": "530 e",
-   "units": 3,
-   "rank": 78,
-   "versions": 1
-  },
-  {
-   "seg": "cars",
-   "brand": "MINI",
-   "brandKey": "mini",
-   "model": "Cooper C",
-   "modelKey": "cooper c",
    "units": 3,
    "rank": 79,
    "versions": 1
@@ -814,8 +814,8 @@
    "seg": "cars",
    "brand": "MG",
    "brandKey": "mg",
-   "model": "MG 4",
-   "modelKey": "mg 4",
+   "model": "Cyberster",
+   "modelKey": "cyberster",
    "units": 2,
    "rank": 81,
    "versions": 1
@@ -902,12 +902,32 @@
   },
   {
    "seg": "cars",
+   "brand": "BMW",
+   "brandKey": "bmw",
+   "model": "M 4 Competition",
+   "modelKey": "m 4 competition",
+   "units": 2,
+   "rank": 90,
+   "versions": 1
+  },
+  {
+   "seg": "cars",
+   "brand": "BMW",
+   "brandKey": "bmw",
+   "model": "M 3",
+   "modelKey": "m 3",
+   "units": 2,
+   "rank": 91,
+   "versions": 1
+  },
+  {
+   "seg": "cars",
    "brand": "MINI",
    "brandKey": "mini",
    "model": "Cooper E",
    "modelKey": "cooper e",
    "units": 2,
-   "rank": 90,
+   "rank": 92,
    "versions": 1
   },
   {
@@ -917,7 +937,7 @@
    "model": "Han",
    "modelKey": "han",
    "units": 1,
-   "rank": 91,
+   "rank": 93,
    "versions": 1
   },
   {
@@ -927,7 +947,17 @@
    "model": "EQ 1",
    "modelKey": "eq 1",
    "units": 1,
-   "rank": 92,
+   "rank": 94,
+   "versions": 1
+  },
+  {
+   "seg": "cars",
+   "brand": "SEAT",
+   "brandKey": "seat",
+   "model": "Leon 5 D",
+   "modelKey": "leon 5 d",
+   "units": 1,
+   "rank": 95,
    "versions": 1
   },
   {
@@ -937,7 +967,7 @@
    "model": "Leon 5 D FR",
    "modelKey": "leon 5 d fr",
    "units": 1,
-   "rank": 93,
+   "rank": 96,
    "versions": 1
   },
   {
@@ -947,7 +977,7 @@
    "model": "E 350 E",
    "modelKey": "e 350 e",
    "units": 1,
-   "rank": 94,
+   "rank": 97,
    "versions": 1
   },
   {
@@ -957,7 +987,17 @@
    "model": "E 450",
    "modelKey": "e 450",
    "units": 1,
-   "rank": 95,
+   "rank": 98,
+   "versions": 1
+  },
+  {
+   "seg": "cars",
+   "brand": "Mercedes-Benz",
+   "brandKey": "mercedesbenz",
+   "model": "Cle 200",
+   "modelKey": "cle 200",
+   "units": 1,
+   "rank": 99,
    "versions": 1
   },
   {
@@ -967,7 +1007,7 @@
    "model": "C 180",
    "modelKey": "c 180",
    "units": 1,
-   "rank": 96,
+   "rank": 100,
    "versions": 1
   },
   {
@@ -977,7 +1017,7 @@
    "model": "Amg",
    "modelKey": "amg",
    "units": 1,
-   "rank": 97,
+   "rank": 101,
    "versions": 1
   },
   {
@@ -987,7 +1027,7 @@
    "model": "T 03",
    "modelKey": "t 03",
    "units": 1,
-   "rank": 98,
+   "rank": 102,
    "versions": 1
   },
   {
@@ -997,7 +1037,7 @@
    "model": "FL 574 RE Civic",
    "modelKey": "fl 574 re civic",
    "units": 1,
-   "rank": 99,
+   "rank": 103,
    "versions": 1
   },
   {
@@ -1007,7 +1047,7 @@
    "model": "Rifter N 1 16 H",
    "modelKey": "rifter n 1 16 h",
    "units": 1,
-   "rank": 100,
+   "rank": 104,
    "versions": 1
   },
   {
@@ -1017,7 +1057,7 @@
    "model": "C 4",
    "modelKey": "c 4",
    "units": 1,
-   "rank": 101,
+   "rank": 105,
    "versions": 1
   },
   {
@@ -1027,7 +1067,7 @@
    "model": "A 3 SB Advanced Plus",
    "modelKey": "a 3 sb advanced plus",
    "units": 1,
-   "rank": 102,
+   "rank": 106,
    "versions": 1
   },
   {
@@ -1037,17 +1077,7 @@
    "model": "RS 3 Sedan",
    "modelKey": "rs 3 sedan",
    "units": 1,
-   "rank": 103,
-   "versions": 1
-  },
-  {
-   "seg": "cars",
-   "brand": "Audi",
-   "brandKey": "audi",
-   "model": "RS Etron",
-   "modelKey": "rs etron",
-   "units": 1,
-   "rank": 104,
+   "rank": 107,
    "versions": 1
   },
   {
@@ -1057,7 +1087,7 @@
    "model": "430 I Coupe",
    "modelKey": "430 i coupe",
    "units": 1,
-   "rank": 105,
+   "rank": 108,
    "versions": 1
   },
   {
@@ -1067,7 +1097,7 @@
    "model": "M 2 Coupe MX",
    "modelKey": "m 2 coupe mx",
    "units": 1,
-   "rank": 106,
+   "rank": 109,
    "versions": 1
   },
   {
@@ -1077,27 +1107,7 @@
    "model": "520 I Sedan",
    "modelKey": "520 i sedan",
    "units": 1,
-   "rank": 107,
-   "versions": 1
-  },
-  {
-   "seg": "cars",
-   "brand": "BMW",
-   "brandKey": "bmw",
-   "model": "M 4 Competition",
-   "modelKey": "m 4 competition",
-   "units": 1,
-   "rank": 108,
-   "versions": 1
-  },
-  {
-   "seg": "cars",
-   "brand": "BMW",
-   "brandKey": "bmw",
-   "model": "M 3",
-   "modelKey": "m 3",
-   "units": 1,
-   "rank": 109,
+   "rank": 110,
    "versions": 1
   },
   {
@@ -1107,7 +1117,7 @@
    "model": "Jcw Convertible",
    "modelKey": "jcw convertible",
    "units": 1,
-   "rank": 110,
+   "rank": 111,
    "versions": 1
   },
   {
@@ -1117,7 +1127,7 @@
    "model": "Jcw Hatch",
    "modelKey": "jcw hatch",
    "units": 1,
-   "rank": 111,
+   "rank": 112,
    "versions": 1
   },
   {
@@ -1127,7 +1137,7 @@
    "model": "Cooper C 5 Doors",
    "modelKey": "cooper c 5 doors",
    "units": 1,
-   "rank": 112,
+   "rank": 113,
    "versions": 1
   },
   {
@@ -1137,7 +1147,7 @@
    "model": "Jcw E",
    "modelKey": "jcw e",
    "units": 1,
-   "rank": 113,
+   "rank": 114,
    "versions": 1
   },
   {
@@ -1146,7 +1156,7 @@
    "brandKey": "fiat",
    "model": "Strada",
    "modelKey": "strada",
-   "units": 3021,
+   "units": 3423,
    "rank": 1,
    "versions": 4
   },
@@ -1156,9 +1166,9 @@
    "brandKey": "renault",
    "model": "Oroch",
    "modelKey": "oroch",
-   "units": 773,
+   "units": 820,
    "rank": 2,
-   "versions": 5
+   "versions": 6
   },
   {
    "seg": "pickups",
@@ -1166,7 +1176,7 @@
    "brandKey": "volkswagen",
    "model": "Saveiro",
    "modelKey": "saveiro",
-   "units": 624,
+   "units": 685,
    "rank": 3,
    "versions": 4
   },
@@ -1176,7 +1186,7 @@
    "brandKey": "chevrolet",
    "model": "Montana",
    "modelKey": "montana",
-   "units": 614,
+   "units": 665,
    "rank": 4,
    "versions": 6
   },
@@ -1186,7 +1196,7 @@
    "brandKey": "riddara",
    "model": "RD 6",
    "modelKey": "rd 6",
-   "units": 461,
+   "units": 577,
    "rank": 5,
    "versions": 5
   },
@@ -1196,19 +1206,9 @@
    "brandKey": "toyota",
    "model": "Hilux",
    "modelKey": "hilux",
-   "units": 420,
+   "units": 488,
    "rank": 6,
    "versions": 16
-  },
-  {
-   "seg": "pickups",
-   "brand": "Fiat",
-   "brandKey": "fiat",
-   "model": "Toro",
-   "modelKey": "toro",
-   "units": 367,
-   "rank": 7,
-   "versions": 3
   },
   {
    "seg": "pickups",
@@ -1216,8 +1216,28 @@
    "brandKey": "renault",
    "model": "Oroch Cargo",
    "modelKey": "oroch cargo",
-   "units": 361,
+   "units": 455,
+   "rank": 7,
+   "versions": 2
+  },
+  {
+   "seg": "pickups",
+   "brand": "Fiat",
+   "brandKey": "fiat",
+   "model": "Toro",
+   "modelKey": "toro",
+   "units": 418,
    "rank": 8,
+   "versions": 3
+  },
+  {
+   "seg": "pickups",
+   "brand": "Fiat",
+   "brandKey": "fiat",
+   "model": "Fiorino",
+   "modelKey": "fiorino",
+   "units": 245,
+   "rank": 9,
    "versions": 1
   },
   {
@@ -1226,19 +1246,9 @@
    "brandKey": "mitsubishi",
    "model": "L 200",
    "modelKey": "l 200",
-   "units": 220,
-   "rank": 9,
-   "versions": 6
-  },
-  {
-   "seg": "pickups",
-   "brand": "Fiat",
-   "brandKey": "fiat",
-   "model": "Fiorino",
-   "modelKey": "fiorino",
-   "units": 215,
+   "units": 242,
    "rank": 10,
-   "versions": 1
+   "versions": 6
   },
   {
    "seg": "pickups",
@@ -1246,38 +1256,8 @@
    "brandKey": "victory",
    "model": "Sch 1025",
    "modelKey": "sch 1025",
-   "units": 187,
+   "units": 199,
    "rank": 11,
-   "versions": 1
-  },
-  {
-   "seg": "pickups",
-   "brand": "JAC",
-   "brandKey": "jac",
-   "model": "T 8 Pro",
-   "modelKey": "t 8 pro",
-   "units": 183,
-   "rank": 12,
-   "versions": 3
-  },
-  {
-   "seg": "pickups",
-   "brand": "Nissan",
-   "brandKey": "nissan",
-   "model": "Frontier",
-   "modelKey": "frontier",
-   "units": 177,
-   "rank": 13,
-   "versions": 22
-  },
-  {
-   "seg": "pickups",
-   "brand": "Victory",
-   "brandKey": "victory",
-   "model": "Sch 1025 D",
-   "modelKey": "sch 1025 d",
-   "units": 169,
-   "rank": 14,
    "versions": 1
   },
   {
@@ -1286,19 +1266,39 @@
    "brandKey": "renault",
    "model": "Kangoo Express Confort 2 A",
    "modelKey": "kangoo express confort 2 a",
-   "units": 168,
-   "rank": 15,
+   "units": 190,
+   "rank": 12,
    "versions": 1
   },
   {
    "seg": "pickups",
-   "brand": "Chevrolet",
-   "brandKey": "chevrolet",
-   "model": "S 10",
-   "modelKey": "s 10",
-   "units": 152,
-   "rank": 16,
-   "versions": 7
+   "brand": "Victory",
+   "brandKey": "victory",
+   "model": "Sch 1025 D",
+   "modelKey": "sch 1025 d",
+   "units": 187,
+   "rank": 13,
+   "versions": 1
+  },
+  {
+   "seg": "pickups",
+   "brand": "Nissan",
+   "brandKey": "nissan",
+   "model": "Frontier",
+   "modelKey": "frontier",
+   "units": 187,
+   "rank": 14,
+   "versions": 22
+  },
+  {
+   "seg": "pickups",
+   "brand": "JAC",
+   "brandKey": "jac",
+   "model": "T 8 Pro",
+   "modelKey": "t 8 pro",
+   "units": 184,
+   "rank": 15,
+   "versions": 3
   },
   {
    "seg": "pickups",
@@ -1306,9 +1306,19 @@
    "brandKey": "foton",
    "model": "Tunland V 7",
    "modelKey": "tunland v 7",
-   "units": 150,
-   "rank": 17,
+   "units": 176,
+   "rank": 16,
    "versions": 3
+  },
+  {
+   "seg": "pickups",
+   "brand": "Chevrolet",
+   "brandKey": "chevrolet",
+   "model": "S 10",
+   "modelKey": "s 10",
+   "units": 164,
+   "rank": 17,
+   "versions": 7
   },
   {
    "seg": "pickups",
@@ -1316,29 +1326,9 @@
    "brandKey": "karry",
    "model": "Q 22",
    "modelKey": "q 22",
-   "units": 106,
+   "units": 127,
    "rank": 18,
    "versions": 3
-  },
-  {
-   "seg": "pickups",
-   "brand": "RAM",
-   "brandKey": "ram",
-   "model": "Rampage Rebel",
-   "modelKey": "rampage rebel",
-   "units": 104,
-   "rank": 19,
-   "versions": 1
-  },
-  {
-   "seg": "pickups",
-   "brand": "Ford",
-   "brandKey": "ford",
-   "model": "Ranger",
-   "modelKey": "ranger",
-   "units": 100,
-   "rank": 20,
-   "versions": 2
   },
   {
    "seg": "pickups",
@@ -1346,9 +1336,29 @@
    "brandKey": "ford",
    "model": "Ranger D C",
    "modelKey": "ranger d c",
-   "units": 96,
-   "rank": 21,
+   "units": 113,
+   "rank": 19,
    "versions": 4
+  },
+  {
+   "seg": "pickups",
+   "brand": "Ford",
+   "brandKey": "ford",
+   "model": "Ranger",
+   "modelKey": "ranger",
+   "units": 112,
+   "rank": 20,
+   "versions": 2
+  },
+  {
+   "seg": "pickups",
+   "brand": "RAM",
+   "brandKey": "ram",
+   "model": "Rampage Rebel",
+   "modelKey": "rampage rebel",
+   "units": 108,
+   "rank": 21,
+   "versions": 1
   },
   {
    "seg": "pickups",
@@ -1356,7 +1366,7 @@
    "brandKey": "changan",
    "model": "Hunter",
    "modelKey": "hunter",
-   "units": 81,
+   "units": 88,
    "rank": 22,
    "versions": 3
   },
@@ -1366,7 +1376,7 @@
    "brandKey": "dfsk",
    "model": "K 02",
    "modelKey": "k 02",
-   "units": 74,
+   "units": 83,
    "rank": 23,
    "versions": 1
   },
@@ -1376,7 +1386,7 @@
    "brandKey": "dfsk",
    "model": "K 01",
    "modelKey": "k 01",
-   "units": 73,
+   "units": 80,
    "rank": 24,
    "versions": 3
   },
@@ -1386,9 +1396,19 @@
    "brandKey": "karry",
    "model": "Q 22 L",
    "modelKey": "q 22 l",
-   "units": 65,
+   "units": 78,
    "rank": 25,
    "versions": 1
+  },
+  {
+   "seg": "pickups",
+   "brand": "Dongfeng",
+   "brandKey": "dongfeng",
+   "model": "Mini City",
+   "modelKey": "mini city",
+   "units": 68,
+   "rank": 26,
+   "versions": 2
   },
   {
    "seg": "pickups",
@@ -1396,19 +1416,19 @@
    "brandKey": "chery",
    "model": "Himla",
    "modelKey": "himla",
-   "units": 63,
-   "rank": 26,
+   "units": 67,
+   "rank": 27,
    "versions": 3
   },
   {
    "seg": "pickups",
-   "brand": "Karry",
-   "brandKey": "karry",
-   "model": "KQ 53",
-   "modelKey": "kq 53",
-   "units": 62,
-   "rank": 27,
-   "versions": 1
+   "brand": "Ford",
+   "brandKey": "ford",
+   "model": "Maverick",
+   "modelKey": "maverick",
+   "units": 65,
+   "rank": 28,
+   "versions": 3
   },
   {
    "seg": "pickups",
@@ -1416,18 +1436,18 @@
    "brandKey": "foton",
    "model": "Tunland V 9",
    "modelKey": "tunland v 9",
-   "units": 59,
-   "rank": 28,
+   "units": 65,
+   "rank": 29,
    "versions": 2
   },
   {
    "seg": "pickups",
-   "brand": "Peugeot",
-   "brandKey": "peugeot",
-   "model": "Partner K 9 Fgl",
-   "modelKey": "partner k 9 fgl",
-   "units": 57,
-   "rank": 29,
+   "brand": "Karry",
+   "brandKey": "karry",
+   "model": "KQ 53",
+   "modelKey": "kq 53",
+   "units": 63,
+   "rank": 30,
    "versions": 1
   },
   {
@@ -1436,9 +1456,19 @@
    "brandKey": "foton",
    "model": "TM 1",
    "modelKey": "tm 1",
-   "units": 56,
-   "rank": 30,
+   "units": 63,
+   "rank": 31,
    "versions": 2
+  },
+  {
+   "seg": "pickups",
+   "brand": "Peugeot",
+   "brandKey": "peugeot",
+   "model": "Partner K 9 Fgl",
+   "modelKey": "partner k 9 fgl",
+   "units": 61,
+   "rank": 32,
+   "versions": 1
   },
   {
    "seg": "pickups",
@@ -1446,19 +1476,9 @@
    "brandKey": "honda",
    "model": "Ridgeline",
    "modelKey": "ridgeline",
-   "units": 54,
-   "rank": 31,
+   "units": 56,
+   "rank": 33,
    "versions": 1
-  },
-  {
-   "seg": "pickups",
-   "brand": "Ford",
-   "brandKey": "ford",
-   "model": "Maverick",
-   "modelKey": "maverick",
-   "units": 53,
-   "rank": 32,
-   "versions": 3
   },
   {
    "seg": "pickups",
@@ -1467,18 +1487,8 @@
    "model": "Tunland G 7 D",
    "modelKey": "tunland g 7 d",
    "units": 52,
-   "rank": 33,
-   "versions": 1
-  },
-  {
-   "seg": "pickups",
-   "brand": "Peugeot",
-   "brandKey": "peugeot",
-   "model": "Landtrek",
-   "modelKey": "landtrek",
-   "units": 50,
    "rank": 34,
-   "versions": 3
+   "versions": 1
   },
   {
    "seg": "pickups",
@@ -1486,7 +1496,7 @@
    "brandKey": "chevrolet",
    "model": "Silverado",
    "modelKey": "silverado",
-   "units": 50,
+   "units": 52,
    "rank": 35,
    "versions": 2
   },
@@ -1496,38 +1506,28 @@
    "brandKey": "citroen",
    "model": "Berlingo",
    "modelKey": "berlingo",
-   "units": 48,
+   "units": 51,
    "rank": 36,
    "versions": 3
   },
   {
    "seg": "pickups",
-   "brand": "Dongfeng",
-   "brandKey": "dongfeng",
-   "model": "Mini City",
-   "modelKey": "mini city",
-   "units": 43,
+   "brand": "Peugeot",
+   "brandKey": "peugeot",
+   "model": "Landtrek",
+   "modelKey": "landtrek",
+   "units": 50,
    "rank": 37,
-   "versions": 2
+   "versions": 3
   },
   {
    "seg": "pickups",
-   "brand": "Chevrolet",
-   "brandKey": "chevrolet",
-   "model": "N 400 Max",
-   "modelKey": "n 400 max",
-   "units": 36,
+   "brand": "Renault",
+   "brandKey": "renault",
+   "model": "Master L 3 H 2",
+   "modelKey": "master l 3 h 2",
+   "units": 40,
    "rank": 38,
-   "versions": 1
-  },
-  {
-   "seg": "pickups",
-   "brand": "Victory",
-   "brandKey": "victory",
-   "model": "Sch 5022 Xxyd",
-   "modelKey": "sch 5022 xxyd",
-   "units": 35,
-   "rank": 39,
    "versions": 1
   },
   {
@@ -1536,7 +1536,17 @@
    "brandKey": "peugeot",
    "model": "E Partner K 9 Fgc",
    "modelKey": "e partner k 9 fgc",
-   "units": 35,
+   "units": 39,
+   "rank": 39,
+   "versions": 1
+  },
+  {
+   "seg": "pickups",
+   "brand": "Chevrolet",
+   "brandKey": "chevrolet",
+   "model": "N 400 Max",
+   "modelKey": "n 400 max",
+   "units": 38,
    "rank": 40,
    "versions": 1
   },
@@ -1546,17 +1556,17 @@
    "brandKey": "peugeot",
    "model": "Expert",
    "modelKey": "expert",
-   "units": 35,
+   "units": 37,
    "rank": 41,
    "versions": 1
   },
   {
    "seg": "pickups",
-   "brand": "Renault",
-   "brandKey": "renault",
-   "model": "Master L 3 H 2",
-   "modelKey": "master l 3 h 2",
-   "units": 34,
+   "brand": "Karry",
+   "brandKey": "karry",
+   "model": "KQ 52",
+   "modelKey": "kq 52",
+   "units": 36,
    "rank": 42,
    "versions": 1
   },
@@ -1566,9 +1576,19 @@
    "brandKey": "dongfeng",
    "model": "Rich 6",
    "modelKey": "rich 6",
-   "units": 34,
+   "units": 36,
    "rank": 43,
    "versions": 2
+  },
+  {
+   "seg": "pickups",
+   "brand": "Victory",
+   "brandKey": "victory",
+   "model": "Sch 5022 Xxyd",
+   "modelKey": "sch 5022 xxyd",
+   "units": 35,
+   "rank": 44,
+   "versions": 1
   },
   {
    "seg": "pickups",
@@ -1576,28 +1596,8 @@
    "brandKey": "renault",
    "model": "Master L 2 H 2 Pro",
    "modelKey": "master l 2 h 2 pro",
-   "units": 32,
-   "rank": 44,
-   "versions": 1
-  },
-  {
-   "seg": "pickups",
-   "brand": "JMC",
-   "brandKey": "jmc",
-   "model": "Grand Avenue",
-   "modelKey": "grand avenue",
-   "units": 31,
+   "units": 34,
    "rank": 45,
-   "versions": 2
-  },
-  {
-   "seg": "pickups",
-   "brand": "Renault",
-   "brandKey": "renault",
-   "model": "Master L 1 H 1",
-   "modelKey": "master l 1 h 1",
-   "units": 28,
-   "rank": 46,
    "versions": 1
   },
   {
@@ -1606,29 +1606,19 @@
    "brandKey": "volkswagen",
    "model": "Amarok V 6",
    "modelKey": "amarok v 6",
-   "units": 28,
-   "rank": 47,
+   "units": 34,
+   "rank": 46,
    "versions": 2
   },
   {
    "seg": "pickups",
-   "brand": "GWM",
-   "brandKey": "gwm",
-   "model": "Wingle 5",
-   "modelKey": "wingle 5",
-   "units": 28,
-   "rank": 48,
-   "versions": 3
-  },
-  {
-   "seg": "pickups",
-   "brand": "Karry",
-   "brandKey": "karry",
-   "model": "KQ 52",
-   "modelKey": "kq 52",
-   "units": 27,
-   "rank": 49,
-   "versions": 1
+   "brand": "JMC",
+   "brandKey": "jmc",
+   "model": "Grand Avenue",
+   "modelKey": "grand avenue",
+   "units": 33,
+   "rank": 47,
+   "versions": 2
   },
   {
    "seg": "pickups",
@@ -1636,17 +1626,37 @@
    "brandKey": "riddara",
    "model": "Horizon",
    "modelKey": "horizon",
-   "units": 27,
-   "rank": 50,
+   "units": 33,
+   "rank": 48,
    "versions": 2
   },
   {
    "seg": "pickups",
-   "brand": "Peugeot",
-   "brandKey": "peugeot",
-   "model": "Landtrek Action",
-   "modelKey": "landtrek action",
-   "units": 25,
+   "brand": "Renault",
+   "brandKey": "renault",
+   "model": "Master L 1 H 1",
+   "modelKey": "master l 1 h 1",
+   "units": 30,
+   "rank": 49,
+   "versions": 1
+  },
+  {
+   "seg": "pickups",
+   "brand": "GWM",
+   "brandKey": "gwm",
+   "model": "Wingle 5",
+   "modelKey": "wingle 5",
+   "units": 29,
+   "rank": 50,
+   "versions": 3
+  },
+  {
+   "seg": "pickups",
+   "brand": "RAM",
+   "brandKey": "ram",
+   "model": "Dakota",
+   "modelKey": "dakota",
+   "units": 28,
    "rank": 51,
    "versions": 1
   },
@@ -1656,28 +1666,8 @@
    "brandKey": "mercedesbenz",
    "model": "314 Cdi F",
    "modelKey": "314 cdi f",
-   "units": 24,
+   "units": 28,
    "rank": 52,
-   "versions": 1
-  },
-  {
-   "seg": "pickups",
-   "brand": "Mercedes-Benz",
-   "brandKey": "mercedesbenz",
-   "model": "414 Cdi F City",
-   "modelKey": "414 cdi f city",
-   "units": 22,
-   "rank": 53,
-   "versions": 1
-  },
-  {
-   "seg": "pickups",
-   "brand": "Maxus",
-   "brandKey": "maxus",
-   "model": "Edeliver 5 L 1 H 1",
-   "modelKey": "edeliver 5 l 1 h 1",
-   "units": 22,
-   "rank": 54,
    "versions": 1
   },
   {
@@ -1686,18 +1676,8 @@
    "brandKey": "farizon",
    "model": "V 6 E Ssta",
    "modelKey": "v 6 e ssta",
-   "units": 21,
-   "rank": 55,
-   "versions": 1
-  },
-  {
-   "seg": "pickups",
-   "brand": "RAM",
-   "brandKey": "ram",
-   "model": "Dakota",
-   "modelKey": "dakota",
-   "units": 20,
-   "rank": 56,
+   "units": 28,
+   "rank": 53,
    "versions": 1
   },
   {
@@ -1706,18 +1686,38 @@
    "brandKey": "hudson",
    "model": "Ebuddy",
    "modelKey": "ebuddy",
-   "units": 20,
-   "rank": 57,
+   "units": 26,
+   "rank": 54,
    "versions": 2
   },
   {
    "seg": "pickups",
-   "brand": "DFSK",
-   "brandKey": "dfsk",
-   "model": "C 35 EU V",
-   "modelKey": "c 35 eu v",
-   "units": 19,
-   "rank": 58,
+   "brand": "Maxus",
+   "brandKey": "maxus",
+   "model": "Edeliver 5 L 1 H 1",
+   "modelKey": "edeliver 5 l 1 h 1",
+   "units": 25,
+   "rank": 55,
+   "versions": 1
+  },
+  {
+   "seg": "pickups",
+   "brand": "Peugeot",
+   "brandKey": "peugeot",
+   "model": "Landtrek Action",
+   "modelKey": "landtrek action",
+   "units": 25,
+   "rank": 56,
+   "versions": 1
+  },
+  {
+   "seg": "pickups",
+   "brand": "Mercedes-Benz",
+   "brandKey": "mercedesbenz",
+   "model": "414 Cdi F City",
+   "modelKey": "414 cdi f city",
+   "units": 23,
+   "rank": 57,
    "versions": 1
   },
   {
@@ -1726,7 +1726,17 @@
    "brandKey": "jac",
    "model": "Hfc 5047 Xxyk 1 Mdv",
    "modelKey": "hfc 5047 xxyk 1 mdv",
-   "units": 16,
+   "units": 20,
+   "rank": 58,
+   "versions": 1
+  },
+  {
+   "seg": "pickups",
+   "brand": "DFSK",
+   "brandKey": "dfsk",
+   "model": "C 35 EU V",
+   "modelKey": "c 35 eu v",
+   "units": 20,
    "rank": 59,
    "versions": 1
   },
@@ -1736,7 +1746,7 @@
    "brandKey": "keyton",
    "model": "Q 2",
    "modelKey": "q 2",
-   "units": 16,
+   "units": 17,
    "rank": 60,
    "versions": 2
   },
@@ -1746,8 +1756,18 @@
    "brandKey": "maxus",
    "model": "Eterron 9",
    "modelKey": "eterron 9",
-   "units": 16,
+   "units": 17,
    "rank": 61,
+   "versions": 1
+  },
+  {
+   "seg": "pickups",
+   "brand": "Maxus",
+   "brandKey": "maxus",
+   "model": "Edeliver 3 Swb",
+   "modelKey": "edeliver 3 swb",
+   "units": 16,
+   "rank": 62,
    "versions": 1
   },
   {
@@ -1757,7 +1777,7 @@
    "model": "F 150",
    "modelKey": "f 150",
    "units": 16,
-   "rank": 62,
+   "rank": 63,
    "versions": 2
   },
   {
@@ -1767,7 +1787,7 @@
    "model": "Hfc 1037 Dkf",
    "modelKey": "hfc 1037 dkf",
    "units": 15,
-   "rank": 63,
+   "rank": 64,
    "versions": 1
   },
   {
@@ -1777,16 +1797,6 @@
    "model": "Sch 6430",
    "modelKey": "sch 6430",
    "units": 15,
-   "rank": 64,
-   "versions": 1
-  },
-  {
-   "seg": "pickups",
-   "brand": "DFSK",
-   "brandKey": "dfsk",
-   "model": "K 05",
-   "modelKey": "k 05",
-   "units": 14,
    "rank": 65,
    "versions": 1
   },
@@ -1796,18 +1806,8 @@
    "brandKey": "karry",
    "model": "KQ 51",
    "modelKey": "kq 51",
-   "units": 13,
+   "units": 15,
    "rank": 66,
-   "versions": 1
-  },
-  {
-   "seg": "pickups",
-   "brand": "Maxus",
-   "brandKey": "maxus",
-   "model": "Edeliver 3 Swb",
-   "modelKey": "edeliver 3 swb",
-   "units": 12,
-   "rank": 67,
    "versions": 1
   },
   {
@@ -1816,18 +1816,18 @@
    "brandKey": "peugeot",
    "model": "Eexpert",
    "modelKey": "eexpert",
-   "units": 12,
-   "rank": 68,
+   "units": 15,
+   "rank": 67,
    "versions": 1
   },
   {
    "seg": "pickups",
-   "brand": "Foton",
-   "brandKey": "foton",
-   "model": "Wonder",
-   "modelKey": "wonder",
-   "units": 12,
-   "rank": 69,
+   "brand": "DFSK",
+   "brandKey": "dfsk",
+   "model": "K 05",
+   "modelKey": "k 05",
+   "units": 14,
+   "rank": 68,
    "versions": 1
   },
   {
@@ -1836,7 +1836,17 @@
    "brandKey": "citroen",
    "model": "Jumpy L 3 Hdi 150",
    "modelKey": "jumpy l 3 hdi 150",
-   "units": 11,
+   "units": 13,
+   "rank": 69,
+   "versions": 1
+  },
+  {
+   "seg": "pickups",
+   "brand": "Foton",
+   "brandKey": "foton",
+   "model": "Wonder",
+   "modelKey": "wonder",
+   "units": 13,
    "rank": 70,
    "versions": 1
   },
@@ -1846,19 +1856,19 @@
    "brandKey": "volkswagen",
    "model": "Amarok",
    "modelKey": "amarok",
-   "units": 11,
+   "units": 12,
    "rank": 71,
    "versions": 2
   },
   {
    "seg": "pickups",
-   "brand": "Foton",
-   "brandKey": "foton",
-   "model": "Tunland G 7",
-   "modelKey": "tunland g 7",
+   "brand": "BYD",
+   "brandKey": "byd",
+   "model": "Shark Dmo",
+   "modelKey": "shark dmo",
    "units": 11,
    "rank": 72,
-   "versions": 2
+   "versions": 1
   },
   {
    "seg": "pickups",
@@ -1866,7 +1876,7 @@
    "brandKey": "maxus",
    "model": "Edeliver 5 L 2 H 2",
    "modelKey": "edeliver 5 l 2 h 2",
-   "units": 10,
+   "units": 11,
    "rank": 73,
    "versions": 1
   },
@@ -1876,8 +1886,28 @@
    "brandKey": "renault",
    "model": "Kangoo Etech",
    "modelKey": "kangoo etech",
-   "units": 10,
+   "units": 11,
    "rank": 74,
+   "versions": 1
+  },
+  {
+   "seg": "pickups",
+   "brand": "Foton",
+   "brandKey": "foton",
+   "model": "Tunland G 7",
+   "modelKey": "tunland g 7",
+   "units": 11,
+   "rank": 75,
+   "versions": 2
+  },
+  {
+   "seg": "pickups",
+   "brand": "JAC",
+   "brandKey": "jac",
+   "model": "Hfc 5049 Xxyk 1 Hdv",
+   "modelKey": "hfc 5049 xxyk 1 hdv",
+   "units": 9,
+   "rank": 76,
    "versions": 1
   },
   {
@@ -1887,27 +1917,17 @@
    "model": "Poer",
    "modelKey": "poer",
    "units": 9,
-   "rank": 75,
+   "rank": 77,
    "versions": 3
   },
   {
    "seg": "pickups",
-   "brand": "BYD",
-   "brandKey": "byd",
-   "model": "Shark Dmo",
-   "modelKey": "shark dmo",
+   "brand": "DFSK",
+   "brandKey": "dfsk",
+   "model": "C 31",
+   "modelKey": "c 31",
    "units": 8,
-   "rank": 76,
-   "versions": 1
-  },
-  {
-   "seg": "pickups",
-   "brand": "JAC",
-   "brandKey": "jac",
-   "model": "Hfc 5049 Xxyk 1 Hdv",
-   "modelKey": "hfc 5049 xxyk 1 hdv",
-   "units": 8,
-   "rank": 77,
+   "rank": 78,
    "versions": 1
   },
   {
@@ -1917,18 +1937,18 @@
    "model": "514 Cdi F",
    "modelKey": "514 cdi f",
    "units": 7,
-   "rank": 78,
+   "rank": 79,
    "versions": 1
   },
   {
    "seg": "pickups",
-   "brand": "DFSK",
-   "brandKey": "dfsk",
-   "model": "C 31",
-   "modelKey": "c 31",
+   "brand": "Rely",
+   "brandKey": "rely",
+   "model": "R 8",
+   "modelKey": "r 8",
    "units": 7,
-   "rank": 79,
-   "versions": 1
+   "rank": 80,
+   "versions": 3
   },
   {
    "seg": "pickups",
@@ -1937,7 +1957,7 @@
    "model": "Hfc 5049 Xxyev 12 HD",
    "modelKey": "hfc 5049 xxyev 12 hd",
    "units": 6,
-   "rank": 80,
+   "rank": 81,
    "versions": 1
   },
   {
@@ -1947,7 +1967,17 @@
    "model": "M 3",
    "modelKey": "m 3",
    "units": 6,
-   "rank": 81,
+   "rank": 82,
+   "versions": 1
+  },
+  {
+   "seg": "pickups",
+   "brand": "Victory",
+   "brandKey": "victory",
+   "model": "Sch 5032 Xxybev 4",
+   "modelKey": "sch 5032 xxybev 4",
+   "units": 6,
+   "rank": 83,
    "versions": 1
   },
   {
@@ -1957,7 +1987,7 @@
    "model": "311 Cdi F",
    "modelKey": "311 cdi f",
    "units": 6,
-   "rank": 82,
+   "rank": 84,
    "versions": 1
   },
   {
@@ -1967,7 +1997,7 @@
    "model": "T 60",
    "modelKey": "t 60",
    "units": 6,
-   "rank": 83,
+   "rank": 85,
    "versions": 3
   },
   {
@@ -1977,18 +2007,8 @@
    "model": "Traveller Combi Space",
    "modelKey": "traveller combi space",
    "units": 6,
-   "rank": 84,
+   "rank": 86,
    "versions": 1
-  },
-  {
-   "seg": "pickups",
-   "brand": "Rely",
-   "brandKey": "rely",
-   "model": "R 8",
-   "modelKey": "r 8",
-   "units": 6,
-   "rank": 85,
-   "versions": 3
   },
   {
    "seg": "pickups",
@@ -1997,7 +2017,7 @@
    "model": "C 32 EU V",
    "modelKey": "c 32 eu v",
    "units": 6,
-   "rank": 86,
+   "rank": 87,
    "versions": 1
   },
   {
@@ -2007,7 +2027,7 @@
    "model": "Toano",
    "modelKey": "toano",
    "units": 6,
-   "rank": 87,
+   "rank": 88,
    "versions": 1
   },
   {
@@ -2017,7 +2037,7 @@
    "model": "E View",
    "modelKey": "e view",
    "units": 6,
-   "rank": 88,
+   "rank": 89,
    "versions": 1
   },
   {
@@ -2027,7 +2047,7 @@
    "model": "Hfc 1037 D 3 Kst",
    "modelKey": "hfc 1037 d 3 kst",
    "units": 5,
-   "rank": 89,
+   "rank": 90,
    "versions": 1
   },
   {
@@ -2037,17 +2057,17 @@
    "model": "Vigus",
    "modelKey": "vigus",
    "units": 5,
-   "rank": 90,
+   "rank": 91,
    "versions": 1
   },
   {
    "seg": "pickups",
    "brand": "Victory",
    "brandKey": "victory",
-   "model": "Sch 5032 Xxybev 4",
-   "modelKey": "sch 5032 xxybev 4",
+   "model": "Sch 1030 Dbev 1",
+   "modelKey": "sch 1030 dbev 1",
    "units": 5,
-   "rank": 91,
+   "rank": 92,
    "versions": 1
   },
   {
@@ -2057,7 +2077,7 @@
    "model": "Rampage",
    "modelKey": "rampage",
    "units": 5,
-   "rank": 92,
+   "rank": 93,
    "versions": 1
   },
   {
@@ -2067,8 +2087,18 @@
    "model": "Rampage RT",
    "modelKey": "rampage rt",
    "units": 5,
-   "rank": 93,
+   "rank": 94,
    "versions": 1
+  },
+  {
+   "seg": "pickups",
+   "brand": "RAM",
+   "brandKey": "ram",
+   "model": "1500",
+   "modelKey": "1500",
+   "units": 5,
+   "rank": 95,
+   "versions": 2
   },
   {
    "seg": "pickups",
@@ -2077,17 +2107,17 @@
    "model": "Berlingo V Ctrl",
    "modelKey": "berlingo v ctrl",
    "units": 5,
-   "rank": 94,
+   "rank": 96,
    "versions": 2
   },
   {
    "seg": "pickups",
-   "brand": "Victory",
-   "brandKey": "victory",
-   "model": "Sch 1030 Dbev 1",
-   "modelKey": "sch 1030 dbev 1",
-   "units": 4,
-   "rank": 95,
+   "brand": "Foton",
+   "brandKey": "foton",
+   "model": "Ewonder",
+   "modelKey": "ewonder",
+   "units": 5,
+   "rank": 97,
    "versions": 1
   },
   {
@@ -2097,18 +2127,18 @@
    "model": "Sch 5020 Xxyd",
    "modelKey": "sch 5020 xxyd",
    "units": 4,
-   "rank": 96,
+   "rank": 98,
    "versions": 1
   },
   {
    "seg": "pickups",
    "brand": "RAM",
    "brandKey": "ram",
-   "model": "1500",
-   "modelKey": "1500",
+   "model": "Dakota Warlock",
+   "modelKey": "dakota warlock",
    "units": 4,
-   "rank": 97,
-   "versions": 2
+   "rank": 99,
+   "versions": 1
   },
   {
    "seg": "pickups",
@@ -2117,7 +2147,7 @@
    "model": "2500",
    "modelKey": "2500",
    "units": 4,
-   "rank": 98,
+   "rank": 100,
    "versions": 1
   },
   {
@@ -2127,7 +2157,7 @@
    "model": "Combo",
    "modelKey": "combo",
    "units": 4,
-   "rank": 99,
+   "rank": 101,
    "versions": 1
   },
   {
@@ -2137,26 +2167,6 @@
    "model": "Edeliver 9 L 3 H 2",
    "modelKey": "edeliver 9 l 3 h 2",
    "units": 4,
-   "rank": 100,
-   "versions": 1
-  },
-  {
-   "seg": "pickups",
-   "brand": "Citroen",
-   "brandKey": "citroen",
-   "model": "Citroen Jumpy",
-   "modelKey": "citroen jumpy",
-   "units": 4,
-   "rank": 101,
-   "versions": 1
-  },
-  {
-   "seg": "pickups",
-   "brand": "JMC",
-   "brandKey": "jmc",
-   "model": "N Tour Swb JX 5045 Xxytdal 6",
-   "modelKey": "n tour swb jx 5045 xxytdal 6",
-   "units": 3,
    "rank": 102,
    "versions": 1
   },
@@ -2166,8 +2176,38 @@
    "brandKey": "maxus",
    "model": "Edeliver 9 L 3 H 3",
    "modelKey": "edeliver 9 l 3 h 3",
-   "units": 3,
+   "units": 4,
    "rank": 103,
+   "versions": 1
+  },
+  {
+   "seg": "pickups",
+   "brand": "Citroen",
+   "brandKey": "citroen",
+   "model": "Citroen Jumpy",
+   "modelKey": "citroen jumpy",
+   "units": 4,
+   "rank": 104,
+   "versions": 1
+  },
+  {
+   "seg": "pickups",
+   "brand": "Foton",
+   "brandKey": "foton",
+   "model": "Ewonder Box",
+   "modelKey": "ewonder box",
+   "units": 4,
+   "rank": 105,
+   "versions": 1
+  },
+  {
+   "seg": "pickups",
+   "brand": "JMC",
+   "brandKey": "jmc",
+   "model": "N Tour Swb JX 5045 Xxytdal 6",
+   "modelKey": "n tour swb jx 5045 xxytdal 6",
+   "units": 3,
+   "rank": 106,
    "versions": 1
   },
   {
@@ -2177,7 +2217,17 @@
    "model": "Deliver 9 L 3 H 3",
    "modelKey": "deliver 9 l 3 h 3",
    "units": 3,
-   "rank": 104,
+   "rank": 107,
+   "versions": 1
+  },
+  {
+   "seg": "pickups",
+   "brand": "Peugeot",
+   "brandKey": "peugeot",
+   "model": "Rifter 16 H",
+   "modelKey": "rifter 16 h",
+   "units": 3,
+   "rank": 108,
    "versions": 1
   },
   {
@@ -2187,7 +2237,7 @@
    "model": "Boxer L 2 H 2",
    "modelKey": "boxer l 2 h 2",
    "units": 3,
-   "rank": 105,
+   "rank": 109,
    "versions": 1
   },
   {
@@ -2197,7 +2247,7 @@
    "model": "Boxer FT 40 L 4 H 2",
    "modelKey": "boxer ft 40 l 4 h 2",
    "units": 3,
-   "rank": 106,
+   "rank": 110,
    "versions": 1
   },
   {
@@ -2207,8 +2257,18 @@
    "model": "Boxer FT 35 L 2 H 2 Hdi 130",
    "modelKey": "boxer ft 35 l 2 h 2 hdi 130",
    "units": 3,
-   "rank": 107,
+   "rank": 111,
    "versions": 1
+  },
+  {
+   "seg": "pickups",
+   "brand": "Hyundai",
+   "brandKey": "hyundai",
+   "model": "H 1 Staria",
+   "modelKey": "h 1 staria",
+   "units": 3,
+   "rank": 112,
+   "versions": 2
   },
   {
    "seg": "pickups",
@@ -2217,27 +2277,17 @@
    "model": "Daily 30160 A",
    "modelKey": "daily 30160 a",
    "units": 3,
-   "rank": 108,
+   "rank": 113,
    "versions": 1
   },
   {
    "seg": "pickups",
    "brand": "Foton",
    "brandKey": "foton",
-   "model": "Ewonder",
-   "modelKey": "ewonder",
+   "model": "View EU V",
+   "modelKey": "view eu v",
    "units": 3,
-   "rank": 109,
-   "versions": 1
-  },
-  {
-   "seg": "pickups",
-   "brand": "Foton",
-   "brandKey": "foton",
-   "model": "Ewonder Box",
-   "modelKey": "ewonder box",
-   "units": 3,
-   "rank": 110,
+   "rank": 114,
    "versions": 1
   },
   {
@@ -2247,7 +2297,7 @@
    "model": "BT 50",
    "modelKey": "bt 50",
    "units": 2,
-   "rank": 111,
+   "rank": 115,
    "versions": 1
   },
   {
@@ -2257,7 +2307,7 @@
    "model": "515 Cdi F 4325",
    "modelKey": "515 cdi f 4325",
    "units": 2,
-   "rank": 112,
+   "rank": 116,
    "versions": 1
   },
   {
@@ -2267,17 +2317,17 @@
    "model": "Super",
    "modelKey": "super",
    "units": 2,
-   "rank": 113,
+   "rank": 117,
    "versions": 1
   },
   {
    "seg": "pickups",
-   "brand": "Hyundai",
-   "brandKey": "hyundai",
-   "model": "H 1 Staria",
-   "modelKey": "h 1 staria",
+   "brand": "Peugeot",
+   "brandKey": "peugeot",
+   "model": "Boxer L 4 H 2",
+   "modelKey": "boxer l 4 h 2",
    "units": 2,
-   "rank": 114,
+   "rank": 118,
    "versions": 1
   },
   {
@@ -2287,7 +2337,7 @@
    "model": "EC 31",
    "modelKey": "ec 31",
    "units": 2,
-   "rank": 115,
+   "rank": 119,
    "versions": 1
   },
   {
@@ -2297,7 +2347,7 @@
    "model": "Wingle 7",
    "modelKey": "wingle 7",
    "units": 2,
-   "rank": 116,
+   "rank": 120,
    "versions": 2
   },
   {
@@ -2307,7 +2357,17 @@
    "model": "T 3",
    "modelKey": "t 3",
    "units": 1,
-   "rank": 117,
+   "rank": 121,
+   "versions": 1
+  },
+  {
+   "seg": "pickups",
+   "brand": "JMC",
+   "brandKey": "jmc",
+   "model": "Grand Avenue Offroad",
+   "modelKey": "grand avenue offroad",
+   "units": 1,
+   "rank": 122,
    "versions": 1
   },
   {
@@ -2317,7 +2377,7 @@
    "model": "Sch 1030 Sbev",
    "modelKey": "sch 1030 sbev",
    "units": 1,
-   "rank": 118,
+   "rank": 123,
    "versions": 1
   },
   {
@@ -2327,7 +2387,17 @@
    "model": "Star",
    "modelKey": "star",
    "units": 1,
-   "rank": 119,
+   "rank": 124,
+   "versions": 1
+  },
+  {
+   "seg": "pickups",
+   "brand": "RAM",
+   "brandKey": "ram",
+   "model": "1500 Rho",
+   "modelKey": "1500 rho",
+   "units": 1,
+   "rank": 125,
    "versions": 1
   },
   {
@@ -2337,7 +2407,7 @@
    "model": "Vito Tourer 116 Cdi",
    "modelKey": "vito tourer 116 cdi",
    "units": 1,
-   "rank": 120,
+   "rank": 126,
    "versions": 1
   },
   {
@@ -2347,7 +2417,7 @@
    "model": "Edeliver 3 Chassis",
    "modelKey": "edeliver 3 chassis",
    "units": 1,
-   "rank": 121,
+   "rank": 127,
    "versions": 1
   },
   {
@@ -2357,7 +2427,17 @@
    "model": "T 90",
    "modelKey": "t 90",
    "units": 1,
-   "rank": 122,
+   "rank": 128,
+   "versions": 1
+  },
+  {
+   "seg": "pickups",
+   "brand": "Maxus",
+   "brandKey": "maxus",
+   "model": "Deliver 9 L 3 H 2",
+   "modelKey": "deliver 9 l 3 h 2",
+   "units": 1,
+   "rank": 129,
    "versions": 1
   },
   {
@@ -2367,7 +2447,7 @@
    "model": "Terron 9",
    "modelKey": "terron 9",
    "units": 1,
-   "rank": 123,
+   "rank": 130,
    "versions": 1
   },
   {
@@ -2377,7 +2457,7 @@
    "model": "Z 9 D",
    "modelKey": "z 9 d",
    "units": 1,
-   "rank": 124,
+   "rank": 131,
    "versions": 1
   },
   {
@@ -2387,17 +2467,17 @@
    "model": "Z 9 N",
    "modelKey": "z 9 n",
    "units": 1,
-   "rank": 125,
+   "rank": 132,
    "versions": 1
   },
   {
    "seg": "pickups",
-   "brand": "Peugeot",
-   "brandKey": "peugeot",
-   "model": "Boxer L 4 H 2",
-   "modelKey": "boxer l 4 h 2",
+   "brand": "Iveco",
+   "brandKey": "iveco",
+   "model": "Daily 55170",
+   "modelKey": "daily 55170",
    "units": 1,
-   "rank": 126,
+   "rank": 133,
    "versions": 1
   },
   {
@@ -2407,7 +2487,7 @@
    "model": "Daily 30130",
    "modelKey": "daily 30130",
    "units": 1,
-   "rank": 127,
+   "rank": 134,
    "versions": 1
   },
   {
@@ -2417,7 +2497,7 @@
    "model": "Daily 45170",
    "modelKey": "daily 45170",
    "units": 1,
-   "rank": 128,
+   "rank": 135,
    "versions": 1
   },
   {
@@ -2427,7 +2507,7 @@
    "model": "EC 35",
    "modelKey": "ec 35",
    "units": 1,
-   "rank": 129,
+   "rank": 136,
    "versions": 1
   },
   {
@@ -2437,7 +2517,7 @@
    "model": "View",
    "modelKey": "view",
    "units": 1,
-   "rank": 130,
+   "rank": 137,
    "versions": 1
   },
   {
@@ -2447,7 +2527,7 @@
    "model": "Toano Minibus Techo Alto",
    "modelKey": "toano minibus techo alto",
    "units": 1,
-   "rank": 131,
+   "rank": 138,
    "versions": 1
   },
   {
@@ -2457,7 +2537,7 @@
    "model": "Eview Connect 7",
    "modelKey": "eview connect 7",
    "units": 1,
-   "rank": 132,
+   "rank": 139,
    "versions": 1
   },
   {
@@ -2467,7 +2547,7 @@
    "model": "Eview Connect 8",
    "modelKey": "eview connect 8",
    "units": 1,
-   "rank": 133,
+   "rank": 140,
    "versions": 1
   },
   {
@@ -2476,9 +2556,19 @@
    "brandKey": "byd",
    "model": "Yuan Pro",
    "modelKey": "yuan pro",
-   "units": 2476,
+   "units": 2743,
    "rank": 1,
    "versions": 3
+  },
+  {
+   "seg": "suvs",
+   "brand": "Geely",
+   "brandKey": "geely",
+   "model": "EX 2 Max",
+   "modelKey": "ex 2 max",
+   "units": 1155,
+   "rank": 2,
+   "versions": 1
   },
   {
    "seg": "suvs",
@@ -2486,8 +2576,8 @@
    "brandKey": "chevrolet",
    "model": "Spark Euv",
    "modelKey": "spark euv",
-   "units": 897,
-   "rank": 2,
+   "units": 1032,
+   "rank": 3,
    "versions": 1
   },
   {
@@ -2496,19 +2586,9 @@
    "brandKey": "jetour",
    "model": "X 70",
    "modelKey": "x 70",
-   "units": 684,
-   "rank": 3,
-   "versions": 3
-  },
-  {
-   "seg": "suvs",
-   "brand": "Omoda",
-   "brandKey": "omodajaecoo",
-   "model": "Omoda 5",
-   "modelKey": "omoda 5",
-   "units": 660,
+   "units": 787,
    "rank": 4,
-   "versions": 5
+   "versions": 3
   },
   {
    "seg": "suvs",
@@ -2516,9 +2596,19 @@
    "brandKey": "dongfeng",
    "model": "Vigo Pro",
    "modelKey": "vigo pro",
-   "units": 659,
+   "units": 744,
    "rank": 5,
    "versions": 2
+  },
+  {
+   "seg": "suvs",
+   "brand": "Omoda",
+   "brandKey": "omodajaecoo",
+   "model": "Omoda 5",
+   "modelKey": "omoda 5",
+   "units": 682,
+   "rank": 6,
+   "versions": 5
   },
   {
    "seg": "suvs",
@@ -2526,8 +2616,8 @@
    "brandKey": "chery",
    "model": "Tiggo 2",
    "modelKey": "tiggo 2",
-   "units": 596,
-   "rank": 6,
+   "units": 639,
+   "rank": 7,
    "versions": 3
   },
   {
@@ -2536,8 +2626,8 @@
    "brandKey": "suzuki",
    "model": "Fronx",
    "modelKey": "fronx",
-   "units": 560,
-   "rank": 7,
+   "units": 600,
+   "rank": 8,
    "versions": 4
   },
   {
@@ -2546,8 +2636,8 @@
    "brandKey": "chevrolet",
    "model": "Captiva",
    "modelKey": "captiva",
-   "units": 546,
-   "rank": 8,
+   "units": 579,
+   "rank": 9,
    "versions": 4
   },
   {
@@ -2556,8 +2646,8 @@
    "brandKey": "toyota",
    "model": "Yaris Cross",
    "modelKey": "yaris cross",
-   "units": 510,
-   "rank": 9,
+   "units": 556,
+   "rank": 10,
    "versions": 2
   },
   {
@@ -2566,29 +2656,9 @@
    "brandKey": "geely",
    "model": "EX 5 Max",
    "modelKey": "ex 5 max",
-   "units": 432,
-   "rank": 10,
-   "versions": 1
-  },
-  {
-   "seg": "suvs",
-   "brand": "Volkswagen",
-   "brandKey": "volkswagen",
-   "model": "Tera",
-   "modelKey": "tera",
-   "units": 395,
+   "units": 517,
    "rank": 11,
-   "versions": 3
-  },
-  {
-   "seg": "suvs",
-   "brand": "Nissan",
-   "brandKey": "nissan",
-   "model": "Kicks",
-   "modelKey": "kicks",
-   "units": 322,
-   "rank": 12,
-   "versions": 7
+   "versions": 1
   },
   {
    "seg": "suvs",
@@ -2596,9 +2666,79 @@
    "brandKey": "omodajaecoo",
    "model": "Omoda",
    "modelKey": "omoda",
-   "units": 295,
+   "units": 475,
+   "rank": 12,
+   "versions": 3
+  },
+  {
+   "seg": "suvs",
+   "brand": "Volkswagen",
+   "brandKey": "volkswagen",
+   "model": "Tera",
+   "modelKey": "tera",
+   "units": 423,
    "rank": 13,
    "versions": 3
+  },
+  {
+   "seg": "suvs",
+   "brand": "Geely",
+   "brandKey": "geely",
+   "model": "EX 2 Pro",
+   "modelKey": "ex 2 pro",
+   "units": 373,
+   "rank": 14,
+   "versions": 1
+  },
+  {
+   "seg": "suvs",
+   "brand": "Nissan",
+   "brandKey": "nissan",
+   "model": "Kicks",
+   "modelKey": "kicks",
+   "units": 328,
+   "rank": 15,
+   "versions": 7
+  },
+  {
+   "seg": "suvs",
+   "brand": "GAC",
+   "brandKey": "gacmotor",
+   "model": "Aion V Plus",
+   "modelKey": "aion v plus",
+   "units": 328,
+   "rank": 16,
+   "versions": 1
+  },
+  {
+   "seg": "suvs",
+   "brand": "Jetour",
+   "brandKey": "jetour",
+   "model": "X 50",
+   "modelKey": "x 50",
+   "units": 321,
+   "rank": 17,
+   "versions": 2
+  },
+  {
+   "seg": "suvs",
+   "brand": "Toyota",
+   "brandKey": "toyota",
+   "model": "Corolla Cross",
+   "modelKey": "corolla cross",
+   "units": 317,
+   "rank": 18,
+   "versions": 3
+  },
+  {
+   "seg": "suvs",
+   "brand": "Geely",
+   "brandKey": "geely",
+   "model": "EX 5 Pro",
+   "modelKey": "ex 5 pro",
+   "units": 303,
+   "rank": 19,
+   "versions": 1
   },
   {
    "seg": "suvs",
@@ -2607,28 +2747,8 @@
    "model": "Q 05",
    "modelKey": "q 05",
    "units": 278,
-   "rank": 14,
+   "rank": 20,
    "versions": 2
-  },
-  {
-   "seg": "suvs",
-   "brand": "Geely",
-   "brandKey": "geely",
-   "model": "EX 5 Pro",
-   "modelKey": "ex 5 pro",
-   "units": 273,
-   "rank": 15,
-   "versions": 1
-  },
-  {
-   "seg": "suvs",
-   "brand": "Toyota",
-   "brandKey": "toyota",
-   "model": "Corolla Cross",
-   "modelKey": "corolla cross",
-   "units": 268,
-   "rank": 16,
-   "versions": 3
   },
   {
    "seg": "suvs",
@@ -2636,8 +2756,8 @@
    "brandKey": "volkswagen",
    "model": "Nivus",
    "modelKey": "nivus",
-   "units": 260,
-   "rank": 17,
+   "units": 272,
+   "rank": 21,
    "versions": 6
   },
   {
@@ -2646,18 +2766,28 @@
    "brandKey": "volkswagen",
    "model": "Tcross",
    "modelKey": "tcross",
-   "units": 241,
-   "rank": 18,
+   "units": 257,
+   "rank": 22,
    "versions": 5
   },
   {
    "seg": "suvs",
-   "brand": "Jetour",
-   "brandKey": "jetour",
-   "model": "X 50",
-   "modelKey": "x 50",
-   "units": 226,
-   "rank": 19,
+   "brand": "BYD",
+   "brandKey": "byd",
+   "model": "Song Plus",
+   "modelKey": "song plus",
+   "units": 245,
+   "rank": 23,
+   "versions": 3
+  },
+  {
+   "seg": "suvs",
+   "brand": "BYD",
+   "brandKey": "byd",
+   "model": "Yuan Plus",
+   "modelKey": "yuan plus",
+   "units": 243,
+   "rank": 24,
    "versions": 2
   },
   {
@@ -2666,18 +2796,8 @@
    "brandKey": "chery",
    "model": "Tiggo 4",
    "modelKey": "tiggo 4",
-   "units": 221,
-   "rank": 20,
-   "versions": 2
-  },
-  {
-   "seg": "suvs",
-   "brand": "BYD",
-   "brandKey": "byd",
-   "model": "Song Plus",
-   "modelKey": "song plus",
-   "units": 212,
-   "rank": 21,
+   "units": 234,
+   "rank": 25,
    "versions": 2
   },
   {
@@ -2686,8 +2806,8 @@
    "brandKey": "mg",
    "model": "S 5",
    "modelKey": "s 5",
-   "units": 186,
-   "rank": 22,
+   "units": 225,
+   "rank": 26,
    "versions": 3
   },
   {
@@ -2696,8 +2816,28 @@
    "brandKey": "omodajaecoo",
    "model": "Jaecoo 5",
    "modelKey": "jaecoo 5",
-   "units": 179,
-   "rank": 23,
+   "units": 200,
+   "rank": 27,
+   "versions": 2
+  },
+  {
+   "seg": "suvs",
+   "brand": "Ford",
+   "brandKey": "ford",
+   "model": "Territory",
+   "modelKey": "territory",
+   "units": 180,
+   "rank": 28,
+   "versions": 1
+  },
+  {
+   "seg": "suvs",
+   "brand": "Volkswagen",
+   "brandKey": "volkswagen",
+   "model": "Tera Trend",
+   "modelKey": "tera trend",
+   "units": 172,
+   "rank": 29,
    "versions": 1
   },
   {
@@ -2707,48 +2847,8 @@
    "model": "Aion V",
    "modelKey": "aion v",
    "units": 167,
-   "rank": 24,
+   "rank": 30,
    "versions": 1
-  },
-  {
-   "seg": "suvs",
-   "brand": "Ford",
-   "brandKey": "ford",
-   "model": "Territory",
-   "modelKey": "territory",
-   "units": 166,
-   "rank": 25,
-   "versions": 1
-  },
-  {
-   "seg": "suvs",
-   "brand": "Volkswagen",
-   "brandKey": "volkswagen",
-   "model": "Tera Trend",
-   "modelKey": "tera trend",
-   "units": 162,
-   "rank": 26,
-   "versions": 1
-  },
-  {
-   "seg": "suvs",
-   "brand": "Chevrolet",
-   "brandKey": "chevrolet",
-   "model": "Tracker",
-   "modelKey": "tracker",
-   "units": 156,
-   "rank": 27,
-   "versions": 5
-  },
-  {
-   "seg": "suvs",
-   "brand": "Hyundai",
-   "brandKey": "hyundai",
-   "model": "Creta",
-   "modelKey": "creta",
-   "units": 152,
-   "rank": 28,
-   "versions": 2
   },
   {
    "seg": "suvs",
@@ -2756,19 +2856,49 @@
    "brandKey": "chevrolet",
    "model": "Sonic",
    "modelKey": "sonic",
-   "units": 151,
-   "rank": 29,
+   "units": 166,
+   "rank": 31,
    "versions": 2
   },
   {
    "seg": "suvs",
-   "brand": "BYD",
-   "brandKey": "byd",
-   "model": "Yuan Plus",
-   "modelKey": "yuan plus",
-   "units": 141,
-   "rank": 30,
+   "brand": "Deepal",
+   "brandKey": "deepal",
+   "model": "S 5",
+   "modelKey": "s 5",
+   "units": 165,
+   "rank": 32,
    "versions": 2
+  },
+  {
+   "seg": "suvs",
+   "brand": "Hyundai",
+   "brandKey": "hyundai",
+   "model": "Creta",
+   "modelKey": "creta",
+   "units": 161,
+   "rank": 33,
+   "versions": 2
+  },
+  {
+   "seg": "suvs",
+   "brand": "Chevrolet",
+   "brandKey": "chevrolet",
+   "model": "Tracker",
+   "modelKey": "tracker",
+   "units": 160,
+   "rank": 34,
+   "versions": 5
+  },
+  {
+   "seg": "suvs",
+   "brand": "Chevrolet",
+   "brandKey": "chevrolet",
+   "model": "Groove",
+   "modelKey": "groove",
+   "units": 155,
+   "rank": 35,
+   "versions": 4
   },
   {
    "seg": "suvs",
@@ -2776,8 +2906,8 @@
    "brandKey": "nissan",
    "model": "Magnite",
    "modelKey": "magnite",
-   "units": 136,
-   "rank": 31,
+   "units": 145,
+   "rank": 36,
    "versions": 4
   },
   {
@@ -2786,19 +2916,9 @@
    "brandKey": "volkswagen",
    "model": "Tiguan",
    "modelKey": "tiguan",
-   "units": 133,
-   "rank": 32,
+   "units": 137,
+   "rank": 37,
    "versions": 4
-  },
-  {
-   "seg": "suvs",
-   "brand": "Deepal",
-   "brandKey": "deepal",
-   "model": "S 5",
-   "modelKey": "s 5",
-   "units": 133,
-   "rank": 33,
-   "versions": 2
   },
   {
    "seg": "suvs",
@@ -2806,58 +2926,8 @@
    "brandKey": "renault",
    "model": "Kardian",
    "modelKey": "kardian",
-   "units": 129,
-   "rank": 34,
-   "versions": 2
-  },
-  {
-   "seg": "suvs",
-   "brand": "Volkswagen",
-   "brandKey": "volkswagen",
-   "model": "Taos",
-   "modelKey": "taos",
-   "units": 106,
-   "rank": 35,
-   "versions": 4
-  },
-  {
-   "seg": "suvs",
-   "brand": "Chery",
-   "brandKey": "chery",
-   "model": "Tiggo 7 Pro",
-   "modelKey": "tiggo 7 pro",
-   "units": 103,
-   "rank": 36,
-   "versions": 3
-  },
-  {
-   "seg": "suvs",
-   "brand": "Renault",
-   "brandKey": "renault",
-   "model": "Duster",
-   "modelKey": "duster",
-   "units": 102,
-   "rank": 37,
-   "versions": 4
-  },
-  {
-   "seg": "suvs",
-   "brand": "Leapmotor",
-   "brandKey": "leapmotor",
-   "model": "B 10",
-   "modelKey": "b 10",
-   "units": 101,
+   "units": 136,
    "rank": 38,
-   "versions": 2
-  },
-  {
-   "seg": "suvs",
-   "brand": "Honda",
-   "brandKey": "honda",
-   "model": "Wrv",
-   "modelKey": "wrv",
-   "units": 100,
-   "rank": 39,
    "versions": 2
   },
   {
@@ -2866,19 +2936,9 @@
    "brandKey": "gacmotor",
    "model": "Aion V Max",
    "modelKey": "aion v max",
-   "units": 95,
-   "rank": 40,
+   "units": 132,
+   "rank": 39,
    "versions": 1
-  },
-  {
-   "seg": "suvs",
-   "brand": "Chevrolet",
-   "brandKey": "chevrolet",
-   "model": "Groove",
-   "modelKey": "groove",
-   "units": 95,
-   "rank": 41,
-   "versions": 4
   },
   {
    "seg": "suvs",
@@ -2886,9 +2946,69 @@
    "brandKey": "jetour",
    "model": "T 1",
    "modelKey": "t 1",
-   "units": 89,
+   "units": 126,
+   "rank": 40,
+   "versions": 3
+  },
+  {
+   "seg": "suvs",
+   "brand": "Chery",
+   "brandKey": "chery",
+   "model": "Tiggo 7 Pro",
+   "modelKey": "tiggo 7 pro",
+   "units": 116,
+   "rank": 41,
+   "versions": 3
+  },
+  {
+   "seg": "suvs",
+   "brand": "Volkswagen",
+   "brandKey": "volkswagen",
+   "model": "Taos",
+   "modelKey": "taos",
+   "units": 114,
    "rank": 42,
+   "versions": 4
+  },
+  {
+   "seg": "suvs",
+   "brand": "Leapmotor",
+   "brandKey": "leapmotor",
+   "model": "B 10",
+   "modelKey": "b 10",
+   "units": 113,
+   "rank": 43,
    "versions": 2
+  },
+  {
+   "seg": "suvs",
+   "brand": "Honda",
+   "brandKey": "honda",
+   "model": "Wrv",
+   "modelKey": "wrv",
+   "units": 105,
+   "rank": 44,
+   "versions": 2
+  },
+  {
+   "seg": "suvs",
+   "brand": "Dongfeng Forthing",
+   "brandKey": "dongfeng",
+   "model": "Friday",
+   "modelKey": "friday",
+   "units": 105,
+   "rank": 45,
+   "versions": 1
+  },
+  {
+   "seg": "suvs",
+   "brand": "Renault",
+   "brandKey": "renault",
+   "model": "Duster",
+   "modelKey": "duster",
+   "units": 102,
+   "rank": 46,
+   "versions": 4
   },
   {
    "seg": "suvs",
@@ -2896,19 +3016,19 @@
    "brandKey": "fiat",
    "model": "Pulse",
    "modelKey": "pulse",
-   "units": 86,
-   "rank": 43,
+   "units": 92,
+   "rank": 47,
    "versions": 3
   },
   {
    "seg": "suvs",
-   "brand": "GAC",
-   "brandKey": "gacmotor",
-   "model": "Aion V Plus",
-   "modelKey": "aion v plus",
-   "units": 86,
-   "rank": 44,
-   "versions": 1
+   "brand": "Toyota",
+   "brandKey": "toyota",
+   "model": "BZ 4 X",
+   "modelKey": "bz 4 x",
+   "units": 87,
+   "rank": 48,
+   "versions": 2
   },
   {
    "seg": "suvs",
@@ -2916,9 +3036,9 @@
    "brandKey": "nissan",
    "model": "Xtrail",
    "modelKey": "xtrail",
-   "units": 79,
-   "rank": 45,
-   "versions": 1
+   "units": 87,
+   "rank": 49,
+   "versions": 3
   },
   {
    "seg": "suvs",
@@ -2926,8 +3046,8 @@
    "brandKey": "soueast",
    "model": "S 07",
    "modelKey": "s 07",
-   "units": 79,
-   "rank": 46,
+   "units": 87,
+   "rank": 50,
    "versions": 2
   },
   {
@@ -2936,18 +3056,28 @@
    "brandKey": "soueast",
    "model": "S 06",
    "modelKey": "s 06",
-   "units": 75,
-   "rank": 47,
+   "units": 83,
+   "rank": 51,
    "versions": 3
   },
   {
    "seg": "suvs",
-   "brand": "Dongfeng Forthing",
-   "brandKey": "dongfeng",
-   "model": "Friday",
-   "modelKey": "friday",
-   "units": 72,
-   "rank": 48,
+   "brand": "Citroen",
+   "brandKey": "citroen",
+   "model": "Basalt",
+   "modelKey": "basalt",
+   "units": 79,
+   "rank": 52,
+   "versions": 3
+  },
+  {
+   "seg": "suvs",
+   "brand": "Renault",
+   "brandKey": "renault",
+   "model": "Kardian Premiere Edition",
+   "modelKey": "kardian premiere edition",
+   "units": 76,
+   "rank": 53,
    "versions": 1
   },
   {
@@ -2956,18 +3086,18 @@
    "brandKey": "hyundai",
    "model": "Kona",
    "modelKey": "kona",
-   "units": 72,
-   "rank": 49,
+   "units": 76,
+   "rank": 54,
    "versions": 4
   },
   {
    "seg": "suvs",
-   "brand": "Toyota",
-   "brandKey": "toyota",
-   "model": "BZ 4 X",
-   "modelKey": "bz 4 x",
-   "units": 69,
-   "rank": 50,
+   "brand": "Renault",
+   "brandKey": "renault",
+   "model": "Boreal",
+   "modelKey": "boreal",
+   "units": 75,
+   "rank": 55,
    "versions": 2
   },
   {
@@ -2976,78 +3106,8 @@
    "brandKey": "leapmotor",
    "model": "C 10",
    "modelKey": "c 10",
-   "units": 69,
-   "rank": 51,
-   "versions": 2
-  },
-  {
-   "seg": "suvs",
-   "brand": "Renault",
-   "brandKey": "renault",
-   "model": "Kardian Premiere Edition",
-   "modelKey": "kardian premiere edition",
-   "units": 66,
-   "rank": 52,
-   "versions": 1
-  },
-  {
-   "seg": "suvs",
-   "brand": "Renault",
-   "brandKey": "renault",
-   "model": "Boreal",
-   "modelKey": "boreal",
-   "units": 65,
-   "rank": 53,
-   "versions": 2
-  },
-  {
-   "seg": "suvs",
-   "brand": "Citroen",
-   "brandKey": "citroen",
-   "model": "Basalt",
-   "modelKey": "basalt",
-   "units": 63,
-   "rank": 54,
-   "versions": 3
-  },
-  {
-   "seg": "suvs",
-   "brand": "Geely",
-   "brandKey": "geely",
-   "model": "GX 3 Pro",
-   "modelKey": "gx 3 pro",
-   "units": 61,
-   "rank": 55,
-   "versions": 3
-  },
-  {
-   "seg": "suvs",
-   "brand": "GWM",
-   "brandKey": "gwm",
-   "model": "Haval H 6",
-   "modelKey": "haval h 6",
-   "units": 61,
+   "units": 72,
    "rank": 56,
-   "versions": 5
-  },
-  {
-   "seg": "suvs",
-   "brand": "Peugeot",
-   "brandKey": "peugeot",
-   "model": "2008",
-   "modelKey": "2008",
-   "units": 60,
-   "rank": 57,
-   "versions": 3
-  },
-  {
-   "seg": "suvs",
-   "brand": "BMW",
-   "brandKey": "bmw",
-   "model": "X 1",
-   "modelKey": "x 1",
-   "units": 58,
-   "rank": 58,
    "versions": 2
   },
   {
@@ -3056,9 +3116,79 @@
    "brandKey": "jeep",
    "model": "Compass",
    "modelKey": "compass",
-   "units": 58,
-   "rank": 59,
+   "units": 68,
+   "rank": 57,
    "versions": 4
+  },
+  {
+   "seg": "suvs",
+   "brand": "GWM",
+   "brandKey": "gwm",
+   "model": "Haval H 6",
+   "modelKey": "haval h 6",
+   "units": 68,
+   "rank": 58,
+   "versions": 5
+  },
+  {
+   "seg": "suvs",
+   "brand": "Hyundai",
+   "brandKey": "hyundai",
+   "model": "Tucson",
+   "modelKey": "tucson",
+   "units": 66,
+   "rank": 59,
+   "versions": 5
+  },
+  {
+   "seg": "suvs",
+   "brand": "Peugeot",
+   "brandKey": "peugeot",
+   "model": "2008",
+   "modelKey": "2008",
+   "units": 64,
+   "rank": 60,
+   "versions": 4
+  },
+  {
+   "seg": "suvs",
+   "brand": "BMW",
+   "brandKey": "bmw",
+   "model": "X 1",
+   "modelKey": "x 1",
+   "units": 64,
+   "rank": 61,
+   "versions": 2
+  },
+  {
+   "seg": "suvs",
+   "brand": "Deepal",
+   "brandKey": "deepal",
+   "model": "S 7",
+   "modelKey": "s 7",
+   "units": 62,
+   "rank": 62,
+   "versions": 2
+  },
+  {
+   "seg": "suvs",
+   "brand": "Geely",
+   "brandKey": "geely",
+   "model": "GX 3 Pro",
+   "modelKey": "gx 3 pro",
+   "units": 61,
+   "rank": 63,
+   "versions": 3
+  },
+  {
+   "seg": "suvs",
+   "brand": "Bestune",
+   "brandKey": "bestune",
+   "model": "Joy",
+   "modelKey": "joy",
+   "units": 56,
+   "rank": 64,
+   "versions": 3
   },
   {
    "seg": "suvs",
@@ -3067,47 +3197,7 @@
    "model": "Mage",
    "modelKey": "mage",
    "units": 55,
-   "rank": 60,
-   "versions": 1
-  },
-  {
-   "seg": "suvs",
-   "brand": "Deepal",
-   "brandKey": "deepal",
-   "model": "S 7",
-   "modelKey": "s 7",
-   "units": 54,
-   "rank": 61,
-   "versions": 2
-  },
-  {
-   "seg": "suvs",
-   "brand": "Hyundai",
-   "brandKey": "hyundai",
-   "model": "Tucson",
-   "modelKey": "tucson",
-   "units": 49,
-   "rank": 62,
-   "versions": 4
-  },
-  {
-   "seg": "suvs",
-   "brand": "Suzuki",
-   "brandKey": "suzuki",
-   "model": "Grand Vitara",
-   "modelKey": "grand vitara",
-   "units": 46,
-   "rank": 63,
-   "versions": 2
-  },
-  {
-   "seg": "suvs",
-   "brand": "Mitsubishi",
-   "brandKey": "mitsubishi",
-   "model": "Eclipse Cross",
-   "modelKey": "eclipse cross",
-   "units": 45,
-   "rank": 64,
+   "rank": 65,
    "versions": 1
   },
   {
@@ -3116,8 +3206,8 @@
    "brandKey": "lynkco",
    "model": "Lynk CO 02 Halo",
    "modelKey": "lynk co 02 halo",
-   "units": 44,
-   "rank": 65,
+   "units": 49,
+   "rank": 66,
    "versions": 1
   },
   {
@@ -3126,108 +3216,38 @@
    "brandKey": "lynkco",
    "model": "Lynk CO 02 Pro",
    "modelKey": "lynk co 02 pro",
-   "units": 44,
-   "rank": 66,
-   "versions": 1
-  },
-  {
-   "seg": "suvs",
-   "brand": "BYD",
-   "brandKey": "byd",
-   "model": "Sealion",
-   "modelKey": "sealion",
-   "units": 39,
+   "units": 47,
    "rank": 67,
    "versions": 1
   },
   {
    "seg": "suvs",
-   "brand": "Bestune",
-   "brandKey": "bestune",
-   "model": "Joy",
-   "modelKey": "joy",
-   "units": 38,
+   "brand": "Suzuki",
+   "brandKey": "suzuki",
+   "model": "Grand Vitara",
+   "modelKey": "grand vitara",
+   "units": 46,
    "rank": 68,
-   "versions": 3
+   "versions": 2
   },
   {
    "seg": "suvs",
-   "brand": "Citroen",
-   "brandKey": "citroen",
-   "model": "C 3 Aircross T 200 Shine",
-   "modelKey": "c 3 aircross t 200 shine",
-   "units": 38,
+   "brand": "Mitsubishi",
+   "brandKey": "mitsubishi",
+   "model": "Eclipse Cross",
+   "modelKey": "eclipse cross",
+   "units": 46,
    "rank": 69,
    "versions": 1
   },
   {
    "seg": "suvs",
-   "brand": "Xpeng",
-   "brandKey": "xpeng",
-   "model": "G 6",
-   "modelKey": "g 6",
-   "units": 38,
+   "brand": "Geely",
+   "brandKey": "geely",
+   "model": "EX 5 Emi Max",
+   "modelKey": "ex 5 emi max",
+   "units": 46,
    "rank": 70,
-   "versions": 3
-  },
-  {
-   "seg": "suvs",
-   "brand": "GAC",
-   "brandKey": "gacmotor",
-   "model": "Aion Y Plus",
-   "modelKey": "aion y plus",
-   "units": 37,
-   "rank": 71,
-   "versions": 2
-  },
-  {
-   "seg": "suvs",
-   "brand": "Fiat",
-   "brandKey": "fiat",
-   "model": "Fastback Abarth",
-   "modelKey": "fastback abarth",
-   "units": 36,
-   "rank": 72,
-   "versions": 1
-  },
-  {
-   "seg": "suvs",
-   "brand": "BMW",
-   "brandKey": "bmw",
-   "model": "X 3",
-   "modelKey": "x 3",
-   "units": 36,
-   "rank": 73,
-   "versions": 3
-  },
-  {
-   "seg": "suvs",
-   "brand": "Jeep",
-   "brandKey": "jeep",
-   "model": "Renegade",
-   "modelKey": "renegade",
-   "units": 36,
-   "rank": 74,
-   "versions": 3
-  },
-  {
-   "seg": "suvs",
-   "brand": "Peugeot",
-   "brandKey": "peugeot",
-   "model": "3008",
-   "modelKey": "3008",
-   "units": 35,
-   "rank": 75,
-   "versions": 3
-  },
-  {
-   "seg": "suvs",
-   "brand": "Honda",
-   "brandKey": "honda",
-   "model": "3",
-   "modelKey": "3",
-   "units": 34,
-   "rank": 76,
    "versions": 1
   },
   {
@@ -3236,19 +3256,9 @@
    "brandKey": "toyota",
    "model": "Rav 4",
    "modelKey": "rav 4",
-   "units": 33,
-   "rank": 77,
+   "units": 44,
+   "rank": 71,
    "versions": 9
-  },
-  {
-   "seg": "suvs",
-   "brand": "BMW",
-   "brandKey": "bmw",
-   "model": "X 3 20",
-   "modelKey": "x 3 20",
-   "units": 33,
-   "rank": 78,
-   "versions": 2
   },
   {
    "seg": "suvs",
@@ -3256,39 +3266,109 @@
    "brandKey": "chery",
    "model": "M 7 6",
    "modelKey": "m 7 6",
-   "units": 32,
-   "rank": 79,
+   "units": 42,
+   "rank": 72,
    "versions": 2
   },
   {
    "seg": "suvs",
-   "brand": "Mazda",
-   "brandKey": "mazda",
-   "model": "CX 30",
-   "modelKey": "cx 30",
-   "units": 31,
-   "rank": 80,
+   "brand": "Jeep",
+   "brandKey": "jeep",
+   "model": "Renegade",
+   "modelKey": "renegade",
+   "units": 42,
+   "rank": 73,
    "versions": 3
   },
   {
    "seg": "suvs",
-   "brand": "Jetour",
-   "brandKey": "jetour",
-   "model": "X 70 Plus",
-   "modelKey": "x 70 plus",
-   "units": 31,
-   "rank": 81,
+   "brand": "BYD",
+   "brandKey": "byd",
+   "model": "Sealion",
+   "modelKey": "sealion",
+   "units": 41,
+   "rank": 74,
    "versions": 1
   },
   {
    "seg": "suvs",
-   "brand": "Jetour",
-   "brandKey": "jetour",
-   "model": "T 2",
-   "modelKey": "t 2",
-   "units": 31,
-   "rank": 82,
+   "brand": "Xpeng",
+   "brandKey": "xpeng",
+   "model": "G 6",
+   "modelKey": "g 6",
+   "units": 41,
+   "rank": 75,
+   "versions": 3
+  },
+  {
+   "seg": "suvs",
+   "brand": "Soueast",
+   "brandKey": "soueast",
+   "model": "S 08",
+   "modelKey": "s 08",
+   "units": 40,
+   "rank": 76,
    "versions": 1
+  },
+  {
+   "seg": "suvs",
+   "brand": "Citroen",
+   "brandKey": "citroen",
+   "model": "C 3 Aircross T 200 Shine",
+   "modelKey": "c 3 aircross t 200 shine",
+   "units": 39,
+   "rank": 77,
+   "versions": 1
+  },
+  {
+   "seg": "suvs",
+   "brand": "Fiat",
+   "brandKey": "fiat",
+   "model": "Fastback Abarth",
+   "modelKey": "fastback abarth",
+   "units": 38,
+   "rank": 78,
+   "versions": 1
+  },
+  {
+   "seg": "suvs",
+   "brand": "BMW",
+   "brandKey": "bmw",
+   "model": "X 3",
+   "modelKey": "x 3",
+   "units": 38,
+   "rank": 79,
+   "versions": 3
+  },
+  {
+   "seg": "suvs",
+   "brand": "Changan",
+   "brandKey": "changan",
+   "model": "CS 55",
+   "modelKey": "cs 55",
+   "units": 37,
+   "rank": 80,
+   "versions": 2
+  },
+  {
+   "seg": "suvs",
+   "brand": "GAC",
+   "brandKey": "gacmotor",
+   "model": "Aion Y Plus",
+   "modelKey": "aion y plus",
+   "units": 37,
+   "rank": 81,
+   "versions": 2
+  },
+  {
+   "seg": "suvs",
+   "brand": "Peugeot",
+   "brandKey": "peugeot",
+   "model": "3008",
+   "modelKey": "3008",
+   "units": 36,
+   "rank": 82,
+   "versions": 3
   },
   {
    "seg": "suvs",
@@ -3296,18 +3376,8 @@
    "brandKey": "deepal",
    "model": "G 318",
    "modelKey": "g 318",
-   "units": 31,
+   "units": 36,
    "rank": 83,
-   "versions": 1
-  },
-  {
-   "seg": "suvs",
-   "brand": "Jeep",
-   "brandKey": "jeep",
-   "model": "Avenger Summit Electric",
-   "modelKey": "avenger summit electric",
-   "units": 31,
-   "rank": 84,
    "versions": 1
   },
   {
@@ -3316,18 +3386,88 @@
    "brandKey": "baic",
    "model": "BJ 30 E",
    "modelKey": "bj 30 e",
-   "units": 30,
-   "rank": 85,
+   "units": 35,
+   "rank": 84,
    "versions": 2
   },
   {
    "seg": "suvs",
-   "brand": "Bestune",
-   "brandKey": "bestune",
-   "model": "Nat",
-   "modelKey": "nat",
-   "units": 30,
+   "brand": "Jeep",
+   "brandKey": "jeep",
+   "model": "Avenger Summit Electric",
+   "modelKey": "avenger summit electric",
+   "units": 35,
+   "rank": 85,
+   "versions": 1
+  },
+  {
+   "seg": "suvs",
+   "brand": "Jetour",
+   "brandKey": "jetour",
+   "model": "T 2",
+   "modelKey": "t 2",
+   "units": 34,
    "rank": 86,
+   "versions": 1
+  },
+  {
+   "seg": "suvs",
+   "brand": "Honda",
+   "brandKey": "honda",
+   "model": "3",
+   "modelKey": "3",
+   "units": 34,
+   "rank": 87,
+   "versions": 1
+  },
+  {
+   "seg": "suvs",
+   "brand": "Mazda",
+   "brandKey": "mazda",
+   "model": "CX 30",
+   "modelKey": "cx 30",
+   "units": 33,
+   "rank": 88,
+   "versions": 3
+  },
+  {
+   "seg": "suvs",
+   "brand": "Citroen",
+   "brandKey": "citroen",
+   "model": "Basalt T 200 Shine",
+   "modelKey": "basalt t 200 shine",
+   "units": 33,
+   "rank": 89,
+   "versions": 1
+  },
+  {
+   "seg": "suvs",
+   "brand": "BMW",
+   "brandKey": "bmw",
+   "model": "X 3 20",
+   "modelKey": "x 3 20",
+   "units": 33,
+   "rank": 90,
+   "versions": 2
+  },
+  {
+   "seg": "suvs",
+   "brand": "BMW",
+   "brandKey": "bmw",
+   "model": "X 3 30 E",
+   "modelKey": "x 3 30 e",
+   "units": 33,
+   "rank": 91,
+   "versions": 1
+  },
+  {
+   "seg": "suvs",
+   "brand": "Honda",
+   "brandKey": "honda",
+   "model": "Crv",
+   "modelKey": "crv",
+   "units": 32,
+   "rank": 92,
    "versions": 1
   },
   {
@@ -3336,87 +3476,27 @@
    "brandKey": "citroen",
    "model": "C 3 Aircross T 200 Shine 7",
    "modelKey": "c 3 aircross t 200 shine 7",
-   "units": 30,
-   "rank": 87,
-   "versions": 1
-  },
-  {
-   "seg": "suvs",
-   "brand": "Soueast",
-   "brandKey": "soueast",
-   "model": "S 08",
-   "modelKey": "s 08",
-   "units": 30,
-   "rank": 88,
+   "units": 32,
+   "rank": 93,
    "versions": 1
   },
   {
    "seg": "suvs",
    "brand": "Jetour",
    "brandKey": "jetour",
-   "model": "Dashing",
-   "modelKey": "dashing",
-   "units": 29,
-   "rank": 89,
-   "versions": 2
-  },
-  {
-   "seg": "suvs",
-   "brand": "Honda",
-   "brandKey": "honda",
-   "model": "Crv",
-   "modelKey": "crv",
-   "units": 29,
-   "rank": 90,
-   "versions": 1
-  },
-  {
-   "seg": "suvs",
-   "brand": "BMW",
-   "brandKey": "bmw",
-   "model": "X 3 30 E",
-   "modelKey": "x 3 30 e",
-   "units": 29,
-   "rank": 91,
-   "versions": 1
-  },
-  {
-   "seg": "suvs",
-   "brand": "Jaecoo",
-   "brandKey": "omodajaecoo",
-   "model": "Jaecoo 6",
-   "modelKey": "jaecoo 6",
-   "units": 28,
-   "rank": 92,
-   "versions": 2
-  },
-  {
-   "seg": "suvs",
-   "brand": "Volvo",
-   "brandKey": "volvo",
-   "model": "EX 30",
-   "modelKey": "ex 30",
-   "units": 27,
-   "rank": 93,
-   "versions": 2
-  },
-  {
-   "seg": "suvs",
-   "brand": "Hyundai",
-   "brandKey": "hyundai",
-   "model": "Santa FE",
-   "modelKey": "santa fe",
-   "units": 27,
+   "model": "X 70 Plus",
+   "modelKey": "x 70 plus",
+   "units": 31,
    "rank": 94,
-   "versions": 2
+   "versions": 1
   },
   {
    "seg": "suvs",
-   "brand": "MG",
-   "brandKey": "mg",
-   "model": "MG ZS",
-   "modelKey": "mg zs",
-   "units": 26,
+   "brand": "Fiat",
+   "brandKey": "fiat",
+   "model": "Fastback",
+   "modelKey": "fastback",
+   "units": 31,
    "rank": 95,
    "versions": 2
   },
@@ -3426,8 +3506,88 @@
    "brandKey": "zeekr",
    "model": "7 X",
    "modelKey": "7 x",
-   "units": 25,
+   "units": 31,
    "rank": 96,
+   "versions": 2
+  },
+  {
+   "seg": "suvs",
+   "brand": "Volvo",
+   "brandKey": "volvo",
+   "model": "EX 30",
+   "modelKey": "ex 30",
+   "units": 30,
+   "rank": 97,
+   "versions": 2
+  },
+  {
+   "seg": "suvs",
+   "brand": "Bestune",
+   "brandKey": "bestune",
+   "model": "Nat",
+   "modelKey": "nat",
+   "units": 30,
+   "rank": 98,
+   "versions": 1
+  },
+  {
+   "seg": "suvs",
+   "brand": "Jetour",
+   "brandKey": "jetour",
+   "model": "Dashing",
+   "modelKey": "dashing",
+   "units": 29,
+   "rank": 99,
+   "versions": 2
+  },
+  {
+   "seg": "suvs",
+   "brand": "Jaecoo",
+   "brandKey": "omodajaecoo",
+   "model": "Jaecoo 6",
+   "modelKey": "jaecoo 6",
+   "units": 29,
+   "rank": 100,
+   "versions": 2
+  },
+  {
+   "seg": "suvs",
+   "brand": "Hyundai",
+   "brandKey": "hyundai",
+   "model": "Santa FE",
+   "modelKey": "santa fe",
+   "units": 29,
+   "rank": 101,
+   "versions": 2
+  },
+  {
+   "seg": "suvs",
+   "brand": "Geely",
+   "brandKey": "geely",
+   "model": "EX 5 Emi Pro",
+   "modelKey": "ex 5 emi pro",
+   "units": 28,
+   "rank": 102,
+   "versions": 1
+  },
+  {
+   "seg": "suvs",
+   "brand": "MG",
+   "brandKey": "mg",
+   "model": "MG ZS",
+   "modelKey": "mg zs",
+   "units": 27,
+   "rank": 103,
+   "versions": 2
+  },
+  {
+   "seg": "suvs",
+   "brand": "BYD",
+   "brandKey": "byd",
+   "model": "Atto 8",
+   "modelKey": "atto 8",
+   "units": 24,
+   "rank": 104,
    "versions": 2
   },
   {
@@ -3437,7 +3597,7 @@
    "model": "Eqa 250",
    "modelKey": "eqa 250",
    "units": 24,
-   "rank": 97,
+   "rank": 105,
    "versions": 1
   },
   {
@@ -3447,18 +3607,8 @@
    "model": "Jimny 5",
    "modelKey": "jimny 5",
    "units": 24,
-   "rank": 98,
+   "rank": 106,
    "versions": 2
-  },
-  {
-   "seg": "suvs",
-   "brand": "Citroen",
-   "brandKey": "citroen",
-   "model": "Basalt T 200 Shine",
-   "modelKey": "basalt t 200 shine",
-   "units": 21,
-   "rank": 99,
-   "versions": 1
   },
   {
    "seg": "suvs",
@@ -3467,7 +3617,7 @@
    "model": "Emkoo",
    "modelKey": "emkoo",
    "units": 21,
-   "rank": 100,
+   "rank": 107,
    "versions": 1
   },
   {
@@ -3477,18 +3627,18 @@
    "model": "Forester",
    "modelKey": "forester",
    "units": 21,
-   "rank": 101,
+   "rank": 108,
    "versions": 2
   },
   {
    "seg": "suvs",
-   "brand": "Fiat",
-   "brandKey": "fiat",
-   "model": "Fastback",
-   "modelKey": "fastback",
-   "units": 19,
-   "rank": 102,
-   "versions": 2
+   "brand": "Renault",
+   "brandKey": "renault",
+   "model": "Koleos Alpine",
+   "modelKey": "koleos alpine",
+   "units": 20,
+   "rank": 109,
+   "versions": 1
   },
   {
    "seg": "suvs",
@@ -3497,18 +3647,18 @@
    "model": "X 5",
    "modelKey": "x 5",
    "units": 19,
-   "rank": 103,
+   "rank": 110,
    "versions": 5
   },
   {
    "seg": "suvs",
-   "brand": "BYD",
-   "brandKey": "byd",
-   "model": "Atto 8",
-   "modelKey": "atto 8",
-   "units": 18,
-   "rank": 104,
-   "versions": 2
+   "brand": "BMW",
+   "brandKey": "bmw",
+   "model": "IX 3 50",
+   "modelKey": "ix 3 50",
+   "units": 19,
+   "rank": 111,
+   "versions": 1
   },
   {
    "seg": "suvs",
@@ -3517,18 +3667,18 @@
    "model": "EQ 7",
    "modelKey": "eq 7",
    "units": 18,
-   "rank": 105,
+   "rank": 112,
    "versions": 1
   },
   {
    "seg": "suvs",
-   "brand": "Renault",
-   "brandKey": "renault",
-   "model": "Koleos Alpine",
-   "modelKey": "koleos alpine",
+   "brand": "Kia",
+   "brandKey": "kia",
+   "model": "Sportage Xline Plus",
+   "modelKey": "sportage xline plus",
    "units": 18,
-   "rank": 106,
-   "versions": 1
+   "rank": 113,
+   "versions": 2
   },
   {
    "seg": "suvs",
@@ -3536,9 +3686,19 @@
    "brandKey": "smart",
    "model": "3 Pro",
    "modelKey": "3 pro",
-   "units": 17,
-   "rank": 107,
+   "units": 18,
+   "rank": 114,
    "versions": 2
+  },
+  {
+   "seg": "suvs",
+   "brand": "Ford",
+   "brandKey": "ford",
+   "model": "Bronco",
+   "modelKey": "bronco",
+   "units": 18,
+   "rank": 115,
+   "versions": 3
   },
   {
    "seg": "suvs",
@@ -3546,8 +3706,8 @@
    "brandKey": "audi",
    "model": "Q 5",
    "modelKey": "q 5",
-   "units": 17,
-   "rank": 108,
+   "units": 18,
+   "rank": 116,
    "versions": 3
   },
   {
@@ -3556,9 +3716,29 @@
    "brandKey": "kia",
    "model": "K 3 Cross",
    "modelKey": "k 3 cross",
-   "units": 15,
-   "rank": 109,
+   "units": 16,
+   "rank": 117,
    "versions": 2
+  },
+  {
+   "seg": "suvs",
+   "brand": "Geely",
+   "brandKey": "geely",
+   "model": "Cityray",
+   "modelKey": "cityray",
+   "units": 16,
+   "rank": 118,
+   "versions": 3
+  },
+  {
+   "seg": "suvs",
+   "brand": "Mercedes-Benz",
+   "brandKey": "mercedesbenz",
+   "model": "Glc Coupe 200",
+   "modelKey": "glc coupe 200",
+   "units": 15,
+   "rank": 119,
+   "versions": 1
   },
   {
    "seg": "suvs",
@@ -3567,28 +3747,8 @@
    "model": "Aceman E",
    "modelKey": "aceman e",
    "units": 15,
-   "rank": 110,
+   "rank": 120,
    "versions": 1
-  },
-  {
-   "seg": "suvs",
-   "brand": "Geely",
-   "brandKey": "geely",
-   "model": "Cityray",
-   "modelKey": "cityray",
-   "units": 15,
-   "rank": 111,
-   "versions": 3
-  },
-  {
-   "seg": "suvs",
-   "brand": "Kia",
-   "brandKey": "kia",
-   "model": "Sportage Xline Plus",
-   "modelKey": "sportage xline plus",
-   "units": 14,
-   "rank": 112,
-   "versions": 2
   },
   {
    "seg": "suvs",
@@ -3597,8 +3757,18 @@
    "model": "K 3 Cross Gtline",
    "modelKey": "k 3 cross gtline",
    "units": 14,
-   "rank": 113,
+   "rank": 121,
    "versions": 1
+  },
+  {
+   "seg": "suvs",
+   "brand": "Audi",
+   "brandKey": "audi",
+   "model": "Q 6 SB Etron",
+   "modelKey": "q 6 sb etron",
+   "units": 14,
+   "rank": 122,
+   "versions": 3
   },
   {
    "seg": "suvs",
@@ -3607,28 +3777,8 @@
    "model": "Crosstrek 2 0 IS ES",
    "modelKey": "crosstrek 2 0 is es",
    "units": 14,
-   "rank": 114,
+   "rank": 123,
    "versions": 2
-  },
-  {
-   "seg": "suvs",
-   "brand": "Mercedes-Benz",
-   "brandKey": "mercedesbenz",
-   "model": "Glc Coupe 200",
-   "modelKey": "glc coupe 200",
-   "units": 13,
-   "rank": 115,
-   "versions": 1
-  },
-  {
-   "seg": "suvs",
-   "brand": "Ford",
-   "brandKey": "ford",
-   "model": "Bronco",
-   "modelKey": "bronco",
-   "units": 13,
-   "rank": 116,
-   "versions": 3
   },
   {
    "seg": "suvs",
@@ -3637,7 +3787,7 @@
    "model": "X",
    "modelKey": "x",
    "units": 13,
-   "rank": 117,
+   "rank": 124,
    "versions": 1
   },
   {
@@ -3647,18 +3797,18 @@
    "model": "Q 2 Advanced",
    "modelKey": "q 2 advanced",
    "units": 13,
-   "rank": 118,
+   "rank": 125,
    "versions": 1
   },
   {
    "seg": "suvs",
-   "brand": "Audi",
-   "brandKey": "audi",
-   "model": "Q 6 SB Etron",
-   "modelKey": "q 6 sb etron",
-   "units": 13,
-   "rank": 119,
-   "versions": 3
+   "brand": "BYD",
+   "brandKey": "byd",
+   "model": "Song Pro",
+   "modelKey": "song pro",
+   "units": 12,
+   "rank": 126,
+   "versions": 1
   },
   {
    "seg": "suvs",
@@ -3667,8 +3817,28 @@
    "model": "MG 4",
    "modelKey": "mg 4",
    "units": 12,
-   "rank": 120,
+   "rank": 127,
    "versions": 2
+  },
+  {
+   "seg": "suvs",
+   "brand": "Audi",
+   "brandKey": "audi",
+   "model": "Q 5 SB",
+   "modelKey": "q 5 sb",
+   "units": 12,
+   "rank": 128,
+   "versions": 2
+  },
+  {
+   "seg": "suvs",
+   "brand": "Audi",
+   "brandKey": "audi",
+   "model": "Q 3 Advanced Plus",
+   "modelKey": "q 3 advanced plus",
+   "units": 12,
+   "rank": 129,
+   "versions": 3
   },
   {
    "seg": "suvs",
@@ -3677,7 +3847,7 @@
    "model": "G 9",
    "modelKey": "g 9",
    "units": 12,
-   "rank": 121,
+   "rank": 130,
    "versions": 1
   },
   {
@@ -3687,17 +3857,27 @@
    "model": "Aceman",
    "modelKey": "aceman",
    "units": 12,
-   "rank": 122,
+   "rank": 131,
    "versions": 1
   },
   {
    "seg": "suvs",
-   "brand": "BYD",
-   "brandKey": "byd",
-   "model": "Song Pro",
-   "modelKey": "song pro",
+   "brand": "Smart",
+   "brandKey": "smart",
+   "model": "1 Pro",
+   "modelKey": "1 pro",
    "units": 11,
-   "rank": 123,
+   "rank": 132,
+   "versions": 1
+  },
+  {
+   "seg": "suvs",
+   "brand": "Fiat",
+   "brandKey": "fiat",
+   "model": "Pulse Abarth",
+   "modelKey": "pulse abarth",
+   "units": 11,
+   "rank": 133,
    "versions": 1
   },
   {
@@ -3707,28 +3887,18 @@
    "model": "5008",
    "modelKey": "5008",
    "units": 11,
-   "rank": 124,
+   "rank": 134,
    "versions": 1
   },
   {
    "seg": "suvs",
    "brand": "Audi",
    "brandKey": "audi",
-   "model": "Q 5 SB",
-   "modelKey": "q 5 sb",
+   "model": "Q 3 Advanced",
+   "modelKey": "q 3 advanced",
    "units": 11,
-   "rank": 125,
+   "rank": 135,
    "versions": 2
-  },
-  {
-   "seg": "suvs",
-   "brand": "Audi",
-   "brandKey": "audi",
-   "model": "Q 3 Advanced Plus",
-   "modelKey": "q 3 advanced plus",
-   "units": 11,
-   "rank": 126,
-   "versions": 3
   },
   {
    "seg": "suvs",
@@ -3737,8 +3907,18 @@
    "model": "Haval Jolion",
    "modelKey": "haval jolion",
    "units": 11,
-   "rank": 127,
+   "rank": 136,
    "versions": 4
+  },
+  {
+   "seg": "suvs",
+   "brand": "Mazda",
+   "brandKey": "mazda",
+   "model": "CX 5",
+   "modelKey": "cx 5",
+   "units": 10,
+   "rank": 137,
+   "versions": 3
   },
   {
    "seg": "suvs",
@@ -3747,8 +3927,18 @@
    "model": "Defender",
    "modelKey": "defender",
    "units": 10,
-   "rank": 128,
+   "rank": 138,
    "versions": 3
+  },
+  {
+   "seg": "suvs",
+   "brand": "Opel",
+   "brandKey": "opel",
+   "model": "Emokka 136 CV",
+   "modelKey": "emokka 136 cv",
+   "units": 10,
+   "rank": 139,
+   "versions": 1
   },
   {
    "seg": "suvs",
@@ -3757,7 +3947,7 @@
    "model": "RZ 187 Sjx Zrv",
    "modelKey": "rz 187 sjx zrv",
    "units": 10,
-   "rank": 129,
+   "rank": 140,
    "versions": 1
   },
   {
@@ -3767,7 +3957,7 @@
    "model": "Outlander",
    "modelKey": "outlander",
    "units": 10,
-   "rank": 130,
+   "rank": 141,
    "versions": 2
   },
   {
@@ -3777,7 +3967,7 @@
    "model": "Commander Blackhawk",
    "modelKey": "commander blackhawk",
    "units": 10,
-   "rank": 131,
+   "rank": 142,
    "versions": 1
   },
   {
@@ -3787,7 +3977,7 @@
    "model": "Carnival",
    "modelKey": "carnival",
    "units": 9,
-   "rank": 132,
+   "rank": 143,
    "versions": 2
   },
   {
@@ -3797,38 +3987,18 @@
    "model": "T 2 Traveller Xwd",
    "modelKey": "t 2 traveller xwd",
    "units": 9,
-   "rank": 133,
-   "versions": 1
-  },
-  {
-   "seg": "suvs",
-   "brand": "Opel",
-   "brandKey": "opel",
-   "model": "Emokka 136 CV",
-   "modelKey": "emokka 136 cv",
-   "units": 9,
-   "rank": 134,
-   "versions": 1
-  },
-  {
-   "seg": "suvs",
-   "brand": "Fiat",
-   "brandKey": "fiat",
-   "model": "Pulse Abarth",
-   "modelKey": "pulse abarth",
-   "units": 9,
-   "rank": 135,
+   "rank": 144,
    "versions": 1
   },
   {
    "seg": "suvs",
    "brand": "Audi",
    "brandKey": "audi",
-   "model": "Q 3 Advanced",
-   "modelKey": "q 3 advanced",
+   "model": "Q 6 Etron",
+   "modelKey": "q 6 etron",
    "units": 9,
-   "rank": 136,
-   "versions": 2
+   "rank": 145,
+   "versions": 3
   },
   {
    "seg": "suvs",
@@ -3837,27 +4007,7 @@
    "model": "S 09",
    "modelKey": "s 09",
    "units": 9,
-   "rank": 137,
-   "versions": 1
-  },
-  {
-   "seg": "suvs",
-   "brand": "Mazda",
-   "brandKey": "mazda",
-   "model": "CX 5",
-   "modelKey": "cx 5",
-   "units": 8,
-   "rank": 138,
-   "versions": 3
-  },
-  {
-   "seg": "suvs",
-   "brand": "Smart",
-   "brandKey": "smart",
-   "model": "1 Pro",
-   "modelKey": "1 pro",
-   "units": 8,
-   "rank": 139,
+   "rank": 146,
    "versions": 1
   },
   {
@@ -3867,8 +4017,18 @@
    "model": "T 77 Pro",
    "modelKey": "t 77 pro",
    "units": 8,
-   "rank": 140,
+   "rank": 147,
    "versions": 2
+  },
+  {
+   "seg": "suvs",
+   "brand": "Mercedes-Benz",
+   "brandKey": "mercedesbenz",
+   "model": "Glc Coupe 300",
+   "modelKey": "glc coupe 300",
+   "units": 8,
+   "rank": 148,
+   "versions": 1
   },
   {
    "seg": "suvs",
@@ -3877,18 +4037,28 @@
    "model": "Arkana Alpine",
    "modelKey": "arkana alpine",
    "units": 8,
-   "rank": 141,
+   "rank": 149,
    "versions": 1
   },
   {
    "seg": "suvs",
-   "brand": "Audi",
-   "brandKey": "audi",
-   "model": "Q 6 Etron",
-   "modelKey": "q 6 etron",
+   "brand": "Leapmotor",
+   "brandKey": "leapmotor",
+   "model": "C 16",
+   "modelKey": "c 16",
    "units": 8,
-   "rank": 142,
-   "versions": 3
+   "rank": 150,
+   "versions": 2
+  },
+  {
+   "seg": "suvs",
+   "brand": "Honda",
+   "brandKey": "honda",
+   "model": "Zrv E",
+   "modelKey": "zrv e",
+   "units": 8,
+   "rank": 151,
+   "versions": 1
   },
   {
    "seg": "suvs",
@@ -3897,7 +4067,7 @@
    "model": "IX 1 Edrive 20",
    "modelKey": "ix 1 edrive 20",
    "units": 8,
-   "rank": 143,
+   "rank": 152,
    "versions": 1
   },
   {
@@ -3907,7 +4077,7 @@
    "model": "Haval Jolion Pro",
    "modelKey": "haval jolion pro",
    "units": 8,
-   "rank": 144,
+   "rank": 153,
    "versions": 2
   },
   {
@@ -3917,18 +4087,8 @@
    "model": "EV 3 Light",
    "modelKey": "ev 3 light",
    "units": 7,
-   "rank": 145,
+   "rank": 154,
    "versions": 2
-  },
-  {
-   "seg": "suvs",
-   "brand": "Mercedes-Benz",
-   "brandKey": "mercedesbenz",
-   "model": "Glc Coupe 300",
-   "modelKey": "glc coupe 300",
-   "units": 7,
-   "rank": 146,
-   "versions": 1
   },
   {
    "seg": "suvs",
@@ -3937,7 +4097,27 @@
    "model": "Glc 220 D",
    "modelKey": "glc 220 d",
    "units": 7,
-   "rank": 147,
+   "rank": 155,
+   "versions": 1
+  },
+  {
+   "seg": "suvs",
+   "brand": "Suzuki",
+   "brandKey": "suzuki",
+   "model": "Jimny",
+   "modelKey": "jimny",
+   "units": 7,
+   "rank": 156,
+   "versions": 1
+  },
+  {
+   "seg": "suvs",
+   "brand": "Lynk & Co",
+   "brandKey": "lynkco",
+   "model": "Lynk CO 06 Hyper Pro",
+   "modelKey": "lynk co 06 hyper pro",
+   "units": 7,
+   "rank": 157,
    "versions": 1
   },
   {
@@ -3947,7 +4127,7 @@
    "model": "Q 3 Sportback",
    "modelKey": "q 3 sportback",
    "units": 7,
-   "rank": 148,
+   "rank": 158,
    "versions": 2
   },
   {
@@ -3957,8 +4137,18 @@
    "model": "Ioniq 5",
    "modelKey": "ioniq 5",
    "units": 7,
-   "rank": 149,
+   "rank": 159,
    "versions": 2
+  },
+  {
+   "seg": "suvs",
+   "brand": "Subaru",
+   "brandKey": "subaru",
+   "model": "Forester 2 0 IS ES",
+   "modelKey": "forester 2 0 is es",
+   "units": 7,
+   "rank": 160,
+   "versions": 1
   },
   {
    "seg": "suvs",
@@ -3967,7 +4157,7 @@
    "model": "Crosstrek 2 0 IL ES",
    "modelKey": "crosstrek 2 0 il es",
    "units": 7,
-   "rank": 150,
+   "rank": 161,
    "versions": 1
   },
   {
@@ -3977,7 +4167,27 @@
    "model": "Niro",
    "modelKey": "niro",
    "units": 6,
-   "rank": 151,
+   "rank": 162,
+   "versions": 1
+  },
+  {
+   "seg": "suvs",
+   "brand": "Kia",
+   "brandKey": "kia",
+   "model": "Sportage Xline",
+   "modelKey": "sportage xline",
+   "units": 6,
+   "rank": 163,
+   "versions": 1
+  },
+  {
+   "seg": "suvs",
+   "brand": "Jetour",
+   "brandKey": "jetour",
+   "model": "G 700",
+   "modelKey": "g 700",
+   "units": 6,
+   "rank": 164,
    "versions": 1
   },
   {
@@ -3987,7 +4197,7 @@
    "model": "Glc 200",
    "modelKey": "glc 200",
    "units": 6,
-   "rank": 152,
+   "rank": 165,
    "versions": 1
   },
   {
@@ -3997,18 +4207,8 @@
    "model": "Gle 300 D",
    "modelKey": "gle 300 d",
    "units": 6,
-   "rank": 153,
+   "rank": 166,
    "versions": 1
-  },
-  {
-   "seg": "suvs",
-   "brand": "Leapmotor",
-   "brandKey": "leapmotor",
-   "model": "C 16",
-   "modelKey": "c 16",
-   "units": 6,
-   "rank": 154,
-   "versions": 2
   },
   {
    "seg": "suvs",
@@ -4017,7 +4217,7 @@
    "model": "2008 Act",
    "modelKey": "2008 act",
    "units": 6,
-   "rank": 155,
+   "rank": 167,
    "versions": 1
   },
   {
@@ -4027,7 +4227,7 @@
    "model": "C 3 Aircross Vti Feel",
    "modelKey": "c 3 aircross vti feel",
    "units": 6,
-   "rank": 156,
+   "rank": 168,
    "versions": 2
   },
   {
@@ -4037,17 +4237,7 @@
    "model": "Lynk CO 09 Halo",
    "modelKey": "lynk co 09 halo",
    "units": 6,
-   "rank": 157,
-   "versions": 1
-  },
-  {
-   "seg": "suvs",
-   "brand": "Lynk & Co",
-   "brandKey": "lynkco",
-   "model": "Lynk CO 06 Hyper Pro",
-   "modelKey": "lynk co 06 hyper pro",
-   "units": 6,
-   "rank": 158,
+   "rank": 169,
    "versions": 1
   },
   {
@@ -4057,7 +4247,7 @@
    "model": "Lynk CO 06 Hyper Halo",
    "modelKey": "lynk co 06 hyper halo",
    "units": 6,
-   "rank": 159,
+   "rank": 170,
    "versions": 1
   },
   {
@@ -4067,7 +4257,7 @@
    "model": "Emzoom",
    "modelKey": "emzoom",
    "units": 6,
-   "rank": 160,
+   "rank": 171,
    "versions": 2
   },
   {
@@ -4077,17 +4267,7 @@
    "model": "IX 2",
    "modelKey": "ix 2",
    "units": 6,
-   "rank": 161,
-   "versions": 1
-  },
-  {
-   "seg": "suvs",
-   "brand": "Subaru",
-   "brandKey": "subaru",
-   "model": "Forester 2 0 IS ES",
-   "modelKey": "forester 2 0 is es",
-   "units": 6,
-   "rank": 162,
+   "rank": 172,
    "versions": 1
   },
   {
@@ -4097,7 +4277,7 @@
    "model": "Commander",
    "modelKey": "commander",
    "units": 6,
-   "rank": 163,
+   "rank": 173,
    "versions": 2
   },
   {
@@ -4107,8 +4287,18 @@
    "model": "Compass Blackhawk",
    "modelKey": "compass blackhawk",
    "units": 6,
-   "rank": 164,
+   "rank": 174,
    "versions": 1
+  },
+  {
+   "seg": "suvs",
+   "brand": "Land Rover",
+   "brandKey": "landrover",
+   "model": "RR Evoque",
+   "modelKey": "rr evoque",
+   "units": 5,
+   "rank": 175,
+   "versions": 2
   },
   {
    "seg": "suvs",
@@ -4117,7 +4307,7 @@
    "model": "1 Pure",
    "modelKey": "1 pure",
    "units": 5,
-   "rank": 165,
+   "rank": 176,
    "versions": 1
   },
   {
@@ -4127,17 +4317,7 @@
    "model": "Unit",
    "modelKey": "unit",
    "units": 5,
-   "rank": 166,
-   "versions": 1
-  },
-  {
-   "seg": "suvs",
-   "brand": "Jetour",
-   "brandKey": "jetour",
-   "model": "G 700",
-   "modelKey": "g 700",
-   "units": 5,
-   "rank": 167,
+   "rank": 177,
    "versions": 1
   },
   {
@@ -4147,7 +4327,7 @@
    "model": "Gla 250",
    "modelKey": "gla 250",
    "units": 5,
-   "rank": 168,
+   "rank": 178,
    "versions": 1
   },
   {
@@ -4157,7 +4337,37 @@
    "model": "C 4 Cactus Thp 165 Shine Eat 6",
    "modelKey": "c 4 cactus thp 165 shine eat 6",
    "units": 5,
-   "rank": 169,
+   "rank": 179,
+   "versions": 1
+  },
+  {
+   "seg": "suvs",
+   "brand": "Lynk & Co",
+   "brandKey": "lynkco",
+   "model": "Lynk CO 08 Halo",
+   "modelKey": "lynk co 08 halo",
+   "units": 5,
+   "rank": 180,
+   "versions": 1
+  },
+  {
+   "seg": "suvs",
+   "brand": "BMW",
+   "brandKey": "bmw",
+   "model": "X 6",
+   "modelKey": "x 6",
+   "units": 5,
+   "rank": 181,
+   "versions": 2
+  },
+  {
+   "seg": "suvs",
+   "brand": "Subaru",
+   "brandKey": "subaru",
+   "model": "Forester 2 0 IL ES",
+   "modelKey": "forester 2 0 il es",
+   "units": 5,
+   "rank": 182,
    "versions": 1
   },
   {
@@ -4167,7 +4377,7 @@
    "model": "Wrangler",
    "modelKey": "wrangler",
    "units": 5,
-   "rank": 170,
+   "rank": 183,
    "versions": 1
   },
   {
@@ -4177,7 +4387,17 @@
    "model": "JS 8 Pro",
    "modelKey": "js 8 pro",
    "units": 4,
-   "rank": 171,
+   "rank": 184,
+   "versions": 1
+  },
+  {
+   "seg": "suvs",
+   "brand": "MG",
+   "brandKey": "mg",
+   "model": "MG Ehs Dlx",
+   "modelKey": "mg ehs dlx",
+   "units": 4,
+   "rank": 185,
    "versions": 1
   },
   {
@@ -4187,17 +4407,7 @@
    "model": "Sorento",
    "modelKey": "sorento",
    "units": 4,
-   "rank": 172,
-   "versions": 1
-  },
-  {
-   "seg": "suvs",
-   "brand": "Kia",
-   "brandKey": "kia",
-   "model": "Sportage Xline",
-   "modelKey": "sportage xline",
-   "units": 4,
-   "rank": 173,
+   "rank": 186,
    "versions": 1
   },
   {
@@ -4207,7 +4417,17 @@
    "model": "3 Brabus",
    "modelKey": "3 brabus",
    "units": 4,
-   "rank": 174,
+   "rank": 187,
+   "versions": 1
+  },
+  {
+   "seg": "suvs",
+   "brand": "Mercedes-Benz",
+   "brandKey": "mercedesbenz",
+   "model": "Amg C 63",
+   "modelKey": "amg c 63",
+   "units": 4,
+   "rank": 188,
    "versions": 1
   },
   {
@@ -4217,146 +4437,6 @@
    "model": "Glb 250",
    "modelKey": "glb 250",
    "units": 4,
-   "rank": 175,
-   "versions": 1
-  },
-  {
-   "seg": "suvs",
-   "brand": "Dongfeng",
-   "brandKey": "dongfeng",
-   "model": "Huge",
-   "modelKey": "huge",
-   "units": 4,
-   "rank": 176,
-   "versions": 1
-  },
-  {
-   "seg": "suvs",
-   "brand": "BMW",
-   "brandKey": "bmw",
-   "model": "X 6",
-   "modelKey": "x 6",
-   "units": 4,
-   "rank": 177,
-   "versions": 1
-  },
-  {
-   "seg": "suvs",
-   "brand": "BMW",
-   "brandKey": "bmw",
-   "model": "IX 3 50",
-   "modelKey": "ix 3 50",
-   "units": 4,
-   "rank": 178,
-   "versions": 1
-  },
-  {
-   "seg": "suvs",
-   "brand": "MINI",
-   "brandKey": "mini",
-   "model": "Aceman Jcw E",
-   "modelKey": "aceman jcw e",
-   "units": 4,
-   "rank": 179,
-   "versions": 1
-  },
-  {
-   "seg": "suvs",
-   "brand": "Hyundai",
-   "brandKey": "hyundai",
-   "model": "Ioniq 9",
-   "modelKey": "ioniq 9",
-   "units": 4,
-   "rank": 180,
-   "versions": 3
-  },
-  {
-   "seg": "suvs",
-   "brand": "Chevrolet",
-   "brandKey": "chevrolet",
-   "model": "Equinox",
-   "modelKey": "equinox",
-   "units": 4,
-   "rank": 181,
-   "versions": 3
-  },
-  {
-   "seg": "suvs",
-   "brand": "BYD",
-   "brandKey": "byd",
-   "model": "Tang",
-   "modelKey": "tang",
-   "units": 3,
-   "rank": 182,
-   "versions": 1
-  },
-  {
-   "seg": "suvs",
-   "brand": "MG",
-   "brandKey": "mg",
-   "model": "MG Ehs Dlx",
-   "modelKey": "mg ehs dlx",
-   "units": 3,
-   "rank": 183,
-   "versions": 1
-  },
-  {
-   "seg": "suvs",
-   "brand": "SEAT",
-   "brandKey": "seat",
-   "model": "Arona",
-   "modelKey": "arona",
-   "units": 3,
-   "rank": 184,
-   "versions": 2
-  },
-  {
-   "seg": "suvs",
-   "brand": "Bestune",
-   "brandKey": "bestune",
-   "model": "T 90",
-   "modelKey": "t 90",
-   "units": 3,
-   "rank": 185,
-   "versions": 2
-  },
-  {
-   "seg": "suvs",
-   "brand": "Mercedes-Benz",
-   "brandKey": "mercedesbenz",
-   "model": "Gle 450",
-   "modelKey": "gle 450",
-   "units": 3,
-   "rank": 186,
-   "versions": 2
-  },
-  {
-   "seg": "suvs",
-   "brand": "Mercedes-Benz",
-   "brandKey": "mercedesbenz",
-   "model": "Amg Glc Coupe 63",
-   "modelKey": "amg glc coupe 63",
-   "units": 3,
-   "rank": 187,
-   "versions": 1
-  },
-  {
-   "seg": "suvs",
-   "brand": "Mercedes-Benz",
-   "brandKey": "mercedesbenz",
-   "model": "Gle Coupe 300 D",
-   "modelKey": "gle coupe 300 d",
-   "units": 3,
-   "rank": 188,
-   "versions": 1
-  },
-  {
-   "seg": "suvs",
-   "brand": "Suzuki",
-   "brandKey": "suzuki",
-   "model": "Jimny",
-   "modelKey": "jimny",
-   "units": 3,
    "rank": 189,
    "versions": 1
   },
@@ -4366,8 +4446,38 @@
    "brandKey": "honda",
    "model": "YG 188 Sjn Pilot",
    "modelKey": "yg 188 sjn pilot",
-   "units": 3,
+   "units": 4,
    "rank": 190,
+   "versions": 1
+  },
+  {
+   "seg": "suvs",
+   "brand": "Mitsubishi",
+   "brandKey": "mitsubishi",
+   "model": "Destinator",
+   "modelKey": "destinator",
+   "units": 4,
+   "rank": 191,
+   "versions": 1
+  },
+  {
+   "seg": "suvs",
+   "brand": "Dongfeng",
+   "brandKey": "dongfeng",
+   "model": "Huge",
+   "modelKey": "huge",
+   "units": 4,
+   "rank": 192,
+   "versions": 1
+  },
+  {
+   "seg": "suvs",
+   "brand": "Nissan",
+   "brandKey": "nissan",
+   "model": "Qashqai",
+   "modelKey": "qashqai",
+   "units": 4,
+   "rank": 193,
    "versions": 1
   },
   {
@@ -4376,8 +4486,8 @@
    "brandKey": "omodajaecoo",
    "model": "Jaecoo 7",
    "modelKey": "jaecoo 7",
-   "units": 3,
-   "rank": 191,
+   "units": 4,
+   "rank": 194,
    "versions": 1
   },
   {
@@ -4386,8 +4496,138 @@
    "brandKey": "lynkco",
    "model": "Lynk CO 06",
    "modelKey": "lynk co 06",
+   "units": 4,
+   "rank": 195,
+   "versions": 1
+  },
+  {
+   "seg": "suvs",
+   "brand": "Audi",
+   "brandKey": "audi",
+   "model": "Q 5 Advanced Plus",
+   "modelKey": "q 5 advanced plus",
+   "units": 4,
+   "rank": 196,
+   "versions": 1
+  },
+  {
+   "seg": "suvs",
+   "brand": "BMW",
+   "brandKey": "bmw",
+   "model": "IX 2 Edrive 20",
+   "modelKey": "ix 2 edrive 20",
+   "units": 4,
+   "rank": 197,
+   "versions": 1
+  },
+  {
+   "seg": "suvs",
+   "brand": "MINI",
+   "brandKey": "mini",
+   "model": "Aceman Jcw E",
+   "modelKey": "aceman jcw e",
+   "units": 4,
+   "rank": 198,
+   "versions": 1
+  },
+  {
+   "seg": "suvs",
+   "brand": "Hyundai",
+   "brandKey": "hyundai",
+   "model": "Ioniq 9",
+   "modelKey": "ioniq 9",
+   "units": 4,
+   "rank": 199,
+   "versions": 3
+  },
+  {
+   "seg": "suvs",
+   "brand": "GWM",
+   "brandKey": "gwm",
+   "model": "Tank 300",
+   "modelKey": "tank 300",
+   "units": 4,
+   "rank": 200,
+   "versions": 1
+  },
+  {
+   "seg": "suvs",
+   "brand": "Chevrolet",
+   "brandKey": "chevrolet",
+   "model": "Equinox",
+   "modelKey": "equinox",
+   "units": 4,
+   "rank": 201,
+   "versions": 3
+  },
+  {
+   "seg": "suvs",
+   "brand": "BYD",
+   "brandKey": "byd",
+   "model": "Tang",
+   "modelKey": "tang",
    "units": 3,
-   "rank": 192,
+   "rank": 202,
+   "versions": 1
+  },
+  {
+   "seg": "suvs",
+   "brand": "SEAT",
+   "brandKey": "seat",
+   "model": "Arona",
+   "modelKey": "arona",
+   "units": 3,
+   "rank": 203,
+   "versions": 2
+  },
+  {
+   "seg": "suvs",
+   "brand": "Bestune",
+   "brandKey": "bestune",
+   "model": "T 90",
+   "modelKey": "t 90",
+   "units": 3,
+   "rank": 204,
+   "versions": 2
+  },
+  {
+   "seg": "suvs",
+   "brand": "Mercedes-Benz",
+   "brandKey": "mercedesbenz",
+   "model": "Glc 350 E",
+   "modelKey": "glc 350 e",
+   "units": 3,
+   "rank": 205,
+   "versions": 1
+  },
+  {
+   "seg": "suvs",
+   "brand": "Mercedes-Benz",
+   "brandKey": "mercedesbenz",
+   "model": "Gle 450",
+   "modelKey": "gle 450",
+   "units": 3,
+   "rank": 206,
+   "versions": 2
+  },
+  {
+   "seg": "suvs",
+   "brand": "Mercedes-Benz",
+   "brandKey": "mercedesbenz",
+   "model": "Amg Glc Coupe 63",
+   "modelKey": "amg glc coupe 63",
+   "units": 3,
+   "rank": 207,
+   "versions": 1
+  },
+  {
+   "seg": "suvs",
+   "brand": "Mercedes-Benz",
+   "brandKey": "mercedesbenz",
+   "model": "Gle Coupe 300 D",
+   "modelKey": "gle coupe 300 d",
+   "units": 3,
+   "rank": 208,
    "versions": 1
   },
   {
@@ -4397,7 +4637,7 @@
    "model": "Q 5 Advanced",
    "modelKey": "q 5 advanced",
    "units": 3,
-   "rank": 193,
+   "rank": 209,
    "versions": 1
   },
   {
@@ -4407,7 +4647,7 @@
    "model": "Q 3 Sportback Sline",
    "modelKey": "q 3 sportback sline",
    "units": 3,
-   "rank": 194,
+   "rank": 210,
    "versions": 1
   },
   {
@@ -4417,7 +4657,7 @@
    "model": "S 7",
    "modelKey": "s 7",
    "units": 3,
-   "rank": 195,
+   "rank": 211,
    "versions": 1
   },
   {
@@ -4427,7 +4667,7 @@
    "model": "X 7",
    "modelKey": "x 7",
    "units": 3,
-   "rank": 196,
+   "rank": 212,
    "versions": 2
   },
   {
@@ -4437,17 +4677,17 @@
    "model": "Countryman C",
    "modelKey": "countryman c",
    "units": 3,
-   "rank": 197,
+   "rank": 213,
    "versions": 1
   },
   {
    "seg": "suvs",
-   "brand": "GWM",
-   "brandKey": "gwm",
-   "model": "Tank 300",
-   "modelKey": "tank 300",
+   "brand": "Rox",
+   "brandKey": "rox",
+   "model": "Adamas 6",
+   "modelKey": "adamas 6",
    "units": 3,
-   "rank": 198,
+   "rank": 214,
    "versions": 1
   },
   {
@@ -4457,7 +4697,7 @@
    "model": "RF 8",
    "modelKey": "rf 8",
    "units": 2,
-   "rank": 199,
+   "rank": 215,
    "versions": 1
   },
   {
@@ -4467,7 +4707,7 @@
    "model": "XC 60 Recharge",
    "modelKey": "xc 60 recharge",
    "units": 2,
-   "rank": 200,
+   "rank": 216,
    "versions": 1
   },
   {
@@ -4477,7 +4717,7 @@
    "model": "XC 60",
    "modelKey": "xc 60",
    "units": 2,
-   "rank": 201,
+   "rank": 217,
    "versions": 1
   },
   {
@@ -4487,7 +4727,7 @@
    "model": "Carens",
    "modelKey": "carens",
    "units": 2,
-   "rank": 202,
+   "rank": 218,
    "versions": 1
   },
   {
@@ -4497,7 +4737,7 @@
    "model": "EV 5 Land",
    "modelKey": "ev 5 land",
    "units": 2,
-   "rank": 203,
+   "rank": 219,
    "versions": 1
   },
   {
@@ -4507,7 +4747,7 @@
    "model": "CX 9",
    "modelKey": "cx 9",
    "units": 2,
-   "rank": 204,
+   "rank": 220,
    "versions": 1
   },
   {
@@ -4517,28 +4757,8 @@
    "model": "X 55",
    "modelKey": "x 55",
    "units": 2,
-   "rank": 205,
+   "rank": 221,
    "versions": 2
-  },
-  {
-   "seg": "suvs",
-   "brand": "Land Rover",
-   "brandKey": "landrover",
-   "model": "RR Evoque",
-   "modelKey": "rr evoque",
-   "units": 2,
-   "rank": 206,
-   "versions": 2
-  },
-  {
-   "seg": "suvs",
-   "brand": "Mercedes-Benz",
-   "brandKey": "mercedesbenz",
-   "model": "Glc 350 E",
-   "modelKey": "glc 350 e",
-   "units": 2,
-   "rank": 207,
-   "versions": 1
   },
   {
    "seg": "suvs",
@@ -4547,7 +4767,7 @@
    "model": "Amg Glc 43",
    "modelKey": "amg glc 43",
    "units": 2,
-   "rank": 208,
+   "rank": 222,
    "versions": 1
   },
   {
@@ -4557,7 +4777,7 @@
    "model": "Amg Glc Coupe 43",
    "modelKey": "amg glc coupe 43",
    "units": 2,
-   "rank": 209,
+   "rank": 223,
    "versions": 1
   },
   {
@@ -4567,7 +4787,7 @@
    "model": "Amg Glc 63",
    "modelKey": "amg glc 63",
    "units": 2,
-   "rank": 210,
+   "rank": 224,
    "versions": 1
   },
   {
@@ -4577,7 +4797,7 @@
    "model": "Glc 350 E Coupe",
    "modelKey": "glc 350 e coupe",
    "units": 2,
-   "rank": 211,
+   "rank": 225,
    "versions": 1
   },
   {
@@ -4587,7 +4807,7 @@
    "model": "Glc 300",
    "modelKey": "glc 300",
    "units": 2,
-   "rank": 212,
+   "rank": 226,
    "versions": 1
   },
   {
@@ -4597,27 +4817,27 @@
    "model": "Everest",
    "modelKey": "everest",
    "units": 2,
-   "rank": 213,
+   "rank": 227,
    "versions": 1
   },
   {
    "seg": "suvs",
-   "brand": "Mitsubishi",
-   "brandKey": "mitsubishi",
-   "model": "Destinator",
-   "modelKey": "destinator",
+   "brand": "Kaiyi",
+   "brandKey": "kaiyi",
+   "model": "X 7",
+   "modelKey": "x 7",
    "units": 2,
-   "rank": 214,
+   "rank": 228,
    "versions": 1
   },
   {
    "seg": "suvs",
-   "brand": "Nissan",
-   "brandKey": "nissan",
-   "model": "Qashqai",
-   "modelKey": "qashqai",
+   "brand": "Peugeot",
+   "brandKey": "peugeot",
+   "model": "2008 Allure",
+   "modelKey": "2008 allure",
    "units": 2,
-   "rank": 215,
+   "rank": 229,
    "versions": 1
   },
   {
@@ -4627,17 +4847,7 @@
    "model": "C 3 Aircross Vti Shine",
    "modelKey": "c 3 aircross vti shine",
    "units": 2,
-   "rank": 216,
-   "versions": 1
-  },
-  {
-   "seg": "suvs",
-   "brand": "Audi",
-   "brandKey": "audi",
-   "model": "Q 5 Advanced Plus",
-   "modelKey": "q 5 advanced plus",
-   "units": 2,
-   "rank": 217,
+   "rank": 230,
    "versions": 1
   },
   {
@@ -4647,7 +4857,17 @@
    "model": "RS Q 8",
    "modelKey": "rs q 8",
    "units": 2,
-   "rank": 218,
+   "rank": 231,
+   "versions": 1
+  },
+  {
+   "seg": "suvs",
+   "brand": "Audi",
+   "brandKey": "audi",
+   "model": "SQ 5",
+   "modelKey": "sq 5",
+   "units": 2,
+   "rank": 232,
    "versions": 1
   },
   {
@@ -4657,7 +4877,7 @@
    "model": "X 2",
    "modelKey": "x 2",
    "units": 2,
-   "rank": 219,
+   "rank": 233,
    "versions": 1
   },
   {
@@ -4667,27 +4887,7 @@
    "model": "T 5",
    "modelKey": "t 5",
    "units": 2,
-   "rank": 220,
-   "versions": 1
-  },
-  {
-   "seg": "suvs",
-   "brand": "Rox",
-   "brandKey": "rox",
-   "model": "Adamas 6",
-   "modelKey": "adamas 6",
-   "units": 2,
-   "rank": 221,
-   "versions": 1
-  },
-  {
-   "seg": "suvs",
-   "brand": "Subaru",
-   "brandKey": "subaru",
-   "model": "Forester 2 0 IL ES",
-   "modelKey": "forester 2 0 il es",
-   "units": 2,
-   "rank": 222,
+   "rank": 234,
    "versions": 1
   },
   {
@@ -4697,7 +4897,7 @@
    "model": "Grand Cherokee L",
    "modelKey": "grand cherokee l",
    "units": 2,
-   "rank": 223,
+   "rank": 235,
    "versions": 1
   },
   {
@@ -4707,7 +4907,7 @@
    "model": "Bolt Euv",
    "modelKey": "bolt euv",
    "units": 2,
-   "rank": 224,
+   "rank": 236,
    "versions": 1
   },
   {
@@ -4717,7 +4917,7 @@
    "model": "Blazer",
    "modelKey": "blazer",
    "units": 2,
-   "rank": 225,
+   "rank": 237,
    "versions": 1
   },
   {
@@ -4727,7 +4927,7 @@
    "model": "XC 40 Recharge",
    "modelKey": "xc 40 recharge",
    "units": 1,
-   "rank": 226,
+   "rank": 238,
    "versions": 1
   },
   {
@@ -4737,7 +4937,7 @@
    "model": "XC 60 Recharge Plus T 8",
    "modelKey": "xc 60 recharge plus t 8",
    "units": 1,
-   "rank": 227,
+   "rank": 239,
    "versions": 1
   },
   {
@@ -4747,7 +4947,7 @@
    "model": "XC 90 Recharge",
    "modelKey": "xc 90 recharge",
    "units": 1,
-   "rank": 228,
+   "rank": 240,
    "versions": 1
   },
   {
@@ -4757,7 +4957,7 @@
    "model": "XC 90 Recharge Plus T 8",
    "modelKey": "xc 90 recharge plus t 8",
    "units": 1,
-   "rank": 229,
+   "rank": 241,
    "versions": 1
   },
   {
@@ -4767,7 +4967,17 @@
    "model": "XC 90 Essential Bright",
    "modelKey": "xc 90 essential bright",
    "units": 1,
-   "rank": 230,
+   "rank": 242,
+   "versions": 1
+  },
+  {
+   "seg": "suvs",
+   "brand": "Volvo",
+   "brandKey": "volvo",
+   "model": "EX 90 Plus",
+   "modelKey": "ex 90 plus",
+   "units": 1,
+   "rank": 243,
    "versions": 1
   },
   {
@@ -4777,7 +4987,7 @@
    "model": "Tiggo 4 Pro",
    "modelKey": "tiggo 4 pro",
    "units": 1,
-   "rank": 231,
+   "rank": 244,
    "versions": 1
   },
   {
@@ -4787,7 +4997,7 @@
    "model": "EV 5 Air",
    "modelKey": "ev 5 air",
    "units": 1,
-   "rank": 232,
+   "rank": 245,
    "versions": 1
   },
   {
@@ -4797,7 +5007,7 @@
    "model": "Range Rover Velar",
    "modelKey": "range rover velar",
    "units": 1,
-   "rank": 233,
+   "rank": 246,
    "versions": 1
   },
   {
@@ -4807,7 +5017,7 @@
    "model": "Defender Octa Black E 635 PS V 8",
    "modelKey": "defender octa black e 635 ps v 8",
    "units": 1,
-   "rank": 234,
+   "rank": 247,
    "versions": 1
   },
   {
@@ -4817,7 +5027,7 @@
    "model": "Grecale",
    "modelKey": "grecale",
    "units": 1,
-   "rank": 235,
+   "rank": 248,
    "versions": 1
   },
   {
@@ -4827,7 +5037,7 @@
    "model": "Grecale Modena",
    "modelKey": "grecale modena",
    "units": 1,
-   "rank": 236,
+   "rank": 249,
    "versions": 1
   },
   {
@@ -4837,7 +5047,7 @@
    "model": "B 70",
    "modelKey": "b 70",
    "units": 1,
-   "rank": 237,
+   "rank": 250,
    "versions": 1
   },
   {
@@ -4847,17 +5057,17 @@
    "model": "Amg Gla 35",
    "modelKey": "amg gla 35",
    "units": 1,
-   "rank": 238,
+   "rank": 251,
    "versions": 1
   },
   {
    "seg": "suvs",
    "brand": "Mercedes-Benz",
    "brandKey": "mercedesbenz",
-   "model": "Amg C 63",
-   "modelKey": "amg c 63",
+   "model": "Gla 220",
+   "modelKey": "gla 220",
    "units": 1,
-   "rank": 239,
+   "rank": 252,
    "versions": 1
   },
   {
@@ -4867,7 +5077,7 @@
    "model": "Euniq 6",
    "modelKey": "euniq 6",
    "units": 1,
-   "rank": 240,
+   "rank": 253,
    "versions": 1
   },
   {
@@ -4877,17 +5087,7 @@
    "model": "Explorer",
    "modelKey": "explorer",
    "units": 1,
-   "rank": 241,
-   "versions": 1
-  },
-  {
-   "seg": "suvs",
-   "brand": "Peugeot",
-   "brandKey": "peugeot",
-   "model": "2008 Allure",
-   "modelKey": "2008 allure",
-   "units": 1,
-   "rank": 242,
+   "rank": 254,
    "versions": 1
   },
   {
@@ -4897,7 +5097,7 @@
    "model": "3008 N",
    "modelKey": "3008 n",
    "units": 1,
-   "rank": 243,
+   "rank": 255,
    "versions": 1
   },
   {
@@ -4907,7 +5107,7 @@
    "model": "X Smart",
    "modelKey": "x smart",
    "units": 1,
-   "rank": 244,
+   "rank": 256,
    "versions": 1
   },
   {
@@ -4917,7 +5117,7 @@
    "model": "Lynk CO 01",
    "modelKey": "lynk co 01",
    "units": 1,
-   "rank": 245,
+   "rank": 257,
    "versions": 1
   },
   {
@@ -4927,7 +5127,7 @@
    "model": "GS 8",
    "modelKey": "gs 8",
    "units": 1,
-   "rank": 246,
+   "rank": 258,
    "versions": 1
   },
   {
@@ -4937,7 +5137,7 @@
    "model": "Hyptec HT",
    "modelKey": "hyptec ht",
    "units": 1,
-   "rank": 247,
+   "rank": 259,
    "versions": 1
   },
   {
@@ -4947,7 +5147,7 @@
    "model": "Q 8 Etron Advanced 55",
    "modelKey": "q 8 etron advanced 55",
    "units": 1,
-   "rank": 248,
+   "rank": 260,
    "versions": 1
   },
   {
@@ -4957,17 +5157,7 @@
    "model": "SQ 5 SB",
    "modelKey": "sq 5 sb",
    "units": 1,
-   "rank": 249,
-   "versions": 1
-  },
-  {
-   "seg": "suvs",
-   "brand": "Audi",
-   "brandKey": "audi",
-   "model": "SQ 5",
-   "modelKey": "sq 5",
-   "units": 1,
-   "rank": 250,
+   "rank": 261,
    "versions": 1
   },
   {
@@ -4977,7 +5167,7 @@
    "model": "IX 1",
    "modelKey": "ix 1",
    "units": 1,
-   "rank": 251,
+   "rank": 262,
    "versions": 1
   },
   {
@@ -4987,7 +5177,7 @@
    "model": "IX",
    "modelKey": "ix",
    "units": 1,
-   "rank": 252,
+   "rank": 263,
    "versions": 1
   },
   {
@@ -4997,7 +5187,7 @@
    "model": "IX 3",
    "modelKey": "ix 3",
    "units": 1,
-   "rank": 253,
+   "rank": 264,
    "versions": 1
   },
   {
@@ -5007,7 +5197,7 @@
    "model": "Countryman E",
    "modelKey": "countryman e",
    "units": 1,
-   "rank": 254,
+   "rank": 265,
    "versions": 1
   },
   {
@@ -5017,7 +5207,7 @@
    "model": "Countryman",
    "modelKey": "countryman",
    "units": 1,
-   "rank": 255,
+   "rank": 266,
    "versions": 1
   },
   {
@@ -5027,7 +5217,7 @@
    "model": "Adamas 7",
    "modelKey": "adamas 7",
    "units": 1,
-   "rank": 256,
+   "rank": 267,
    "versions": 1
   },
   {
@@ -5037,7 +5227,7 @@
    "model": "01 7",
    "modelKey": "01 7",
    "units": 1,
-   "rank": 257,
+   "rank": 268,
    "versions": 1
   },
   {
@@ -5047,7 +5237,7 @@
    "model": "Coolray",
    "modelKey": "coolray",
    "units": 1,
-   "rank": 258,
+   "rank": 269,
    "versions": 1
   },
   {
@@ -5057,7 +5247,7 @@
    "model": "E 5",
    "modelKey": "e 5",
    "units": 1,
-   "rank": 259,
+   "rank": 270,
    "versions": 1
   }
  ]
