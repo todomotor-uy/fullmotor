@@ -114,6 +114,8 @@ export const SALES_ALIASES: Record<string, string | string[]> = {
   'citroen|c 3 aircross': ['c 3 aircross t 200 shine', 'c 3 aircross vti feel', 'c 3 aircross vti shine'],
   'citroen|c 3 aircross 7': ['c 3 aircross t 200 shine 7'],
   'bmw|x 3': ['x 3', 'x 3 20'],
+  'changan|nevo q 05': ['q 05'],
+  'suzuki|alto': ['alto 1 0'],
 }
 
 /** Trailing tokens that are trims rather than model identity ("EX5 Max" → "ex 5"). */
