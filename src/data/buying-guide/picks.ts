@@ -10,7 +10,7 @@
 
 import type { CuratedNode } from '@/lib/buying-guide/types'
 
-export const PICKS_UPDATED_AT = '2026-09-21'
+export const PICKS_UPDATED_AT = '2026-09-28'
 
 export const CURATED_PICKS: CuratedNode[] = [
   // ───────────────────────────── FAMILIA ─────────────────────────────
@@ -193,9 +193,9 @@ export const CURATED_PICKS: CuratedNode[] = [
     picks: [
       { slug: 'uy-toyota-corolla-2025-hybrid-xei', why: ['Híbrido Toyota: consumo mínimo en ruta', '7 airbags, AEB, carril y crucero adaptativo', 'Baúl de 471 L y reventa asegurada'] },
       { slug: 'uy-omoda-and-jaecoo-omoda-5-2025-shs-premium-15t-dht', why: ['Híbrido de 150 hp con 750 km de autonomía total', 'Baúl de 510 L y techo panorámico', 'Cámara 360°, audio premium y asientos eléctricos', 'Entre los 10 SUV más vendidos 2026 en Uruguay (ACAU)'] },
+      { slug: 'uy-byd-sealion-7-2026-blue-ev-rwd-718-kwh', why: ['SUV eléctrico de 4,83 m con 231 hp y 380 Nm', '9 airbags, AEB, carril, crucero adaptativo y punto ciego', '440 km de autonomía WLTC y carga rápida de 110 kW', 'Baúl de 520 L más 58 L delanteros y head-up display'] },
       { slug: 'uy-renault-boreal-2026-iconic', why: ['SUV nuevo de 4,56 m con baúl de 586 L', '6 airbags, AEB, carril, punto ciego y tráfico cruzado', '1.3 turbo de 156 hp y 270 Nm'] },
       { slug: 'uy-jeep-compass-2025-longitude-1-3-t270-at6-fwd', why: ['1.3 turbo de 180 hp y 270 Nm', '6 airbags, AEB y asistente de carril', 'Uno de los SUV más vendidos de Uruguay'] },
-      { slug: 'uy-volkswagen-tiguan-2025-1-5-tsi-life-dsg', why: ['1.5 TSI de 150 hp con caja DSG', 'Baúl de 521 L y crucero adaptativo', '6 airbags y aplomo en ruta'] },
     ],
   },
   {
