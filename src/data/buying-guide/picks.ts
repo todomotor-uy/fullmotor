@@ -10,7 +10,7 @@
 
 import type { CuratedNode } from '@/lib/buying-guide/types'
 
-export const PICKS_UPDATED_AT = '2026-09-28'
+export const PICKS_UPDATED_AT = '2026-10-05'
 
 export const CURATED_PICKS: CuratedNode[] = [
   // ───────────────────────────── FAMILIA ─────────────────────────────
@@ -48,8 +48,8 @@ export const CURATED_PICKS: CuratedNode[] = [
     picks: [
       { slug: 'uy-toyota-rav4-2026-hybrid-s-plus-25-ecvt-2wd', why: ['Híbrido de 226 hp con consumo de compacto', '7 airbags y Toyota Safety Sense completo', 'Baúl de 514 L y reventa muy sólida'] },
       { slug: 'uy-hyundai-tucson-hybrid-2025-limited-16-t-gdi-2wd-a-t', why: ['Híbrido de 230 hp y 350 Nm', '6 airbags con AEB, carril, crucero adaptativo y punto ciego', 'Baúl de 539 L y techo panorámico'] },
+      { slug: 'uy-byd-ti-7-2026-gl-dm-p-awd', why: ['Baúl de 890 L en 5,02 m, el más amplio del nodo', '7 airbags, AEB, carril, crucero adaptativo y cámara 360', 'Híbrido enchufable AWD de 349 hp y 98 km eléctricos', 'Garantía de 5 años y 8 años para la batería'] },
       { slug: 'uy-nissan-x-trail-2026-e-power-e-4orce-advance', why: ['e-POWER: andar de eléctrico sin enchufar', 'Tracción integral e-4ORCE y baúl de 575 L', '6 airbags, punto ciego y alerta de tráfico cruzado'] },
-      { slug: 'uy-mazda-cx-5-2025-2-0-skyactiv-g-2wd-urban-a-t', why: ['10 airbags, el máximo del segmento', 'Crucero adaptativo, punto ciego y asistente de carril', 'Baúl de 506 L y calidad de armado reconocida'] },
       { slug: 'uy-jeep-commander-2025-limited-1-3-t270-at6-fwd', why: ['7 plazas en 4,77 m', '6 airbags, frenado autónomo y asistente de carril', '1.3 turbo de 175 hp y 270 Nm'] },
     ],
   },
@@ -203,7 +203,7 @@ export const CURATED_PICKS: CuratedNode[] = [
     picks: [
       { slug: 'uy-toyota-rav4-2026-hybrid-s-plus-25-ecvt-2wd', why: ['Híbrido de 226 hp con gran autonomía por tanque', '7 airbags y Toyota Safety Sense completo', 'Baúl de 514 L y reventa muy sólida'] },
       { slug: 'uy-subaru-forester-2025-25i-s-es-e-boxer-shev-cvt', why: ['Tracción integral simétrica permanente', '8 airbags y EyeSight: AEB, carril y crucero adaptativo', 'Híbrido de 203 hp y baúl de 520 L'] },
-      { slug: 'uy-honda-cr-v-2025-e-hev-20-e-cvt-awd', why: ['Híbrido e:HEV de 204 hp con tracción integral', 'Baúl de 571 L y crucero adaptativo', 'Autonomía de 750 km por tanque'] },
+      { slug: 'uy-byd-ti-7-2026-gl-dm-p-awd', why: ['Híbrido enchufable AWD de 349 hp y 630 Nm', '7 airbags, AEB, carril, crucero adaptativo y punto ciego', 'Baúl de 890 L y suspensión adaptativa DiSus-C', '1.015 km de autonomía combinada (NEDC)'] },
       { slug: 'uy-kia-sportage-hev-2025-x-line-plus-1-6-t-gdi-a-t-2wd', why: ['Híbrido de 230 hp y 350 Nm', '7 airbags, AEB, punto ciego y tráfico cruzado', 'Cámara 360, techo panorámico y audio premium'] },
       { slug: 'uy-hyundai-ioniq-5-2025-safe-long-range-rwd-840-kwh', why: ['Eléctrico de 507 km con carga ultrarrápida 800 V', '6 airbags y ADAS completo', 'Baúl de 527 L y techo panorámico'] },
     ],
