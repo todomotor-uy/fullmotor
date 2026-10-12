@@ -10,7 +10,7 @@
 
 import type { CuratedNode } from '@/lib/buying-guide/types'
 
-export const PICKS_UPDATED_AT = '2026-10-05'
+export const PICKS_UPDATED_AT = '2026-10-12'
 
 export const CURATED_PICKS: CuratedNode[] = [
   // ───────────────────────────── FAMILIA ─────────────────────────────
@@ -110,7 +110,7 @@ export const CURATED_PICKS: CuratedNode[] = [
     picks: [
       { slug: 'uy-mercedes-benz-clase-a-2025-a-200-progressive-7g-dct', why: ['Hatch premium de 4,42 m con 163 hp', '6 airbags, AEB y asistente de carril', 'Entrada a Mercedes-Benz desde 72.990'] },
       { slug: 'uy-audi-a3-sportback-2025-s-line-plus-35-tfsi-1-4-tiptronic', why: ['1.4 TFSI de 150 hp con caja automática', '6 airbags, AEB y asistente de carril', 'Estética S line y baúl de 380 L'] },
-      { slug: 'uy-bmw-ix1-2025-ix1-edrive20-xline-plus-647-kwh', why: ['Eléctrico BMW con 450 km de autonomía', '201 hp y baúl de 405 L', 'Techo panorámico y asientos eléctricos'] },
+      { slug: 'uy-mercedes-benz-glb-2026-250-plus-eq-progressive-85-kwh', why: ['Eléctrico con 631 km de autonomía y 272 hp', '8 airbags, AEB, carril y crucero adaptativo', 'Baúl de 540 L, head-up display y techo panorámico'] },
       { slug: 'uy-mini-countryman-2025-e-favoured-646-kwh', why: ['Eléctrico de 430 km y 204 hp', 'Baúl de 460 L, el MINI más práctico', '6 airbags, AEB y asistente de carril'] },
       { slug: 'uy-land-rover-range-rover-evoque-2026-s-awd-2-0-mhev-p200-a-t', why: ['SUV compacto premium con tracción integral', 'Baúl de 591 L y cámara 360', 'AEB, carril, crucero adaptativo y tráfico cruzado'] },
     ],
