@@ -118,6 +118,7 @@ export const SALES_ALIASES: Record<string, string | string[]> = {
   'suzuki|alto': ['alto', 'alto 1 0', 'alto 1 0 ga 6 ab'],
   'ford|ranger': ['ranger', 'ranger d c'],
   'volkswagen|amarok': ['amarok', 'amarok v 6'],
+  'bmw|ix 3': ['ix 3', 'ix 3 50'],
 }
 
 /** Trailing tokens that are trims rather than model identity ("EX5 Max" → "ex 5"). */
