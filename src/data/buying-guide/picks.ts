@@ -10,7 +10,7 @@
 
 import type { CuratedNode } from '@/lib/buying-guide/types'
 
-export const PICKS_UPDATED_AT = '2026-10-12'
+export const PICKS_UPDATED_AT = '2026-10-19'
 
 export const CURATED_PICKS: CuratedNode[] = [
   // ───────────────────────────── FAMILIA ─────────────────────────────
@@ -102,7 +102,7 @@ export const CURATED_PICKS: CuratedNode[] = [
       { slug: 'uy-hyundai-kona-hybrid-2025-limited-16-gdi-dct', why: ['Híbrido de bajo consumo con caja DCT', '6 airbags y ADAS completo', 'Baúl de 466 L y techo panorámico'] },
       { slug: 'uy-mini-cooper-2025-se-favoured-542-kwh', why: ['Eléctrico de 218 hp y 402 km', 'Ícono urbano premium de 3,86 m', '6 airbags, AEB y asistente de carril'] },
       { slug: 'uy-honda-zr-v-2026-ehev-touring-20-ecvt', why: ['Híbrido e:HEV de 184 hp y 315 Nm', '7 airbags, carril, crucero adaptativo y punto ciego', 'Interior en cuero y climatizador'] },
-      { slug: 'uy-volkswagen-id-4-2025-pro-77-kwh', why: ['Eléctrico de 420 km con baúl de 543 L', '6 airbags y control crucero adaptativo', 'Red VW para el servicio del eléctrico'] },
+      { slug: 'uy-hyundai-elexio-2026-ultimate-awd-88-kwh', why: ['Eléctrico de 540 km y 313 hp con tracción integral', '9 airbags, AEB, carril, crucero adaptativo y punto ciego', 'Cámara 360, head-up display y techo panorámico', 'Baúl de 506 L en 4,62 m'] },
     ],
   },
   {
@@ -195,7 +195,7 @@ export const CURATED_PICKS: CuratedNode[] = [
       { slug: 'uy-omoda-and-jaecoo-omoda-5-2025-shs-premium-15t-dht', why: ['Híbrido de 150 hp con 750 km de autonomía total', 'Baúl de 510 L y techo panorámico', 'Cámara 360°, audio premium y asientos eléctricos', 'Entre los 10 SUV más vendidos 2026 en Uruguay (ACAU)'] },
       { slug: 'uy-byd-sealion-7-2026-blue-ev-rwd-718-kwh', why: ['SUV eléctrico de 4,83 m con 231 hp y 380 Nm', '9 airbags, AEB, carril, crucero adaptativo y punto ciego', '440 km de autonomía WLTC y carga rápida de 110 kW', 'Baúl de 520 L más 58 L delanteros y head-up display'] },
       { slug: 'uy-renault-boreal-2026-iconic', why: ['SUV nuevo de 4,56 m con baúl de 586 L', '6 airbags, AEB, carril, punto ciego y tráfico cruzado', '1.3 turbo de 156 hp y 270 Nm'] },
-      { slug: 'uy-jeep-compass-2025-longitude-1-3-t270-at6-fwd', why: ['1.3 turbo de 180 hp y 270 Nm', '6 airbags, AEB y asistente de carril', 'Uno de los SUV más vendidos de Uruguay'] },
+      { slug: 'uy-hyundai-elexio-2026-limited-extended-fwd-88-kwh', why: ['Eléctrico con 610 km de autonomía y 217 hp', '9 airbags, AEB, carril, crucero adaptativo y punto ciego', 'Baúl de 506 L, head-up display y techo panorámico'] },
     ],
   },
   {
