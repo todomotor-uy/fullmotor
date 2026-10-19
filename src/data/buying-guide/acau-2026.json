@@ -1,9 +1,9 @@
 {
  "source": "ACAU — Compilado 2026 (operaciones realizadas por empresas representantes de marca)",
- "url": "https://www.acau.com.uy/panel/estadisticas/17_07_43ar1.xlsx",
+ "url": "https://www.acau.com.uy/panel/estadisticas/16_17_27ar1.xlsx",
  "year": 2026,
  "monthsCovered": 9,
- "updatedAt": "2026-10-12",
+ "updatedAt": "2026-10-19",
  "segments": {
   "cars": 19043,
   "suvs": 22800,
@@ -1478,7 +1478,7 @@
    "modelKey": "maverick",
    "units": 73,
    "rank": 28,
-   "versions": 4
+   "versions": 3
   },
   {
    "seg": "pickups",
