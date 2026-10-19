@@ -14,7 +14,7 @@
 import type {
   Answers, Criterion, GuideResult, GuideUse, GuideVehicle, PodiumEntry, RankedFamily, ResolvedPick, Scored,
 } from './types'
-import { SPORTY_MIN_HP, SUB_LABELS, USE_AFFINITY } from './questions'
+import { SPORTY_MIN_HP, SUB_LABELS, USE_AFFINITY, bandIndex } from './questions'
 import { curatedCandidates, subOf } from './curated'
 import { adasLabel, equipLabel } from './features'
 import { segmentLabel } from './sales'
@@ -405,7 +405,16 @@ export function runGuide(index: GuideVehicle[], curated: ResolvedPick[], a: Answ
 
   if (effective.uso) {
     let cands = curatedCandidates(curated, effective.uso, effective.max).filter((p) => scoredBySlug.has(p.slug))
-    if (effective.max == null) cands = [...cands].sort((x, y) => (scoredBySlug.get(y.slug)!.score - scoredBySlug.get(x.slug)!.score))
+    if (effective.prio) {
+      // An explicit priority beats editorial order inside a band ("Potencia" must not open
+      // with a 122 hp hybrid). Bands stay first so "Precio" does not jump to the cheapest band.
+      const crit = PRIO_CRITERION[effective.prio]
+      const keepBands = effective.max != null
+      cands = [...cands].sort((x, y) =>
+        (keepBands ? bandIndex(y.band) - bandIndex(x.band) : 0)
+        || (scoredBySlug.get(y.slug)!.c[crit] - scoredBySlug.get(x.slug)!.c[crit])
+        || (keepBands ? x.rank - y.rank : scoredBySlug.get(y.slug)!.score - scoredBySlug.get(x.slug)!.score))
+    } else if (effective.max == null) cands = [...cands].sort((x, y) => (scoredBySlug.get(y.slug)!.score - scoredBySlug.get(x.slug)!.score))
     for (const p of cands) {
       if (podium.length >= podiumSize || used.has(p.family)) continue
       const s = scoredBySlug.get(p.slug)!
