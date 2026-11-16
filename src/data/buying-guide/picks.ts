@@ -10,7 +10,7 @@
 
 import type { CuratedNode } from '@/lib/buying-guide/types'
 
-export const PICKS_UPDATED_AT = '2026-10-19'
+export const PICKS_UPDATED_AT = '2026-11-16'
 
 export const CURATED_PICKS: CuratedNode[] = [
   // ───────────────────────────── FAMILIA ─────────────────────────────
@@ -163,7 +163,7 @@ export const CURATED_PICKS: CuratedNode[] = [
       { slug: 'uy-toyota-hilux-2025-28-srx-4x4-at-tss', why: ['Tope de gama: 2.8 diésel de 201 hp y 500 Nm', '7 airbags y Toyota Safety Sense completo', 'Head-up display, cuero y audio premium'] },
       { slug: 'uy-multimotors-ranger-xls-v6-2025-3-0-4wd-at10', why: ['V6 3.0 diésel de 250 hp y 567 Nm', 'Caja automática de 10 marchas y 4x4', '6 airbags y caja de 1.700 L'] },
       { slug: 'uy-volkswagen-amarok-2025-30-v6-tdi-highline-4x4-at', why: ['V6 3.0 TDI de 258 hp y 580 Nm', 'AEB, crucero adaptativo, cámara 360 y head-up', 'Tracción 4x4 y 6 airbags'] },
-      { slug: 'uy-ram-1500-2025-big-horn-black-edition-36-v6-etorque-a-t-4x4', why: ['Full-size de 5,92 m: 3.6 V6 eTorque de 305 hp', 'Caja de 1.300 L, 570 Nm y 4x4', '6 airbags y crucero adaptativo'] },
+      { slug: 'uy-ram-1500-2026-black-express-36-v6-etorque-a-t-4x4', why: ['Full-size de 5,92 m: 3.6 V6 eTorque de 305 hp', '556 Nm con tracción 4x4', '6 airbags, AEB, carril y crucero adaptativo'] },
       { slug: 'uy-multimotors-f-150-2025-3-5-v6-ecoboost-lariat-selectshift', why: ['Ícono full-size: 3.5 V6 EcoBoost de 400 hp y 560 Nm', 'Caja de 1.550 L y 5,91 m', '6 airbags y equipamiento Lariat'] },
     ],
   },
@@ -185,7 +185,7 @@ export const CURATED_PICKS: CuratedNode[] = [
       { slug: 'uy-nissan-sentra-2025-sense-2-0-cvt', why: ['Sedán de 4,66 m con 2.0 de 149 hp', 'Baúl de 510 L y 6 airbags', 'Interior en cuero y climatizador'] },
       { slug: 'uy-jetour-x70-2025-luxury-15t-dct', why: ['SUV mediano de 4,72 m con caja automática', '6 airbags, AEB y detector de punto ciego', 'Cámara 360, techo panorámico y crucero'] },
       { slug: 'uy-chery-tiggo-4-csh-2025-luxury-15-dht', why: ['Híbrido enchufable: 900 km de autonomía combinada', '6 airbags y baúl de 480 L', 'Control crucero, cuero y climatizador'] },
-      { slug: 'uy-chevrolet-tracker-2025-lt-1-2-turbo-a-t', why: ['1.2 turbo de 133 hp con caja automática', '6 airbags y climatizador', 'Red Chevrolet en todo el interior'] },
+      { slug: 'uy-peugeot-2008-2026-allure-t200-mhev-10-cvt', why: ['6 airbags, AEB, asistente de carril y alerta de fatiga', 'Mild hybrid 1.0 turbo de 120 hp con caja CVT', 'Baúl de 403 L y climatizador'] },
     ],
   },
   {
@@ -238,7 +238,7 @@ export const CURATED_PICKS: CuratedNode[] = [
       { slug: 'uy-tesla-model-3-2026-premium-standard-range-rwd-63-kwh', why: ['283 hp con tracción trasera', '534 km de autonomía y 9 airbags', 'Baúl de 594 L: deportivo usable a diario'] },
       { slug: 'uy-fiat-fastback-2025-abarth-1-3-turbo-270-at6', why: ['1.3 turbo de 185 hp y 270 Nm afinado por Abarth', '6 airbags, AEB y asistente de carril', 'Techo panorámico y baúl de 516 L'] },
       { slug: 'uy-mg-4-2025-deluxe-awd-64-kwh', why: ['320 hp y 480 Nm con tracción integral', '520 km de autonomía y 6 airbags', 'Cámara 360 y crucero adaptativo'] },
-      { slug: 'uy-volvo-ex30-2025-core-single-engine-e40-rwd-51-kwh', why: ['272 hp con tracción trasera', '7 airbags, AEB, carril y crucero adaptativo', 'Compacto premium de 4,27 m'] },
+      { slug: 'uy-zeekr-x-2027-premium-rwd-66-kwh', why: ['340 hp y 373 Nm con tracción trasera', '459 km de autonomía y head-up display', '7 airbags, AEB, carril, crucero adaptativo y punto ciego'] },
       { slug: 'uy-volkswagen-nivus-2026-gts-250-tsi-14-at', why: ['1.4 TSI de 150 hp y 250 Nm, el Nivus más potente', '6 airbags y ADAS completo', 'Interior en cuero y acceso sin llave'] },
     ],
   },
