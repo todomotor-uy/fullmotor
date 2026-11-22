@@ -5,10 +5,13 @@ import { absoluteUrl, SITE_LOGO, SITE_NAME, SITE_URL } from '@/lib/site'
 import BlogTagFilter from '@/app/components/BlogTagFilter'
 import InfiniteBlogList from '@/app/components/InfiniteBlogList'
 import JsonLd from '@/app/components/JsonLd'
+import { IS_NAUTI } from '@/lib/tenant'
 
-const BLOG_TITLE = 'Noticias del Motor'
-const BLOG_DESCRIPTION =
-  'Las últimas tendencias, lanzamientos y noticias del mundo automotor en Uruguay.'
+const BLOG_TITLE = IS_NAUTI ? 'Noticias náuticas' : 'Noticias del Motor'
+const BLOG_DESCRIPTION = IS_NAUTI
+  ? 'Regatas, temporada, novedades y guías para navegar en Uruguay.'
+  : 'Las últimas tendencias, lanzamientos y noticias del mundo automotor en Uruguay.'
+const MARKET_LABEL = IS_NAUTI ? 'la náutica uruguaya' : 'el mercado automotor uruguayo'
 
 interface PageProps {
   searchParams: Promise<{ tag?: string }>
@@ -19,7 +22,7 @@ export async function generateMetadata({ searchParams }: PageProps): Promise<Met
 
   if (tag) {
     const title = `Noticias sobre ${tag}`
-    const description = `Artículos y novedades sobre ${tag} en el mercado automotor uruguayo.`
+    const description = `Artículos y novedades sobre ${tag} en ${MARKET_LABEL}.`
     return {
       title,
       description,
@@ -96,12 +99,25 @@ export default async function BlogPage({ searchParams }: PageProps) {
       {posts.length > 0 && <JsonLd data={itemListJsonLd} />}
 
       <div className="bl__head">
-        <span className="bl__kicker">Blog del Motor</span>
-        <h1 className="bl__title">Noticias y novedades del motor en Uruguay</h1>
-        <p className="bl__sub">
-          Contexto para comprar mejor: lanzamientos, impuestos, normativa y guías del mercado
-          automotor uruguayo.
-        </p>
+        {IS_NAUTI ? (
+          <>
+            <span className="bl__kicker">Blog náutico</span>
+            <h1 className="bl__title">Noticias y novedades de la náutica en Uruguay</h1>
+            <p className="bl__sub">
+              Regatas, temporada, puertos, normativa y guías para comprar, mantener y disfrutar tu
+              embarcación.
+            </p>
+          </>
+        ) : (
+          <>
+            <span className="bl__kicker">Blog del Motor</span>
+            <h1 className="bl__title">Noticias y novedades del motor en Uruguay</h1>
+            <p className="bl__sub">
+              Contexto para comprar mejor: lanzamientos, impuestos, normativa y guías del mercado
+              automotor uruguayo.
+            </p>
+          </>
+        )}
       </div>
 
       <div style={{ marginBottom: 24 }}>

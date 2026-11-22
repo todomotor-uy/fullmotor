@@ -30,6 +30,8 @@ import { Select } from './ui/Select'
 import ClassifiedImageUploader from './ClassifiedImageUploader'
 import { translateApiError } from '@/lib/api-error'
 
+import { IS_NAUTI } from '@/lib/tenant'
+
 const COUNTRY = process.env.NEXT_PUBLIC_COUNTRY || 'uy'
 
 interface ClassifiedFormProps {
@@ -45,7 +47,7 @@ export default function ClassifiedForm({ mode, initial, facets }: ClassifiedForm
   const [title, setTitle] = useState(initial?.title || '')
   const [description, setDescription] = useState(initial?.description || '')
   const [category, setCategory] = useState<ClassifiedCategory>(
-    initial?.category || 'cars'
+    initial?.category || CLASSIFIED_CATEGORIES[0].id
   )
   const [price, setPrice] = useState<string>(initial?.price ? String(initial.price) : '')
   const [currency, setCurrency] = useState(initial?.currency || 'USD')
@@ -304,7 +306,7 @@ export default function ClassifiedForm({ mode, initial, facets }: ClassifiedForm
           value={title}
           onChange={(e) => setTitle(e.target.value)}
           maxLength={120}
-          placeholder="Ej. Honda Civic 2020 impecable"
+          placeholder={IS_NAUTI ? 'Ej. Lancha 19 pies con motor fuera de borda' : 'Ej. Honda Civic 2020 impecable'}
           hint={`${title.length}/120`}
           className="[&_.tm-field__hint]:font-mono"
         />

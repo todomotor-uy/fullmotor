@@ -1,0 +1,126 @@
+/**
+ * Which site this build is.
+ *
+ * One repo, one Vercel project per site. Each project sets NEXT_PUBLIC_TENANT
+ * (todomotor-uy, nauti-uy, ...) and everything brand-specific — name, nav,
+ * enabled sections, home page, colours — is read from here.
+ *
+ * TodoMotor's production project does not set the variable, and must not
+ * start sending X-Tenant until its API accepts that header in CORS: a browser
+ * preflight against the current API would fail and take every client-side
+ * call down with it. So the header is only sent when the tenant is explicit.
+ */
+
+export type TenantId = 'todomotor-uy' | 'nauti-uy'
+
+const RAW_TENANT = process.env.NEXT_PUBLIC_TENANT?.trim() || ''
+
+export const TENANT_ID: TenantId = RAW_TENANT === 'nauti-uy' ? 'nauti-uy' : 'todomotor-uy'
+
+/** Headers that tell the API which site a request belongs to. */
+export function tenantHeader(): Record<string, string> {
+  return RAW_TENANT ? { 'X-Tenant': RAW_TENANT } : {}
+}
+
+export interface NavLink {
+  href: string
+  label: string
+}
+
+export interface SiteFeatures {
+  /** Vehicle catalogue: /vehiculos, /vehiculo/*, /marcas, search. */
+  catalog: boolean
+  guide: boolean
+  compare: boolean
+  saved: boolean
+  dealerships: boolean
+  ads: boolean
+}
+
+export interface SiteConfig {
+  id: TenantId
+  brand: 'todomotor' | 'nauti'
+  name: string
+  /** Used in `<title>` templates and Open Graph. */
+  title: string
+  description: string
+  keywords: string
+  defaultUrl: string
+  contactEmail: string
+  /** Logo text split in two so the second half can take the accent colour. */
+  logo: [string, string]
+  nav: NavLink[]
+  features: SiteFeatures
+  /** What the site calls a business account and where its pages live. */
+  dealershipLabel: { plural: string; singular: string }
+  rssTitle: string
+}
+
+const TODOMOTOR: SiteConfig = {
+  id: 'todomotor-uy',
+  brand: 'todomotor',
+  name: 'TodoMotor Uruguay',
+  title: 'TodoMotor Uruguay | Fichas Técnicas de Vehículos',
+  description:
+    'Encontrá las fichas técnicas completas de autos, SUVs, camionetas y motos disponibles en Uruguay. Especificaciones, precios y equipamiento.',
+  keywords: 'autos uruguay, motos uruguay, fichas técnicas, precios autos, suvs, camionetas',
+  defaultUrl: 'https://todomotor.uy',
+  contactEmail: 'contacto@todomotor.uy',
+  logo: ['todo', 'motor'],
+  nav: [
+    { href: '/vehiculos', label: 'Vehículos' },
+    { href: '/guia-de-compra', label: 'Guía de compra' },
+    { href: '/clasificados', label: 'Clasificados' },
+    { href: '/automotoras', label: 'Automotoras' },
+    { href: '/blog', label: 'Blog' },
+  ],
+  features: { catalog: true, guide: true, compare: true, saved: true, dealerships: true, ads: true },
+  dealershipLabel: { plural: 'Automotoras', singular: 'Automotora' },
+  rssTitle: 'Noticias del Motor — TodoMotor Uruguay',
+}
+
+const NAUTI: SiteConfig = {
+  id: 'nauti-uy',
+  brand: 'nauti',
+  name: 'Nauti',
+  title: 'Nauti | Náutica en Uruguay: clasificados y noticias',
+  description:
+    'Comprá y vendé lanchas, veleros, motos de agua y equipamiento en Uruguay. Noticias, guías y todo sobre la náutica uruguaya.',
+  keywords: 'lanchas uruguay, veleros en venta, motos de agua, náutica uruguay, clasificados náuticos',
+  defaultUrl: 'https://nauti.uy',
+  contactEmail: 'contacto@nauti.uy',
+  logo: ['nau', 'ti'],
+  nav: [
+    { href: '/clasificados', label: 'Clasificados' },
+    { href: '/blog', label: 'Blog' },
+    { href: '/automotoras', label: 'Náuticas' },
+  ],
+  features: { catalog: false, guide: false, compare: false, saved: false, dealerships: true, ads: false },
+  dealershipLabel: { plural: 'Náuticas', singular: 'Náutica' },
+  rssTitle: 'Noticias náuticas — Nauti',
+}
+
+export const SITE_CONFIG: SiteConfig = TENANT_ID === 'nauti-uy' ? NAUTI : TODOMOTOR
+
+export const IS_NAUTI = SITE_CONFIG.brand === 'nauti'
+
+/**
+ * Route prefixes that only exist on sites with the vehicle catalogue. The
+ * middleware answers 404 for them everywhere else.
+ */
+export const CATALOG_ONLY_PREFIXES = [
+  '/vehiculos',
+  '/vehiculo/',
+  '/marcas',
+  '/compare',
+  '/guia-de-compra',
+  '/guardados',
+]
+
+/** What this site calls a business account, ready for running text. */
+export const BIZ = {
+  one: SITE_CONFIG.dealershipLabel.singular.toLowerCase(),
+  many: SITE_CONFIG.dealershipLabel.plural.toLowerCase(),
+  One: SITE_CONFIG.dealershipLabel.singular,
+  Many: SITE_CONFIG.dealershipLabel.plural,
+}

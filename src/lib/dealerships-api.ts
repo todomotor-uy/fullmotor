@@ -1,6 +1,7 @@
 import { Dealership } from '@/types/classified'
 import { ApiError } from './api-error'
 import { getStoredToken } from './auth'
+import { tenantHeader } from '@/lib/tenant'
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL || 'https://api.todomotor.uy'
 const COUNTRY = process.env.NEXT_PUBLIC_COUNTRY || 'uy'
@@ -22,13 +23,13 @@ async function handleApiError(response: Response): Promise<never> {
 }
 
 function publicHeaders(): HeadersInit {
-  return { 'X-Country': COUNTRY }
+  return { 'X-Country': COUNTRY, ...tenantHeader() }
 }
 
 function authHeaders(): HeadersInit {
   const t = getStoredToken()
   if (!t) throw new ApiError('Authentication required', 401)
-  return { 'X-Country': COUNTRY, Authorization: `Bearer ${t}` }
+  return { 'X-Country': COUNTRY, ...tenantHeader(), Authorization: `Bearer ${t}` }
 }
 
 function jsonHeaders(): HeadersInit {

@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import { BadgeCheck } from 'lucide-react'
 import { ClassifiedDealership } from '@/types/classified'
+import { BIZ } from '@/lib/tenant'
 
 interface DealershipBadgeProps {
   dealership: ClassifiedDealership
@@ -28,7 +29,7 @@ export default function DealershipBadge({ dealership, asLink = false }: Dealersh
 
   if (!asLink) {
     return (
-      <span className={className} title={`${dealership.name} · Automotora verificada`}>
+      <span className={className} title={`${dealership.name} · ${BIZ.One} verificada`}>
         {content}
       </span>
     )

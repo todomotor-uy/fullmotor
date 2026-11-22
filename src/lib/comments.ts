@@ -1,3 +1,4 @@
+import { tenantHeader } from '@/lib/tenant'
 const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8080'
 
 export interface CommentUser {
@@ -33,7 +34,9 @@ export async function fetchComments(
     limit = 20
 ): Promise<CommentsResponse> {
     const params = new URLSearchParams({ page: String(page), limit: String(limit) })
-    const res = await fetch(`${API_URL}/api/comments/${resourceId}?${params}`)
+    const res = await fetch(`${API_URL}/api/comments/${resourceId}?${params}`, {
+        headers: tenantHeader(),
+    })
 
     if (!res.ok) {
         throw new Error('Error al cargar comentarios')
@@ -56,6 +59,7 @@ export async function createComment(
         headers: {
             'Content-Type': 'application/json',
             Authorization: `Bearer ${token}`,
+            ...tenantHeader(),
         },
         body: JSON.stringify(payload),
     })
@@ -75,7 +79,7 @@ export async function deleteComment(
 ): Promise<void> {
     const res = await fetch(`${API_URL}/api/comments/${resourceId}/${commentId}`, {
         method: 'DELETE',
-        headers: { Authorization: `Bearer ${token}` },
+        headers: { Authorization: `Bearer ${token}`, ...tenantHeader() },
     })
 
     if (!res.ok) {

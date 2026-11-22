@@ -1,4 +1,5 @@
 import type { Dealership } from '@/types/classified'
+import { tenantHeader } from '@/lib/tenant'
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8080'
 const TOKEN_KEY = 'todomotor_token'
@@ -41,7 +42,7 @@ export function removeToken(): void {
 export async function loginWithGoogle(idToken: string): Promise<LoginResponse> {
     const res = await fetch(`${API_URL}/api/auth/google`, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: { 'Content-Type': 'application/json', ...tenantHeader() },
         body: JSON.stringify({ idToken }),
     })
 
@@ -55,7 +56,7 @@ export async function loginWithGoogle(idToken: string): Promise<LoginResponse> {
 
 export async function fetchCurrentUser(token: string): Promise<User> {
     const res = await fetch(`${API_URL}/api/auth/me`, {
-        headers: { Authorization: `Bearer ${token}` },
+        headers: { Authorization: `Bearer ${token}`, ...tenantHeader() },
     })
 
     if (!res.ok) {

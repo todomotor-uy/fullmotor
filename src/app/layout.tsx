@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { SITE_NAME, SITE_URL } from "@/lib/site";
+import { IS_NAUTI, SITE_CONFIG } from "@/lib/tenant";
 import { spaceGrotesk, hankenGrotesk, jetbrainsMono } from "./fonts";
 import AuthProvider from "./components/AuthProvider";
 import SavedProvider from "./components/SavedProvider";
@@ -8,17 +9,23 @@ import SiteHeader from "./components/SiteHeader";
 import SiteFooter from "./components/SiteFooter";
 import SiteAnalytics from "./components/SiteAnalytics";
 
+const OG_DESCRIPTION = IS_NAUTI
+  ? "Clasificados y noticias de la náutica uruguaya"
+  : "Fichas técnicas de vehículos en Uruguay";
+
 export const metadata: Metadata = {
+  // Nauti's mark; TodoMotor keeps the file-based app/icon.svg.
+  ...(IS_NAUTI ? { icons: { icon: "/brand/nauti-mark.svg" } } : {}),
   metadataBase: new URL(SITE_URL),
   title: {
-    default: "TodoMotor Uruguay | Fichas Técnicas de Vehículos",
-    template: "%s | TodoMotor Uruguay",
+    default: SITE_CONFIG.title,
+    template: `%s | ${SITE_CONFIG.name}`,
   },
-  description: "Encontrá las fichas técnicas completas de autos, SUVs, camionetas y motos disponibles en Uruguay. Especificaciones, precios y equipamiento.",
-  keywords: "autos uruguay, motos uruguay, fichas técnicas, precios autos, suvs, camionetas",
+  description: SITE_CONFIG.description,
+  keywords: SITE_CONFIG.keywords,
   openGraph: {
-    title: "TodoMotor Uruguay",
-    description: "Fichas técnicas de vehículos en Uruguay",
+    title: SITE_CONFIG.name,
+    description: OG_DESCRIPTION,
     type: "website",
     siteName: SITE_NAME,
     locale: "es_UY",
@@ -26,11 +33,12 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "TodoMotor Uruguay",
-    description: "Fichas técnicas de vehículos en Uruguay",
+    title: SITE_CONFIG.name,
+    description: OG_DESCRIPTION,
   },
   robots: {
-    index: true,
+    // A tenant on a preview domain stays out of the index until launch.
+    index: !IS_NAUTI || process.env.NEXT_PUBLIC_INDEXABLE === '1',
     follow: true,
     'max-image-preview': 'large' as const,
   },
@@ -38,7 +46,7 @@ export const metadata: Metadata = {
     canonical: "/",
     types: {
       'application/rss+xml': [
-        { url: '/blog/rss.xml', title: 'Noticias del Motor — TodoMotor Uruguay' },
+        { url: '/blog/rss.xml', title: SITE_CONFIG.rssTitle },
       ],
     },
   },
@@ -50,7 +58,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="es" className={`${spaceGrotesk.variable} ${hankenGrotesk.variable} ${jetbrainsMono.variable}`}>
+    <html lang="es" data-tenant={IS_NAUTI ? "nauti" : undefined} className={`${spaceGrotesk.variable} ${hankenGrotesk.variable} ${jetbrainsMono.variable}`}>
       <body className="antialiased">
         <AuthProvider>
           <SavedProvider>

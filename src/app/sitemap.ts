@@ -5,6 +5,7 @@ import { getAllIndexableClassifieds } from '@/lib/classifieds-api'
 import { getAllDealerships } from '@/lib/dealerships-api'
 import { CATEGORIES } from '@/types/vehicle'
 import { absoluteUrl, SITE_URL } from '@/lib/site'
+import { IS_NAUTI } from '@/lib/tenant'
 import { CATALOG_PER_PAGE, catalogHref, groupByBrand } from '@/lib/catalog'
 
 // Refresh the sitemap without a rebuild — new articles and listings show up
@@ -18,6 +19,8 @@ function warnIfEmpty(label: string, count: number) {
 }
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+  if (IS_NAUTI) return nautiSitemap()
+
   const [vehicles, posts, classifieds, dealerships] = await Promise.all([
     getAllVehicles(),
     getAllBlogPosts(),
@@ -146,5 +149,44 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     ...blogEntries,
     ...vehicleEntries,
     ...classifiedEntries,
+  ]
+}
+
+/**
+ * Nauti has no catalogue: home, blog, classifieds and storefronts only. Kept
+ * separate rather than threaded through the TodoMotor sitemap with flags, so
+ * that one stays exactly as it is.
+ */
+async function nautiSitemap(): Promise<MetadataRoute.Sitemap> {
+  const [posts, classifieds, dealerships] = await Promise.all([
+    getAllBlogPosts(),
+    getAllIndexableClassifieds(),
+    getAllDealerships(),
+  ])
+  const now = new Date()
+  return [
+    { url: SITE_URL, lastModified: now, changeFrequency: 'daily', priority: 1.0 },
+    { url: absoluteUrl('/clasificados'), lastModified: now, changeFrequency: 'daily', priority: 0.9 },
+    { url: absoluteUrl('/blog'), lastModified: now, changeFrequency: 'daily', priority: 0.8 },
+    { url: absoluteUrl('/automotoras'), lastModified: now, changeFrequency: 'weekly', priority: 0.7 },
+    ...dealerships.map((d) => ({
+      url: absoluteUrl(`/automotoras/${d.slug}`),
+      lastModified: now,
+      changeFrequency: 'daily' as const,
+      priority: 0.7,
+    })),
+    ...posts.map((post) => ({
+      url: absoluteUrl(`/blog/${post.slug}`),
+      lastModified: post.updatedAt ? new Date(post.updatedAt) : new Date(post.publishedAt),
+      changeFrequency: 'monthly' as const,
+      priority: 0.7,
+    })),
+    ...classifieds.map((c) => ({
+      url: absoluteUrl(`/clasificados/${c.id}`),
+      lastModified: c.updatedAt ? new Date(c.updatedAt) : now,
+      changeFrequency: 'daily' as const,
+      priority: 0.5,
+    })),
+    { url: absoluteUrl('/privacidad'), lastModified: now, changeFrequency: 'yearly', priority: 0.3 },
   ]
 }

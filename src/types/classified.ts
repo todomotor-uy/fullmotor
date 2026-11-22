@@ -1,3 +1,5 @@
+import { IS_NAUTI } from '@/lib/tenant'
+
 export type ClassifiedCategory =
   | 'cars'
   | 'motorcycles'
@@ -5,6 +7,16 @@ export type ClassifiedCategory =
   | 'parts'
   | 'accessories'
   | 'other'
+  // Nauti. The API accepts each list only on the tenant it belongs to.
+  | 'motorboats'
+  | 'sailboats'
+  | 'jetskis'
+  | 'small_craft'
+  | 'engines'
+  | 'trailers'
+  | 'equipment'
+  | 'moorings'
+  | 'services'
 
 /**
  * Still returned by the API, but monetization is switched off: every listing is
@@ -157,7 +169,7 @@ export interface Comment {
   createdAt: string
 }
 
-export const CLASSIFIED_CATEGORIES: { id: ClassifiedCategory; label: string }[] = [
+const AUTOMOTIVE_CATEGORIES: { id: ClassifiedCategory; label: string }[] = [
   { id: 'cars', label: 'Autos' },
   { id: 'motorcycles', label: 'Motos' },
   { id: 'trucks', label: 'Camionetas' },
@@ -165,6 +177,22 @@ export const CLASSIFIED_CATEGORIES: { id: ClassifiedCategory; label: string }[] 
   { id: 'accessories', label: 'Accesorios' },
   { id: 'other', label: 'Otros' },
 ]
+
+export const NAUTICAL_CATEGORIES: { id: ClassifiedCategory; label: string }[] = [
+  { id: 'motorboats', label: 'Lanchas y cruceros' },
+  { id: 'sailboats', label: 'Veleros' },
+  { id: 'jetskis', label: 'Motos de agua' },
+  { id: 'small_craft', label: 'Kayaks, SUP y botes' },
+  { id: 'engines', label: 'Motores' },
+  { id: 'trailers', label: 'Trailers' },
+  { id: 'equipment', label: 'Equipamiento' },
+  { id: 'moorings', label: 'Amarres y guarderías' },
+  { id: 'services', label: 'Servicios' },
+  { id: 'other', label: 'Otros' },
+]
+
+/** This site's categories, in the order the API accepts and the UI shows. */
+export const CLASSIFIED_CATEGORIES = IS_NAUTI ? NAUTICAL_CATEGORIES : AUTOMOTIVE_CATEGORIES
 
 /** Narrows an untrusted query-string value to a real category. */
 export function isClassifiedCategory(value: string | undefined): value is ClassifiedCategory {
@@ -178,6 +206,15 @@ export const categoryLabels: Record<ClassifiedCategory, string> = {
   parts: 'Repuestos',
   accessories: 'Accesorios',
   other: 'Otros',
+  motorboats: 'Lanchas y cruceros',
+  sailboats: 'Veleros',
+  jetskis: 'Motos de agua',
+  small_craft: 'Kayaks, SUP y botes',
+  engines: 'Motores',
+  trailers: 'Trailers',
+  equipment: 'Equipamiento',
+  moorings: 'Amarres y guarderías',
+  services: 'Servicios',
 }
 
 export const statusLabels: Record<ClassifiedStatus, string> = {

@@ -1,6 +1,19 @@
 import type { MetadataRoute } from 'next'
+import { IS_NAUTI } from '@/lib/tenant'
 
 export default function manifest(): MetadataRoute.Manifest {
+  if (IS_NAUTI) {
+    return {
+      name: 'Nauti',
+      short_name: 'Nauti',
+      description: 'Clasificados y noticias de la náutica uruguaya.',
+      start_url: '/',
+      display: 'standalone',
+      background_color: '#F4F8F9',
+      theme_color: '#0E7C86',
+      icons: [{ src: '/brand/nauti-mark.svg', sizes: 'any', type: 'image/svg+xml' }],
+    }
+  }
   return {
     name: 'TodoMotor Uruguay',
     short_name: 'TodoMotor',

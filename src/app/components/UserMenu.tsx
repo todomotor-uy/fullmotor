@@ -5,6 +5,7 @@ import Link from 'next/link'
 import { LayoutList, LogOut, ShieldCheck, Store, User as UserIcon } from 'lucide-react'
 import { useAuth } from './AuthProvider'
 import { Avatar } from './ui/Avatar'
+import { IS_NAUTI } from '@/lib/tenant'
 
 export default function UserMenu() {
     const { user, loading, login, logout } = useAuth()
@@ -78,7 +79,7 @@ export default function UserMenu() {
                         >
                             <Store size={15} aria-hidden="true" />
                             {user.dealership.status === 'approved'
-                                ? 'Mi automotora'
+                                ? (IS_NAUTI ? 'Mi náutica' : 'Mi automotora')
                                 : 'Mi solicitud'}
                         </Link>
                     )}

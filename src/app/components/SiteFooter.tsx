@@ -1,7 +1,10 @@
 import Link from 'next/link'
 import { Logo } from './ui/Logo'
+import { IS_NAUTI } from '@/lib/tenant'
+import NautiFooter from './nauti/NautiFooter'
 
 export default function SiteFooter() {
+  if (IS_NAUTI) return <NautiFooter />
   return (
     <footer className="k-footer">
       <div className="k-footer__in">

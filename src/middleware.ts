@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server'
 import type { NextRequest } from 'next/server'
 import { VEHICLE_SLUG_REDIRECTS } from '@/lib/vehicle-slug-redirects'
+import { CATALOG_ONLY_PREFIXES, SITE_CONFIG } from '@/lib/tenant'
 
 /**
  * Permanent redirects for vehicle slugs normalised on 2026-08-05.
@@ -16,6 +17,12 @@ const REDIRECT_MAP = new Map(
 
 export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl
+
+  // Sites without the vehicle catalogue answer 404 for its routes, rather
+  // than rendering pages that would fetch another site's market data.
+  if (!SITE_CONFIG.features.catalog && isCatalogPath(pathname)) {
+    return NextResponse.rewrite(new URL('/__not-found', request.url))
+  }
 
   // Match on the decoded path: a browser percent-encodes parentheses and
   // commas, so the raw pathname would not equal the stored slug.
@@ -36,6 +43,22 @@ export function middleware(request: NextRequest) {
   return NextResponse.next()
 }
 
+function isCatalogPath(pathname: string): boolean {
+  return CATALOG_ONLY_PREFIXES.some((p) =>
+    p.endsWith('/') ? pathname.startsWith(p) : pathname === p || pathname.startsWith(p + '/')
+  )
+}
+
 export const config = {
-  matcher: '/vehiculo/:path*',
+  // The vehicle redirects only need /vehiculo/*; the rest are the catalogue
+  // routes a non-catalogue tenant must not serve. On TodoMotor those fall
+  // straight through to NextResponse.next().
+  matcher: [
+    '/vehiculo/:path*',
+    '/vehiculos/:path*',
+    '/marcas/:path*',
+    '/compare/:path*',
+    '/guia-de-compra/:path*',
+    '/guardados/:path*',
+  ],
 }

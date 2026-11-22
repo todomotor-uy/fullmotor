@@ -6,8 +6,11 @@ import HeaderSearch from './HeaderSearch'
 import SavedHeaderButton from './SavedHeaderButton'
 import UserMenu from './UserMenu'
 import MobileNav from './MobileNav'
+import { IS_NAUTI } from '@/lib/tenant'
+import NautiHeader from './nauti/NautiHeader'
 
 export default function SiteHeader() {
+  if (IS_NAUTI) return <NautiHeader />
   return (
     <header className="k-header">
       <div className="k-header__in">
