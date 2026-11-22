@@ -1,6 +1,7 @@
 import { Classified } from '@/types/classified'
 import { ApiError } from './api-error'
 import { getStoredToken } from './auth'
+import type { Role } from './permissions'
 import { tenantHeader } from '@/lib/tenant'
 
 /**
@@ -68,7 +69,9 @@ export interface AdminUser {
   email: string
   name: string
   avatarUrl?: string | null
-  role: 'user' | 'admin'
+  role: Role
+  /** Admin of every site; the panel cannot change or suspend it. */
+  superAdmin?: boolean
   createdAt: string
   suspended: boolean
   suspendedAt?: string | null
@@ -123,6 +126,16 @@ export async function setUserSuspended(
     body: JSON.stringify({ suspended, reason: reason || undefined }),
   })
   return response.json()
+}
+
+/** Give an account of this site a role. */
+export async function setUserRole(id: string, role: Role): Promise<{ id: string; role: Role }> {
+  const response = await opsFetch(`/users/${id}/role`, {
+    method: 'PUT',
+    body: JSON.stringify({ role }),
+  })
+  const body = await response.json()
+  return body.data
 }
 
 // ============================================

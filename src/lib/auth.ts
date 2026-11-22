@@ -10,6 +10,10 @@ export interface User {
     name: string
     avatarUrl: string | null
     role?: string
+    /** What this account may do on this site (see lib/permissions). */
+    permissions?: string[]
+    /** Admin of every site; set by the API, never assignable from the panel. */
+    superAdmin?: boolean
     /** The caller's own business account, whatever its review state. */
     dealership?: Dealership
     /**
