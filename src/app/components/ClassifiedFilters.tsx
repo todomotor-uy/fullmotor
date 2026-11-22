@@ -12,6 +12,7 @@ import {
 } from '@/types/classified'
 import { Button } from './ui/Button'
 import { Select } from './ui/Select'
+import { IS_NAUTI } from '@/lib/tenant'
 
 const CURRENCIES = [
   { value: 'USD', label: 'USD' },
@@ -109,8 +110,10 @@ export default function ClassifiedFilters({ facets }: { facets: ClassifiedFacets
 
   // Year, mileage and brand only describe vehicles, so they are hidden on
   // repuestos and accesorios where every listing would match anything.
+  // Nauti has no vehicle categories, so none of these apply there.
   const showsVehicleFilters =
-    currentCategory === '' || ['cars', 'motorcycles', 'trucks'].includes(currentCategory)
+    !IS_NAUTI &&
+    (currentCategory === '' || ['cars', 'motorcycles', 'trucks'].includes(currentCategory))
 
   return (
     <>

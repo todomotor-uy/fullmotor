@@ -19,6 +19,7 @@ import { hasBattery, isElectric, showsDisplacement, showsFuelTank, showsGearCoun
 import { absoluteUrl, SITE_URL } from "@/lib/site";
 import { brandSlug } from "@/lib/catalog";
 import type { Vehicle } from "@/types/vehicle";
+import { SITE_CONFIG } from '@/lib/tenant';
 
 type Params = Promise<{ slug: string }>
 
@@ -83,6 +84,8 @@ export async function generateMetadata({ params }: { params: Params }) {
 }
 
 export async function generateStaticParams() {
+  // Sites without the catalogue 404 these routes in middleware; don't build them.
+  if (!SITE_CONFIG.features.catalog) return [];
   const vehicles = await getAllVehicles();
   return vehicles.map(v => ({ slug: v.slug }));
 }

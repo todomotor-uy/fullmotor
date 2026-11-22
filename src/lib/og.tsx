@@ -1,10 +1,11 @@
 import { ImageResponse } from 'next/og'
 import { SITE_NAME } from './site'
+import { IS_NAUTI, SITE_CONFIG } from './tenant'
 
 export const OG_SIZE = { width: 1200, height: 630 }
 export const OG_CONTENT_TYPE = 'image/png'
 
-const ACCENT = '#1F4FE0'
+const ACCENT = IS_NAUTI ? '#0E7C86' : '#1F4FE0'
 const INK = '#0E131B'
 const MUTED = '#6B7686'
 const PAPER = '#F6F8FB'
@@ -25,7 +26,14 @@ const MARK_SVG = `<svg width="120" height="120" viewBox="0 0 48 48" fill="none" 
   <circle cx="24" cy="25" r="1.3" fill="${ACCENT}"/>
 </svg>`
 
-const MARK_DATA_URI = `data:image/svg+xml;base64,${Buffer.from(MARK_SVG).toString('base64')}`
+const NAUTI_MARK_SVG = `<svg width="120" height="120" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect x="1" y="1" width="46" height="46" rx="12" fill="${ACCENT}"/>
+  <path d="M25 9 L25 30 L36 30 Z" fill="#fff"/>
+  <path d="M22.5 13 L22.5 30 L13 30 Z" fill="#fff" opacity="0.75"/>
+  <path d="M10 34.5 C13.5 32 16.5 32 20 34.5 C23.5 37 26.5 37 30 34.5 C33.5 32 36.5 32 38 33.6" stroke="#fff" stroke-width="2.4" stroke-linecap="round" fill="none"/>
+</svg>`
+
+const MARK_DATA_URI = `data:image/svg+xml;base64,${Buffer.from(IS_NAUTI ? NAUTI_MARK_SVG : MARK_SVG).toString('base64')}`
 
 interface OgImageOptions {
   /** Small uppercase label above the title. */
@@ -60,7 +68,7 @@ export function renderOgImage({ eyebrow, title, subtitle }: OgImageOptions) {
             <span style={{ fontSize: 40, fontWeight: 700, color: INK, letterSpacing: '-0.02em' }}>
               {SITE_NAME}
             </span>
-            <span style={{ fontSize: 24, color: MUTED }}>todomotor.uy</span>
+            <span style={{ fontSize: 24, color: MUTED }}>{new URL(SITE_CONFIG.defaultUrl).host}</span>
           </div>
         </div>
 

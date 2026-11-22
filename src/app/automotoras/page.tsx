@@ -5,12 +5,15 @@ import { fetchDealerships } from '@/lib/dealerships-api'
 import { absoluteUrl } from '@/lib/site'
 import JsonLd from '../components/JsonLd'
 import { Avatar } from '../components/ui/Avatar'
+import { BIZ, IS_NAUTI, SITE_CONFIG } from '@/lib/tenant'
 
 export const revalidate = 300
 
-const TITLE = 'Automotoras en Uruguay'
+const TITLE = `${BIZ.Many} en Uruguay`
 const DESCRIPTION =
-  'Concesionarias y automotoras con vidriera en TodoMotor. Mirá su inventario completo y contactalas directo.'
+  IS_NAUTI
+    ? `Náuticas, brokers y guarderías con vidriera en ${SITE_CONFIG.name}. Mirá su inventario completo y contactalas directo.`
+    : 'Concesionarias y automotoras con vidriera en TodoMotor. Mirá su inventario completo y contactalas directo.'
 
 export const metadata: Metadata = {
   title: TITLE,
@@ -41,20 +44,20 @@ export default async function DealershipsPage() {
       {data.data.length > 0 && <JsonLd data={itemListJsonLd} />}
 
       <div className="mb-6">
-        <h1 className="iv__title">Automotoras</h1>
+        <h1 className="iv__title">{BIZ.Many}</h1>
         <p className="iv__count">
-          <span className="font-mono">{data.meta.total}</span> con vidriera en TodoMotor
+          <span className="font-mono">{data.meta.total}</span> con vidriera en {IS_NAUTI ? 'Nauti' : 'TodoMotor'}
         </p>
       </div>
 
       {data.data.length === 0 ? (
         <div className="iv__empty">
-          <h3 className="font-display text-lg font-bold text-ink mb-2">Todavía no hay automotoras</h3>
+          <h3 className="font-display text-lg font-bold text-ink mb-2">Todavía no hay {BIZ.many}</h3>
           <p className="text-sm text-muted mb-6">
             Si tenés una, registrala y publicá tu inventario con vidriera propia.
           </p>
           <Link href="/automotoras/solicitar" className="tm-btn tm-btn--md">
-            Registrá tu automotora
+            Registrá tu {BIZ.one}
           </Link>
         </div>
       ) : (

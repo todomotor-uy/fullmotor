@@ -9,6 +9,7 @@ import {
 } from '@/types/classified'
 import { getStoredToken } from './auth'
 import { ApiError } from './api-error'
+import { tenantHeader } from '@/lib/tenant'
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL || 'https://api.todomotor.uy'
 const COUNTRY = process.env.NEXT_PUBLIC_COUNTRY || 'uy'
@@ -34,6 +35,7 @@ async function handleApiError(response: Response): Promise<never> {
 function publicHeaders(): HeadersInit {
   return {
     'X-Country': COUNTRY,
+    ...tenantHeader(),
   }
 }
 
@@ -44,7 +46,9 @@ function publicHeaders(): HeadersInit {
  */
 function optionalAuthHeaders(): HeadersInit {
   const t = getStoredToken()
-  return t ? { 'X-Country': COUNTRY, Authorization: `Bearer ${t}` } : { 'X-Country': COUNTRY }
+  return t
+    ? { 'X-Country': COUNTRY, ...tenantHeader(), Authorization: `Bearer ${t}` }
+    : { 'X-Country': COUNTRY, ...tenantHeader() }
 }
 
 function authHeaders(token?: string | null): HeadersInit {
@@ -54,6 +58,7 @@ function authHeaders(token?: string | null): HeadersInit {
   }
   return {
     'X-Country': COUNTRY,
+    ...tenantHeader(),
     Authorization: `Bearer ${t}`,
   }
 }
@@ -72,7 +77,7 @@ function jsonHeaders(token?: string | null): HeadersInit {
 export async function googleLogin(idToken: string): Promise<{ token: string; user: AuthUser }> {
   const response = await fetch(`${API_URL}/api/auth/google`, {
     method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
+    headers: { 'Content-Type': 'application/json', ...tenantHeader() },
     body: JSON.stringify({ idToken }),
   })
   if (!response.ok) await handleApiError(response)

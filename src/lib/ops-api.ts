@@ -1,6 +1,7 @@
 import { Classified } from '@/types/classified'
 import { ApiError } from './api-error'
 import { getStoredToken } from './auth'
+import { tenantHeader } from '@/lib/tenant'
 
 /**
  * The operator side of the API — `/api/ops/*`, behind the admin role on a real
@@ -33,7 +34,7 @@ async function handleApiError(response: Response): Promise<never> {
 function authHeaders(): HeadersInit {
   const t = getStoredToken()
   if (!t) throw new ApiError('Authentication required', 401)
-  return { 'X-Country': COUNTRY, Authorization: `Bearer ${t}` }
+  return { 'X-Country': COUNTRY, ...tenantHeader(), Authorization: `Bearer ${t}` }
 }
 
 function jsonHeaders(): HeadersInit {

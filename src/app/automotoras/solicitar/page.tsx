@@ -10,6 +10,7 @@ import RequireAuth from '../../components/RequireAuth'
 import { useAuth } from '../../components/AuthProvider'
 import { Button } from '../../components/ui/Button'
 import { Input, Textarea } from '../../components/ui/Input'
+import { BIZ, IS_NAUTI } from '@/lib/tenant'
 
 const COUNTRY = process.env.NEXT_PUBLIC_COUNTRY || 'uy'
 
@@ -38,7 +39,7 @@ function ApplyInner() {
       <div className="max-w-2xl mx-auto px-4 py-20 text-center space-y-4">
         <h1 className="font-display text-2xl font-bold text-ink">
           {existing.status === 'approved'
-            ? 'Ya tenés una automotora'
+            ? `Ya tenés una ${BIZ.one}`
             : existing.status === 'pending'
               ? 'Tu solicitud está en revisión'
               : 'Tu cuenta está suspendida'}
@@ -65,7 +66,7 @@ function ApplyInner() {
 
     const trimmedName = name.trim()
     if (!trimmedName) {
-      setError('Poné el nombre de tu automotora.')
+      setError(`Poné el nombre de tu ${BIZ.one}.`)
       return
     }
     if (trimmedName.length > 80) {
@@ -101,14 +102,14 @@ function ApplyInner() {
         <nav className="iv__crumb mb-3">
           <Link href="/clasificados">Clasificados</Link>
           <span>/</span>
-          <span>Ser automotora</span>
+          <span>Ser {BIZ.one}</span>
         </nav>
         <h1 className="font-display text-3xl font-bold text-ink" style={{ letterSpacing: '-0.03em' }}>
-          Registrá tu automotora
+          Registrá tu {BIZ.one}
         </h1>
         <p className="text-sm text-muted mt-2">
           Tu inventario pasa a tener vidriera propia, tus avisos no vencen y podés subir más fotos
-          por vehículo. Revisamos cada solicitud a mano.
+          por {IS_NAUTI ? 'aviso' : 'vehículo'}. Revisamos cada solicitud a mano.
         </p>
       </div>
 
@@ -129,7 +130,7 @@ function ApplyInner() {
             value={name}
             onChange={(e) => setName(e.target.value)}
             maxLength={80}
-            placeholder="Ej. Autos del Sur"
+            placeholder={IS_NAUTI ? 'Ej. Náutica del Este' : 'Ej. Autos del Sur'}
             hint="Así te van a ver los compradores, y define la dirección de tu vidriera."
           />
 
@@ -139,7 +140,7 @@ function ApplyInner() {
             onChange={(e) => setDescription(e.target.value)}
             maxLength={1000}
             rows={4}
-            placeholder="Contá a qué se dedica tu automotora."
+            placeholder={`Contá a qué se dedica tu ${BIZ.one}.`}
           />
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">

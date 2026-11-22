@@ -12,6 +12,7 @@ import { formatPrice } from '@/lib/format'
 import { absoluteUrl, SITE_URL } from '@/lib/site'
 import VehicleList from '@/app/components/VehicleList'
 import JsonLd from '@/app/components/JsonLd'
+import { SITE_CONFIG } from '@/lib/tenant'
 
 /**
  * One page per brand.
@@ -30,6 +31,8 @@ async function findBrand(slug: string) {
 }
 
 export async function generateStaticParams() {
+  // Sites without the catalogue 404 these routes in middleware; don't build them.
+  if (!SITE_CONFIG.features.catalog) return []
   const groups = groupByBrand(await getAllVehicles())
   return groups.map((g) => ({ slug: g.slug }))
 }

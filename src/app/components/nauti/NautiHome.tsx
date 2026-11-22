@@ -1,0 +1,185 @@
+import Link from 'next/link'
+import Image from 'next/image'
+import {
+  Anchor, ArrowRight, Caravan, Cog, LifeBuoy, Newspaper, Package, Plus,
+  Sailboat, Ship, ShipWheel, Waves, Wrench, type LucideIcon,
+} from 'lucide-react'
+import { fetchClassifieds } from '@/lib/classifieds-api'
+import { getLatestBlogPosts } from '@/lib/blog'
+import { formatDate } from '@/lib/format'
+import { SITE_CONFIG } from '@/lib/tenant'
+import { SITE_LOGO, SITE_NAME, SITE_URL } from '@/lib/site'
+import { NAUTICAL_CATEGORIES, type Classified, type ClassifiedCategory } from '@/types/classified'
+import type { BlogPost } from '@/types/blog'
+import ClassifiedCard from '../ClassifiedCard'
+import JsonLd from '../JsonLd'
+
+const CATEGORY_ICONS: Partial<Record<ClassifiedCategory, LucideIcon>> = {
+  motorboats: Ship,
+  sailboats: Sailboat,
+  jetskis: Waves,
+  small_craft: LifeBuoy,
+  engines: Cog,
+  trailers: Caravan,
+  equipment: Package,
+  moorings: Anchor,
+  services: Wrench,
+  other: ShipWheel,
+}
+
+/**
+ * Nauti's home. Classifieds first — they are the reason to come — then the
+ * blog. Every section renders a useful empty state, because a new site starts
+ * with nothing in it and an empty grid reads as broken.
+ *
+ * A failed fetch degrades to the empty state rather than failing the page:
+ * the hero and categories are worth serving on their own.
+ */
+export default async function NautiHome() {
+  const [classifieds, posts] = await Promise.all([
+    fetchClassifieds({ limit: 8 })
+      .then((r) => r.data)
+      .catch((): Classified[] => []),
+    getLatestBlogPosts(3).catch((): BlogPost[] => []),
+  ])
+
+  const organizationJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'Organization',
+    name: SITE_NAME,
+    url: SITE_URL,
+    logo: { '@type': 'ImageObject', url: SITE_LOGO },
+    contactPoint: { '@type': 'ContactPoint', email: SITE_CONFIG.contactEmail, contactType: 'customer service' },
+  }
+
+  return (
+    <div style={{ paddingBottom: 56 }}>
+      <JsonLd data={organizationJsonLd} />
+
+      <section className="nh-hero">
+        <div className="nh-hero__in">
+          <span className="nh-hero__eyebrow">Náutica en Uruguay</span>
+          <h1>Todo lo que flota, en un solo lugar.</h1>
+          <p>
+            Comprá y vendé lanchas, veleros, motos de agua, motores y equipamiento. Publicar es
+            gratis y tu aviso queda online 30 días.
+          </p>
+          <div className="nh-hero__ctas">
+            <Link href="/clasificados" className="tm-btn tm-btn--lg">
+              Ver clasificados <ArrowRight size={18} aria-hidden="true" />
+            </Link>
+            <Link href="/clasificados/nuevo" className="tm-btn tm-btn--lg tm-btn--secondary">
+              <Plus size={18} aria-hidden="true" /> Publicar gratis
+            </Link>
+          </div>
+        </div>
+        <svg className="nh-hero__waves" viewBox="0 0 1440 72" preserveAspectRatio="none" aria-hidden="true">
+          <path
+            fill="currentColor"
+            d="M0 40 C 180 10 360 10 540 34 S 900 66 1080 40 S 1320 14 1440 30 L1440 72 L0 72 Z"
+          />
+        </svg>
+      </section>
+
+      <section className="h-sect">
+        <div className="h-sect__head">
+          <div>
+            <h2>Explorá por categoría</h2>
+            <p>De un kayak a un crucero, y todo lo que hace falta para salir al agua</p>
+          </div>
+        </div>
+        <div className="nh-cats">
+          {NAUTICAL_CATEGORIES.map((c) => {
+            const Icon = CATEGORY_ICONS[c.id] ?? ShipWheel
+            return (
+              <Link key={c.id} href={`/clasificados?category=${c.id}`} className="nh-cat">
+                <Icon size={26} aria-hidden="true" />
+                <span>{c.label}</span>
+              </Link>
+            )
+          })}
+        </div>
+      </section>
+
+      <section className="h-sect">
+        <div className="h-sect__head">
+          <div>
+            <h2>Recién publicados</h2>
+            <p>Los últimos avisos de particulares y náuticas</p>
+          </div>
+          <Link href="/clasificados" className="h-link">
+            Ver todos <ArrowRight size={16} aria-hidden="true" />
+          </Link>
+        </div>
+        {classifieds.length > 0 ? (
+          <div className="nh-grid">
+            {classifieds.map((c) => (
+              <ClassifiedCard key={c.id} classified={c} />
+            ))}
+          </div>
+        ) : (
+          <div className="nh-empty">
+            <strong>Todavía no hay avisos publicados</strong>
+            Sé el primero: publicar tu embarcación es gratis.
+            <div style={{ marginTop: 16 }}>
+              <Link href="/clasificados/nuevo" className="tm-btn">
+                <Plus size={16} aria-hidden="true" /> Publicar un aviso
+              </Link>
+            </div>
+          </div>
+        )}
+      </section>
+
+      <section className="h-sect">
+        <div className="h-sect__head">
+          <div>
+            <h2>Noticias náuticas</h2>
+            <p>Regatas, temporada, novedades y guías para navegar en Uruguay</p>
+          </div>
+          <Link href="/blog" className="h-link">
+            Ver todas <ArrowRight size={16} aria-hidden="true" />
+          </Link>
+        </div>
+        {posts.length > 0 ? (
+          <div className="h-posts">
+            {posts.map((post) => (
+              <Link href={`/blog/${post.slug}`} key={post.id} className="h-post">
+                <div className="h-post__top">
+                  {post.coverImage
+                    ? <Image src={post.coverImage} alt="" fill sizes="(max-width: 1000px) 100vw, 33vw" style={{ objectFit: 'cover' }} />
+                    : <Newspaper size={30} aria-hidden="true" />}
+                </div>
+                <div className="h-post__b">
+                  <span className="h-post__tag">{post.tags?.[0] || 'Blog'}</span>
+                  <h3 className="h-post__t">{post.title}</h3>
+                  <span className="h-post__d">{formatDate(post.publishedAt)}</span>
+                </div>
+              </Link>
+            ))}
+          </div>
+        ) : (
+          <div className="nh-empty">
+            <strong>Pronto, las primeras notas</strong>
+            Estamos preparando contenido sobre la náutica uruguaya.
+          </div>
+        )}
+      </section>
+
+      <section className="h-sect">
+        <div className="nh-band">
+          <div>
+            <h2>¿Tenés una náutica, broker o guardería?</h2>
+            <p>
+              Abrí tu vidriera en Nauti: tus avisos con tu marca, sin vencimiento y con fotos extra.
+            </p>
+          </div>
+          <div className="nh-band__actions">
+            <Link href="/automotoras/solicitar" className="tm-btn tm-btn--lg">
+              Abrir mi vidriera
+            </Link>
+          </div>
+        </div>
+      </section>
+    </div>
+  )
+}

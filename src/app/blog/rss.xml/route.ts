@@ -1,11 +1,13 @@
 import { getAllBlogPosts } from '@/lib/blog'
 import { absoluteUrl, SITE_NAME } from '@/lib/site'
+import { IS_NAUTI } from '@/lib/tenant'
 
 export const revalidate = 3600
 
-const FEED_TITLE = `Noticias del Motor — ${SITE_NAME}`
-const FEED_DESCRIPTION =
-  'Las últimas tendencias, lanzamientos y noticias del mundo automotor en Uruguay.'
+const FEED_TITLE = IS_NAUTI ? `Noticias náuticas — ${SITE_NAME}` : `Noticias del Motor — ${SITE_NAME}`
+const FEED_DESCRIPTION = IS_NAUTI
+  ? 'Regatas, temporada, novedades y guías para navegar en Uruguay.'
+  : 'Las últimas tendencias, lanzamientos y noticias del mundo automotor en Uruguay.'
 const MAX_ITEMS = 50
 
 function escapeXml(value: string): string {

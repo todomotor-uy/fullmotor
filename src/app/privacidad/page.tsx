@@ -1,10 +1,13 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
+import { SITE_CONFIG } from '@/lib/tenant'
+
+const SITE_HOST = new URL(SITE_CONFIG.defaultUrl).host
 
 export const metadata: Metadata = {
   title: 'Política de privacidad',
   description:
-    'Cómo TodoMotor Uruguay trata tus datos personales: qué medimos, qué cookies usamos y cómo ejercer tus derechos bajo la Ley 18.331.',
+    `Cómo ${SITE_CONFIG.name} trata tus datos personales: qué medimos, qué cookies usamos y cómo ejercer tus derechos bajo la Ley 18.331.`,
   alternates: { canonical: '/privacidad' },
 }
 
@@ -17,15 +20,15 @@ export default function PrivacidadPage() {
       <h1 className="art__title">Política de privacidad</h1>
       <div className="blog-content" style={{ marginTop: 'var(--space-7)' }}>
         <p>
-          Esta política explica qué datos recogemos en <strong>todomotor.uy</strong>, para qué los usamos y
+          Esta política explica qué datos recogemos en <strong>{SITE_HOST}</strong>, para qué los usamos y
           cómo podés controlarlos. Está redactada según la Ley 18.331 de Protección de Datos Personales y su
           decreto reglamentario 64/020.
         </p>
 
         <h2>Quién es responsable</h2>
         <p>
-          TodoMotor Uruguay, Montevideo, Uruguay. Consultas sobre datos personales:{' '}
-          <a href="mailto:contacto@todomotor.uy">contacto@todomotor.uy</a>.
+          {SITE_CONFIG.name}, Montevideo, Uruguay. Consultas sobre datos personales:{' '}
+          <a href={`mailto:${SITE_CONFIG.contactEmail}`}>{SITE_CONFIG.contactEmail}</a>.
         </p>
 
         <h2>Qué datos recogemos</h2>
@@ -84,7 +87,7 @@ export default function PrivacidadPage() {
 
         <h2>Publicidad</h2>
         <p>
-          Los espacios publicitarios de TodoMotor son <strong>contextuales</strong>: el aviso que ves depende
+          Los espacios publicitarios de {SITE_CONFIG.brand === 'nauti' ? 'Nauti' : 'TodoMotor'} son <strong>contextuales</strong>: el aviso que ves depende
           de la sección en la que estás, de la marca de la página o de las respuestas que diste en la guía de
           compra en ese momento. <strong>No armamos un perfil tuyo, no te seguimos entre sitios y no vendemos
           tus datos a nadie.</strong>
@@ -113,7 +116,7 @@ export default function PrivacidadPage() {
         <p>
           Podés pedirnos acceder a tus datos, rectificarlos, actualizarlos o eliminarlos, y podés revocar tu
           consentimiento en cualquier momento. Escribinos a{' '}
-          <a href="mailto:contacto@todomotor.uy">contacto@todomotor.uy</a> y te respondemos dentro de los
+          <a href={`mailto:${SITE_CONFIG.contactEmail}`}>{SITE_CONFIG.contactEmail}</a> y te respondemos dentro de los
           plazos que fija la ley. También podés presentar un reclamo ante la Unidad Reguladora y de Control de
           Datos Personales (URCDP).
         </p>

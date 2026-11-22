@@ -1,10 +1,12 @@
 import { Vehicle, Category, PriceHistoryEntry } from '@/types/vehicle'
+import { tenantHeader } from '@/lib/tenant'
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8080'
 const COUNTRY = process.env.NEXT_PUBLIC_COUNTRY || 'uy'
 
 const getHeaders = (vehicleType: string = 'all') => ({
     'X-Country': COUNTRY || 'uy',
+    ...tenantHeader(),
     'X-Vehicle-Type': vehicleType || 'all',
     'User-Agent': 'Mozilla/5.0 (compatible; TodoMotor-WebApp/1.0; +https://todomotor.uy)',
     'X-Api-Secret': process.env.API_SECRET_KEY || '',

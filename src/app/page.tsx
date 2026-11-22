@@ -10,6 +10,8 @@ import AdSlot from "./components/ads/AdSlot";
 import BrandStrip from "./components/BrandStrip";
 import BlogPreviewSection from "./components/BlogPreviewSection";
 import { getLatestBlogPosts } from "@/lib/blog";
+import { IS_NAUTI } from "@/lib/tenant";
+import NautiHome from "./components/nauti/NautiHome";
 
 /**
  * The home page, and nothing else.
@@ -52,6 +54,9 @@ const websiteJsonLd = {
 };
 
 export default async function Home() {
+  // Each tenant has its own home; Nauti has no vehicle catalogue to fetch.
+  if (IS_NAUTI) return <NautiHome />;
+
   const [{ meta }, filters, latestVehicles, categoryCounts, latestBlogPosts] = await Promise.all([
     fetchVehicles({ page: 1, limit: 1 }),
     fetchFilters(),

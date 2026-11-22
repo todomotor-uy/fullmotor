@@ -12,6 +12,7 @@ import ClassifiedList from '../components/ClassifiedList'
 import Pagination from '../components/Pagination'
 import LoginAutoOpener from '../components/LoginAutoOpener'
 import { translateApiError } from '@/lib/api-error'
+import { IS_NAUTI } from '@/lib/tenant'
 
 export const dynamic = 'force-dynamic'
 
@@ -35,9 +36,12 @@ interface PageProps {
   }>
 }
 
-const BASE_TITLE = 'Clasificados de vehículos, repuestos y accesorios'
-const BASE_DESCRIPTION =
-  'Avisos entre usuarios en Uruguay: autos, motos, camionetas, repuestos y accesorios. Publicá tu aviso gratis.'
+const BASE_TITLE = IS_NAUTI
+  ? 'Clasificados náuticos: lanchas, veleros y motos de agua'
+  : 'Clasificados de vehículos, repuestos y accesorios'
+const BASE_DESCRIPTION = IS_NAUTI
+  ? 'Avisos náuticos en Uruguay: lanchas, veleros, motos de agua, motores, equipamiento y amarres. Publicá tu aviso gratis.'
+  : 'Avisos entre usuarios en Uruguay: autos, motos, camionetas, repuestos y accesorios. Publicá tu aviso gratis.'
 
 export async function generateMetadata({ searchParams }: PageProps): Promise<Metadata> {
   const { category, city, page } = await searchParams
@@ -150,7 +154,8 @@ export default async function ClassifiedsPage({ searchParams }: PageProps) {
         <div>
           <h1 className="iv__title">Clasificados</h1>
           <p className="iv__count">
-            {data.meta.total} avisos entre usuarios · vehículos, repuestos y accesorios
+            {data.meta.total} avisos entre usuarios ·{' '}
+            {IS_NAUTI ? 'embarcaciones, motores y equipamiento' : 'vehículos, repuestos y accesorios'}
           </p>
         </div>
         <ButtonLink href="/clasificados/nuevo" iconLeft={<Plus size={16} aria-hidden="true" />}>

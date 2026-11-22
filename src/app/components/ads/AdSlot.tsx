@@ -6,6 +6,7 @@ import { seenParam } from './ad-queue'
 import { useAdImpression } from './useAdImpression'
 import AdCreativeRender from './AdCreativeRender'
 import type { AdTargeting, ServedAd } from './types'
+import { SITE_CONFIG } from '@/lib/tenant'
 
 /**
  * One ad slot.
@@ -48,7 +49,16 @@ function currentDevice(): 'desktop' | 'mobile' {
   return window.matchMedia('(max-width: 767px)').matches ? 'mobile' : 'desktop'
 }
 
-export default function AdSlot({ placement, targeting, className, disclosure }: AdSlotProps) {
+/**
+ * Sites without advertising render nothing. A wrapper rather than an early
+ * return inside the slot, which would put its hooks behind a condition.
+ */
+export default function AdSlot(props: AdSlotProps) {
+  if (!SITE_CONFIG.features.ads) return null
+  return <AdSlotInner {...props} />
+}
+
+function AdSlotInner({ placement, targeting, className, disclosure }: AdSlotProps) {
   const containerRef = useRef<HTMLDivElement>(null)
   // Flattened here so the effect's dependency list stays statically checkable
   // and a fresh `targeting` object literal from the parent does not restart

@@ -16,6 +16,7 @@ import { ArrowLeft, Newspaper } from 'lucide-react'
 import { fetchBlogPostBySlug, fetchBlogPosts, getAllBlogPosts } from '@/lib/blog'
 import { getAllVehicles } from '@/lib/data'
 import { findMentionedVehicles } from '@/lib/blog-mentions'
+import { SITE_CONFIG } from '@/lib/tenant'
 import { vehicleToCardProps } from '@/lib/vehicle-card'
 import { VehicleCard } from '@/app/components/ui/VehicleCard'
 import { absoluteUrl, SITE_LOGO, SITE_NAME, SITE_URL } from '@/lib/site'
@@ -83,7 +84,10 @@ export default async function BlogPostPage({ params }: { params: Params }) {
   // route away, so the blog — the site's strongest internal-authority source —
   // was passing none of it on. getAllVehicles is already paginated and cached,
   // and this page is prerendered, so the match runs at build time.
-  const mentionedVehicles = findMentionedVehicles(post.contentHtml, await getAllVehicles())
+  // Only sites with a catalogue link articles to vehicle pages.
+  const mentionedVehicles = SITE_CONFIG.features.catalog
+    ? findMentionedVehicles(post.contentHtml, await getAllVehicles())
+    : []
 
   const articleJsonLd = {
     '@context': 'https://schema.org',
