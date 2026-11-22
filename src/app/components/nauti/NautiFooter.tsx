@@ -23,7 +23,7 @@ export default function NautiFooter() {
           </div>
           <div className="k-footer__col">
             <h5>Nauti</h5>
-            <Link href="/blog">Blog</Link>
+            <Link href="/blog">Novedades</Link>
             <Link href="/clasificados">Todos los clasificados</Link>
             <Link href="/clasificados/nuevo">Publicar un aviso</Link>
             <Link href="/automotoras">Náuticas</Link>

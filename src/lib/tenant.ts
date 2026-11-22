@@ -91,8 +91,9 @@ const NAUTI: SiteConfig = {
   contactEmail: 'contacto@nauti.uy',
   logo: ['nau', 'ti'],
   nav: [
+    // The blog is called Novedades on Nauti, for now; the URL stays /blog.
+    { href: '/blog', label: 'Novedades' },
     { href: '/clasificados', label: 'Clasificados' },
-    { href: '/blog', label: 'Blog' },
     { href: '/automotoras', label: 'Náuticas' },
   ],
   features: { catalog: false, guide: false, compare: false, saved: false, dealerships: true, ads: false },
