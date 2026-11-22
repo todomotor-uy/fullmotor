@@ -18,7 +18,7 @@ export type Role = 'user' | 'editor' | 'moderator' | 'admin'
 
 export const ROLE_LABELS: Record<Role, string> = {
   user: 'Usuario',
-  editor: 'Editor (blog)',
+  editor: 'Publicador (blog)',
   moderator: 'Moderador',
   admin: 'Administrador',
 }
