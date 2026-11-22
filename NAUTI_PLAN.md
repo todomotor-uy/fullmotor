@@ -4,9 +4,30 @@ Portal de náutica uruguaya en **nauti.uy**: blog + clasificados (lanchas, veler
 motos de agua, motores, equipamiento) + directorio de náuticas/brokers. Sin fichas
 técnicas de 0 km. Sale de TodoMotor y reutiliza su backend.
 
-Estado: plan, nada implementado. Fecha: 2026-11-22.
+Estado: MVP en staging (ver §0). Fecha: 2026-11-22.
 
 ---
+
+## 0. Estado del MVP (2026-11-22)
+
+| Pieza | Dónde | Estado |
+|---|---|---|
+| Front Nauti | Vercel `nauti` → https://nauti-santicastillos-projects.vercel.app | Deployado desde la rama `claude/nauti-project-plan-2fefd1` (sin git conectado: deploy manual) |
+| API staging | Railway, entorno fork `nauti-staging` → https://fullmotorapi-nauti-staging.up.railway.app | Rama `claude/generic-tenants`; copia copy-on-write de la DB de prod; **vence 2026-12-22** |
+| Tenant | `nauti-uy` (verticals `nautical`) | Creado con `PUT /api/admin/tenants/nauti-uy` |
+| TodoMotor prod | Vercel `fullmotor` + Railway `production` | **Sin cambios.** Nada mergeado a `master`/`main` |
+
+Pendiente para que deje de ser temporal:
+1. Login: agregar `https://nauti-santicastillos-projects.vercel.app` (y luego `https://nauti.uy`)
+   como *Authorized JavaScript origin* del OAuth client de Google (hoy Nauti reutiliza
+   el client de TodoMotor; el plan es un proyecto GCP propio).
+2. Mergear `claude/generic-tenants` (API) y deployar a producción **antes** que el front:
+   el front con `NEXT_PUBLIC_TENANT` manda `X-Tenant`, que la API actual rechaza en CORS.
+3. Mergear el front, conectar el proyecto `nauti` al repo y apuntar
+   `NEXT_PUBLIC_API_URL` a la API de producción; crear `nauti-uy` en prod con el endpoint admin.
+4. Dominio `nauti.uy` + `NEXT_PUBLIC_INDEXABLE=1` (hasta entonces el sitio está en `noindex`).
+5. El fork de staging comparte `BLOB_READ_WRITE_TOKEN` y `JWT_SECRET` con prod: las
+   fotos que se suban desde staging van al store real.
 
 ## 1. Lo que hay hoy (relevado)
 
