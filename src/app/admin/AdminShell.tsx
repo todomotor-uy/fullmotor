@@ -1,32 +1,53 @@
 'use client'
 
+import { useEffect } from 'react'
 import Link from 'next/link'
-import { usePathname } from 'next/navigation'
+import { usePathname, useRouter } from 'next/navigation'
 import RequireAuth from '../components/RequireAuth'
 import { useAuth } from '../components/AuthProvider'
+import { BIZ, SITE_CONFIG } from '@/lib/tenant'
+import { PERM, can, isStaff, type Permission } from '@/lib/permissions'
 
-const SECTIONS = [
-  { href: '/admin', label: 'Imágenes' },
-  { href: '/admin/blog', label: 'Blog' },
-  { href: '/admin/usuarios', label: 'Usuarios' },
-  { href: '/admin/comentarios', label: 'Comentarios' },
-  { href: '/admin/clasificados', label: 'Clasificados' },
-  { href: '/admin/automotoras', label: 'Automotoras' },
+/**
+ * Each section with the permission it needs. A section the operator's role
+ * does not cover is not shown; the API would answer 403 anyway.
+ */
+const ALL_SECTIONS: { href: string; label: string; permission: Permission; catalog?: boolean }[] = [
+  { href: '/admin', label: 'Imágenes', permission: PERM.catalog, catalog: true },
+  { href: '/admin/blog', label: SITE_CONFIG.brand === 'nauti' ? 'Novedades' : 'Blog', permission: PERM.blog },
+  { href: '/admin/usuarios', label: 'Usuarios', permission: PERM.users },
+  { href: '/admin/comentarios', label: 'Comentarios', permission: PERM.moderation },
+  { href: '/admin/clasificados', label: 'Clasificados', permission: PERM.moderation },
+  { href: '/admin/automotoras', label: BIZ.Many, permission: PERM.dealerships },
 ]
+
+// Catalogue screens only exist on sites with a catalogue.
+const SITE_SECTIONS = ALL_SECTIONS.filter((s) => !s.catalog || SITE_CONFIG.features.catalog)
 
 function Shell({ children }: { children: React.ReactNode }) {
   const { user } = useAuth()
   const pathname = usePathname()
+  const router = useRouter()
+  const sections = SITE_SECTIONS.filter((s) => can(user, s.permission))
+
+  // /admin is the catalogue screen. An operator who cannot use it — an
+  // editor, or anyone on a site without a catalogue — lands on their first
+  // section instead.
+  const landing = sections.find((s) => s.href === '/admin')
+  const fallback = sections[0]?.href
+  useEffect(() => {
+    if (user && pathname === '/admin' && !landing && fallback) router.replace(fallback)
+  }, [user, pathname, landing, fallback, router])
 
   // Client-side gate only, and deliberately so: every /api/ops endpoint checks
-  // the role itself and answers 403 regardless. This exists so someone who is
-  // signed in but not an operator gets told that, instead of a screen of
-  // failed requests.
-  if (user && user.role !== 'admin') {
+  // the permission itself and answers 403 regardless. This exists so someone
+  // who is signed in but not an operator gets told that, instead of a screen
+  // of failed requests.
+  if (user && !isStaff(user)) {
     return (
       <div className="max-w-2xl mx-auto px-4 py-20 text-center">
         <h1 className="font-display text-2xl font-bold text-ink mb-2">No tenés acceso</h1>
-        <p className="text-sm text-muted">Esta sección es para operadores de TodoMotor.</p>
+        <p className="text-sm text-muted">Esta sección es para operadores de {SITE_CONFIG.name}.</p>
       </div>
     )
   }
@@ -35,7 +56,7 @@ function Shell({ children }: { children: React.ReactNode }) {
     <div>
       <nav className="border-b border-line bg-surface" aria-label="Secciones de administración">
         <div className="max-w-6xl mx-auto px-4 flex gap-1 overflow-x-auto">
-          {SECTIONS.map((s) => {
+          {sections.map((s) => {
             // Exact match for /admin, prefix for the rest: without the special
             // case every section would light up at once, since they all start
             // with /admin.

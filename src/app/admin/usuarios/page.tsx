@@ -6,8 +6,12 @@ import {
   AdminUser,
   UserSummary,
   fetchUsers,
+  setUserRole,
   setUserSuspended,
 } from '@/lib/ops-api'
+import { ROLES, ROLE_LABELS, type Role } from '@/lib/permissions'
+import { useAuth } from '../../components/AuthProvider'
+import { Select } from '../../components/ui/Select'
 import { translateApiError } from '@/lib/api-error'
 import { formatDate } from '@/lib/format'
 import { Button } from '../../components/ui/Button'
@@ -32,6 +36,7 @@ function Stat({ label, value }: { label: string; value: number | undefined }) {
 }
 
 export default function UsersPage() {
+  const { user: me } = useAuth()
   const [status, setStatus] = useState('all')
   const [query, setQuery] = useState('')
   // Separate from `query` so the list reloads on a debounce rather than on
@@ -90,6 +95,21 @@ export default function UsersPage() {
       await load()
     } catch (err) {
       setError(translateApiError(err, 'No pudimos actualizar la cuenta'))
+    } finally {
+      setBusyId(null)
+    }
+  }
+
+  const changeRole = async (user: AdminUser, role: Role) => {
+    if (role === user.role) return
+    if (role === 'admin' && !window.confirm(`Hacer administrador a ${user.name} (${user.email}).\n\nVa a poder gestionar todo el sitio, incluidos los usuarios y sus roles.`)) return
+    setBusyId(user.id)
+    setError(null)
+    try {
+      await setUserRole(user.id, role)
+      await load()
+    } catch (err) {
+      setError(translateApiError(err, 'No pudimos cambiar el rol'))
     } finally {
       setBusyId(null)
     }
@@ -162,9 +182,10 @@ export default function UsersPage() {
                   <div className="min-w-0">
                     <h2 className="font-display text-lg font-bold text-ink flex items-center gap-2">
                       {u.name}
-                      {u.role === 'admin' && (
+                      {(u.role === 'admin' || u.superAdmin) && (
                         <ShieldCheck size={16} className="text-accent" aria-label="Administrador" />
                       )}
+                      {u.superAdmin && <span className="tm-eyebrow">Superadmin</span>}
                     </h2>
                     <p className="text-sm text-muted">{u.email}</p>
                     <p className="text-xs text-muted mt-1">
@@ -181,11 +202,31 @@ export default function UsersPage() {
                   )}
                 </div>
 
+                {/* Roles are per site. A super admin's comes from the
+                    server's configuration and nobody changes their own, so
+                    neither gets a picker. */}
+                {u.superAdmin ? (
+                  <p className="text-xs text-muted">Administrador de todos los sitios.</p>
+                ) : u.id === me?.id ? (
+                  <p className="text-xs text-muted">Rol: {ROLE_LABELS[u.role] ?? u.role} (es tu cuenta)</p>
+                ) : (
+                  <div className="max-w-xs">
+                    <Select
+                      label="Rol"
+                      size="sm"
+                      value={u.role}
+                      disabled={busyId === u.id}
+                      options={ROLES.map((r) => ({ value: r, label: ROLE_LABELS[r] }))}
+                      onChange={(e) => changeRole(u, e.target.value as Role)}
+                    />
+                  </div>
+                )}
+
                 {u.suspended && u.suspendedReason && (
                   <p className="text-sm text-body">Motivo: {u.suspendedReason}</p>
                 )}
 
-                {u.role === 'admin' ? (
+                {u.role === 'admin' || u.superAdmin ? (
                   <p className="text-xs text-muted">
                     Una cuenta admin no se puede dar de baja desde acá: la suspensión se
                     aplica en el mismo middleware que protege este panel, así que nadie

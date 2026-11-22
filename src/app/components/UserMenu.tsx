@@ -6,6 +6,7 @@ import { LayoutList, LogOut, ShieldCheck, Store, User as UserIcon } from 'lucide
 import { useAuth } from './AuthProvider'
 import { Avatar } from './ui/Avatar'
 import { IS_NAUTI } from '@/lib/tenant'
+import { isStaff } from '@/lib/permissions'
 
 export default function UserMenu() {
     const { user, loading, login, logout } = useAuth()
@@ -89,7 +90,7 @@ export default function UserMenu() {
                         /admin like usuarios or comentarios, and a menu item
                         that jumped straight into it made the other four
                         unreachable unless you knew their URLs. */}
-                    {user.role === 'admin' && (
+                    {isStaff(user) && (
                         <Link
                             href="/admin"
                             onClick={() => setOpen(false)}
