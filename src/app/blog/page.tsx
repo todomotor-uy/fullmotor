@@ -7,7 +7,7 @@ import InfiniteBlogList from '@/app/components/InfiniteBlogList'
 import JsonLd from '@/app/components/JsonLd'
 import { IS_NAUTI } from '@/lib/tenant'
 
-const BLOG_TITLE = IS_NAUTI ? 'Noticias náuticas' : 'Noticias del Motor'
+const BLOG_TITLE = IS_NAUTI ? 'Novedades' : 'Noticias del Motor'
 const BLOG_DESCRIPTION = IS_NAUTI
   ? 'Regatas, temporada, novedades y guías para navegar en Uruguay.'
   : 'Las últimas tendencias, lanzamientos y noticias del mundo automotor en Uruguay.'
@@ -101,7 +101,7 @@ export default async function BlogPage({ searchParams }: PageProps) {
       <div className="bl__head">
         {IS_NAUTI ? (
           <>
-            <span className="bl__kicker">Blog náutico</span>
+            <span className="bl__kicker">Novedades</span>
             <h1 className="bl__title">Noticias y novedades de la náutica en Uruguay</h1>
             <p className="bl__sub">
               Regatas, temporada, puertos, normativa y guías para comprar, mantener y disfrutar tu
