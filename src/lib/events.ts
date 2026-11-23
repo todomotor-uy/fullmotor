@@ -1,4 +1,4 @@
-import type { SiteEvent } from '@/types/event'
+import type { EventSession, SiteEvent } from '@/types/event'
 import { getHeaders } from './api'
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8080'
@@ -58,6 +58,10 @@ export function dayKey(iso: string, allDay: boolean): string {
 
 /** Every day an event covers, as YYYY-MM-DD, capped at 62 days. */
 export function eventDays(e: SiteEvent): string[] {
+  // A scheduled event is on the days of its sessions, not every day between.
+  if (e.sessions && e.sessions.length > 0) {
+    return [...new Set(e.sessions.map((s) => dayKey(s.startsAt, false)))]
+  }
   const start = dayKey(e.startsAt, e.allDay)
   const end = e.endsAt ? dayKey(e.endsAt, e.allDay) : start
   const days: string[] = []
@@ -120,6 +124,13 @@ const timeFmt = new Intl.DateTimeFormat('es-UY', { hour: '2-digit', minute: '2-d
 
 /** "sáb 5 dic" or "sáb 5 dic – lun 7 dic", with times for timed events. */
 export function eventWhen(e: SiteEvent): string {
+  if (hasSchedule(e)) {
+    const sessions = e.sessions!
+    const first = sessionDay(sessions[0])
+    const last = sessionDay(sessions[sessions.length - 1])
+    const span = first === last ? `${first}, ${sessionTime(sessions[0])}` : `${first} – ${last}`
+    return sessions.length > 1 ? `${span} · ${sessions.length} jornadas` : span
+  }
   const startDay = dayFmt.format(new Date(`${dayKey(e.startsAt, e.allDay)}T00:00:00Z`))
   const endDayKey = e.endsAt ? dayKey(e.endsAt, e.allDay) : null
   const sameDay = !endDayKey || endDayKey === dayKey(e.startsAt, e.allDay)
@@ -156,4 +167,75 @@ export function googleCalendarUrl(e: SiteEvent, pageUrl: string): string {
     location: [e.location, e.city].filter(Boolean).join(', '),
   })
   return `https://calendar.google.com/calendar/render?${params}`
+}
+
+// ---------- Schedules ----------
+
+export function hasSchedule(e: SiteEvent): boolean {
+  return (e.sessions?.length ?? 0) > 0
+}
+
+/** "10:00–16:00", or "10:00" for a session without an end. */
+export function sessionTime(s: EventSession): string {
+  const start = timeFmt.format(new Date(s.startsAt))
+  return s.endsAt ? `${start}–${timeFmt.format(new Date(s.endsAt))}` : start
+}
+
+/** "vie 12 dic", the day a session is on. */
+export function sessionDay(s: EventSession): string {
+  return dayFmt.format(new Date(`${dayKey(s.startsAt, false)}T00:00:00Z`))
+}
+
+/** What the calendar draws on one day for one event. */
+export interface CalendarEntry {
+  event: SiteEvent
+  /** The session's time on that day; absent for an untimed span. */
+  time?: string
+  label?: string | null
+}
+
+/**
+ * Lays events out on days: a scheduled event once per session, on that
+ * session's day with that session's time; any other event on every day it
+ * covers, with its start time on the first.
+ */
+export function calendarEntriesByDay(events: SiteEvent[]): Map<string, CalendarEntry[]> {
+  const byDay = new Map<string, CalendarEntry[]>()
+  const push = (day: string, entry: CalendarEntry) => {
+    if (!byDay.has(day)) byDay.set(day, [])
+    byDay.get(day)!.push(entry)
+  }
+  for (const e of events) {
+    if (hasSchedule(e)) {
+      for (const s of e.sessions!) {
+        push(dayKey(s.startsAt, false), { event: e, time: sessionTime(s), label: s.label })
+      }
+      continue
+    }
+    const days = eventDays(e)
+    days.forEach((day, i) => {
+      const time = !e.allDay && i === 0 ? timeFmt.format(new Date(e.startsAt)) : undefined
+      push(day, { event: e, time })
+    })
+  }
+  for (const list of byDay.values()) {
+    list.sort((a, b) => (a.time ?? '').localeCompare(b.time ?? ''))
+  }
+  return byDay
+}
+
+/** A Google Calendar link for one session of a scheduled event. */
+export function googleCalendarSessionUrl(e: SiteEvent, s: EventSession, pageUrl: string): string {
+  return googleCalendarUrl(
+    {
+      ...e,
+      title: s.label ? `${e.title} · ${s.label}` : e.title,
+      startsAt: s.startsAt,
+      endsAt: s.endsAt ?? null,
+      allDay: false,
+      location: s.location ?? e.location,
+      sessions: [],
+    },
+    pageUrl
+  )
 }

@@ -412,6 +412,8 @@ export interface EventInput {
   /** The linked blog post's slug; "" unlinks. */
   blogPostSlug?: string
   status?: 'draft' | 'published'
+  /** The full schedule, replacing the current one; [] removes it. */
+  sessions?: { startsAt: string; endsAt?: string; label?: string; location?: string }[]
 }
 
 export interface AdminEventRow {

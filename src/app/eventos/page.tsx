@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
 import {
+  calendarEntriesByDay,
   eventDays,
   fetchEvents,
   monthGrid,
@@ -43,13 +44,9 @@ export default async function EventsPage({ searchParams }: PageProps) {
     (): SiteEvent[] => []
   )
 
-  const byDay = new Map<string, SiteEvent[]>()
-  for (const e of events) {
-    for (const d of eventDays(e)) {
-      if (!byDay.has(d)) byDay.set(d, [])
-      byDay.get(d)!.push(e)
-    }
-  }
+  // A multi-day regatta with a schedule shows each day's session at its own
+  // time; an event without one shows on every day it spans.
+  const byDay = calendarEntriesByDay(events)
   const inMonth = events.filter((e) => eventDays(e).some((d) => d.startsWith(month)))
 
   return (
@@ -97,8 +94,14 @@ export default async function EventsPage({ searchParams }: PageProps) {
             <div key={day} className={classes} role="gridcell">
               <span className="ev-cal__num">{Number(day.slice(8))}</span>
               <div className="ev-cal__events">
-                {list.slice(0, 3).map((e) => (
-                  <Link key={e.id} href={`/eventos/${e.slug}`} className="ev-cal__ev" title={e.title}>
+                {list.slice(0, 3).map(({ event: e, time, label }, i) => (
+                  <Link
+                    key={`${e.id}-${i}`}
+                    href={`/eventos/${e.slug}`}
+                    className="ev-cal__ev"
+                    title={[time, e.title, label].filter(Boolean).join(' · ')}
+                  >
+                    {time && <span className="ev-cal__time">{time.split('–')[0]}</span>}
                     {e.title}
                   </Link>
                 ))}

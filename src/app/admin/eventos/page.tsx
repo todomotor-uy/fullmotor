@@ -26,7 +26,19 @@ import { FilterChip } from '../../components/ui/FilterChip'
 /** Uruguay has had no daylight saving since 2015, so local time is UTC-3. */
 const UY_OFFSET = '-03:00'
 
+interface SessionRow {
+  date: string
+  start: string
+  end: string
+  label: string
+  location: string
+}
+
+const EMPTY_SESSION: SessionRow = { date: '', start: '', end: '', label: '', location: '' }
+
 interface FormState {
+  /** A multi-day event's schedule. When it has rows, they set the dates. */
+  sessions: SessionRow[]
   title: string
   startDate: string
   startTime: string
@@ -42,6 +54,7 @@ interface FormState {
 }
 
 const EMPTY: FormState = {
+  sessions: [],
   title: '', startDate: '', startTime: '', endDate: '', endTime: '',
   location: '', city: '', url: '', coverImage: '', tags: '', description: '', blogPostSlug: '',
 }
@@ -59,6 +72,16 @@ function toForm(row: AdminEventRow): FormState {
   const start = e.allDay ? { date: e.startsAt.slice(0, 10), time: '' } : localParts(e.startsAt)
   const end = e.endsAt ? (e.allDay ? { date: e.endsAt.slice(0, 10), time: '' } : localParts(e.endsAt)) : { date: '', time: '' }
   return {
+    sessions: (e.sessions ?? []).map((ss) => {
+      const st = localParts(ss.startsAt)
+      return {
+        date: st.date,
+        start: st.time,
+        end: ss.endsAt ? localParts(ss.endsAt).time : '',
+        label: ss.label ?? '',
+        location: ss.location ?? '',
+      }
+    }),
     title: e.title,
     startDate: start.date,
     startTime: start.time,
@@ -82,7 +105,31 @@ function toInput(f: FormState): EventInput {
   const allDay = !f.startTime
   const at = (date: string, time: string) => (allDay ? date : `${date}T${time || '00:00'}:00${UY_OFFSET}`)
   const endDate = f.endDate || (f.endTime ? f.startDate : '')
+  // Every row with a date and a start time is a session; the API derives
+  // the event's dates from them. Always sent, so removing rows clears it.
+  const sessions = f.sessions
+    .filter((r) => r.date && r.start)
+    .map((r) => ({
+      startsAt: `${r.date}T${r.start}:00${UY_OFFSET}`,
+      endsAt: r.end ? `${r.date}T${r.end}:00${UY_OFFSET}` : '',
+      label: r.label,
+      location: r.location,
+    }))
+  if (sessions.length > 0) {
+    return {
+      title: f.title.trim(),
+      sessions,
+      location: f.location,
+      city: f.city,
+      url: f.url,
+      coverImage: f.coverImage,
+      tags: f.tags.split(',').map((t) => t.trim()).filter(Boolean),
+      description: f.description,
+      blogPostSlug: f.blogPostSlug,
+    }
+  }
   return {
+    sessions: [],
     title: f.title.trim(),
     startsAt: at(f.startDate, f.startTime),
     endsAt: endDate ? at(endDate, f.endTime) : '',
@@ -136,8 +183,13 @@ export default function AdminEventsPage() {
 
   const save = async (publish: boolean) => {
     if (!form) return
-    if (!form.title.trim() || !form.startDate) {
-      setError('Poné al menos el título y la fecha.')
+    const scheduled = form.sessions.some((r) => r.date && r.start)
+    if (!form.title.trim() || (!form.startDate && !scheduled)) {
+      setError('Poné al menos el título y la fecha (o una jornada con fecha y hora).')
+      return
+    }
+    if (form.sessions.some((r) => (r.date || r.start || r.end || r.label) && !(r.date && r.start))) {
+      setError('Cada jornada necesita fecha y hora de inicio.')
       return
     }
     setSaving(true)
@@ -210,11 +262,79 @@ export default function AdminEventsPage() {
         >
           <h2 className="font-display text-lg font-bold text-ink">{editingId ? 'Editar evento' : 'Nuevo evento'}</h2>
           <Input label="Título" value={form.title} onChange={(e) => set({ title: e.target.value })} required maxLength={160} />
+          {form.sessions.length === 0 && (
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
-            <Input label="Fecha" type="date" value={form.startDate} onChange={(e) => set({ startDate: e.target.value })} required />
+            <Input label="Fecha" type="date" value={form.startDate} onChange={(e) => set({ startDate: e.target.value })} />
             <Input label="Hora" type="time" value={form.startTime} onChange={(e) => set({ startTime: e.target.value })} hint="Vacía = todo el día" />
             <Input label="Hasta (fecha)" type="date" value={form.endDate} onChange={(e) => set({ endDate: e.target.value })} hint="Opcional" />
             <Input label="Hasta (hora)" type="time" value={form.endTime} onChange={(e) => set({ endTime: e.target.value })} />
+          </div>
+          )}
+
+          {/* A regatta over three days, each with its own times: one row per
+              day (or per slot). With rows, the dates above go away. */}
+          <div className="space-y-2">
+            <div className="flex items-center justify-between gap-2">
+              <p className="tm-field__label" style={{ margin: 0 }}>
+                Jornadas {form.sessions.length > 0 ? `(${form.sessions.length})` : ''}
+              </p>
+              <Button
+                type="button"
+                size="sm"
+                variant="secondary"
+                iconLeft={<Plus size={14} aria-hidden="true" />}
+                onClick={() => {
+                  const last = form.sessions[form.sessions.length - 1]
+                  // A new row starts the day after the last one, same times.
+                  let date = form.startDate
+                  if (last?.date) {
+                    const d = new Date(`${last.date}T00:00:00Z`)
+                    d.setUTCDate(d.getUTCDate() + 1)
+                    date = d.toISOString().slice(0, 10)
+                  }
+                  set({
+                    sessions: [
+                      ...form.sessions,
+                      {
+                        ...EMPTY_SESSION,
+                        date,
+                        start: last?.start ?? form.startTime,
+                        end: last?.end ?? form.endTime,
+                        label: `Día ${form.sessions.length + 1}`,
+                      },
+                    ],
+                  })
+                }}
+              >
+                Agregar jornada
+              </Button>
+            </div>
+            {form.sessions.length === 0 && (
+              <p className="text-xs text-muted">Opcional: para eventos de varios días con horarios distintos (ej. una regata de 3 días).</p>
+            )}
+            {form.sessions.map((r, i) => {
+              const update = (patch: Partial<SessionRow>) =>
+                set({ sessions: form.sessions.map((row, j) => (j === i ? { ...row, ...patch } : row)) })
+              return (
+                <div key={i} className="grid grid-cols-2 sm:grid-cols-[1.1fr_0.8fr_0.8fr_1.3fr_1.3fr_auto] gap-2 items-end border border-hairline rounded-[var(--radius-md)] p-2">
+                  <Input label="Fecha" type="date" value={r.date} onChange={(e) => update({ date: e.target.value })} />
+                  <Input label="Desde" type="time" value={r.start} onChange={(e) => update({ start: e.target.value })} />
+                  <Input label="Hasta" type="time" value={r.end} onChange={(e) => update({ end: e.target.value })} />
+                  <Input label="Qué" value={r.label} onChange={(e) => update({ label: e.target.value })} placeholder="Ej. Largada" />
+                  <Input label="Dónde (si cambia)" value={r.location} onChange={(e) => update({ location: e.target.value })} />
+                  <Button
+                    type="button"
+                    size="sm"
+                    variant="ghost"
+                    aria-label={`Quitar jornada ${i + 1}`}
+                    iconLeft={<Trash2 size={14} aria-hidden="true" />}
+                    onClick={() => set({ sessions: form.sessions.filter((_, j) => j !== i) })}
+                  >
+                    Quitar
+                  </Button>
+                </div>
+              )
+            })}
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             <Input label="Lugar" value={form.location} onChange={(e) => set({ location: e.target.value })} placeholder="Ej. Puerto del Buceo" />

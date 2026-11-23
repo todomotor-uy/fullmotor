@@ -3,7 +3,16 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { notFound } from 'next/navigation'
 import { CalendarDays, CalendarPlus, ExternalLink, MapPin, Newspaper } from 'lucide-react'
-import { eventWhen, fetchEventBySlug, googleCalendarUrl, dayKey } from '@/lib/events'
+import {
+  dayKey,
+  eventWhen,
+  fetchEventBySlug,
+  googleCalendarSessionUrl,
+  googleCalendarUrl,
+  hasSchedule,
+  sessionDay,
+  sessionTime,
+} from '@/lib/events'
 import { absoluteUrl, SITE_NAME } from '@/lib/site'
 import { blogTagsHref } from '@/lib/blog-tags'
 import JsonLd from '../../components/JsonLd'
@@ -37,6 +46,7 @@ export default async function EventPage({ params }: PageProps) {
   if (!event) notFound()
 
   const pageUrl = absoluteUrl(`/eventos/${slug}`)
+  const scheduled = hasSchedule(event)
   const place = [event.location, event.city].filter(Boolean).join(', ')
 
   const jsonLd = {
@@ -49,6 +59,18 @@ export default async function EventPage({ params }: PageProps) {
     eventStatus: 'https://schema.org/EventScheduled',
     ...(place ? { location: { '@type': 'Place', name: place, address: event.city ?? place } } : {}),
     ...(event.description ? { description: event.description } : {}),
+    // Each session of a scheduled event as a sub-event, with its own times.
+    ...(scheduled
+      ? {
+          subEvent: event.sessions!.map((s) => ({
+            '@type': 'Event',
+            name: s.label ? `${event.title} · ${s.label}` : event.title,
+            startDate: s.startsAt,
+            ...(s.endsAt ? { endDate: s.endsAt } : {}),
+            ...(s.location ? { location: { '@type': 'Place', name: s.location } } : {}),
+          })),
+        }
+      : {}),
     ...(event.coverImage ? { image: [event.coverImage] } : {}),
     url: pageUrl,
   }
@@ -76,15 +98,50 @@ export default async function EventPage({ params }: PageProps) {
       </div>
 
       <div className="flex flex-wrap gap-2" style={{ margin: '16px 0 24px' }}>
-        <a href={googleCalendarUrl(event, pageUrl)} target="_blank" rel="noopener noreferrer" className="tm-btn">
-          <CalendarPlus size={16} aria-hidden="true" /> Agregar a mi calendario
-        </a>
+        {/* With a schedule, each session is added on its own (below): one
+            block from the first start to the last end would fill the
+            nights in between. */}
+        {!scheduled && (
+          <a href={googleCalendarUrl(event, pageUrl)} target="_blank" rel="noopener noreferrer" className="tm-btn">
+            <CalendarPlus size={16} aria-hidden="true" /> Agregar a mi calendario
+          </a>
+        )}
         {event.url && (
           <a href={event.url} target="_blank" rel="noopener noreferrer" className="tm-btn tm-btn--secondary">
             <ExternalLink size={16} aria-hidden="true" /> Sitio del evento
           </a>
         )}
       </div>
+
+      {scheduled && (
+        <section aria-labelledby="programa">
+          <h2 id="programa" className="ev__month" style={{ fontSize: 'var(--text-xl)', marginBottom: 8 }}>
+            Programa
+          </h2>
+          <div className="ev-sched">
+            {event.sessions!.map((s) => (
+              <div key={s.id} className="ev-sched__row">
+                <span className="ev-sched__day">{sessionDay(s)}</span>
+                <span className="ev-sched__time">{sessionTime(s)}</span>
+                <span className="ev-sched__what">
+                  {s.label || event.title}
+                  {s.location && <small>{s.location}</small>}
+                </span>
+                <a
+                  href={googleCalendarSessionUrl(event, s, pageUrl)}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="ev-sched__add"
+                  aria-label={`Agregar ${s.label || sessionDay(s)} a mi calendario`}
+                  title="Agregar a mi calendario"
+                >
+                  <CalendarPlus size={18} aria-hidden="true" />
+                </a>
+              </div>
+            ))}
+          </div>
+        </section>
+      )}
 
       {event.description && (
         <div className="ev-detail__desc">

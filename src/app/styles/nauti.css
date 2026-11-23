@@ -198,3 +198,26 @@
   .ev-cal__day--today.ev-cal__day--has .ev-cal__num { box-shadow: none; }
   .ev-cal__wd { padding: 6px 2px; text-align: center; font-size: 10px; }
 }
+.ev-cal__time { font-family: var(--font-mono); font-weight: 600; margin-right: 4px; }
+
+/* ---- Event schedule ---- */
+.ev-sched { margin: 8px 0 24px; border: 1px solid var(--border); border-radius: var(--radius-lg); overflow: hidden; background: var(--surface); }
+.ev-sched__row { display: grid; grid-template-columns: 140px 120px 1fr auto; gap: 12px; align-items: center; padding: 14px 16px; border-top: 1px solid var(--border); }
+.ev-sched__row:first-child { border-top: 0; }
+.ev-sched__day { font-weight: 600; color: var(--text-strong); }
+.ev-sched__day::first-letter { text-transform: uppercase; }
+.ev-sched__time { font-family: var(--font-mono); color: var(--accent-ink); }
+.ev-sched__what { min-width: 0; color: var(--text-body); }
+.ev-sched__what small { display: block; color: var(--text-muted); font-size: var(--text-xs); }
+.ev-sched__add { color: var(--accent); display: inline-flex; padding: 6px; border-radius: 8px; }
+.ev-sched__add:hover { background: var(--accent-faint); }
+@media (max-width: 760px) {
+  .ev-sched__row { grid-template-columns: 1fr auto; gap: 2px 12px; }
+  .ev-sched__day { grid-column: 1; }
+  .ev-sched__time { grid-column: 1; }
+  .ev-sched__what { grid-column: 1; }
+  .ev-sched__add { grid-column: 2; grid-row: 1 / span 3; }
+}
+/* Event titles run long ("Campeonato Uruguayo de Optimist"); keep them
+   inside a phone's width. */
+.ev .bl__title { font-size: clamp(2rem, 7.5vw, 3.4rem); overflow-wrap: anywhere; hyphens: auto; }
