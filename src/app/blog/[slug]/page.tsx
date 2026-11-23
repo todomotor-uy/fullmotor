@@ -25,6 +25,10 @@ import JsonLd from '@/app/components/JsonLd'
 import CommentsSection from '@/app/components/CommentsSection'
 import BlogCard from '@/app/components/BlogCard'
 import { Badge } from '@/app/components/ui/Badge'
+import { blogTagsHref } from '@/lib/blog-tags'
+import { fetchEvents } from '@/lib/events'
+import type { SiteEvent } from '@/types/event'
+import EventListItem from '@/app/components/EventListItem'
 
 type Params = Promise<{ slug: string }>
 
@@ -85,6 +89,10 @@ export default async function BlogPostPage({ params }: { params: Params }) {
   // was passing none of it on. getAllVehicles is already paginated and cached,
   // and this page is prerendered, so the match runs at build time.
   // Only sites with a catalogue link articles to vehicle pages.
+  // The calendar entries this post tells the story of.
+  const linkedEvents = SITE_CONFIG.features.events
+    ? await fetchEvents({ post: slug }).catch((): SiteEvent[] => [])
+    : []
   const mentionedVehicles = SITE_CONFIG.features.catalog
     ? findMentionedVehicles(post.contentHtml, await getAllVehicles())
     : []
@@ -211,9 +219,17 @@ export default async function BlogPostPage({ params }: { params: Params }) {
         {post.tags.length > 0 && (
           <div className="flex flex-wrap gap-2 mt-8 pt-6 border-t border-hairline">
             {post.tags.map((tag) => (
-              <Link key={tag} href={`/blog?tag=${encodeURIComponent(tag)}`} className="tm-chip">
+              <Link key={tag} href={blogTagsHref([tag])} className="tm-chip">
                 #{tag}
               </Link>
+            ))}
+          </div>
+        )}
+
+        {linkedEvents.length > 0 && (
+          <div className="ev-list mt-8">
+            {linkedEvents.map((e) => (
+              <EventListItem key={e.id} event={e} />
             ))}
           </div>
         )}

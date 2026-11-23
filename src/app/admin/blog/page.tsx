@@ -14,6 +14,8 @@ import {
 } from '@/lib/ops-api'
 import { translateApiError } from '@/lib/api-error'
 import { formatDate } from '@/lib/format'
+import { fetchTagSuggestions, type TagCount } from '@/lib/blog-tags'
+import { tenantHeader } from '@/lib/tenant'
 import { useAuth } from '../../components/AuthProvider'
 import { Button } from '../../components/ui/Button'
 import { Input, Textarea } from '../../components/ui/Input'
@@ -43,6 +45,21 @@ export default function AdminBlogPage() {
   const [excerpt, setExcerpt] = useState('')
   const [body, setBody] = useState('')
   const [tags, setTags] = useState('')
+  // The site's existing tags, offered as one-click chips so a new post
+  // reuses "Regatas" instead of inventing "regata" and splitting the filter.
+  const [suggestions, setSuggestions] = useState<TagCount[]>([])
+  useEffect(() => {
+    if (!composing) return
+    fetchTagSuggestions(process.env.NEXT_PUBLIC_API_URL || '', tenantHeader())
+      .then(setSuggestions)
+      .catch(() => setSuggestions([]))
+  }, [composing])
+  const currentTags = tags.split(',').map((t) => t.trim().toLowerCase()).filter(Boolean)
+  const addTag = (tag: string) =>
+    setTags((prev) => {
+      const list = prev.split(',').map((t) => t.trim()).filter(Boolean)
+      return [...list, tag].join(', ')
+    })
   const [creating, setCreating] = useState(false)
 
   const load = useCallback(async () => {
@@ -218,8 +235,21 @@ export default function AdminBlogPage() {
             label="Tags"
             value={tags}
             onChange={(e) => setTags(e.target.value)}
-            hint="Separados por coma."
+            hint="Separados por coma. Son los filtros de la sección: reusá los que ya existen."
           />
+          {suggestions.length > 0 && (
+            <div className="flex flex-wrap gap-2 -mt-2">
+              {suggestions
+                .filter((s) => !currentTags.includes(s.tag.toLowerCase()))
+                .slice(0, 24)
+                .map((s) => (
+                  <button key={s.tag} type="button" className="tm-chip" onClick={() => addTag(s.tag)}>
+                    + {s.tag}
+                    {s.count > 0 && <span className="text-faint ml-1 font-mono text-xs">{s.count}</span>}
+                  </button>
+                ))}
+            </div>
+          )}
           <Button type="submit" block loading={creating}>
             Guardar como borrador
           </Button>

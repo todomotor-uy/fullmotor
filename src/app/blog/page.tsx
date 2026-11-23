@@ -1,6 +1,7 @@
 import { Suspense } from 'react'
 import { Metadata } from 'next'
-import { fetchBlogPosts, fetchBlogTags } from '@/lib/blog'
+import { fetchBlogPosts, fetchBlogTagCounts } from '@/lib/blog'
+import { blogTagsHref, parseTagParams } from '@/lib/blog-tags'
 import { absoluteUrl, SITE_LOGO, SITE_NAME, SITE_URL } from '@/lib/site'
 import BlogTagFilter from '@/app/components/BlogTagFilter'
 import InfiniteBlogList from '@/app/components/InfiniteBlogList'
@@ -14,15 +15,17 @@ const BLOG_DESCRIPTION = IS_NAUTI
 const MARKET_LABEL = IS_NAUTI ? 'la náutica uruguaya' : 'el mercado automotor uruguayo'
 
 interface PageProps {
-  searchParams: Promise<{ tag?: string }>
+  searchParams: Promise<{ tag?: string; tags?: string }>
 }
 
 export async function generateMetadata({ searchParams }: PageProps): Promise<Metadata> {
-  const { tag } = await searchParams
+  const selected = parseTagParams(await searchParams)
 
-  if (tag) {
-    const title = `Noticias sobre ${tag}`
-    const description = `Artículos y novedades sobre ${tag} en ${MARKET_LABEL}.`
+  if (selected.length > 0) {
+    const label = selected.join(', ')
+    const title = `Noticias sobre ${label}`
+    const description = `Artículos y novedades sobre ${label} en ${MARKET_LABEL}.`
+    const href = blogTagsHref(selected)
     return {
       title,
       description,
@@ -33,10 +36,10 @@ export async function generateMetadata({ searchParams }: PageProps): Promise<Met
         title: `${title} | ${SITE_NAME}`,
         description,
         type: 'website',
-        url: absoluteUrl(`/blog?tag=${encodeURIComponent(tag)}`),
+        url: absoluteUrl(href),
       },
       twitter: { card: 'summary_large_image', title, description },
-      alternates: { canonical: `/blog?tag=${encodeURIComponent(tag)}` },
+      alternates: { canonical: href },
     }
   }
 
@@ -59,12 +62,11 @@ export async function generateMetadata({ searchParams }: PageProps): Promise<Met
 }
 
 export default async function BlogPage({ searchParams }: PageProps) {
-  const params = await searchParams
-  const tag = params.tag || undefined
+  const selected = parseTagParams(await searchParams)
 
   const [{ posts, meta }, tags] = await Promise.all([
-    fetchBlogPosts({ page: 1, limit: 12, tag }),
-    fetchBlogTags(),
+    fetchBlogPosts({ page: 1, limit: 12, tags: selected }),
+    fetchBlogTagCounts().catch(() => []),
   ])
 
   const blogJsonLd = {

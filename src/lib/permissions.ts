@@ -6,6 +6,7 @@ import type { User } from './auth'
  */
 export const PERM = {
   blog: 'blog.manage',
+  events: 'events.manage',
   moderation: 'moderation',
   dealerships: 'dealerships.review',
   users: 'users.manage',
@@ -18,7 +19,7 @@ export type Role = 'user' | 'editor' | 'moderator' | 'admin'
 
 export const ROLE_LABELS: Record<Role, string> = {
   user: 'Usuario',
-  editor: 'Publicador (blog)',
+  editor: 'Publicador (blog y eventos)',
   moderator: 'Moderador',
   admin: 'Administrador',
 }

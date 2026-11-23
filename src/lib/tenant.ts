@@ -35,6 +35,8 @@ export interface SiteFeatures {
   saved: boolean
   dealerships: boolean
   ads: boolean
+  /** The events calendar at /eventos. */
+  events: boolean
 }
 
 export interface SiteConfig {
@@ -74,7 +76,7 @@ const TODOMOTOR: SiteConfig = {
     { href: '/automotoras', label: 'Automotoras' },
     { href: '/blog', label: 'Blog' },
   ],
-  features: { catalog: true, guide: true, compare: true, saved: true, dealerships: true, ads: true },
+  features: { catalog: true, guide: true, compare: true, saved: true, dealerships: true, ads: true, events: false },
   dealershipLabel: { plural: 'Automotoras', singular: 'Automotora' },
   rssTitle: 'Noticias del Motor — TodoMotor Uruguay',
 }
@@ -93,10 +95,11 @@ const NAUTI: SiteConfig = {
   nav: [
     // The blog is called Novedades on Nauti, for now; the URL stays /blog.
     { href: '/blog', label: 'Novedades' },
+    { href: '/eventos', label: 'Eventos' },
     { href: '/clasificados', label: 'Clasificados' },
     { href: '/automotoras', label: 'Náuticas' },
   ],
-  features: { catalog: false, guide: false, compare: false, saved: false, dealerships: true, ads: false },
+  features: { catalog: false, guide: false, compare: false, saved: false, dealerships: true, ads: false, events: true },
   dealershipLabel: { plural: 'Náuticas', singular: 'Náutica' },
   rssTitle: 'Noticias náuticas — Nauti',
 }
@@ -109,6 +112,9 @@ export const IS_NAUTI = SITE_CONFIG.brand === 'nauti'
  * Route prefixes that only exist on sites with the vehicle catalogue. The
  * middleware answers 404 for them everywhere else.
  */
+/** Routes of the events calendar, served only where features.events is on. */
+export const EVENTS_PREFIXES = ['/eventos']
+
 export const CATALOG_ONLY_PREFIXES = [
   '/vehiculos',
   '/vehiculo/',

@@ -30,7 +30,7 @@ export default function BlogCard({ post, featured }: BlogCardProps) {
                 sponsorship has to be visible here too. Labelling it only
                 inside the article means they clicked without knowing. */}
             {post.sponsored && <span className="bl__tag bl__tag--sponsored">Patrocinado</span>}
-            {post.tags[0] && <span className="bl__tag">{post.tags[0]}</span>}
+            {post.tags.slice(0, 3).map((t) => <span key={t} className="bl__tag">{t}</span>)}
             <span className="bl__date">{formatDate(post.publishedAt)}</span>
           </div>
           <h2 className="t">{post.title}</h2>
@@ -55,7 +55,7 @@ export default function BlogCard({ post, featured }: BlogCardProps) {
       <div className="bl__cardb">
         <div className="bl__meta">
           {post.sponsored && <span className="bl__tag bl__tag--sponsored">Patrocinado</span>}
-          {post.tags[0] && <span className="bl__tag">{post.tags[0]}</span>}
+          {post.tags.slice(0, 3).map((t) => <span key={t} className="bl__tag">{t}</span>)}
           <span className="bl__date">{formatDate(post.publishedAt)}</span>
         </div>
         <h3 className="bl__cardt">{post.title}</h3>
