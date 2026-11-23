@@ -59,6 +59,12 @@ export interface Dealership {
   website?: string | null
   hours?: string | null
   logoUrl?: string | null
+  /** The storefront page's banner. */
+  coverImage?: string | null
+  /** The page's Markdown; only on the owner's own account. */
+  pageMarkdown?: string | null
+  /** The page, rendered and sanitized by the API. */
+  pageHtml?: string | null
   countryCode: string
   status: DealershipStatus
   /** What the applicant is shown when turned down. Never the internal note. */

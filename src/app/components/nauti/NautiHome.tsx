@@ -65,18 +65,21 @@ export default async function NautiHome() {
 
       <section className="nh-hero">
         <div className="nh-hero__in">
-          <span className="nh-hero__eyebrow">Náutica en Uruguay</span>
-          <h1>Todo lo que flota, en un solo lugar.</h1>
+          <span className="nh-hero__eyebrow">El portal náutico uruguayo</span>
+          <h1>La náutica uruguaya, al día.</h1>
           <p>
-            Comprá y vendé lanchas, veleros, motos de agua, motores y equipamiento. Publicar es
-            gratis y tu aviso queda online 30 días.
+            Novedades, regatas, eventos y guías de la temporada. Y para comprar o vender, clasificados
+            gratis.
           </p>
           <div className="nh-hero__ctas">
-            <Link href="/clasificados" className="tm-btn tm-btn--lg">
-              Ver clasificados <ArrowRight size={18} aria-hidden="true" />
+            <Link href="/blog" className="tm-btn">
+              <Newspaper size={16} aria-hidden="true" /> Leer novedades
             </Link>
-            <Link href="/clasificados/nuevo" className="tm-btn tm-btn--lg tm-btn--secondary">
-              <Plus size={18} aria-hidden="true" /> Publicar gratis
+            <Link href="/eventos" className="tm-btn tm-btn--secondary">
+              Calendario de eventos
+            </Link>
+            <Link href="/clasificados" className="nh-hero__link">
+              Clasificados <ArrowRight size={14} aria-hidden="true" />
             </Link>
           </div>
         </div>

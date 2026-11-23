@@ -265,3 +265,27 @@
   background: var(--accent); border: 3px solid #fff; border-radius: 50% 50% 50% 0;
   transform: rotate(-45deg); box-shadow: 0 2px 6px rgb(0 0 0 / 0.35);
 }
+
+/* ---- Image upload field (components/editor/ImageUploadField) ---- */
+.img-field {
+  position: relative; overflow: hidden; background: var(--surface-sunken);
+  border: var(--border-w) dashed var(--border-strong); border-radius: var(--radius-lg);
+}
+.img-field--banner { aspect-ratio: 3 / 1; }
+.img-field--square { width: 120px; aspect-ratio: 1; }
+.img-field__empty {
+  position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: 6px; color: var(--text-muted); font-size: var(--text-sm); background: none; border: 0; cursor: pointer;
+}
+.img-field__empty:hover { color: var(--accent); }
+.img-field__remove {
+  position: absolute; top: 8px; right: 8px; width: 28px; height: 28px; border-radius: 50%;
+  display: grid; place-items: center; background: rgb(0 0 0 / 0.55); color: #fff; border: 0; cursor: pointer;
+}
+
+/* ---- Storefront page (comercios/[slug]) ---- */
+/* The banner bleeds to the card's edges: the header's padding is 24px. */
+.sf-cover { position: relative; aspect-ratio: 3 / 1; margin: -24px -24px 20px; background: var(--surface-sunken); }
+.sf-page { font-size: var(--text-base); max-width: 72ch; }
+.sf-page > :first-child { margin-top: 0; }
+.sf-page img { border-radius: var(--radius-md); max-width: 100%; height: auto; }
