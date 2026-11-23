@@ -23,7 +23,7 @@ esac
 # Paths that only matter to Nauti.
 NAUTI_ONLY='^(src/app/components/nauti/|src/app/styles/nauti\.css$|public/brand/nauti-)'
 # Paths that only matter to TodoMotor.
-TODOMOTOR_ONLY='^(src/app/(vehiculo|vehiculos|marcas|compare|guia-de-compra|guardados)/|src/lib/buying-guide/|src/data/|src/app/components/(guide|ads)/|public/brand/todomotor-)'
+TODOMOTOR_ONLY='^(src/app/(vehiculo|vehiculos|marcas|compare|guia-de-compra|guardados)/|src/lib/buying-guide/|src/data/|src/app/components/(guide|ads)/|public/brand/todomotor-|scripts/(acau-import|ads-check|guide-check|guide-images)\.ts$)'
 # Paths that never affect either build.
 IGNORABLE='(\.md$|^resources/)'
 
