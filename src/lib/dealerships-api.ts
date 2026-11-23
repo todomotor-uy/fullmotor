@@ -1,3 +1,4 @@
+import type { LatLng } from './location'
 import { Dealership } from '@/types/classified'
 import { ApiError } from './api-error'
 import { getStoredToken } from './auth'
@@ -106,6 +107,10 @@ export interface DealershipApplicationPayload {
   description?: string
   city?: string
   address?: string
+  /** "" removes it on update. */
+  department?: string
+  /** Optional map pin; on update, left out keeps it and null removes it. */
+  pin?: LatLng | null
   phone?: string
   whatsapp?: string
   website?: string

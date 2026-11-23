@@ -6,6 +6,7 @@ import { absoluteUrl } from '@/lib/site'
 import JsonLd from '../components/JsonLd'
 import { Avatar } from '../components/ui/Avatar'
 import { BIZ, IS_NAUTI, SITE_CONFIG } from '@/lib/tenant'
+import { placeLabel } from '@/lib/location'
 
 export const revalidate = 300
 
@@ -71,10 +72,10 @@ export default async function DealershipsPage() {
               <Avatar src={d.logoUrl} name={d.name} size="md" tone="accent-soft" />
               <div className="min-w-0">
                 <h2 className="font-display font-bold text-ink truncate">{d.name}</h2>
-                {d.city && (
+                {(d.city || d.department) && (
                   <p className="text-sm text-muted inline-flex items-center gap-1.5 mt-0.5">
                     <MapPin size={12} aria-hidden="true" />
-                    {d.city}
+                    {placeLabel(d.city, d.department)}
                   </p>
                 )}
                 {d.description && (

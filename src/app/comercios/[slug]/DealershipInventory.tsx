@@ -124,7 +124,7 @@ export default function DealershipInventory({ slug, initial, fallback }: Props) 
 
       <p className="text-sm text-muted">
         <span className="font-mono text-ink">{data.meta.total}</span>{' '}
-        {data.meta.total === 1 ? 'vehículo publicado' : 'vehículos publicados'}
+        {data.meta.total === 1 ? 'aviso publicado' : 'avisos publicados'}
       </p>
 
       {error && (

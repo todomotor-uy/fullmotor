@@ -98,6 +98,8 @@ export default function ClassifiedToolbar({ facets }: { facets: ClassifiedFacets
   const categoryLabel = CLASSIFIED_CATEGORIES.find((c) => c.id === current('category'))?.label
   if (categoryLabel) chips.push({ key: 'category', label: categoryLabel, clear: { category: null } })
 
+  if (current('department'))
+    chips.push({ key: 'department', label: current('department'), clear: { department: null } })
   if (current('city')) chips.push({ key: 'city', label: current('city'), clear: { city: null } })
 
   const brandLabel = facets.brands.find((b) => b.value === current('brand'))?.label

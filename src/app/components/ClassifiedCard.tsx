@@ -6,6 +6,7 @@ import { RawImageWithFallback } from './ui/ImageWithFallback'
 import CategoryBadge from './CategoryBadge'
 import StatusBadge from './StatusBadge'
 import DealershipBadge from './DealershipBadge'
+import { placeLabel } from '@/lib/location'
 
 interface ClassifiedCardProps {
   classified: Classified
@@ -49,7 +50,7 @@ export default function ClassifiedCard({ classified, showStatus = false }: Class
         )}
         <span className="flex items-center gap-1.5 text-sm text-muted mt-1">
           <MapPin size={13} aria-hidden="true" />
-          {classified.city}
+          {placeLabel(classified.city, classified.department)}
         </span>
         {/* Not a link: this card is already wrapped in one, and nesting
             anchors would split it. The detail page links through instead. */}
@@ -69,10 +70,14 @@ export default function ClassifiedCard({ classified, showStatus = false }: Class
           </span>
         )}
         <div className="tm-vcard__foot">
-          <span className="tm-vcard__price">
-            <span className="cur">{cur}</span>
-            {formatNumber(classified.price)}
-          </span>
+          {classified.priceOnRequest ? (
+            <span className="tm-vcard__price tm-vcard__price--ask">A convenir</span>
+          ) : (
+            <span className="tm-vcard__price">
+              <span className="cur">{cur}</span>
+              {formatNumber(classified.price)}
+            </span>
+          )}
           <CategoryBadge category={classified.category} />
         </div>
       </div>

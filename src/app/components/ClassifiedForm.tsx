@@ -31,6 +31,11 @@ import ClassifiedImageUploader from './ClassifiedImageUploader'
 import { translateApiError } from '@/lib/api-error'
 
 import { IS_NAUTI } from '@/lib/tenant'
+import { UY_DEPARTMENTS, UY_DEPARTMENT_CENTERS, pinOf, type LatLng } from '@/lib/location'
+import MapPicker from './map/MapPicker'
+
+/** The categories whose listings can carry a map pin: where the service is. */
+const PIN_CATEGORIES: string[] = ['services']
 
 const COUNTRY = process.env.NEXT_PUBLIC_COUNTRY || 'uy'
 
@@ -49,9 +54,12 @@ export default function ClassifiedForm({ mode, initial, facets }: ClassifiedForm
   const [category, setCategory] = useState<ClassifiedCategory>(
     initial?.category || CLASSIFIED_CATEGORIES[0].id
   )
+  const [priceOnRequest, setPriceOnRequest] = useState(initial?.priceOnRequest ?? false)
   const [price, setPrice] = useState<string>(initial?.price ? String(initial.price) : '')
   const [currency, setCurrency] = useState(initial?.currency || 'USD')
   const [city, setCity] = useState(initial?.city || '')
+  const [department, setDepartment] = useState(initial?.department || '')
+  const [pin, setPin] = useState<LatLng | null>(initial ? pinOf(initial) : null)
   const [contactInfo, setContactInfo] = useState(initial?.contactInfo || '')
   const [showContactInfo, setShowContactInfo] = useState(initial?.showContactInfo ?? true)
   const [year, setYear] = useState(initial?.year ? String(initial.year) : '')
@@ -138,6 +146,7 @@ export default function ClassifiedForm({ mode, initial, facets }: ClassifiedForm
   }, [])
 
   const showsVehicleFields = categoryHasVehicleFields(category)
+  const showsPin = PIN_CATEGORIES.includes(category)
 
   /**
    * Builds the vehicle half of the payload.
@@ -175,6 +184,12 @@ export default function ClassifiedForm({ mode, initial, facets }: ClassifiedForm
       setError('Completá título, descripción y ciudad.')
       return
     }
+    // Required on create; a listing from before departments existed can
+    // still be saved without one.
+    if (isCreate && !department) {
+      setError('Elegí el departamento.')
+      return
+    }
     if (trimmedTitle.length > 120) {
       setError('El título debe tener máximo 120 caracteres.')
       return
@@ -183,7 +198,7 @@ export default function ClassifiedForm({ mode, initial, facets }: ClassifiedForm
       setError('La descripción debe tener máximo 2000 caracteres.')
       return
     }
-    if (!Number.isFinite(priceNum) || priceNum <= 0) {
+    if (!priceOnRequest && (!Number.isFinite(priceNum) || priceNum <= 0)) {
       setError('El precio debe ser un número mayor a 0.')
       return
     }
@@ -224,10 +239,13 @@ export default function ClassifiedForm({ mode, initial, facets }: ClassifiedForm
           title: trimmedTitle,
           description: trimmedDesc,
           category,
-          price: priceNum,
+          price: priceOnRequest ? 0 : priceNum,
+          priceOnRequest,
           currency: currency.toUpperCase(),
           countryCode: COUNTRY,
           city: trimmedCity,
+          department,
+          ...(showsPin && pin ? { pin } : {}),
           showContactInfo,
           ...buildVehicleFields(),
         }
@@ -266,9 +284,13 @@ export default function ClassifiedForm({ mode, initial, facets }: ClassifiedForm
           title: trimmedTitle,
           description: trimmedDesc,
           category,
-          price: priceNum,
+          ...(priceOnRequest ? {} : { price: priceNum }),
+          priceOnRequest,
           currency: currency.toUpperCase(),
           city: trimmedCity,
+          department,
+          // Moving out of a pinned category drops the pin with it.
+          pin: showsPin ? pin : null,
           showContactInfo,
           ...buildVehicleFields(),
         }
@@ -318,7 +340,7 @@ export default function ClassifiedForm({ mode, initial, facets }: ClassifiedForm
           onChange={(e) => setDescription(e.target.value)}
           maxLength={2000}
           rows={5}
-          placeholder="Detalles del vehículo, kilometraje, estado, etc."
+          placeholder={IS_NAUTI ? 'Estado, equipamiento, horas de motor, qué incluye, etc.' : 'Detalles del vehículo, kilometraje, estado, etc.'}
           hint={`${description.length}/2000`}
           className="[&_.tm-field__hint]:font-mono"
         />
@@ -330,22 +352,32 @@ export default function ClassifiedForm({ mode, initial, facets }: ClassifiedForm
             onChange={(e) => setCategory(e.target.value as ClassifiedCategory)}
             options={CLASSIFIED_CATEGORIES.map((c) => ({ value: c.id, label: c.label }))}
           />
-          <Input
-            label="Ciudad"
-            required
-            type="text"
-            value={city}
-            onChange={(e) => setCity(e.target.value)}
-            maxLength={100}
-            placeholder="Ej. Montevideo"
+          <Select
+            label="Departamento"
+            required={isCreate}
+            value={department}
+            onChange={(e) => setDepartment(e.target.value)}
+            placeholder="Elegí el departamento"
+            options={[...UY_DEPARTMENTS]}
           />
         </div>
+
+        <Input
+          label="Ciudad o barrio"
+          required
+          type="text"
+          value={city}
+          onChange={(e) => setCity(e.target.value)}
+          maxLength={100}
+          placeholder={IS_NAUTI ? 'Ej. Punta del Este' : 'Ej. Montevideo'}
+        />
 
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
           <div className="sm:col-span-2">
             <Input
               label="Precio"
-              required
+              required={!priceOnRequest}
+              disabled={priceOnRequest}
               type="number"
               step="0.01"
               min="0"
@@ -360,8 +392,18 @@ export default function ClassifiedForm({ mode, initial, facets }: ClassifiedForm
             value={currency}
             onChange={(e) => setCurrency(e.target.value)}
             options={['USD', 'UYU', 'ARS', 'CLP']}
+            disabled={priceOnRequest}
           />
         </div>
+        <label className="flex items-center gap-2 text-sm text-body cursor-pointer -mt-2">
+          <input
+            type="checkbox"
+            checked={priceOnRequest}
+            onChange={(e) => setPriceOnRequest(e.target.checked)}
+            className="w-4 h-4 accent-[var(--accent)]"
+          />
+          Precio a convenir
+        </label>
 
         <div className="space-y-2">
           <Input
@@ -383,6 +425,18 @@ export default function ClassifiedForm({ mode, initial, facets }: ClassifiedForm
           </label>
         </div>
       </div>
+
+      {showsPin && (
+        <div className="bg-surface border border-line rounded-[var(--radius-lg)] p-6 space-y-4">
+          <div>
+            <h2 className="font-display text-lg font-bold text-ink">Ubicación en el mapa</h2>
+            <p className="text-xs text-muted mt-1">
+              Para que te encuentren: dónde das el servicio, tu taller o tu base.
+            </p>
+          </div>
+          <MapPicker value={pin} onChange={setPin} subject="dónde das el servicio" focus={UY_DEPARTMENT_CENTERS[department] ?? null} />
+        </div>
+      )}
 
       {/* Only for the categories these describe. A set of tyres has no
           odometer reading, and the API rejects the fields outright. */}

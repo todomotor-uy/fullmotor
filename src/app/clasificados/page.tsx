@@ -21,6 +21,7 @@ interface PageProps {
     page?: string
     category?: string
     city?: string
+    department?: string
     q?: string
     currency?: string
     min_price?: string
@@ -44,12 +45,12 @@ const BASE_DESCRIPTION = IS_NAUTI
   : 'Avisos entre usuarios en Uruguay: autos, motos, camionetas, repuestos y accesorios. Publicá tu aviso gratis.'
 
 export async function generateMetadata({ searchParams }: PageProps): Promise<Metadata> {
-  const { category, city, page } = await searchParams
-  const hasFilters = Boolean(category || city || (page && page !== '1'))
+  const { category, city, department, page } = await searchParams
+  const hasFilters = Boolean(category || city || department || (page && page !== '1'))
 
   if (hasFilters) {
     const categoryLabel = CLASSIFIED_CATEGORIES.find(c => c.id === category)?.label
-    const parts = [categoryLabel, city].filter(Boolean).join(' en ')
+    const parts = [categoryLabel, city || department].filter(Boolean).join(' en ')
     const title = parts ? `Clasificados de ${parts}` : BASE_TITLE
 
     return {
@@ -84,6 +85,7 @@ export default async function ClassifiedsPage({ searchParams }: PageProps) {
     params.q ||
       params.category ||
       params.city ||
+      params.department ||
       params.min_price ||
       params.max_price ||
       params.currency ||
@@ -114,6 +116,7 @@ export default async function ClassifiedsPage({ searchParams }: PageProps) {
       // reset itself to "Todas".
       category: isClassifiedCategory(params.category) ? params.category : undefined,
       city: params.city || undefined,
+      department: params.department || undefined,
       q: params.q || undefined,
       currency: params.currency || undefined,
       minPrice: params.min_price || undefined,
