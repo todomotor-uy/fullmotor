@@ -1,5 +1,6 @@
 import { BlogPost, BlogPostDetail, BlogListResponse, BlogTagsResponse } from '@/types/blog'
 import { getHeaders } from './api'
+import type { TagCount } from './blog-tags'
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8080'
 
@@ -7,6 +8,8 @@ interface FetchBlogPostsParams {
   page?: number
   limit?: number
   tag?: string
+  /** Posts carrying every one of these tags. */
+  tags?: string[]
 }
 
 export async function fetchBlogPosts(params: FetchBlogPostsParams = {}): Promise<{ posts: BlogPost[]; meta: BlogListResponse['meta'] }> {
@@ -15,6 +18,7 @@ export async function fetchBlogPosts(params: FetchBlogPostsParams = {}): Promise
   if (params.page) searchParams.set('page', params.page.toString())
   if (params.limit) searchParams.set('limit', params.limit.toString())
   if (params.tag) searchParams.set('tag', params.tag)
+  if (params.tags && params.tags.length > 0) searchParams.set('tags', params.tags.join(','))
 
   const url = `${API_URL}/api/blog${searchParams.toString() ? `?${searchParams}` : ''}`
 
@@ -51,6 +55,23 @@ export async function fetchBlogTags(): Promise<string[]> {
   // the API so the two repos can deploy in either order.
   const body: BlogTagsResponse & { data?: string[] } = await response.json()
   return body.data ?? body.tags ?? []
+}
+
+/**
+ * Tags with how many posts carry each, most used first. Against an API that
+ * predates counts, falls back to the plain list with no numbers.
+ */
+export async function fetchBlogTagCounts(): Promise<TagCount[]> {
+  const response = await fetch(`${API_URL}/api/blog/tags`, {
+    next: { revalidate: 300 },
+    headers: getHeaders(),
+  })
+  if (!response.ok) {
+    throw new Error(`Failed to fetch blog tags: ${response.statusText}`)
+  }
+  const body: { counts?: TagCount[]; data?: string[]; tags?: string[] } = await response.json()
+  if (body.counts) return body.counts
+  return (body.data ?? body.tags ?? []).map((tag) => ({ tag, count: 0 }))
 }
 
 export async function fetchBlogPostBySlug(slug: string): Promise<BlogPostDetail | null> {

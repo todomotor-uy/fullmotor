@@ -25,6 +25,7 @@ import JsonLd from '@/app/components/JsonLd'
 import CommentsSection from '@/app/components/CommentsSection'
 import BlogCard from '@/app/components/BlogCard'
 import { Badge } from '@/app/components/ui/Badge'
+import { blogTagsHref } from '@/lib/blog-tags'
 
 type Params = Promise<{ slug: string }>
 
@@ -211,7 +212,7 @@ export default async function BlogPostPage({ params }: { params: Params }) {
         {post.tags.length > 0 && (
           <div className="flex flex-wrap gap-2 mt-8 pt-6 border-t border-hairline">
             {post.tags.map((tag) => (
-              <Link key={tag} href={`/blog?tag=${encodeURIComponent(tag)}`} className="tm-chip">
+              <Link key={tag} href={blogTagsHref([tag])} className="tm-chip">
                 #{tag}
               </Link>
             ))}

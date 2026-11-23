@@ -5,7 +5,8 @@ import {
   Sailboat, Ship, ShipWheel, Waves, Wrench, type LucideIcon,
 } from 'lucide-react'
 import { fetchClassifieds } from '@/lib/classifieds-api'
-import { getLatestBlogPosts } from '@/lib/blog'
+import { fetchBlogTagCounts, getLatestBlogPosts } from '@/lib/blog'
+import { blogTagsHref, type TagCount } from '@/lib/blog-tags'
 import { formatDate } from '@/lib/format'
 import { SITE_CONFIG } from '@/lib/tenant'
 import { SITE_LOGO, SITE_NAME, SITE_URL } from '@/lib/site'
@@ -37,11 +38,12 @@ const CATEGORY_ICONS: Partial<Record<ClassifiedCategory, LucideIcon>> = {
  * the hero and categories are worth serving on their own.
  */
 export default async function NautiHome() {
-  const [classifieds, posts] = await Promise.all([
+  const [classifieds, posts, tagCounts] = await Promise.all([
     fetchClassifieds({ limit: 8 })
       .then((r) => r.data)
       .catch((): Classified[] => []),
     getLatestBlogPosts(6).catch((): BlogPost[] => []),
+    fetchBlogTagCounts().catch((): TagCount[] => []),
   ])
 
   const organizationJsonLd = {
@@ -92,6 +94,16 @@ export default async function NautiHome() {
             Ver todas <ArrowRight size={16} aria-hidden="true" />
           </Link>
         </div>
+        {/* The most used tags, one click into a filtered Novedades. */}
+        {tagCounts.length > 0 && (
+          <div className="flex flex-wrap gap-2" style={{ marginBottom: 20 }}>
+            {tagCounts.slice(0, 12).map(({ tag }) => (
+              <Link key={tag} href={blogTagsHref([tag])} className="tm-chip">
+                {tag}
+              </Link>
+            ))}
+          </div>
+        )}
         {posts.length > 0 ? (
           <div className="h-posts">
             {posts.map((post) => (
