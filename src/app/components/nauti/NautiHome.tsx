@@ -181,7 +181,7 @@ export default async function NautiHome() {
         <div className="h-sect__head">
           <div>
             <h2>Recién publicados</h2>
-            <p>Los últimos avisos de particulares y náuticas</p>
+            <p>Los últimos avisos de particulares y comercios</p>
           </div>
           <Link href="/clasificados" className="h-link">
             Ver todos <ArrowRight size={16} aria-hidden="true" />
@@ -209,13 +209,13 @@ export default async function NautiHome() {
       <section className="h-sect">
         <div className="nh-band">
           <div>
-            <h2>¿Tenés una náutica, broker o guardería?</h2>
+            <h2>¿Tenés un comercio náutico, broker o guardería?</h2>
             <p>
-              Abrí tu vidriera en Nauti: tus avisos con tu marca, sin vencimiento y con fotos extra.
+              Abrí tu vidriera en Nauti: todos tus avisos con tu marca, en un solo lugar y con fotos extra.
             </p>
           </div>
           <div className="nh-band__actions">
-            <Link href="/automotoras/solicitar" className="tm-btn tm-btn--lg">
+            <Link href="/comercios/solicitar" className="tm-btn tm-btn--lg">
               Abrir mi vidriera
             </Link>
           </div>

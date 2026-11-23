@@ -12,14 +12,14 @@ export const revalidate = 300
 const TITLE = `${BIZ.Many} en Uruguay`
 const DESCRIPTION =
   IS_NAUTI
-    ? `Náuticas, brokers y guarderías con vidriera en ${SITE_CONFIG.name}. Mirá su inventario completo y contactalas directo.`
-    : 'Concesionarias y automotoras con vidriera en TodoMotor. Mirá su inventario completo y contactalas directo.'
+    ? `Náuticas, brokers, guarderías y servicios con vidriera en ${SITE_CONFIG.name}. Mirá su inventario completo y contactalos directo.`
+    : 'Concesionarias, automotoras y comercios con vidriera en TodoMotor. Mirá su inventario completo y contactalos directo.'
 
 export const metadata: Metadata = {
   title: TITLE,
   description: DESCRIPTION,
-  openGraph: { title: TITLE, description: DESCRIPTION, type: 'website', url: absoluteUrl('/automotoras') },
-  alternates: { canonical: '/automotoras' },
+  openGraph: { title: TITLE, description: DESCRIPTION, type: 'website', url: absoluteUrl('/comercios') },
+  alternates: { canonical: '/comercios' },
 }
 
 export default async function DealershipsPage() {
@@ -34,7 +34,7 @@ export default async function DealershipsPage() {
     itemListElement: data.data.map((d, i) => ({
       '@type': 'ListItem',
       position: i + 1,
-      url: absoluteUrl(`/automotoras/${d.slug}`),
+      url: absoluteUrl(`/comercios/${d.slug}`),
       name: d.name,
     })),
   }
@@ -54,9 +54,9 @@ export default async function DealershipsPage() {
         <div className="iv__empty">
           <h3 className="font-display text-lg font-bold text-ink mb-2">Todavía no hay {BIZ.many}</h3>
           <p className="text-sm text-muted mb-6">
-            Si tenés una, registrala y publicá tu inventario con vidriera propia.
+            Si tenés uno, registralo y publicá tu inventario con vidriera propia.
           </p>
-          <Link href="/automotoras/solicitar" className="tm-btn tm-btn--md">
+          <Link href="/comercios/solicitar" className="tm-btn tm-btn--md">
             Registrá tu {BIZ.one}
           </Link>
         </div>
@@ -65,7 +65,7 @@ export default async function DealershipsPage() {
           {data.data.map((d) => (
             <Link
               key={d.id}
-              href={`/automotoras/${d.slug}`}
+              href={`/comercios/${d.slug}`}
               className="bg-surface border border-line rounded-[var(--radius-lg)] p-5 flex items-start gap-3 hover:border-accent transition-colors"
             >
               <Avatar src={d.logoUrl} name={d.name} size="md" tone="accent-soft" />

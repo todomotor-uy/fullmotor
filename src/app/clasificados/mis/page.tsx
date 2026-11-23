@@ -93,11 +93,11 @@ function MyClassifiedsInner() {
         <div className="flex gap-2">
           {dealership?.status === 'approved' && (
             <ButtonLink
-              href="/automotoras/panel"
+              href="/comercios/panel"
               variant="secondary"
               iconLeft={<Store size={16} aria-hidden="true" />}
             >
-              Mi automotora
+              Mi comercio
             </ButtonLink>
           )}
           <ButtonLink href="/clasificados/nuevo" iconLeft={<Plus size={16} aria-hidden="true" />}>
@@ -112,20 +112,20 @@ function MyClassifiedsInner() {
         <div className="p-4 rounded-[var(--radius-md)] bg-sunken text-sm text-body">
           {dealership.status === 'pending' && (
             <>
-              Tu solicitud de automotora está en revisión. Te avisamos acá cuando esté resuelta.
+              Tu solicitud de comercio está en revisión. Te avisamos acá cuando esté resuelta.
             </>
           )}
           {dealership.status === 'rejected' && (
             <>
-              Tu solicitud de automotora fue rechazada
+              Tu solicitud de comercio fue rechazada
               {dealership.rejectionReason ? `: ${dealership.rejectionReason}` : '.'}{' '}
-              <Link href="/automotoras/solicitar" className="text-accent underline">
+              <Link href="/comercios/solicitar" className="text-accent underline">
                 Volvé a intentarlo
               </Link>
             </>
           )}
           {dealership.status === 'suspended' && (
-            <>Tu cuenta de automotora está suspendida. Escribinos si creés que es un error.</>
+            <>Tu cuenta de comercio está suspendida. Escribinos si creés que es un error.</>
           )}
         </div>
       )}

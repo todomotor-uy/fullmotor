@@ -29,9 +29,9 @@ function PanelInner() {
   if (!dealership) {
     return (
       <div className="max-w-2xl mx-auto px-4 py-20 text-center space-y-4">
-        <h1 className="font-display text-2xl font-bold text-ink">Todavía no sos automotora</h1>
+        <h1 className="font-display text-2xl font-bold text-ink">Todavía no tenés un comercio</h1>
         <p className="text-sm text-muted">Registrate y revisamos tu solicitud a mano.</p>
-        <ButtonLink href="/automotoras/solicitar">Registrá tu automotora</ButtonLink>
+        <ButtonLink href="/comercios/solicitar">Registrá tu comercio</ButtonLink>
       </div>
     )
   }
@@ -72,14 +72,14 @@ function PanelInner() {
         <nav className="iv__crumb mb-3">
           <Link href="/clasificados/mis">Mis clasificados</Link>
           <span>/</span>
-          <span>Mi automotora</span>
+          <span>Mi comercio</span>
         </nav>
         <h1 className="font-display text-3xl font-bold text-ink" style={{ letterSpacing: '-0.03em' }}>
           {dealership.name}
         </h1>
         {dealership.status === 'approved' && (
           <Link
-            href={`/automotoras/${dealership.slug}`}
+            href={`/comercios/${dealership.slug}`}
             className="inline-flex items-center gap-1.5 text-sm text-accent mt-2"
           >
             Ver mi vidriera
@@ -113,7 +113,7 @@ function PanelInner() {
           {/* The slug is not editable: it is the storefront's public address,
               and renaming it would break every link already out there. */}
           <p className="text-xs text-muted">
-            Dirección de tu vidriera: <span className="font-mono">/automotoras/{dealership.slug}</span>
+            Dirección de tu vidriera: <span className="font-mono">/comercios/{dealership.slug}</span>
           </p>
 
           <Textarea

@@ -39,7 +39,7 @@ export default function PrivacidadPage() {
         </p>
         <p>
           <strong>Si iniciás sesión con Google</strong> (para guardar vehículos, publicar un clasificado o
-          administrar una automotora), recibimos de Google tu nombre, tu correo electrónico y tu foto de
+          administrar un comercio), recibimos de Google tu nombre, tu correo electrónico y tu foto de
           perfil. Los usamos para identificar tu cuenta y para mostrar tus avisos. Nada más.
         </p>
         <p>

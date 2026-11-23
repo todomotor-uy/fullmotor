@@ -19,7 +19,7 @@ const ALL_SECTIONS: { href: string; label: string; permission: Permission; catal
   { href: '/admin/usuarios', label: 'Usuarios', permission: PERM.users },
   { href: '/admin/comentarios', label: 'Comentarios', permission: PERM.moderation },
   { href: '/admin/clasificados', label: 'Clasificados', permission: PERM.moderation },
-  { href: '/admin/automotoras', label: BIZ.Many, permission: PERM.dealerships },
+  { href: '/admin/comercios', label: BIZ.Many, permission: PERM.dealerships },
 ]
 
 // Catalogue screens only exist on sites with a catalogue.

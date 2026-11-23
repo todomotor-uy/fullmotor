@@ -39,7 +39,7 @@ function ApplyInner() {
       <div className="max-w-2xl mx-auto px-4 py-20 text-center space-y-4">
         <h1 className="font-display text-2xl font-bold text-ink">
           {existing.status === 'approved'
-            ? `Ya tenés una ${BIZ.one}`
+            ? `Ya tenés un ${BIZ.one}`
             : existing.status === 'pending'
               ? 'Tu solicitud está en revisión'
               : 'Tu cuenta está suspendida'}
@@ -52,7 +52,7 @@ function ApplyInner() {
               : 'Escribinos si creés que es un error.'}
         </p>
         {existing.status === 'approved' && (
-          <Link href="/automotoras/panel" className="text-accent underline">
+          <Link href="/comercios/panel" className="text-accent underline">
             Ir a mi panel
           </Link>
         )}
@@ -102,14 +102,15 @@ function ApplyInner() {
         <nav className="iv__crumb mb-3">
           <Link href="/clasificados">Clasificados</Link>
           <span>/</span>
-          <span>Ser {BIZ.one}</span>
+          <span>Registrar {BIZ.one}</span>
         </nav>
         <h1 className="font-display text-3xl font-bold text-ink" style={{ letterSpacing: '-0.03em' }}>
           Registrá tu {BIZ.one}
         </h1>
         <p className="text-sm text-muted mt-2">
-          Tu inventario pasa a tener vidriera propia, tus avisos no vencen y podés subir más fotos
-          por {IS_NAUTI ? 'aviso' : 'vehículo'}. Revisamos cada solicitud a mano.
+          {IS_NAUTI
+            ? 'Tu inventario pasa a tener vidriera propia con tu marca y podés subir más fotos por aviso.'
+            : 'Tu inventario pasa a tener vidriera propia, tus avisos no vencen y podés subir más fotos por vehículo.'} Revisamos cada solicitud a mano.
         </p>
       </div>
 

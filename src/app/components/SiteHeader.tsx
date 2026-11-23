@@ -19,7 +19,7 @@ export default function SiteHeader() {
           <Link href="/vehiculos">Vehículos</Link>
           <Link href="/guia-de-compra">Guía de compra</Link>
           <Link href="/clasificados">Clasificados</Link>
-          <Link href="/automotoras">Automotoras</Link>
+          <Link href="/comercios">Comercios</Link>
           <Link href="/blog">Blog</Link>
         </nav>
         <Suspense fallback={<div className="k-search" />}>

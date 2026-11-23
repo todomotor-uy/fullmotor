@@ -5,7 +5,6 @@ import Link from 'next/link'
 import { LayoutList, LogOut, ShieldCheck, Store, User as UserIcon } from 'lucide-react'
 import { useAuth } from './AuthProvider'
 import { Avatar } from './ui/Avatar'
-import { IS_NAUTI } from '@/lib/tenant'
 import { isStaff } from '@/lib/permissions'
 
 export default function UserMenu() {
@@ -72,7 +71,7 @@ export default function UserMenu() {
                         <Link
                             href={
                                 user.dealership.status === 'approved'
-                                    ? '/automotoras/panel'
+                                    ? '/comercios/panel'
                                     : '/clasificados/mis'
                             }
                             onClick={() => setOpen(false)}
@@ -80,13 +79,13 @@ export default function UserMenu() {
                         >
                             <Store size={15} aria-hidden="true" />
                             {user.dealership.status === 'approved'
-                                ? (IS_NAUTI ? 'Mi náutica' : 'Mi automotora')
+                                ? 'Mi comercio'
                                 : 'Mi solicitud'}
                         </Link>
                     )}
 
                     {/* One entry, pointing at the panel rather than at one of
-                        its screens. Reviewing automotoras is a section inside
+                        its screens. Reviewing comercios is a section inside
                         /admin like usuarios or comentarios, and a menu item
                         that jumped straight into it made the other four
                         unreachable unless you knew their URLs. */}

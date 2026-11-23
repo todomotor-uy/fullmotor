@@ -53,7 +53,7 @@ export interface SiteConfig {
   logo: [string, string]
   nav: NavLink[]
   features: SiteFeatures
-  /** What the site calls a business account and where its pages live. */
+  /** What the site calls a business account. Running text (BIZ) treats it as masculine: "un comercio". */
   dealershipLabel: { plural: string; singular: string }
   rssTitle: string
 }
@@ -73,11 +73,11 @@ const TODOMOTOR: SiteConfig = {
     { href: '/vehiculos', label: 'Vehículos' },
     { href: '/guia-de-compra', label: 'Guía de compra' },
     { href: '/clasificados', label: 'Clasificados' },
-    { href: '/automotoras', label: 'Automotoras' },
+    { href: '/comercios', label: 'Comercios' },
     { href: '/blog', label: 'Blog' },
   ],
   features: { catalog: true, guide: true, compare: true, saved: true, dealerships: true, ads: true, events: false },
-  dealershipLabel: { plural: 'Automotoras', singular: 'Automotora' },
+  dealershipLabel: { plural: 'Comercios', singular: 'Comercio' },
   rssTitle: 'Noticias del Motor — TodoMotor Uruguay',
 }
 
@@ -97,10 +97,10 @@ const NAUTI: SiteConfig = {
     { href: '/blog', label: 'Novedades' },
     { href: '/eventos', label: 'Eventos' },
     { href: '/clasificados', label: 'Clasificados' },
-    { href: '/automotoras', label: 'Náuticas' },
+    { href: '/comercios', label: 'Comercios' },
   ],
   features: { catalog: false, guide: false, compare: false, saved: false, dealerships: true, ads: false, events: true },
-  dealershipLabel: { plural: 'Náuticas', singular: 'Náutica' },
+  dealershipLabel: { plural: 'Comercios', singular: 'Comercio' },
   rssTitle: 'Noticias náuticas — Nauti',
 }
 

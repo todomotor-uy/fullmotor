@@ -28,6 +28,12 @@ const nextConfig: NextConfig = {
         destination: '/vehiculos',
         permanent: true,
       },
+      // Business accounts were "automotoras" (TodoMotor) and "náuticas"
+      // (Nauti); both sites now call them comercios. Old links and indexed
+      // storefronts keep working.
+      { source: '/automotoras', destination: '/comercios', permanent: true },
+      { source: '/automotoras/:path*', destination: '/comercios/:path*', permanent: true },
+      { source: '/admin/automotoras', destination: '/admin/comercios', permanent: true },
     ];
   },
   images: {

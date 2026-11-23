@@ -107,7 +107,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: 0.8,
     },
     {
-      url: absoluteUrl('/automotoras'),
+      url: absoluteUrl('/comercios'),
       lastModified: now,
       changeFrequency: 'weekly',
       priority: 0.8,
@@ -115,7 +115,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     // Storefronts outrank individual listings: they are stable pages that
     // aggregate inventory, where a listing comes and goes.
     ...dealerships.map((d) => ({
-      url: absoluteUrl(`/automotoras/${d.slug}`),
+      url: absoluteUrl(`/comercios/${d.slug}`),
       lastModified: now,
       changeFrequency: 'daily' as const,
       priority: 0.7,
@@ -178,9 +178,9 @@ async function nautiSitemap(): Promise<MetadataRoute.Sitemap> {
     { url: SITE_URL, lastModified: now, changeFrequency: 'daily', priority: 1.0 },
     { url: absoluteUrl('/clasificados'), lastModified: now, changeFrequency: 'daily', priority: 0.9 },
     { url: absoluteUrl('/blog'), lastModified: now, changeFrequency: 'daily', priority: 0.8 },
-    { url: absoluteUrl('/automotoras'), lastModified: now, changeFrequency: 'weekly', priority: 0.7 },
+    { url: absoluteUrl('/comercios'), lastModified: now, changeFrequency: 'weekly', priority: 0.7 },
     ...dealerships.map((d) => ({
-      url: absoluteUrl(`/automotoras/${d.slug}`),
+      url: absoluteUrl(`/comercios/${d.slug}`),
       lastModified: now,
       changeFrequency: 'daily' as const,
       priority: 0.7,

@@ -8,6 +8,7 @@ import {
   reviewDealership,
 } from '@/lib/dealerships-api'
 import { translateApiError } from '@/lib/api-error'
+import { IS_NAUTI } from '@/lib/tenant'
 import { Button } from '../../components/ui/Button'
 import { Input } from '../../components/ui/Input'
 import { FilterChip } from '../../components/ui/FilterChip'
@@ -69,10 +70,12 @@ function ReviewInner() {
     <div className="max-w-4xl mx-auto px-4 py-8 space-y-6">
       <div>
         <h1 className="font-display text-3xl font-bold text-ink" style={{ letterSpacing: '-0.03em' }}>
-          Automotoras
+          Comercios
         </h1>
         <p className="text-sm text-muted mt-2">
-          Aprobar le da vidriera propia, avisos que no vencen y más fotos por vehículo.
+          {IS_NAUTI
+            ? 'Aprobar le da vidriera propia y más fotos por aviso.'
+            : 'Aprobar le da vidriera propia, avisos que no vencen y más fotos por vehículo.'}
         </p>
       </div>
 
@@ -105,7 +108,7 @@ function ReviewInner() {
               <div className="flex flex-wrap items-start justify-between gap-3">
                 <div className="min-w-0">
                   <h2 className="font-display text-lg font-bold text-ink">{d.name}</h2>
-                  <p className="text-xs text-muted font-mono">/automotoras/{d.slug}</p>
+                  <p className="text-xs text-muted font-mono">/comercios/{d.slug}</p>
                   <p className="text-sm text-muted mt-1">
                     {d.userName} · {d.userEmail}
                   </p>

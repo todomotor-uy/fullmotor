@@ -26,8 +26,8 @@ export default function robots(): MetadataRoute.Robots {
           '/clasificados/*/editar',
           // The storefronts themselves stay crawlable — they are the point.
           // Only the private surfaces around them are excluded.
-          '/automotoras/solicitar',
-          '/automotoras/panel',
+          '/comercios/solicitar',
+          '/comercios/panel',
         ],
       },
     ],
