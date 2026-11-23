@@ -31,7 +31,7 @@ import { tenantHeader } from '@/lib/tenant'
 import { useAuth } from '../../components/AuthProvider'
 import { Button } from '../../components/ui/Button'
 import { Input, Textarea } from '../../components/ui/Input'
-import { RichEditor } from './RichEditor'
+import { RichEditor } from '@/app/components/editor/RichEditor'
 import { formatSchedule, fromLocalInput, minScheduleInput, scheduleProblem, toLocalInput } from '../schedule'
 
 const COUNTRY = process.env.NEXT_PUBLIC_COUNTRY || 'uy'

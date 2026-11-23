@@ -39,7 +39,7 @@ import { uploadBlogImage } from '@/lib/ops-api'
 import { translateApiError } from '@/lib/api-error'
 
 /**
- * The article editor: what you see is the article as it will be published,
+ * The rich editor (blog posts, storefront pages): what you see is the page as it will be published,
  * and what gets saved is Markdown.
  *
  * Markdown stays the stored format because everything else that writes posts
@@ -96,9 +96,18 @@ interface RichEditorProps {
   value: string
   onChange: (markdown: string) => void
   placeholder?: string
+  /**
+   * Where pasted, dropped and picked images go; returns the uploaded URL.
+   * Defaults to the blog's store, which needs blog permissions — a
+   * storefront passes its own.
+   */
+  uploadImage?: (file: File) => Promise<string>
 }
 
-export function RichEditor({ value, onChange, placeholder }: RichEditorProps) {
+export function RichEditor({ value, onChange, placeholder, uploadImage = uploadBlogImage }: RichEditorProps) {
+  // Read through a ref: the paste and drop handlers are registered once.
+  const uploadRef = useRef(uploadImage)
+  uploadRef.current = uploadImage
   const [source, setSource] = useState(false)
   const [panel, setPanel] = useState<Panel>(null)
   const [uploading, setUploading] = useState(0)
@@ -118,7 +127,7 @@ export function RichEditor({ value, onChange, placeholder }: RichEditorProps) {
     setUploading((n) => n + images.length)
     for (const file of images) {
       try {
-        const src = await uploadBlogImage(file)
+        const src = await uploadRef.current(file)
         const alt = file.name.replace(/\.[a-z0-9]+$/i, '').replace(/[-_]+/g, ' ')
         const chain = editor.chain().focus()
         if (pos !== undefined) chain.insertContentAt(pos, { type: 'image', attrs: { src, alt } })

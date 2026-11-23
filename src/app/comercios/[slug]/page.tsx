@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import Image from 'next/image'
 import { notFound } from 'next/navigation'
 import { cache } from 'react'
 import type { Metadata } from 'next'
@@ -115,7 +116,19 @@ export default async function DealershipPage({ params }: PageProps) {
         <span>{dealership.name}</span>
       </nav>
 
-      <header className="bg-surface border border-line rounded-[var(--radius-lg)] p-6 mb-6">
+      <header className="bg-surface border border-line rounded-[var(--radius-lg)] p-6 mb-6 overflow-hidden">
+        {dealership.coverImage && (
+          <div className="sf-cover">
+            <Image
+              src={dealership.coverImage}
+              alt=""
+              fill
+              priority
+              sizes="(max-width: 1200px) 100vw, 1200px"
+              style={{ objectFit: 'cover' }}
+            />
+          </div>
+        )}
         <div className="flex flex-wrap items-start gap-4">
           <Avatar src={dealership.logoUrl} name={dealership.name} size="lg" tone="accent-soft" />
           <div className="flex-1 min-w-0">
@@ -157,6 +170,13 @@ export default async function DealershipPage({ params }: PageProps) {
           </div>
         )}
       </header>
+
+      {dealership.pageHtml && (
+        <section className="bg-surface border border-line rounded-[var(--radius-lg)] p-6 sm:p-8 mb-6">
+          {/* Rendered and sanitized by the API on save, like a blog post. */}
+          <div className="blog-content sf-page" dangerouslySetInnerHTML={{ __html: dealership.pageHtml }} />
+        </section>
+      )}
 
       {/* Server-rendered so the inventory is in the HTML; the client component
           takes over the moment anyone filters or pages. */}

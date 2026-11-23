@@ -115,6 +115,10 @@ export interface DealershipApplicationPayload {
   whatsapp?: string
   website?: string
   hours?: string
+  /** Storefront page, on update only; "" removes each. */
+  pageMarkdown?: string
+  coverImage?: string
+  logoUrl?: string
 }
 
 export async function applyForDealership(
@@ -139,6 +143,22 @@ export async function updateMyDealership(
   })
   if (!response.ok) await handleApiError(response)
   return response.json()
+}
+
+/** Uploads one image for the caller's storefront page and returns its URL. */
+export async function uploadMyDealershipImage(file: File): Promise<string> {
+  const body = new FormData()
+  body.append('images', file)
+  const response = await fetch(`${API_URL}/api/dealerships/mine/images`, {
+    method: 'POST',
+    headers: authHeaders(),
+    body,
+  })
+  if (!response.ok) await handleApiError(response)
+  const json = await response.json()
+  const url = (json.data ?? json).uploaded?.[0]?.url
+  if (!url) throw new Error('La subida no devolvió una URL')
+  return url
 }
 
 // ============================================

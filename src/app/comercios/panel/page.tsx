@@ -3,7 +3,7 @@
 import Link from 'next/link'
 import { useState } from 'react'
 import { AlertCircle, CheckCircle, ExternalLink } from 'lucide-react'
-import { updateMyDealership } from '@/lib/dealerships-api'
+import { updateMyDealership, uploadMyDealershipImage } from '@/lib/dealerships-api'
 import { translateApiError } from '@/lib/api-error'
 import RequireAuth from '../../components/RequireAuth'
 import { useAuth } from '../../components/AuthProvider'
@@ -11,6 +11,8 @@ import { Button, ButtonLink } from '../../components/ui/Button'
 import { Input, Textarea } from '../../components/ui/Input'
 import { Select } from '../../components/ui/Select'
 import MapPicker from '../../components/map/MapPicker'
+import { RichEditor } from '../../components/editor/RichEditor'
+import ImageUploadField from '../../components/editor/ImageUploadField'
 import { UY_DEPARTMENTS, UY_DEPARTMENT_CENTERS, pinOf, type LatLng } from '@/lib/location'
 
 function PanelInner() {
@@ -27,6 +29,9 @@ function PanelInner() {
   const [whatsapp, setWhatsapp] = useState(dealership?.whatsapp ?? '')
   const [website, setWebsite] = useState(dealership?.website ?? '')
   const [hours, setHours] = useState(dealership?.hours ?? '')
+  const [logoUrl, setLogoUrl] = useState(dealership?.logoUrl ?? '')
+  const [coverImage, setCoverImage] = useState(dealership?.coverImage ?? '')
+  const [pageMarkdown, setPageMarkdown] = useState(dealership?.pageMarkdown ?? '')
   const [error, setError] = useState<string | null>(null)
   const [saved, setSaved] = useState(false)
   const [saving, setSaving] = useState(false)
@@ -64,6 +69,9 @@ function PanelInner() {
         whatsapp: whatsapp.trim(),
         website: website.trim(),
         hours: hours.trim(),
+        logoUrl,
+        coverImage,
+        pageMarkdown,
       })
       setSaved(true)
     } catch (err) {
@@ -74,7 +82,7 @@ function PanelInner() {
   }
 
   return (
-    <div className="max-w-2xl mx-auto px-4 py-8 space-y-6">
+    <div className="max-w-3xl mx-auto px-4 py-8 space-y-6">
       <div>
         <nav className="iv__crumb mb-3">
           <Link href="/clasificados/mis">Mis clasificados</Link>
@@ -156,6 +164,43 @@ function PanelInner() {
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <Input label="Sitio web" type="text" value={website} onChange={(e) => setWebsite(e.target.value)} maxLength={200} />
             <Input label="Horarios" type="text" value={hours} onChange={(e) => setHours(e.target.value)} maxLength={200} />
+          </div>
+        </div>
+
+        <div className="bg-surface border border-line rounded-[var(--radius-lg)] p-6 space-y-5">
+          <div>
+            <h2 className="font-display text-lg font-bold text-ink">Tu página</h2>
+            <p className="text-xs text-muted mt-1">
+              Lo que ve quien entra a tu vidriera, arriba de tus avisos: tu logo, una imagen de portada y
+              lo que quieras contar, con fotos y videos.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-[120px_1fr] gap-5">
+            <ImageUploadField
+              label="Logo"
+              shape="square"
+              value={logoUrl}
+              onChange={setLogoUrl}
+              upload={uploadMyDealershipImage}
+            />
+            <ImageUploadField
+              label="Portada"
+              value={coverImage}
+              onChange={setCoverImage}
+              upload={uploadMyDealershipImage}
+              hint="Una foto ancha: tu local, tu flota, tu equipo. Se ve en 3:1."
+            />
+          </div>
+
+          <div className="space-y-2">
+            <p className="tm-field__label">Contenido</p>
+            <RichEditor
+              value={pageMarkdown}
+              onChange={setPageMarkdown}
+              uploadImage={uploadMyDealershipImage}
+              placeholder="Contá quiénes son, qué ofrecen, cómo trabajan… Podés agregar títulos, fotos y videos."
+            />
           </div>
         </div>
 
