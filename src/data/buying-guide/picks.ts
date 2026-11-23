@@ -10,7 +10,7 @@
 
 import type { CuratedNode } from '@/lib/buying-guide/types'
 
-export const PICKS_UPDATED_AT = '2026-11-16'
+export const PICKS_UPDATED_AT = '2026-11-23'
 
 export const CURATED_PICKS: CuratedNode[] = [
   // ───────────────────────────── FAMILIA ─────────────────────────────
@@ -141,7 +141,7 @@ export const CURATED_PICKS: CuratedNode[] = [
     use: 'trabajo', band: '30-45k',
     picks: [
       { slug: 'uy-nissan-frontier-2025-se-4x4-2-3-tdi-m-t', why: ['Diésel 2.3 biturbo de 190 hp y 450 Nm', 'Tracción 4x4 y 6 airbags', 'Climatizador, cámara y control crucero'] },
-      { slug: 'uy-toyota-hilux-2025-2-7-vvt-i-sr-4x2', why: ['La pickup más vendida: reventa y repuestos garantizados', '7 airbags y asistente de carril', '2.7 nafta de 164 hp'], note: 'Entrada a Hilux; las diésel arrancan en 52.490.' },
+      { slug: 'uy-toyota-hilux-2025-2-7-vvt-i-sr-4x2', why: ['Top 10 en ventas de utilitarios 2026 (ACAU): reventa y repuestos', '7 airbags y asistente de carril', '2.7 nafta de 164 hp'], note: 'Entrada a Hilux; las diésel arrancan en 52.490.' },
       { slug: 'uy-chery-himla-2025-23-4x4-mt', why: ['Diésel 2.3 de 360 Nm con 4x4 por 35.990', '7 airbags y caja de 1.500 L', 'Cámara 360 y climatizador'] },
       { slug: 'uy-riddara-rd6-eco-4wd-2025-rd6-eco-4wd', why: ['Eléctrico: 375 hp y 485 Nm con tracción 4x4', '390 km de autonomía y frenado autónomo de emergencia', 'Caja de carga de 1.200 L, cámara y acceso sin llave', 'Entre los 10 utilitarios más vendidos 2026 en Uruguay (ACAU)'] },
       { slug: 'uy-mitsubishi-l200-2025-glx-24-mpi-mt-2wd', why: ['7 airbags, AEB y detector de punto ciego', 'Caja de 1.500 L y 2.4 de 155 hp', 'Robustez L200 con red Mitsubishi'] },

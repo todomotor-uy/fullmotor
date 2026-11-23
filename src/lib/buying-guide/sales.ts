@@ -103,7 +103,7 @@ export const SALES_ALIASES: Record<string, string | string[]> = {
   'foton|tunland v 9': ['tunland v 9'],
   'jac|ytterby': ['es 3 ytterby'],
   'toyota|yaris hatch': ['yaris hb'],
-  'geely|ex 5 urban': ['ex 5 max', 'ex 5 pro', 'ex 5 emi max'],
+  'geely|ex 5 urban': ['ex 5 max', 'ex 5 pro', 'ex 5 emi max', 'ex 5 urban', 'ex 5 emi pro'],
   'geely|ex 2 max': ['ex 2 max', 'ex 2 pro'],
   'gacmotor|aion es': ['aion es', 'aion ut', 'aion ut max'],
   'renault|kardian': ['kardian', 'kardian premiere edition'],
@@ -113,13 +113,17 @@ export const SALES_ALIASES: Record<string, string | string[]> = {
   'lynkco|09': ['lynk co 09 halo'],
   'citroen|c 3 aircross': ['c 3 aircross t 200 shine', 'c 3 aircross vti feel', 'c 3 aircross vti shine'],
   'citroen|c 3 aircross 7': ['c 3 aircross t 200 shine 7'],
-  'bmw|x 3': ['x 3', 'x 3 20'],
+  'bmw|x 3': ['x 3', 'x 3 20', 'x 3 30 e'],
   'changan|nevo q 05': ['q 05'],
   'suzuki|alto': ['alto', 'alto 1 0', 'alto 1 0 ga 6 ab'],
   'ford|ranger': ['ranger', 'ranger d c'],
   'volkswagen|amarok': ['amarok', 'amarok v 6'],
   'bmw|ix 3': ['ix 3', 'ix 3 50'],
   'dongfeng|rich': ['rich 6'],
+  'jeep|avenger': ['avenger', 'avenger summit electric'],
+  'citroen|basalt': ['basalt', 'basalt t 200 shine'],
+  'subaru|crosstrek': ['crosstrek 2 0 is es', 'crosstrek 2 0 il es'],
+  'kia|sportage': ['sportage', 'sportage xline', 'sportage xline plus'],
 }
 
 /** Trailing tokens that are trims rather than model identity ("EX5 Max" → "ex 5"). */
