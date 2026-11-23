@@ -22,6 +22,8 @@ export interface SiteEvent {
   coverImage?: string | null
   tags: string[]
   status: 'draft' | 'published'
+  /** Admin only: a draft with this is published automatically then. */
+  scheduledAt?: string | null
   /**
    * The schedule, in time order, when the event runs over several sessions.
    * startsAt/endsAt then span it: first start to last end.
