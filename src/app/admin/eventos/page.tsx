@@ -2,7 +2,7 @@
 
 import { useCallback, useEffect, useState } from 'react'
 import Link from 'next/link'
-import { AlertCircle, ExternalLink, Pencil, Plus, Trash2 } from 'lucide-react'
+import { AlertCircle, CalendarClock, ExternalLink, Pencil, Plus, Trash2 } from 'lucide-react'
 import {
   AdminBlogPost,
   AdminEventRow,
@@ -22,6 +22,7 @@ import { Button } from '../../components/ui/Button'
 import { Input, Textarea } from '../../components/ui/Input'
 import { Select } from '../../components/ui/Select'
 import { FilterChip } from '../../components/ui/FilterChip'
+import { formatSchedule, fromLocalInput, minScheduleInput, scheduleProblem, toLocalInput } from '../schedule'
 
 /** Uruguay has had no daylight saving since 2015, so local time is UTC-3. */
 const UY_OFFSET = '-03:00'
@@ -51,12 +52,14 @@ interface FormState {
   tags: string
   description: string
   blogPostSlug: string
+  /** datetime-local: when a draft goes on the calendar by itself. */
+  publishAt: string
 }
 
 const EMPTY: FormState = {
   sessions: [],
   title: '', startDate: '', startTime: '', endDate: '', endTime: '',
-  location: '', city: '', url: '', coverImage: '', tags: '', description: '', blogPostSlug: '',
+  location: '', city: '', url: '', coverImage: '', tags: '', description: '', blogPostSlug: '', publishAt: '',
 }
 
 const localParts = (iso: string) => {
@@ -94,6 +97,7 @@ function toForm(row: AdminEventRow): FormState {
     tags: e.tags.join(', '),
     description: e.description ?? '',
     blogPostSlug: row.blogPostSlug ?? '',
+    publishAt: e.status === 'draft' ? toLocalInput(e.scheduledAt) : '',
   }
 }
 
@@ -145,7 +149,7 @@ function toInput(f: FormState): EventInput {
 }
 
 export default function AdminEventsPage() {
-  const [status, setStatus] = useState<'all' | 'draft' | 'published'>('all')
+  const [status, setStatus] = useState<'all' | 'draft' | 'published' | 'scheduled'>('all')
   const [rows, setRows] = useState<AdminEventRow[]>([])
   const [posts, setPosts] = useState<AdminBlogPost[]>([])
   const [suggestions, setSuggestions] = useState<TagCount[]>([])
@@ -192,10 +196,23 @@ export default function AdminEventsPage() {
       setError('Cada jornada necesita fecha y hora de inicio.')
       return
     }
+    if (!publish && form.publishAt) {
+      const problem = scheduleProblem(form.publishAt)
+      if (problem) {
+        setError(`Publicación programada: ${problem}`)
+        return
+      }
+    }
     setSaving(true)
     setError(null)
     try {
-      const input: EventInput = { ...toInput(form), status: publish ? 'published' : 'draft' }
+      const input: EventInput = {
+        ...toInput(form),
+        status: publish ? 'published' : 'draft',
+        // A draft with a time goes live then; without one it just waits.
+        // Publishing now drops any schedule on the API side.
+        ...(publish ? {} : { scheduledAt: fromLocalInput(form.publishAt) }),
+      }
       if (editingId) await updateEvent(editingId, input)
       else await createEvent(input)
       setForm(null)
@@ -375,18 +392,40 @@ export default function AdminEventsPage() {
                 ))}
             </div>
           )}
+          <div className="p-3 rounded-[var(--radius-md)] bg-sunken space-y-2">
+            <div className="grid grid-cols-1 sm:grid-cols-[minmax(0,260px)_auto] gap-3 items-end">
+              <Input
+                label="Publicar automáticamente el"
+                type="datetime-local"
+                value={form.publishAt}
+                min={minScheduleInput()}
+                onChange={(e) => set({ publishAt: e.target.value })}
+              />
+              {form.publishAt && (
+                <Button type="button" size="sm" variant="ghost" onClick={() => set({ publishAt: '' })}>
+                  Sin programar
+                </Button>
+              )}
+            </div>
+            <p className="text-xs text-muted">
+              Opcional. Se guarda como borrador y aparece en el calendario sola a esa hora (hora de tu compu).
+            </p>
+          </div>
           <div className="flex flex-wrap gap-2">
-            <Button type="button" loading={saving} onClick={() => save(true)}>Publicar</Button>
-            <Button type="submit" variant="secondary" loading={saving}>Guardar borrador</Button>
+            <Button type="button" loading={saving} onClick={() => save(true)}>Publicar ahora</Button>
+            <Button type="submit" variant="secondary" loading={saving}
+              iconLeft={form.publishAt ? <CalendarClock size={14} aria-hidden="true" /> : undefined}>
+              {form.publishAt ? 'Programar' : 'Guardar borrador'}
+            </Button>
             <Button type="button" variant="ghost" onClick={() => { setForm(null); setEditingId(null) }}>Cancelar</Button>
           </div>
         </form>
       )}
 
       <div className="flex gap-2">
-        {(['all', 'published', 'draft'] as const).map((s) => (
+        {(['all', 'published', 'scheduled', 'draft'] as const).map((s) => (
           <FilterChip key={s} active={status === s} onClick={() => setStatus(s)}>
-            {s === 'all' ? 'Todos' : s === 'published' ? 'Publicados' : 'Borradores'}
+            {s === 'all' ? 'Todos' : s === 'published' ? 'Publicados' : s === 'scheduled' ? 'Programados' : 'Borradores'}
           </FilterChip>
         ))}
       </div>
@@ -402,13 +441,20 @@ export default function AdminEventsPage() {
             return (
               <div key={e.id} className="bg-surface border border-line rounded-[var(--radius-lg)] p-4 flex flex-wrap items-start justify-between gap-3">
                 <div className="min-w-0">
-                  <p className="tm-eyebrow">{e.status === 'published' ? 'Publicado' : 'Borrador'}</p>
+                  <p className="tm-eyebrow">
+                    {e.status === 'published' ? 'Publicado' : e.scheduledAt ? 'Programado' : 'Borrador'}
+                  </p>
                   <h3 className="font-display text-lg font-bold text-ink">{e.title}</h3>
                   <p className="text-sm text-muted">
                     {eventWhen(e)}
                     {e.city ? ` · ${e.city}` : ''}
                     {row.blogPostSlug ? ` · Nota: ${row.blogPostSlug}` : ''}
                   </p>
+                  {e.status === 'draft' && e.scheduledAt && (
+                    <p className="text-xs text-ink inline-flex items-center gap-1 mt-1">
+                      <CalendarClock size={12} aria-hidden="true" /> Se publica el {formatSchedule(e.scheduledAt)}
+                    </p>
+                  )}
                 </div>
                 <div className="flex flex-wrap gap-2">
                   {e.status === 'published' && (
@@ -421,7 +467,7 @@ export default function AdminEventsPage() {
                     Editar
                   </Button>
                   <Button size="sm" variant="secondary" disabled={busyId === e.id} onClick={() => setPublished(e, e.status !== 'published')}>
-                    {e.status === 'published' ? 'Pasar a borrador' : 'Publicar'}
+                    {e.status === 'published' ? 'Pasar a borrador' : 'Publicar ahora'}
                   </Button>
                   <Button size="sm" variant="ghost" className="[--_fg:var(--danger)]" disabled={busyId === e.id}
                     iconLeft={<Trash2 size={14} aria-hidden="true" />} onClick={() => remove(e)}>

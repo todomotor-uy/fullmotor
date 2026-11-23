@@ -300,6 +300,8 @@ export interface AdminBlogPost {
   authorId: string
   status: BlogStatus
   publishedAt?: string | null
+  /** A draft with this goes live by itself at that instant. */
+  scheduledAt?: string | null
   updatedAt: string
   createdAt: string
   sponsored?: boolean
@@ -307,7 +309,7 @@ export interface AdminBlogPost {
 }
 
 export async function fetchBlogPosts(
-  params: { status?: BlogStatus | 'all'; page?: number; limit?: number } = {}
+  params: { status?: BlogStatus | 'scheduled' | 'all'; page?: number; limit?: number } = {}
 ): Promise<{ data: AdminBlogPost[]; meta: PaginationMeta }> {
   const search = new URLSearchParams()
   if (params.status && params.status !== 'all') search.set('status', params.status)
@@ -329,6 +331,15 @@ export interface CreateBlogPostPayload {
   coverImage?: string
   tags?: string[]
   status?: BlogStatus
+  /** RFC 3339; only meaningful for a draft. */
+  scheduledAt?: string
+}
+
+/** One post, any status, with its Markdown — what the editor opens. */
+export async function fetchBlogPost(slug: string): Promise<AdminBlogPost> {
+  const response = await opsFetch(`/blog/${encodeURIComponent(slug)}`)
+  const json = await response.json()
+  return json.data ?? json
 }
 
 export async function createBlogPost(payload: CreateBlogPostPayload): Promise<AdminBlogPost> {
@@ -345,7 +356,10 @@ export async function createBlogPost(payload: CreateBlogPostPayload): Promise<Ad
 
 export async function updateBlogPost(
   slug: string,
-  patch: Partial<Pick<AdminBlogPost, 'title' | 'excerpt' | 'contentMarkdown' | 'coverImage' | 'tags' | 'status'>>
+  patch: Partial<Pick<AdminBlogPost, 'title' | 'slug' | 'excerpt' | 'contentMarkdown' | 'coverImage' | 'tags' | 'status'>> & {
+    /** RFC 3339 to schedule, "" to cancel. */
+    scheduledAt?: string
+  }
 ): Promise<AdminBlogPost> {
   const response = await opsFetch(`/blog/${encodeURIComponent(slug)}`, {
     method: 'PATCH',
@@ -425,6 +439,8 @@ export interface EventInput {
   /** The linked blog post's slug; "" unlinks. */
   blogPostSlug?: string
   status?: 'draft' | 'published'
+  /** RFC 3339: a draft goes on the calendar by itself then. "" cancels. */
+  scheduledAt?: string
   /** The full schedule, replacing the current one; [] removes it. */
   sessions?: { startsAt: string; endsAt?: string; label?: string; location?: string }[]
 }
@@ -435,7 +451,7 @@ export interface AdminEventRow {
   blogPostSlug?: string
 }
 
-export async function fetchEventsAdmin(status: 'all' | 'draft' | 'published' = 'all'): Promise<AdminEventRow[]> {
+export async function fetchEventsAdmin(status: 'all' | 'draft' | 'published' | 'scheduled' = 'all'): Promise<AdminEventRow[]> {
   const response = await opsFetch(`/events?status=${status}`)
   const body: { data: AdminEventRow[] } = await response.json()
   return body.data

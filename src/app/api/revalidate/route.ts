@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server'
-import { revalidatePath } from 'next/cache'
+import { revalidatePath, revalidateTag } from 'next/cache'
+import { CONTENT_TAGS } from '@/lib/content-cache'
 
 /**
  * On-demand ISR invalidation, called by the API after it writes a vehicle.
@@ -13,6 +14,9 @@ import { revalidatePath } from 'next/cache'
  *     -H "x-api-key: $REVALIDATE_SECRET" \
  *     -H "Content-Type: application/json" \
  *     -d '{"slugs":["uy-fiat-pulse-2026-audace"]}'
+ *
+ * `tags` expires the editorial caches ("blog", "events") — what the API sends
+ * when a scheduled post or event goes live with nobody in the panel to do it.
  */
 export async function POST(request: Request) {
   const validSecret = process.env.REVALIDATE_SECRET
@@ -25,7 +29,7 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
   }
 
-  let body: { slugs?: unknown; paths?: unknown }
+  let body: { slugs?: unknown; paths?: unknown; tags?: unknown }
   try {
     body = await request.json()
   } catch {
@@ -38,6 +42,19 @@ export async function POST(request: Request) {
   const extraPaths = Array.isArray(body.paths)
     ? body.paths.filter((p): p is string => typeof p === 'string')
     : []
+
+  // Only the content tags: this is not a way to flush arbitrary caches.
+  const knownTags = new Set<string>(Object.values(CONTENT_TAGS))
+  const tags = Array.isArray(body.tags)
+    ? body.tags.filter((t): t is string => typeof t === 'string' && knownTags.has(t))
+    : []
+
+  for (const tag of tags) revalidateTag(tag, { expire: 0 })
+  // A tags-only call is about editorial content; the vehicle pages below
+  // have nothing to do with it.
+  if (tags.length > 0 && slugs.length === 0 && extraPaths.length === 0) {
+    return NextResponse.json({ revalidated: tags.map((t) => `tag:${t}`) })
+  }
 
   const paths = [
     // The home carousel and the inventory listing both change whenever any
