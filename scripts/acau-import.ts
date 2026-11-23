@@ -7,7 +7,7 @@
  *   npm run acau:import -- --file <path> local .xlsx
  *   npm run acau:import -- --no-match   skip the catalogue cross-check
  *
- * Reads the "Compilado <year>" workbook (sheets AUTOS / SUV / UTILITARIOS,
+ * Reads the "Compilado <year>" workbook (sheets AUTOS / SUV / UTILITARIOS —"UTIL" since Oct 2026—,
  * one row per model version with monthly units), aggregates model roots and
  * writes src/data/buying-guide/acau-<year>.json. Then cross-checks the roots
  * against the live catalogue and prints what did not match so aliases can be
@@ -113,7 +113,7 @@ function readXlsx(buf: Buffer): Sheet[] {
 
 /* ---------------- ACAU specifics ---------------- */
 
-const SHEET_TO_TYPE: Record<string, GuideType> = { AUTO: 'cars', AUTOS: 'cars', SUV: 'suvs', SUVS: 'suvs', UTILITARIO: 'pickups', UTILITARIOS: 'pickups' }
+const SHEET_TO_TYPE: Record<string, GuideType> = { AUTO: 'cars', AUTOS: 'cars', SUV: 'suvs', SUVS: 'suvs', UTILITARIO: 'pickups', UTILITARIOS: 'pickups', UTIL: 'pickups' }
 
 /** Month name (both "septiembre" and the older "setiembre" spelling) → 0-based index. */
 const MONTH_INDEX: Record<string, number> = {
