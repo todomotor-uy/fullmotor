@@ -34,7 +34,7 @@ export default function MobileNav() {
           <Link href="/vehiculos">Vehículos</Link>
           <Link href="/guia-de-compra">Guía de compra</Link>
           <Link href="/clasificados">Clasificados</Link>
-          <Link href="/automotoras">Automotoras</Link>
+          <Link href="/comercios">Comercios</Link>
           <Link href="/blog">Blog</Link>
           <Link href="/compare" className="k-menu__with-icon">
             <GitCompareArrows size={16} aria-hidden="true" />

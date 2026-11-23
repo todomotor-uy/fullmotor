@@ -104,7 +104,7 @@ export default function DealershipInventory({ slug, initial, fallback }: Props) 
           <Input
             type="search"
             aria-label="Buscar en el inventario"
-            placeholder="Buscá dentro de esta automotora…"
+            placeholder="Buscá dentro de este comercio…"
             value={q}
             onChange={(e) => setQ(e.target.value)}
             iconLeft={<Search size={15} aria-hidden="true" />}

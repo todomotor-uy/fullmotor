@@ -29,7 +29,7 @@ export default function DealershipBadge({ dealership, asLink = false }: Dealersh
 
   if (!asLink) {
     return (
-      <span className={className} title={`${dealership.name} · ${BIZ.One} verificada`}>
+      <span className={className} title={`${dealership.name} · ${BIZ.One} verificado`}>
         {content}
       </span>
     )
@@ -37,7 +37,7 @@ export default function DealershipBadge({ dealership, asLink = false }: Dealersh
 
   return (
     <Link
-      href={`/automotoras/${dealership.slug}`}
+      href={`/comercios/${dealership.slug}`}
       className={`${className} hover:bg-accent hover:text-white transition-colors`}
     >
       {content}

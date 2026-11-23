@@ -32,7 +32,7 @@ export default function SiteFooter() {
             <Link href="/guia-de-compra">Guía de compra</Link>
             <Link href="/compare">Comparador</Link>
             <Link href="/clasificados">Clasificados</Link>
-            <Link href="/automotoras">Automotoras</Link>
+            <Link href="/comercios">Comercios</Link>
             <a href="mailto:contacto@todomotor.uy">Escribinos</a>
           </div>
           {/* The advertising policy lives in the footer rather than buried in a

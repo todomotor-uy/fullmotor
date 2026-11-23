@@ -25,7 +25,7 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { slug } = await params
   const dealership = await getDealership(slug)
-  if (!dealership) return { title: 'Automotora no encontrada' }
+  if (!dealership) return { title: 'Comercio no encontrado' }
 
   const title = `${dealership.name}${dealership.city ? ` — ${dealership.city}` : ''}`
   const description =
@@ -35,9 +35,9 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   return {
     title,
     description,
-    openGraph: { title, description, type: 'website', url: absoluteUrl(`/automotoras/${slug}`) },
+    openGraph: { title, description, type: 'website', url: absoluteUrl(`/comercios/${slug}`) },
     twitter: { card: 'summary_large_image', title, description },
-    alternates: { canonical: `/automotoras/${slug}` },
+    alternates: { canonical: `/comercios/${slug}` },
   }
 }
 
@@ -72,7 +72,7 @@ export default async function DealershipPage({ params }: PageProps) {
     '@context': 'https://schema.org',
     '@type': hasStorefrontAddress ? 'AutoDealer' : 'Organization',
     name: dealership.name,
-    url: absoluteUrl(`/automotoras/${slug}`),
+    url: absoluteUrl(`/comercios/${slug}`),
     ...(dealership.description && { description: dealership.description }),
     ...(dealership.logoUrl && { logo: dealership.logoUrl }),
     ...(dealership.phone && { telephone: dealership.phone }),
@@ -91,7 +91,7 @@ export default async function DealershipPage({ params }: PageProps) {
     '@type': 'BreadcrumbList',
     itemListElement: [
       { '@type': 'ListItem', position: 1, name: 'Inicio', item: SITE_URL },
-      { '@type': 'ListItem', position: 2, name: 'Automotoras', item: absoluteUrl('/automotoras') },
+      { '@type': 'ListItem', position: 2, name: 'Comercios', item: absoluteUrl('/comercios') },
       { '@type': 'ListItem', position: 3, name: dealership.name },
     ],
   }
@@ -102,7 +102,7 @@ export default async function DealershipPage({ params }: PageProps) {
       <JsonLd data={breadcrumbJsonLd} />
 
       <nav className="iv__crumb mb-4">
-        <Link href="/automotoras">Automotoras</Link>
+        <Link href="/comercios">Comercios</Link>
         <span>/</span>
         <span>{dealership.name}</span>
       </nav>
@@ -150,7 +150,7 @@ export default async function DealershipPage({ params }: PageProps) {
           <ClassifiedList
             classifieds={initial.data}
             emptyTitle="Todavía no hay vehículos publicados"
-            emptyDescription="Esta automotora no tiene avisos activos por ahora."
+            emptyDescription="Este comercio no tiene avisos activos por ahora."
           />
         }
       />

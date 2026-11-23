@@ -26,7 +26,7 @@ export default function NautiFooter() {
             <Link href="/blog">Novedades</Link>
             <Link href="/clasificados">Todos los clasificados</Link>
             <Link href="/clasificados/nuevo">Publicar un aviso</Link>
-            <Link href="/automotoras">Náuticas</Link>
+            <Link href="/comercios">Comercios</Link>
             <a href={`mailto:${email}`}>Escribinos</a>
           </div>
           <div className="k-footer__col">

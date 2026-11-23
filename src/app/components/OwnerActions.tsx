@@ -86,7 +86,7 @@ export default function OwnerActions({ classified }: OwnerActionsProps) {
 
       <p className="text-xs text-muted">
         {classified.neverExpires ? (
-          'Tu aviso no vence: como automotora, queda publicado mientras lo dejes activo.'
+          'Tu aviso no vence: queda publicado mientras lo dejes activo.'
         ) : (
           <>
             {expired ? 'Venció el ' : 'Vence el '}
