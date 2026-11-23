@@ -51,6 +51,9 @@ export interface Dealership {
   description?: string | null
   city?: string | null
   address?: string | null
+  department?: string | null
+  latitude?: number | null
+  longitude?: number | null
   phone?: string | null
   whatsapp?: string | null
   website?: string | null
@@ -69,11 +72,17 @@ export interface Classified {
   user: ClassifiedUser
   countryCode: string
   city: string
+  department?: string | null
+  /** Optional map pin; both or neither. */
+  latitude?: number | null
+  longitude?: number | null
   title: string
   description: string
   category: ClassifiedCategory
   price: number
   currency: string
+  /** "A convenir": no price to show (price is 0). */
+  priceOnRequest?: boolean
   contactInfo: string | null
   showContactInfo: boolean
   images: string[]

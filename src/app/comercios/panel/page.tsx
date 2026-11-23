@@ -9,6 +9,9 @@ import RequireAuth from '../../components/RequireAuth'
 import { useAuth } from '../../components/AuthProvider'
 import { Button, ButtonLink } from '../../components/ui/Button'
 import { Input, Textarea } from '../../components/ui/Input'
+import { Select } from '../../components/ui/Select'
+import MapPicker from '../../components/map/MapPicker'
+import { UY_DEPARTMENTS, UY_DEPARTMENT_CENTERS, pinOf, type LatLng } from '@/lib/location'
 
 function PanelInner() {
   const { user } = useAuth()
@@ -18,6 +21,8 @@ function PanelInner() {
   const [description, setDescription] = useState(dealership?.description ?? '')
   const [city, setCity] = useState(dealership?.city ?? '')
   const [address, setAddress] = useState(dealership?.address ?? '')
+  const [department, setDepartment] = useState(dealership?.department ?? '')
+  const [pin, setPin] = useState<LatLng | null>(dealership ? pinOf(dealership) : null)
   const [phone, setPhone] = useState(dealership?.phone ?? '')
   const [whatsapp, setWhatsapp] = useState(dealership?.whatsapp ?? '')
   const [website, setWebsite] = useState(dealership?.website ?? '')
@@ -53,6 +58,8 @@ function PanelInner() {
         description: description.trim(),
         city: city.trim(),
         address: address.trim(),
+        department,
+        pin,
         phone: phone.trim(),
         whatsapp: whatsapp.trim(),
         website: website.trim(),
@@ -124,9 +131,21 @@ function PanelInner() {
             rows={4}
           />
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <Input label="Ciudad" type="text" value={city} onChange={(e) => setCity(e.target.value)} maxLength={100} />
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+            <Select
+              label="Departamento"
+              value={department}
+              onChange={(e) => setDepartment(e.target.value)}
+              placeholder="Elegí el departamento"
+              options={[...UY_DEPARTMENTS]}
+            />
+            <Input label="Ciudad o barrio" type="text" value={city} onChange={(e) => setCity(e.target.value)} maxLength={100} />
             <Input label="Dirección" type="text" value={address} onChange={(e) => setAddress(e.target.value)} maxLength={200} />
+          </div>
+
+          <div>
+            <p className="tm-field__label mb-2">Ubicación en el mapa</p>
+            <MapPicker value={pin} onChange={setPin} subject="tu comercio" focus={UY_DEPARTMENT_CENTERS[department] ?? null} />
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">

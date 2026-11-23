@@ -13,6 +13,9 @@
   border-radius: var(--radius-md); cursor: pointer; text-decoration: none;
   transition: background var(--dur-fast) var(--ease-out), transform var(--dur-fast) var(--ease-out), box-shadow var(--dur-fast) var(--ease-out);
   -webkit-user-select: none; user-select: none;
+  /* Medium unless a size modifier says otherwise: a bare .tm-btn used to
+     have no height or padding, so its label touched the edges. */
+  height: var(--control-h-md); padding: 0 18px; font-size: var(--text-base);
 }
 .tm-btn:hover { background: var(--_bgh); color: var(--_fg); }
 .tm-btn:active { background: var(--_bgp); transform: translateY(1px); }
@@ -247,3 +250,18 @@
   color: var(--text-muted); align-self: flex-end;
 }
 .tm-logo--inverse .tm-logo__uy { color: var(--text-inverse-muted); }
+
+/* ---- Map (components/map) ---- */
+.tm-map {
+  height: 280px; border: var(--border-w) solid var(--border); border-radius: var(--radius-lg);
+  overflow: hidden; background: var(--surface-sunken); isolation: isolate;
+}
+.tm-map--view { height: 240px; }
+.tm-map__loading { height: 100%; display: grid; place-items: center; color: var(--text-muted); font-size: var(--text-sm); }
+.tm-map .leaflet-container { font-family: var(--font-sans); }
+/* A teardrop pin in the site's accent, drawn in CSS (see LeafletMap). */
+.tm-map-pin span {
+  position: absolute; left: 0; top: 0; width: 28px; height: 28px;
+  background: var(--accent); border: 3px solid #fff; border-radius: 50% 50% 50% 0;
+  transform: rotate(-45deg); box-shadow: 0 2px 6px rgb(0 0 0 / 0.35);
+}

@@ -21,6 +21,8 @@ import OwnerActions from '../../components/OwnerActions'
 import CommentsSection from '../../components/CommentsSection'
 import { Avatar } from '../../components/ui/Avatar'
 import DealershipBadge from '../../components/DealershipBadge'
+import { pinOf, placeLabel } from '@/lib/location'
+import MapView from '@/app/components/map/MapView'
 
 export const dynamic = 'force-dynamic'
 
@@ -106,6 +108,7 @@ export default async function ClassifiedDetailPage({ params }: PageProps) {
   const brandLabel = (value: string) =>
     facets?.brands.find((b) => b.value === value)?.label ?? value
 
+  const pin = pinOf(classified)
   const specs = [
     classified.brand && { label: 'Marca', value: brandLabel(classified.brand) },
     classified.model && { label: 'Modelo', value: classified.model },
@@ -146,13 +149,19 @@ export default async function ClassifiedDetailPage({ params }: PageProps) {
     ...(classified.images.length > 0 && { image: classified.images }),
     offers: {
       '@type': 'Offer',
-      price: classified.price,
+      ...(classified.priceOnRequest ? {} : { price: classified.price }),
       priceCurrency: normalizeCurrency(classified.currency),
       availability: AVAILABILITY[classified.status],
       url: absoluteUrl(`/clasificados/${classified.id}`),
       availableAtOrFrom: {
         '@type': 'Place',
-        address: { '@type': 'PostalAddress', addressLocality: classified.city, addressCountry: 'UY' },
+        address: {
+          '@type': 'PostalAddress',
+          addressLocality: classified.city,
+          ...(classified.department && { addressRegion: classified.department }),
+          addressCountry: 'UY',
+        },
+        ...(pin && { geo: { '@type': 'GeoCoordinates', latitude: pin.lat, longitude: pin.lng } }),
       },
       seller: { '@type': 'Person', name: classified.user.name },
     },
@@ -195,7 +204,7 @@ export default async function ClassifiedDetailPage({ params }: PageProps) {
                 <div className="flex flex-wrap items-center gap-2 mt-2 text-sm text-muted">
                   <span className="inline-flex items-center gap-1.5">
                     <MapPin size={13} aria-hidden="true" />
-                    {classified.city}
+                    {placeLabel(classified.city, classified.department)}
                   </span>
                   <span aria-hidden="true">·</span>
                   <span>
@@ -209,9 +218,13 @@ export default async function ClassifiedDetailPage({ params }: PageProps) {
             </div>
 
             <div className="flex flex-wrap items-center gap-3">
-              <span className="tm-price text-3xl sm:text-4xl" style={{ letterSpacing: '-0.02em' }}>
-                {formatPrice(classified.currency, classified.price)}
-              </span>
+              {classified.priceOnRequest ? (
+                <span className="font-display text-2xl font-bold text-ink">Precio a convenir</span>
+              ) : (
+                <span className="tm-price text-3xl sm:text-4xl" style={{ letterSpacing: '-0.02em' }}>
+                  {formatPrice(classified.currency, classified.price)}
+                </span>
+              )}
               <CategoryBadge category={classified.category} />
             </div>
 
@@ -235,6 +248,13 @@ export default async function ClassifiedDetailPage({ params }: PageProps) {
                 {classified.description}
               </p>
             </div>
+
+            {pin && (
+              <div>
+                <h2 className="font-display text-lg font-bold text-ink mb-3">Ubicación</h2>
+                <MapView pin={pin} label={placeLabel(classified.city, classified.department)} />
+              </div>
+            )}
           </div>
 
         </div>

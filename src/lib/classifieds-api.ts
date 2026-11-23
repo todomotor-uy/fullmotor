@@ -1,3 +1,4 @@
+import type { LatLng } from './location'
 import {
   AuthUser,
   Classified,
@@ -102,6 +103,7 @@ export interface FetchClassifiedsParams {
   limit?: number
   category?: ClassifiedCategory
   city?: string
+  department?: string
   /** Free-text search over title, description, city, brand and model. */
   q?: string
   brand?: string
@@ -134,6 +136,7 @@ export async function fetchClassifieds(
   if (params.limit) search.set('limit', String(params.limit))
   if (params.category) search.set('category', params.category)
   if (params.city) search.set('city', params.city)
+  if (params.department) search.set('department', params.department)
   if (params.q) search.set('q', params.q)
   if (params.brand) search.set('brand', params.brand)
   if (params.fuel) search.set('fuel', params.fuel)
@@ -268,6 +271,10 @@ export interface CreateClassifiedPayload extends VehicleFieldsPayload {
   currency: string
   countryCode: string
   city: string
+  department?: string
+  /** Optional map pin. */
+  pin?: LatLng | null
+  priceOnRequest?: boolean
   contactInfo?: string
   showContactInfo?: boolean
 }
@@ -289,6 +296,11 @@ export interface UpdateClassifiedPayload extends VehicleFieldsPayload {
   price?: number
   currency?: string
   city?: string
+  /** "" removes it. */
+  department?: string
+  /** Left out keeps the pin; null removes it. */
+  pin?: LatLng | null
+  priceOnRequest?: boolean
   contactInfo?: string
   showContactInfo?: boolean
   status?: ClassifiedStatus

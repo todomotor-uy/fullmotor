@@ -10,6 +10,9 @@ import JsonLd from '../../components/JsonLd'
 import ClassifiedList from '../../components/ClassifiedList'
 import { Avatar } from '../../components/ui/Avatar'
 import DealershipInventory from './DealershipInventory'
+import { pinOf, placeLabel } from '@/lib/location'
+import MapView from '../../components/map/MapView'
+import { IS_NAUTI } from '@/lib/tenant'
 
 interface PageProps {
   params: Promise<{ slug: string }>
@@ -30,7 +33,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const title = `${dealership.name}${dealership.city ? ` — ${dealership.city}` : ''}`
   const description =
     dealership.description?.replace(/\s+/g, ' ').trim().slice(0, 160) ||
-    `Vehículos en venta de ${dealership.name}${dealership.city ? ` en ${dealership.city}` : ''}.`
+    `${IS_NAUTI ? 'Avisos' : 'Vehículos en venta'} de ${dealership.name}${dealership.city ? ` en ${dealership.city}` : ''}.`
 
   return {
     title,
@@ -56,6 +59,7 @@ export default async function DealershipPage({ params }: PageProps) {
     revalidate: 300,
   }).catch(() => ({ data: [], meta: { total: 0, page: 1, lastPage: 1 } }))
 
+  const pin = pinOf(dealership)
   const contactPoints = [
     dealership.address && { icon: MapPin, text: dealership.address },
     dealership.phone && { icon: Phone, text: dealership.phone },
@@ -81,8 +85,12 @@ export default async function DealershipPage({ params }: PageProps) {
         '@type': 'PostalAddress',
         streetAddress: dealership.address,
         addressLocality: dealership.city ?? undefined,
+        addressRegion: dealership.department ?? undefined,
         addressCountry: dealership.countryCode.toUpperCase(),
       },
+    }),
+    ...(pinOf(dealership) && {
+      geo: { '@type': 'GeoCoordinates', latitude: dealership.latitude, longitude: dealership.longitude },
     }),
   }
 
@@ -117,10 +125,10 @@ export default async function DealershipPage({ params }: PageProps) {
             >
               {dealership.name}
             </h1>
-            {dealership.city && (
+            {(dealership.city || dealership.department) && (
               <p className="text-sm text-muted mt-1 inline-flex items-center gap-1.5">
                 <MapPin size={13} aria-hidden="true" />
-                {dealership.city}
+                {placeLabel(dealership.city, dealership.department)}
               </p>
             )}
             {dealership.description && (
@@ -139,6 +147,15 @@ export default async function DealershipPage({ params }: PageProps) {
             ))}
           </dl>
         )}
+
+        {pin && (
+          <div className="mt-5 pt-5 border-t border-line">
+            <MapView
+              pin={pin}
+              label={[dealership.address, placeLabel(dealership.city, dealership.department)].filter(Boolean).join(' · ')}
+            />
+          </div>
+        )}
       </header>
 
       {/* Server-rendered so the inventory is in the HTML; the client component
@@ -149,7 +166,7 @@ export default async function DealershipPage({ params }: PageProps) {
         fallback={
           <ClassifiedList
             classifieds={initial.data}
-            emptyTitle="Todavía no hay vehículos publicados"
+            emptyTitle="Todavía no hay avisos publicados"
             emptyDescription="Este comercio no tiene avisos activos por ahora."
           />
         }

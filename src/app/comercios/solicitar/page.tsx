@@ -11,6 +11,9 @@ import { useAuth } from '../../components/AuthProvider'
 import { Button } from '../../components/ui/Button'
 import { Input, Textarea } from '../../components/ui/Input'
 import { BIZ, IS_NAUTI } from '@/lib/tenant'
+import { Select } from '../../components/ui/Select'
+import MapPicker from '../../components/map/MapPicker'
+import { UY_DEPARTMENTS, UY_DEPARTMENT_CENTERS, type LatLng } from '@/lib/location'
 
 const COUNTRY = process.env.NEXT_PUBLIC_COUNTRY || 'uy'
 
@@ -22,6 +25,8 @@ function ApplyInner() {
   const [description, setDescription] = useState('')
   const [city, setCity] = useState('')
   const [address, setAddress] = useState('')
+  const [department, setDepartment] = useState('')
+  const [pin, setPin] = useState<LatLng | null>(null)
   const [phone, setPhone] = useState('')
   const [whatsapp, setWhatsapp] = useState('')
   const [website, setWebsite] = useState('')
@@ -82,6 +87,8 @@ function ApplyInner() {
         description: description.trim() || undefined,
         city: city.trim() || undefined,
         address: address.trim() || undefined,
+        department: department || undefined,
+        ...(pin ? { pin } : {}),
         phone: phone.trim() || undefined,
         whatsapp: whatsapp.trim() || undefined,
         website: website.trim() || undefined,
@@ -144,14 +151,21 @@ function ApplyInner() {
             placeholder={`Contá a qué se dedica tu ${BIZ.one}.`}
           />
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+            <Select
+              label="Departamento"
+              value={department}
+              onChange={(e) => setDepartment(e.target.value)}
+              placeholder="Elegí el departamento"
+              options={[...UY_DEPARTMENTS]}
+            />
             <Input
-              label="Ciudad"
+              label="Ciudad o barrio"
               type="text"
               value={city}
               onChange={(e) => setCity(e.target.value)}
               maxLength={100}
-              placeholder="Ej. Montevideo"
+              placeholder={IS_NAUTI ? 'Ej. Punta del Este' : 'Ej. Montevideo'}
             />
             <Input
               label="Dirección"
@@ -159,8 +173,13 @@ function ApplyInner() {
               value={address}
               onChange={(e) => setAddress(e.target.value)}
               maxLength={200}
-              placeholder="Ej. Av. Italia 1234"
+              placeholder={IS_NAUTI ? 'Ej. Puerto, muelle 3' : 'Ej. Av. Italia 1234'}
             />
+          </div>
+
+          <div>
+            <p className="tm-field__label mb-2">Ubicación en el mapa</p>
+            <MapPicker value={pin} onChange={setPin} subject={`tu ${BIZ.one}`} focus={UY_DEPARTMENT_CENTERS[department] ?? null} />
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">

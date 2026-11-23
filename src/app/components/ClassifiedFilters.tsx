@@ -13,6 +13,7 @@ import {
 import { Button } from './ui/Button'
 import { Select } from './ui/Select'
 import { IS_NAUTI } from '@/lib/tenant'
+import { UY_DEPARTMENTS } from '@/lib/location'
 
 const CURRENCIES = [
   { value: 'USD', label: 'USD' },
@@ -156,7 +157,18 @@ export default function ClassifiedFilters({ facets }: { facets: ClassifiedFacets
         </div>
 
         <div className="fgroup">
-          <h4>Ciudad</h4>
+          <h4>Departamento</h4>
+          <Select
+            aria-label="Departamento"
+            value={current('department')}
+            onChange={(e) => update({ department: e.target.value || null })}
+            placeholder="Todos"
+            options={[...UY_DEPARTMENTS]}
+          />
+        </div>
+
+        <div className="fgroup">
+          <h4>Ciudad o barrio</h4>
           <div className="fprice">
             <input
               type="text"
