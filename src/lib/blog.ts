@@ -1,3 +1,4 @@
+import { CONTENT_TAGS } from './content-cache'
 import { BlogPost, BlogPostDetail, BlogListResponse, BlogTagsResponse } from '@/types/blog'
 import { getHeaders } from './api'
 import type { TagCount } from './blog-tags'
@@ -23,7 +24,7 @@ export async function fetchBlogPosts(params: FetchBlogPostsParams = {}): Promise
   const url = `${API_URL}/api/blog${searchParams.toString() ? `?${searchParams}` : ''}`
 
   const response = await fetch(url, {
-    next: { revalidate: 3600 },
+    next: { revalidate: 3600, tags: [CONTENT_TAGS.blog] },
     headers: getHeaders(),
   })
 
@@ -43,7 +44,7 @@ export async function fetchBlogTags(): Promise<string[]> {
   const url = `${API_URL}/api/blog/tags`
 
   const response = await fetch(url, {
-    next: { revalidate: 300 },
+    next: { revalidate: 300, tags: [CONTENT_TAGS.blog] },
     headers: getHeaders(),
   })
 
@@ -63,7 +64,7 @@ export async function fetchBlogTags(): Promise<string[]> {
  */
 export async function fetchBlogTagCounts(): Promise<TagCount[]> {
   const response = await fetch(`${API_URL}/api/blog/tags`, {
-    next: { revalidate: 300 },
+    next: { revalidate: 300, tags: [CONTENT_TAGS.blog] },
     headers: getHeaders(),
   })
   if (!response.ok) {
@@ -78,7 +79,7 @@ export async function fetchBlogPostBySlug(slug: string): Promise<BlogPostDetail 
   const url = `${API_URL}/api/blog/${slug}`
 
   const response = await fetch(url, {
-    next: { revalidate: 3600 },
+    next: { revalidate: 3600, tags: [CONTENT_TAGS.blog] },
     headers: getHeaders(),
   })
 

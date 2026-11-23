@@ -1,5 +1,6 @@
 import type { EventSession, SiteEvent } from '@/types/event'
 import { getHeaders } from './api'
+import { CONTENT_TAGS } from './content-cache'
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8080'
 
@@ -28,7 +29,7 @@ export async function fetchEvents(params: FetchEventsParams = {}): Promise<SiteE
   if (params.limit) search.set('limit', String(params.limit))
 
   const res = await fetch(`${API_URL}/api/events${search.toString() ? `?${search}` : ''}`, {
-    next: { revalidate: 300 },
+    next: { revalidate: 300, tags: [CONTENT_TAGS.events] },
     headers: getHeaders(),
   })
   if (!res.ok) throw new Error(`Failed to fetch events: ${res.statusText}`)
@@ -38,7 +39,7 @@ export async function fetchEvents(params: FetchEventsParams = {}): Promise<SiteE
 
 export async function fetchEventBySlug(slug: string): Promise<SiteEvent | null> {
   const res = await fetch(`${API_URL}/api/events/${encodeURIComponent(slug)}`, {
-    next: { revalidate: 300 },
+    next: { revalidate: 300, tags: [CONTENT_TAGS.events] },
     headers: getHeaders(),
   })
   if (res.status === 404) return null
