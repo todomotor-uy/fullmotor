@@ -2,6 +2,7 @@ import { Classified } from '@/types/classified'
 import { ApiError } from './api-error'
 import { getStoredToken } from './auth'
 import type { Role } from './permissions'
+import type { SiteEvent } from '@/types/event'
 import { tenantHeader } from '@/lib/tenant'
 
 /**
@@ -388,4 +389,53 @@ export function slugFromTitle(title: string): string {
     .replace(/[^a-z0-9]+/g, '-')
     .replace(/^-+|-+$/g, '')
     .slice(0, 80)
+}
+
+// ============================================
+// Events
+// ============================================
+
+export interface EventInput {
+  title?: string
+  slug?: string
+  description?: string
+  /** RFC 3339, or YYYY-MM-DD for all-day. */
+  startsAt?: string
+  /** "" clears it. */
+  endsAt?: string
+  allDay?: boolean
+  location?: string
+  city?: string
+  url?: string
+  coverImage?: string
+  tags?: string[]
+  /** The linked blog post's slug; "" unlinks. */
+  blogPostSlug?: string
+  status?: 'draft' | 'published'
+}
+
+export interface AdminEventRow {
+  event: SiteEvent
+  /** Set even while the linked post is a draft. */
+  blogPostSlug?: string
+}
+
+export async function fetchEventsAdmin(status: 'all' | 'draft' | 'published' = 'all'): Promise<AdminEventRow[]> {
+  const response = await opsFetch(`/events?status=${status}`)
+  const body: { data: AdminEventRow[] } = await response.json()
+  return body.data
+}
+
+export async function createEvent(input: EventInput): Promise<SiteEvent> {
+  const response = await opsFetch('/events', { method: 'POST', body: JSON.stringify(input) })
+  return (await response.json()).data
+}
+
+export async function updateEvent(id: string, input: EventInput): Promise<SiteEvent> {
+  const response = await opsFetch(`/events/${id}`, { method: 'PATCH', body: JSON.stringify(input) })
+  return (await response.json()).data
+}
+
+export async function deleteEvent(id: string): Promise<void> {
+  await opsFetch(`/events/${id}`, { method: 'DELETE' })
 }

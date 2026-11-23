@@ -6,6 +6,8 @@ import { getAllDealerships } from '@/lib/dealerships-api'
 import { CATEGORIES } from '@/types/vehicle'
 import { absoluteUrl, SITE_URL } from '@/lib/site'
 import { IS_NAUTI } from '@/lib/tenant'
+import { fetchEvents } from '@/lib/events'
+import type { SiteEvent } from '@/types/event'
 import { CATALOG_PER_PAGE, catalogHref, groupByBrand } from '@/lib/catalog'
 
 // Refresh the sitemap without a rebuild — new articles and listings show up
@@ -158,13 +160,21 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
  * that one stays exactly as it is.
  */
 async function nautiSitemap(): Promise<MetadataRoute.Sitemap> {
-  const [posts, classifieds, dealerships] = await Promise.all([
+  const [posts, classifieds, dealerships, events] = await Promise.all([
     getAllBlogPosts(),
     getAllIndexableClassifieds(),
     getAllDealerships(),
+    fetchEvents({ limit: 500 }).catch((): SiteEvent[] => []),
   ])
   const now = new Date()
   return [
+    { url: absoluteUrl('/eventos'), lastModified: now, changeFrequency: 'daily', priority: 0.8 },
+    ...events.map((e) => ({
+      url: absoluteUrl(`/eventos/${e.slug}`),
+      lastModified: now,
+      changeFrequency: 'weekly' as const,
+      priority: 0.6,
+    })),
     { url: SITE_URL, lastModified: now, changeFrequency: 'daily', priority: 1.0 },
     { url: absoluteUrl('/clasificados'), lastModified: now, changeFrequency: 'daily', priority: 0.9 },
     { url: absoluteUrl('/blog'), lastModified: now, changeFrequency: 'daily', priority: 0.8 },

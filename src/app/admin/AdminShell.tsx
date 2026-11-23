@@ -12,9 +12,10 @@ import { PERM, can, isStaff, type Permission } from '@/lib/permissions'
  * Each section with the permission it needs. A section the operator's role
  * does not cover is not shown; the API would answer 403 anyway.
  */
-const ALL_SECTIONS: { href: string; label: string; permission: Permission; catalog?: boolean }[] = [
+const ALL_SECTIONS: { href: string; label: string; permission: Permission; catalog?: boolean; events?: boolean }[] = [
   { href: '/admin', label: 'Imágenes', permission: PERM.catalog, catalog: true },
   { href: '/admin/blog', label: SITE_CONFIG.brand === 'nauti' ? 'Novedades' : 'Blog', permission: PERM.blog },
+  { href: '/admin/eventos', label: 'Eventos', permission: PERM.events, events: true },
   { href: '/admin/usuarios', label: 'Usuarios', permission: PERM.users },
   { href: '/admin/comentarios', label: 'Comentarios', permission: PERM.moderation },
   { href: '/admin/clasificados', label: 'Clasificados', permission: PERM.moderation },
@@ -22,7 +23,9 @@ const ALL_SECTIONS: { href: string; label: string; permission: Permission; catal
 ]
 
 // Catalogue screens only exist on sites with a catalogue.
-const SITE_SECTIONS = ALL_SECTIONS.filter((s) => !s.catalog || SITE_CONFIG.features.catalog)
+const SITE_SECTIONS = ALL_SECTIONS.filter(
+  (s) => (!s.catalog || SITE_CONFIG.features.catalog) && (!s.events || SITE_CONFIG.features.events)
+)
 
 function Shell({ children }: { children: React.ReactNode }) {
   const { user } = useAuth()

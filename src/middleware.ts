@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server'
 import type { NextRequest } from 'next/server'
 import { VEHICLE_SLUG_REDIRECTS } from '@/lib/vehicle-slug-redirects'
-import { CATALOG_ONLY_PREFIXES, SITE_CONFIG } from '@/lib/tenant'
+import { CATALOG_ONLY_PREFIXES, EVENTS_PREFIXES, SITE_CONFIG } from '@/lib/tenant'
 
 /**
  * Permanent redirects for vehicle slugs normalised on 2026-08-05.
@@ -20,7 +20,10 @@ export function middleware(request: NextRequest) {
 
   // Sites without the vehicle catalogue answer 404 for its routes, rather
   // than rendering pages that would fetch another site's market data.
-  if (!SITE_CONFIG.features.catalog && isCatalogPath(pathname)) {
+  if (!SITE_CONFIG.features.catalog && matchesPrefix(pathname, CATALOG_ONLY_PREFIXES)) {
+    return NextResponse.rewrite(new URL('/__not-found', request.url))
+  }
+  if (!SITE_CONFIG.features.events && matchesPrefix(pathname, EVENTS_PREFIXES)) {
     return NextResponse.rewrite(new URL('/__not-found', request.url))
   }
 
@@ -43,8 +46,8 @@ export function middleware(request: NextRequest) {
   return NextResponse.next()
 }
 
-function isCatalogPath(pathname: string): boolean {
-  return CATALOG_ONLY_PREFIXES.some((p) =>
+function matchesPrefix(pathname: string, prefixes: string[]): boolean {
+  return prefixes.some((p) =>
     p.endsWith('/') ? pathname.startsWith(p) : pathname === p || pathname.startsWith(p + '/')
   )
 }
@@ -60,5 +63,6 @@ export const config = {
     '/compare/:path*',
     '/guia-de-compra/:path*',
     '/guardados/:path*',
+    '/eventos/:path*',
   ],
 }

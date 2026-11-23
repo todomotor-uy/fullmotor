@@ -6,6 +6,9 @@ import {
 } from 'lucide-react'
 import { fetchClassifieds } from '@/lib/classifieds-api'
 import { fetchBlogTagCounts, getLatestBlogPosts } from '@/lib/blog'
+import { fetchEvents } from '@/lib/events'
+import type { SiteEvent } from '@/types/event'
+import EventListItem from '../EventListItem'
 import { blogTagsHref, type TagCount } from '@/lib/blog-tags'
 import { formatDate } from '@/lib/format'
 import { SITE_CONFIG } from '@/lib/tenant'
@@ -38,12 +41,13 @@ const CATEGORY_ICONS: Partial<Record<ClassifiedCategory, LucideIcon>> = {
  * the hero and categories are worth serving on their own.
  */
 export default async function NautiHome() {
-  const [classifieds, posts, tagCounts] = await Promise.all([
+  const [classifieds, posts, tagCounts, upcoming] = await Promise.all([
     fetchClassifieds({ limit: 8 })
       .then((r) => r.data)
       .catch((): Classified[] => []),
     getLatestBlogPosts(6).catch((): BlogPost[] => []),
     fetchBlogTagCounts().catch((): TagCount[] => []),
+    fetchEvents({ limit: 3 }).catch((): SiteEvent[] => []),
   ])
 
   const organizationJsonLd = {
@@ -125,6 +129,30 @@ export default async function NautiHome() {
           <div className="nh-empty">
             <strong>Pronto, las primeras notas</strong>
             Estamos preparando contenido sobre la náutica uruguaya.
+          </div>
+        )}
+      </section>
+
+      <section className="h-sect">
+        <div className="h-sect__head">
+          <div>
+            <h2>Próximos eventos</h2>
+            <p>Regatas, salidas y encuentros que se vienen</p>
+          </div>
+          <Link href="/eventos" className="h-link">
+            Ver calendario <ArrowRight size={16} aria-hidden="true" />
+          </Link>
+        </div>
+        {upcoming.length > 0 ? (
+          <div className="ev-list">
+            {upcoming.map((e) => (
+              <EventListItem key={e.id} event={e} />
+            ))}
+          </div>
+        ) : (
+          <div className="nh-empty">
+            <strong>Todavía no hay eventos en el calendario</strong>
+            Pronto vas a encontrar acá las regatas y encuentros de la temporada.
           </div>
         )}
       </section>
