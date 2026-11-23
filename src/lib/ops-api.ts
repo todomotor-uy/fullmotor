@@ -4,6 +4,7 @@ import { getStoredToken } from './auth'
 import type { Role } from './permissions'
 import type { SiteEvent } from '@/types/event'
 import { tenantHeader } from '@/lib/tenant'
+import { refreshPublicContent } from './content-cache'
 
 /**
  * The operator side of the API — `/api/ops/*`, behind the admin role on a real
@@ -52,6 +53,15 @@ async function opsFetch(path: string, init: RequestInit = {}): Promise<Response>
   })
   if (!response.ok) await handleApiError(response)
   return response
+}
+
+/**
+ * After a write to posts or events, expire this site's cached copies of both:
+ * a post shows its events and an event its post, so either change can show on
+ * the other's pages.
+ */
+function refreshEditorial(): Promise<void> {
+  return refreshPublicContent(getStoredToken(), 'blog', 'events')
 }
 
 export interface PaginationMeta {
@@ -326,6 +336,7 @@ export async function createBlogPost(payload: CreateBlogPostPayload): Promise<Ad
     method: 'POST',
     body: JSON.stringify(payload),
   })
+  await refreshEditorial()
   const json = await response.json()
   // The blog handlers wrap single resources in { data }, unlike the moderation
   // ones. Tolerating both keeps this working if that is ever unified.
@@ -340,12 +351,14 @@ export async function updateBlogPost(
     method: 'PATCH',
     body: JSON.stringify(patch),
   })
+  await refreshEditorial()
   const json = await response.json()
   return json.data ?? json
 }
 
 export async function deleteBlogPost(slug: string): Promise<void> {
   await opsFetch(`/blog/${encodeURIComponent(slug)}`, { method: 'DELETE' })
+  await refreshEditorial()
 }
 
 /**
@@ -430,14 +443,17 @@ export async function fetchEventsAdmin(status: 'all' | 'draft' | 'published' = '
 
 export async function createEvent(input: EventInput): Promise<SiteEvent> {
   const response = await opsFetch('/events', { method: 'POST', body: JSON.stringify(input) })
+  await refreshEditorial()
   return (await response.json()).data
 }
 
 export async function updateEvent(id: string, input: EventInput): Promise<SiteEvent> {
   const response = await opsFetch(`/events/${id}`, { method: 'PATCH', body: JSON.stringify(input) })
+  await refreshEditorial()
   return (await response.json()).data
 }
 
 export async function deleteEvent(id: string): Promise<void> {
   await opsFetch(`/events/${id}`, { method: 'DELETE' })
+  await refreshEditorial()
 }
