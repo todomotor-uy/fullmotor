@@ -1,157 +1,41 @@
-# TodoMotor
+# Vitri Web
 
-Plataforma de fichas tecnicas de vehiculos en Uruguay. 100% estatica, sin base de datos.
+El front de los portales que corren sobre [Vitri API](https://github.com/todomotor-uy/vitri-api): Novedades, clasificados y comercios, eventos y, donde corresponde, el catálogo de vehículos. Hoy sirve **TodoMotor** (todomotor.uy) y **Nauti**.
 
-## Inicio rapido
+Es una sola app de Next.js. Cada sitio es un proyecto de Vercel con el mismo repo y su propio `NEXT_PUBLIC_TENANT`:
+
+| Sitio | Proyecto de Vercel | `NEXT_PUBLIC_TENANT` |
+|---|---|---|
+| TodoMotor | `fullmotor` | `todomotor-uy` (o vacío) |
+| Nauti | `nauti` | `nauti-uy` |
+
+La configuración de cada sitio (nombre, textos de SEO, menú, funciones activas, logo) está en [`src/lib/tenant.ts`](src/lib/tenant.ts). Lo que es del backend (moneda, dominio, hashtag, rubros) vive en la fila del sitio en la API.
+
+## Desarrollo
 
 ```bash
 npm install
+cp .env.example .env.local   # completar NEXT_PUBLIC_API_URL y el resto
 npm run dev
 ```
 
-Abrir [http://localhost:3000](http://localhost:3000)
+Para levantar Nauti en local, agregar `NEXT_PUBLIC_TENANT=nauti-uy` a `.env.local`.
 
-## Estructura
+## Variables de entorno
 
-```
-fullmotor/
-├── data/
-│   └── vehicles.json      # Base de datos de vehiculos
-├── src/
-│   ├── app/               # Paginas Next.js
-│   ├── lib/
-│   │   └── data.ts        # Funciones para leer vehicles.json
-│   └── types/
-│       └── vehicle.ts     # Tipos TypeScript
-└── public/                # Assets estaticos
-```
+Ver [`.env.example`](.env.example). Las principales:
 
-## Vercel Blob - Almacenamiento de Imágenes
-
-Este proyecto usa Vercel Blob para almacenar las imágenes de los vehículos.
-
-### Configuración
-
-1. Crear un Blob Store en Vercel:
-   - Ve a tu dashboard de Vercel → Storage → Create Database
-   - Selecciona "Blob" y crea tu store
-   - Copia el token `BLOB_READ_WRITE_TOKEN`
-
-2. Agregar el token a las variables de entorno:
-   ```bash
-   # .env.local (desarrollo)
-   BLOB_READ_WRITE_TOKEN=vercel_blob_rw_XXXXXXXXXXXXXXXX
-   ```
-
-3. En producción, Vercel lo configura automáticamente cuando conectas el Blob Store a tu proyecto.
-
-### Subir Imágenes
-
-1. Accede a `/admin` en tu sitio
-2. Selecciona un vehículo del dropdown
-3. Elige una imagen (JPG, PNG, WEBP recomendado)
-4. Click en "Subir Imagen"
-5. Copia la URL generada y agrégala al JSON del vehículo:
-   ```json
-   {
-     "id": "...",
-     "image": "https://xxxxx.public.blob.vercel-storage.com/...",
-     ...
-   }
-   ```
-
-### Recomendaciones para Imágenes
-
-- **Formato:** WEBP o JPG
-- **Tamaño:** 1200x750px (ratio 16:10)
-- **Peso:** < 200KB optimizado
-- **Contenido:** Foto del vehículo en ángulo 3/4 frontal
-
-## Agregar vehiculos
-
-Editar `data/vehicles.json` y agregar un nuevo objeto al array:
-
-```json
-{
-  "id": "marca-modelo-año-version",
-  "slug": "marca-modelo-año-version",
-  "brand": "Marca",
-  "model": "Modelo",
-  "year": 2026,
-  "version": "Version (opcional)",
-  "category": "autos|suvs|camionetas|motos",
-  "subcategory": "sedan|suv|pickup|naked|etc (opcional)",
-  "priceUSD": 30000,
-  "priceUYU": 1260000,
-  "engineCc": 2000,
-  "engineHp": 150,
-  "engineTorque": 200,
-  "fuelType": "nafta|diesel|electrico|hibrido",
-  "transmission": "manual|automatica|cvt",
-  "gears": 6,
-  "length": 4500,
-  "width": 1800,
-  "height": 1400,
-  "wheelbase": 2700,
-  "trunkCapacity": 450,
-  "fuelTank": 50,
-  "weight": 1400,
-  "safetyFeatures": ["ABS", "Airbags", "ESP"],
-  "equipment": ["Pantalla tactil", "Apple CarPlay"],
-  "images": [],
-  "description": "Descripcion del vehiculo."
-}
-```
-
-### Campos requeridos
-
-- `id`: Identificador unico
-- `slug`: URL amigable (igual que id)
-- `brand`: Marca del vehiculo
-- `model`: Modelo
-- `year`: Año
-- `category`: Una de: `autos`, `suvs`, `camionetas`, `motos`
-- `safetyFeatures`: Array de caracteristicas de seguridad (puede estar vacio)
-- `equipment`: Array de equipamiento (puede estar vacio)
-- `images`: Array de URLs de imagenes (puede estar vacio)
-
-### Campos opcionales
-
-Todos los demas campos son opcionales. Si no aplican (ej: `trunkCapacity` en motos), usar `null`.
-
-## Categorias disponibles
-
-| ID | Nombre | Descripcion |
-|---|---|---|
-| `autos` | Autos | Sedans, hatchbacks, coupes |
-| `suvs` | SUVs | SUVs y crossovers |
-| `camionetas` | Camionetas | Pickups |
-| `motos` | Motos | Todas las motocicletas |
-
-## Build para produccion
-
-```bash
-npm run build
-npm run start
-```
+- `NEXT_PUBLIC_API_URL`: la API (producción: `https://api.todomotor.uy`).
+- `NEXT_PUBLIC_TENANT`: qué sitio es este deploy.
+- `NEXT_PUBLIC_SITE_URL`: el dominio canónico del sitio.
+- `NEXT_PUBLIC_GOOGLE_CLIENT_ID`: el cliente de Google Sign-In del sitio.
+- `BLOB_READ_WRITE_TOKEN`: Vercel Blob, donde se guardan las imágenes.
+- Secretos de servidor: `API_SECRET_KEY`, `UPLOAD_API_KEY`, `REVALIDATE_SECRET`, `INDEXNOW_TRIGGER_SECRET`, `INDEXNOW_KEY`.
 
 ## Deploy
 
-Al ser 100% estatico, se puede deployar en:
+Vercel deploya cada proyecto solo cuando se mergea a `master`.
 
-- Vercel (recomendado)
-- Netlify
-- GitHub Pages
-- Cualquier hosting estatico
+## Tecnologías
 
-```bash
-npm run build
-# Los archivos quedan en .next/
-```
-
-## Tecnologias
-
-- Next.js 16
-- React 19
-- TypeScript
-- Tailwind CSS 4
+Next.js 16, React 19, TypeScript, Tailwind CSS 4, TipTap (editor de Novedades y páginas de comercios), Leaflet (mapas).
