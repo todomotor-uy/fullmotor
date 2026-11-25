@@ -16,7 +16,6 @@ import { ArrowLeft, Newspaper } from 'lucide-react'
 import { fetchBlogPostBySlug, fetchBlogPosts, getAllBlogPosts } from '@/lib/blog'
 import { getAllVehicles } from '@/lib/data'
 import { findMentionedVehicles } from '@/lib/blog-mentions'
-import { SITE_CONFIG } from '@/lib/tenant'
 import { vehicleToCardProps } from '@/lib/vehicle-card'
 import { VehicleCard } from '@/app/components/ui/VehicleCard'
 import { absoluteUrl, SITE_LOGO, SITE_NAME, SITE_URL } from '@/lib/site'
@@ -26,6 +25,8 @@ import CommentsSection from '@/app/components/CommentsSection'
 import BlogCard from '@/app/components/BlogCard'
 import { Badge } from '@/app/components/ui/Badge'
 import { blogTagsHref } from '@/lib/blog-tags'
+import { getSiteSettings } from '@/lib/site-settings.server'
+import { hasModule } from '@/lib/site-settings'
 import { fetchEvents } from '@/lib/events'
 import type { SiteEvent } from '@/types/event'
 import EventListItem from '@/app/components/EventListItem'
@@ -90,10 +91,11 @@ export default async function BlogPostPage({ params }: { params: Params }) {
   // and this page is prerendered, so the match runs at build time.
   // Only sites with a catalogue link articles to vehicle pages.
   // The calendar entries this post tells the story of.
-  const linkedEvents = SITE_CONFIG.features.events
+  const settings = await getSiteSettings()
+  const linkedEvents = hasModule(settings, 'events')
     ? await fetchEvents({ post: slug }).catch((): SiteEvent[] => [])
     : []
-  const mentionedVehicles = SITE_CONFIG.features.catalog
+  const mentionedVehicles = hasModule(settings, 'catalog')
     ? findMentionedVehicles(post.contentHtml, await getAllVehicles())
     : []
 

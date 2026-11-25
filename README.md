@@ -9,7 +9,10 @@ Es una sola app de Next.js. Cada sitio es un proyecto de Vercel con el mismo rep
 | TodoMotor | `fullmotor` | `todomotor-uy` (o vacío) |
 | Nauti | `nauti` | `nauti-uy` |
 
-La configuración de cada sitio (nombre, textos de SEO, menú, funciones activas, logo) está en [`src/lib/tenant.ts`](src/lib/tenant.ts). Lo que es del backend (moneda, dominio, hashtag, rubros) vive en la fila del sitio en la API.
+La configuración de cada sitio está repartida en dos lugares:
+
+- **En la API**, en la fila del sitio, editable desde **/admin/sitio**: qué módulos usa (Novedades, Eventos, Clasificados, Comercios, Catálogo de vehículos, Publicidad), sus rubros de clasificados y cuánto duran los avisos. El front la lee en [`src/lib/site-settings.server.ts`](src/lib/site-settings.server.ts). Un módulo apagado desaparece del menú y sus páginas dan 404. También viven ahí la moneda, el dominio y el hashtag.
+- **En [`src/lib/tenant.ts`](src/lib/tenant.ts)**: nombre, textos de SEO, menú y logo. Si la API no responde, los módulos y rubros también salen de acá.
 
 ## Desarrollo
 

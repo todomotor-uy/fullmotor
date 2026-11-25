@@ -4,11 +4,11 @@ import { useRouter, useSearchParams } from 'next/navigation'
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { Search, X } from 'lucide-react'
 import {
-  CLASSIFIED_CATEGORIES,
   ClassifiedFacets,
   fuelTypeLabels,
   transmissionLabels,
 } from '@/types/classified'
+import { useCategories } from './SiteSettingsProvider'
 import { formatNumber } from '@/lib/format'
 import { Button } from './ui/Button'
 import { Input } from './ui/Input'
@@ -37,6 +37,7 @@ const TYPING_DEBOUNCE_MS = 500
  * actually applied.
  */
 export default function ClassifiedToolbar({ facets }: { facets: ClassifiedFacets }) {
+  const categories = useCategories()
   const router = useRouter()
   const searchParams = useSearchParams()
 
@@ -95,7 +96,7 @@ export default function ClassifiedToolbar({ facets }: { facets: ClassifiedFacets
   const chips: { key: string; label: string; clear: Record<string, null> }[] = []
   if (currentQ) chips.push({ key: 'q', label: `“${currentQ}”`, clear: { q: null } })
 
-  const categoryLabel = CLASSIFIED_CATEGORIES.find((c) => c.id === current('category'))?.label
+  const categoryLabel = categories.find((c) => c.key === current('category'))?.label
   if (categoryLabel) chips.push({ key: 'category', label: categoryLabel, clear: { category: null } })
 
   if (current('department'))

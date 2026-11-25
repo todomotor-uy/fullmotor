@@ -3,10 +3,11 @@ import { CATEGORIES } from '@/types/vehicle'
 import { Mark } from './components/ui/Logo'
 import { ButtonLink } from './components/ui/Button'
 import { IS_NAUTI } from '@/lib/tenant'
-import { NAUTICAL_CATEGORIES } from '@/types/classified'
+import { getSiteSettings } from '@/lib/site-settings.server'
 import { NautiMark } from './components/nauti/NautiLogo'
 
-export default function NotFound() {
+export default async function NotFound() {
+  const settings = await getSiteSettings()
   return (
     <div className="max-w-2xl mx-auto px-4 py-24 text-center">
       <div className="flex justify-center mb-6">
@@ -23,8 +24,8 @@ export default function NotFound() {
         <p className="text-sm text-muted mb-4">O explorá por categoría:</p>
         <div className="flex flex-wrap justify-center gap-3">
           {IS_NAUTI
-            ? NAUTICAL_CATEGORIES.map((cat) => (
-                <Link key={cat.id} href={`/clasificados?category=${cat.id}`} className="tm-chip">
+            ? settings.categories.map((cat) => (
+                <Link key={cat.key} href={`/clasificados?category=${cat.key}`} className="tm-chip">
                   {cat.label}
                 </Link>
               ))

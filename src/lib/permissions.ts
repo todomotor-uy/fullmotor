@@ -11,6 +11,7 @@ export const PERM = {
   dealerships: 'dealerships.review',
   users: 'users.manage',
   catalog: 'catalog.manage',
+  site: 'site.manage',
 } as const
 
 export type Permission = (typeof PERM)[keyof typeof PERM]

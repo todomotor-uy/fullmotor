@@ -13,7 +13,8 @@ import { blogTagsHref, type TagCount } from '@/lib/blog-tags'
 import { formatDate } from '@/lib/format'
 import { SITE_CONFIG } from '@/lib/tenant'
 import { SITE_LOGO, SITE_NAME, SITE_URL } from '@/lib/site'
-import { NAUTICAL_CATEGORIES, type Classified, type ClassifiedCategory } from '@/types/classified'
+import type { Classified, ClassifiedCategory } from '@/types/classified'
+import { getSiteSettings } from '@/lib/site-settings.server'
 import type { BlogPost } from '@/types/blog'
 import ClassifiedCard from '../ClassifiedCard'
 import JsonLd from '../JsonLd'
@@ -41,6 +42,7 @@ const CATEGORY_ICONS: Partial<Record<ClassifiedCategory, LucideIcon>> = {
  * the hero and categories are worth serving on their own.
  */
 export default async function NautiHome() {
+  const settings = await getSiteSettings()
   const [classifieds, posts, tagCounts, upcoming] = await Promise.all([
     fetchClassifieds({ limit: 8 })
       .then((r) => r.data)
@@ -168,10 +170,10 @@ export default async function NautiHome() {
           </div>
         </div>
         <div className="nh-cats">
-          {NAUTICAL_CATEGORIES.map((c) => {
-            const Icon = CATEGORY_ICONS[c.id] ?? ShipWheel
+          {settings.categories.map((c) => {
+            const Icon = CATEGORY_ICONS[c.key] ?? ShipWheel
             return (
-              <Link key={c.id} href={`/clasificados?category=${c.id}`} className="nh-cat">
+              <Link key={c.key} href={`/clasificados?category=${c.key}`} className="nh-cat">
                 <Icon size={26} aria-hidden="true" />
                 <span>{c.label}</span>
               </Link>

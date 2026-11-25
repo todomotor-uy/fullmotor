@@ -5,12 +5,13 @@ import type { Metadata } from 'next'
 import { MapPin } from 'lucide-react'
 import { fetchClassifiedById, fetchClassifiedFacets } from '@/lib/classifieds-api'
 import {
-  categoryLabels,
   fuelTypeLabels,
   transmissionLabels,
   type Classified,
 } from '@/types/classified'
 import { formatNumber, formatPrice, normalizeCurrency } from '@/lib/format'
+import { getSiteSettings } from '@/lib/site-settings.server'
+import { categoryLabel } from '@/lib/site-settings'
 import { absoluteUrl, SITE_URL } from '@/lib/site'
 import JsonLd from '../../components/JsonLd'
 import CategoryBadge from '../../components/CategoryBadge'
@@ -101,6 +102,7 @@ export default async function ClassifiedDetailPage({ params }: PageProps) {
   const { id } = await params
   const classified = await getClassified(id)
   if (!classified) notFound()
+  const settings = await getSiteSettings()
 
   // Cached for an hour, so this is effectively free. Only the API can turn
   // "mercedes-benz" back into "Mercedes-Benz"; the label is not derivable.
@@ -135,7 +137,7 @@ export default async function ClassifiedDetailPage({ params }: PageProps) {
     '@type': 'Product',
     name: classified.title,
     description: classified.description,
-    category: categoryLabels[classified.category],
+    category: categoryLabel(settings, classified.category),
     ...(classified.brand && { brand: { '@type': 'Brand', name: brandLabel(classified.brand) } }),
     ...(classified.model && { model: classified.model }),
     ...(classified.year && { productionDate: String(classified.year) }),
@@ -185,7 +187,7 @@ export default async function ClassifiedDetailPage({ params }: PageProps) {
       <nav className="dt__crumb mb-4">
         <Link href="/clasificados">Clasificados</Link>
         <span>/</span>
-        <span>{categoryLabels[classified.category]}</span>
+        <span>{categoryLabel(settings, classified.category)}</span>
       </nav>
 
       <div className="grid lg:grid-cols-3 gap-6 items-start">

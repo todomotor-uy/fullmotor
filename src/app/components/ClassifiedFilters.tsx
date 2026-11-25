@@ -4,12 +4,12 @@ import { useRouter, useSearchParams } from 'next/navigation'
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { SlidersHorizontal } from 'lucide-react'
 import {
-  CLASSIFIED_CATEGORIES,
   ClassifiedCategory,
   ClassifiedFacets,
   fuelTypeLabels,
   transmissionLabels,
 } from '@/types/classified'
+import { useCategories } from './SiteSettingsProvider'
 import { Button } from './ui/Button'
 import { Select } from './ui/Select'
 import { IS_NAUTI } from '@/lib/tenant'
@@ -37,6 +37,7 @@ const TYPING_DEBOUNCE_MS = 500
  * because stacked it would still fill a phone screen on its own.
  */
 export default function ClassifiedFilters({ facets }: { facets: ClassifiedFacets }) {
+  const categories = useCategories()
   const router = useRouter()
   const searchParams = useSearchParams()
 
@@ -143,12 +144,12 @@ export default function ClassifiedFilters({ facets }: { facets: ClassifiedFacets
             >
               Todas
             </button>
-            {CLASSIFIED_CATEGORIES.map((c) => (
+            {categories.map((c) => (
               <button
-                key={c.id}
+                key={c.key}
                 type="button"
-                className={currentCategory === c.id ? 'on' : ''}
-                onClick={() => update({ category: c.id })}
+                className={currentCategory === c.key ? 'on' : ''}
+                onClick={() => update({ category: c.key })}
               >
                 {c.label}
               </button>

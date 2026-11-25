@@ -2,7 +2,8 @@ import { Suspense } from 'react'
 import type { Metadata } from 'next'
 import { Plus } from 'lucide-react'
 import { fetchClassifieds, fetchClassifiedFacets } from '@/lib/classifieds-api'
-import { CLASSIFIED_CATEGORIES, isClassifiedCategory } from '@/types/classified'
+import { getSiteSettings } from '@/lib/site-settings.server'
+import { categoryLabel, isCategory } from '@/lib/site-settings'
 import { absoluteUrl } from '@/lib/site'
 import JsonLd from '../components/JsonLd'
 import { ButtonLink } from '../components/ui/Button'
@@ -49,8 +50,9 @@ export async function generateMetadata({ searchParams }: PageProps): Promise<Met
   const hasFilters = Boolean(category || city || department || (page && page !== '1'))
 
   if (hasFilters) {
-    const categoryLabel = CLASSIFIED_CATEGORIES.find(c => c.id === category)?.label
-    const parts = [categoryLabel, city || department].filter(Boolean).join(' en ')
+    const settings = await getSiteSettings()
+    const label = category && isCategory(settings, category) ? categoryLabel(settings, category) : undefined
+    const parts = [label, city || department].filter(Boolean).join(' en ')
     const title = parts ? `Clasificados de ${parts}` : BASE_TITLE
 
     return {
@@ -79,6 +81,7 @@ export async function generateMetadata({ searchParams }: PageProps): Promise<Met
 
 export default async function ClassifiedsPage({ searchParams }: PageProps) {
   const params = await searchParams
+  const settings = await getSiteSettings()
   const page = parseInt(params.page || '1', 10)
   const limit = 12
   const hasFilters = Boolean(
@@ -114,7 +117,7 @@ export default async function ClassifiedsPage({ searchParams }: PageProps) {
       // An unknown category would otherwise reach the API, come back empty and
       // read as "there is nothing here" while the category select silently
       // reset itself to "Todas".
-      category: isClassifiedCategory(params.category) ? params.category : undefined,
+      category: isCategory(settings, params.category) ? params.category : undefined,
       city: params.city || undefined,
       department: params.department || undefined,
       q: params.q || undefined,

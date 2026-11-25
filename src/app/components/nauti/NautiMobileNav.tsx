@@ -3,9 +3,11 @@
 import Link from 'next/link'
 import { useState, useRef, useEffect } from 'react'
 import { Menu, X } from 'lucide-react'
-import { SITE_CONFIG } from '@/lib/tenant'
+import { useModule, useSiteNav } from '../SiteSettingsProvider'
 
 export default function NautiMobileNav() {
+  const nav = useSiteNav()
+  const classifieds = useModule('classifieds')
   const [open, setOpen] = useState(false)
   const ref = useRef<HTMLDivElement>(null)
 
@@ -31,10 +33,10 @@ export default function NautiMobileNav() {
 
       {open && (
         <nav className="k-menu" onClick={() => setOpen(false)}>
-          {SITE_CONFIG.nav.map((l) => (
+          {nav.map((l) => (
             <Link key={l.href} href={l.href}>{l.label}</Link>
           ))}
-          <Link href="/clasificados/nuevo">Publicar</Link>
+          {classifieds && <Link href="/clasificados/nuevo">Publicar</Link>}
         </nav>
       )}
     </div>

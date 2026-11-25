@@ -108,22 +108,6 @@ export const SITE_CONFIG: SiteConfig = TENANT_ID === 'nauti-uy' ? NAUTI : TODOMO
 
 export const IS_NAUTI = SITE_CONFIG.brand === 'nauti'
 
-/**
- * Route prefixes that only exist on sites with the vehicle catalogue. The
- * middleware answers 404 for them everywhere else.
- */
-/** Routes of the events calendar, served only where features.events is on. */
-export const EVENTS_PREFIXES = ['/eventos']
-
-export const CATALOG_ONLY_PREFIXES = [
-  '/vehiculos',
-  '/vehiculo/',
-  '/marcas',
-  '/compare',
-  '/guia-de-compra',
-  '/guardados',
-]
-
 /** What this site calls a business account, ready for running text. */
 export const BIZ = {
   one: SITE_CONFIG.dealershipLabel.singular.toLowerCase(),

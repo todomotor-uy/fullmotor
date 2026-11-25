@@ -7,6 +7,8 @@
 export const CONTENT_TAGS = {
   blog: 'blog',
   events: 'events',
+  /** The site's modules and categories (lib/site-settings.server.ts). */
+  site: 'site-settings',
 } as const
 
 export type ContentScope = keyof typeof CONTENT_TAGS
