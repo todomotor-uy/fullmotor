@@ -4,8 +4,8 @@ import { IS_NAUTI } from '@/lib/tenant'
 export default function manifest(): MetadataRoute.Manifest {
   if (IS_NAUTI) {
     return {
-      name: 'Nauti',
-      short_name: 'Nauti',
+      name: 'Cardinal Sur',
+      short_name: 'Cardinal Sur',
       description: 'Clasificados y noticias de la náutica uruguaya.',
       start_url: '/',
       display: 'standalone',

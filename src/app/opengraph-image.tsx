@@ -2,7 +2,7 @@ import { OG_SIZE, OG_CONTENT_TYPE, renderOgImage } from '@/lib/og'
 import { IS_NAUTI } from '@/lib/tenant'
 
 export const alt = IS_NAUTI
-  ? 'Nauti — Clasificados y noticias de la náutica uruguaya'
+  ? 'Cardinal Sur — Clasificados y noticias de la náutica uruguaya'
   : 'TodoMotor Uruguay — Fichas técnicas de vehículos'
 export const size = OG_SIZE
 export const contentType = OG_CONTENT_TYPE

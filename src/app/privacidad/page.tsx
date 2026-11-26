@@ -87,7 +87,7 @@ export default function PrivacidadPage() {
 
         <h2>Publicidad</h2>
         <p>
-          Los espacios publicitarios de {SITE_CONFIG.brand === 'nauti' ? 'Nauti' : 'TodoMotor'} son <strong>contextuales</strong>: el aviso que ves depende
+          Los espacios publicitarios de {SITE_CONFIG.shortName} son <strong>contextuales</strong>: el aviso que ves depende
           de la sección en la que estás, de la marca de la página o de las respuestas que diste en la guía de
           compra en ese momento. <strong>No armamos un perfil tuyo, no te seguimos entre sitios y no vendemos
           tus datos a nadie.</strong>

@@ -216,7 +216,7 @@ export default async function NautiHome() {
           <div>
             <h2>¿Tenés un comercio náutico, broker o guardería?</h2>
             <p>
-              Abrí tu vidriera en Nauti: todos tus avisos con tu marca, en un solo lugar y con fotos extra.
+              Abrí tu vidriera en {SITE_NAME}: todos tus avisos con tu marca, en un solo lugar y con fotos extra.
             </p>
           </div>
           <div className="nh-band__actions">

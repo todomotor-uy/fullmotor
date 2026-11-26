@@ -47,7 +47,7 @@ export default async function DealershipsPage() {
       <div className="mb-6">
         <h1 className="iv__title">{BIZ.Many}</h1>
         <p className="iv__count">
-          <span className="font-mono">{data.meta.total}</span> con vidriera en {IS_NAUTI ? 'Nauti' : 'TodoMotor'}
+          <span className="font-mono">{data.meta.total}</span> con vidriera en {SITE_CONFIG.shortName}
         </p>
       </div>
 

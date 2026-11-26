@@ -27,7 +27,7 @@ export default async function NautiFooter() {
             </div>
           )}
           <div className="k-footer__col">
-            <h5>Nauti</h5>
+            <h5>{SITE_CONFIG.name}</h5>
             {on('news') && <Link href="/blog">Novedades</Link>}
             {on('events') && <Link href="/eventos">Eventos</Link>}
             {on('classifieds') && <Link href="/clasificados">Todos los clasificados</Link>}
@@ -43,7 +43,7 @@ export default async function NautiFooter() {
       </div>
       <div className="k-footer__bottom">
         <div className="in">
-          <span>© {new Date().getFullYear()} Nauti · Náutica en Uruguay</span>
+          <span>© {new Date().getFullYear()} {SITE_CONFIG.name} · Náutica en Uruguay</span>
           <span>Hecho en Montevideo, Uruguay</span>
         </div>
       </div>
