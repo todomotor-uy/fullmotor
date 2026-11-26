@@ -1,9 +1,12 @@
 import Link from 'next/link'
 import { SITE_CONFIG } from '@/lib/tenant'
-import { NAUTICAL_CATEGORIES } from '@/types/classified'
+import { getSiteSettings } from '@/lib/site-settings.server'
+import { hasModule } from '@/lib/site-settings'
 import { NautiLogo } from './NautiLogo'
 
-export default function NautiFooter() {
+export default async function NautiFooter() {
+  const settings = await getSiteSettings()
+  const on = (m: Parameters<typeof hasModule>[1]) => hasModule(settings, m)
   const email = SITE_CONFIG.contactEmail
   return (
     <footer className="k-footer">
@@ -15,18 +18,21 @@ export default function NautiFooter() {
           </p>
         </div>
         <div className="k-footer__cols">
-          <div className="k-footer__col">
-            <h5>Clasificados</h5>
-            {NAUTICAL_CATEGORIES.slice(0, 5).map((c) => (
-              <Link key={c.id} href={`/clasificados?category=${c.id}`}>{c.label}</Link>
-            ))}
-          </div>
+          {on('classifieds') && (
+            <div className="k-footer__col">
+              <h5>Clasificados</h5>
+              {settings.categories.slice(0, 5).map((c) => (
+                <Link key={c.key} href={`/clasificados?category=${c.key}`}>{c.label}</Link>
+              ))}
+            </div>
+          )}
           <div className="k-footer__col">
             <h5>Nauti</h5>
-            <Link href="/blog">Novedades</Link>
-            <Link href="/clasificados">Todos los clasificados</Link>
-            <Link href="/clasificados/nuevo">Publicar un aviso</Link>
-            <Link href="/comercios">Comercios</Link>
+            {on('news') && <Link href="/blog">Novedades</Link>}
+            {on('events') && <Link href="/eventos">Eventos</Link>}
+            {on('classifieds') && <Link href="/clasificados">Todos los clasificados</Link>}
+            {on('classifieds') && <Link href="/clasificados/nuevo">Publicar un aviso</Link>}
+            {on('storefronts') && <Link href="/comercios">Comercios</Link>}
             <a href={`mailto:${email}`}>Escribinos</a>
           </div>
           <div className="k-footer__col">

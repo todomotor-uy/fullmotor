@@ -5,6 +5,7 @@ import type { Role } from './permissions'
 import type { SiteEvent } from '@/types/event'
 import { tenantHeader } from '@/lib/tenant'
 import { refreshPublicContent } from './content-cache'
+import type { CategoryOption, ModuleName } from './site-settings'
 
 /**
  * The operator side of the API — `/api/ops/*`, behind the admin role on a real
@@ -472,4 +473,41 @@ export async function updateEvent(id: string, input: EventInput): Promise<SiteEv
 export async function deleteEvent(id: string): Promise<void> {
   await opsFetch(`/events/${id}`, { method: 'DELETE' })
   await refreshEditorial()
+}
+
+// ============================================
+// Site settings
+// ============================================
+
+export interface AdminSiteSettings {
+  tenantId: string
+  name: string
+  modules: ModuleName[]
+  availableModules: ModuleName[]
+  categories: CategoryOption[]
+  /** Listings per category key, deleted ones aside. A used key cannot be removed. */
+  categoryUsage: Record<string, number>
+  listingDays: number
+  storefrontListingsNeverExpire: boolean
+  paidListings: boolean
+}
+
+export interface SiteSettingsInput {
+  modules?: ModuleName[]
+  categories?: CategoryOption[]
+  listingDays?: number
+  storefrontListingsNeverExpire?: boolean
+}
+
+export async function fetchSiteSettings(): Promise<AdminSiteSettings> {
+  const response = await opsFetch('/site')
+  return (await response.json()).data
+}
+
+/** Saves, then expires the site's cached copy so pages pick it up at once. */
+export async function updateSiteSettings(input: SiteSettingsInput): Promise<AdminSiteSettings> {
+  const response = await opsFetch('/site', { method: 'PATCH', body: JSON.stringify(input) })
+  const data = (await response.json()).data
+  await refreshPublicContent(getStoredToken(), 'site')
+  return data
 }

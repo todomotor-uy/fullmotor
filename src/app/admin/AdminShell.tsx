@@ -7,31 +7,33 @@ import RequireAuth from '../components/RequireAuth'
 import { useAuth } from '../components/AuthProvider'
 import { BIZ, SITE_CONFIG } from '@/lib/tenant'
 import { PERM, can, isStaff, type Permission } from '@/lib/permissions'
+import type { ModuleName } from '@/lib/site-settings'
+import { useSiteSettings } from '../components/SiteSettingsProvider'
 
 /**
- * Each section with the permission it needs. A section the operator's role
- * does not cover is not shown; the API would answer 403 anyway.
+ * Each section with the permission it needs and the module it belongs to. A
+ * section the operator's role does not cover, or whose module the site has
+ * switched off, is not shown; the API would answer 403 or 404 anyway.
  */
-const ALL_SECTIONS: { href: string; label: string; permission: Permission; catalog?: boolean; events?: boolean }[] = [
-  { href: '/admin', label: 'Imágenes', permission: PERM.catalog, catalog: true },
-  { href: '/admin/blog', label: SITE_CONFIG.brand === 'nauti' ? 'Novedades' : 'Blog', permission: PERM.blog },
-  { href: '/admin/eventos', label: 'Eventos', permission: PERM.events, events: true },
+const ALL_SECTIONS: { href: string; label: string; permission: Permission; module?: ModuleName }[] = [
+  { href: '/admin', label: 'Imágenes', permission: PERM.catalog, module: 'catalog' },
+  { href: '/admin/blog', label: SITE_CONFIG.brand === 'nauti' ? 'Novedades' : 'Blog', permission: PERM.blog, module: 'news' },
+  { href: '/admin/eventos', label: 'Eventos', permission: PERM.events, module: 'events' },
   { href: '/admin/usuarios', label: 'Usuarios', permission: PERM.users },
   { href: '/admin/comentarios', label: 'Comentarios', permission: PERM.moderation },
-  { href: '/admin/clasificados', label: 'Clasificados', permission: PERM.moderation },
-  { href: '/admin/comercios', label: BIZ.Many, permission: PERM.dealerships },
+  { href: '/admin/clasificados', label: 'Clasificados', permission: PERM.moderation, module: 'classifieds' },
+  { href: '/admin/comercios', label: BIZ.Many, permission: PERM.dealerships, module: 'storefronts' },
+  { href: '/admin/sitio', label: 'Sitio', permission: PERM.site },
 ]
-
-// Catalogue screens only exist on sites with a catalogue.
-const SITE_SECTIONS = ALL_SECTIONS.filter(
-  (s) => (!s.catalog || SITE_CONFIG.features.catalog) && (!s.events || SITE_CONFIG.features.events)
-)
 
 function Shell({ children }: { children: React.ReactNode }) {
   const { user } = useAuth()
   const pathname = usePathname()
   const router = useRouter()
-  const sections = SITE_SECTIONS.filter((s) => can(user, s.permission))
+  const { modules } = useSiteSettings()
+  const sections = ALL_SECTIONS.filter(
+    (s) => (!s.module || modules.includes(s.module)) && can(user, s.permission)
+  )
 
   // /admin is the catalogue screen. An operator who cannot use it — an
   // editor, or anyone on a site without a catalogue — lands on their first

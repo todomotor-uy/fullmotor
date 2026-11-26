@@ -2,9 +2,13 @@ import Link from 'next/link'
 import { Logo } from './ui/Logo'
 import { IS_NAUTI } from '@/lib/tenant'
 import NautiFooter from './nauti/NautiFooter'
+import { getSiteSettings } from '@/lib/site-settings.server'
+import { hasModule } from '@/lib/site-settings'
 
-export default function SiteFooter() {
+export default async function SiteFooter() {
   if (IS_NAUTI) return <NautiFooter />
+  const settings = await getSiteSettings()
+  const on = (m: Parameters<typeof hasModule>[1]) => hasModule(settings, m)
   return (
     <footer className="k-footer">
       <div className="k-footer__in">
@@ -15,6 +19,7 @@ export default function SiteFooter() {
           </p>
         </div>
         <div className="k-footer__cols">
+          {on('catalog') && (
           <div className="k-footer__col">
             <h5>Catálogo</h5>
             <Link href="/vehiculos?category=autos">Autos</Link>
@@ -26,13 +31,15 @@ export default function SiteFooter() {
                 are reachable from a vehicle breadcrumb and the sitemap only. */}
             <Link href="/marcas">Todas las marcas</Link>
           </div>
+          )}
           <div className="k-footer__col">
             <h5>TodoMotor</h5>
-            <Link href="/blog">Blog del Motor</Link>
-            <Link href="/guia-de-compra">Guía de compra</Link>
-            <Link href="/compare">Comparador</Link>
-            <Link href="/clasificados">Clasificados</Link>
-            <Link href="/comercios">Comercios</Link>
+            {on('news') && <Link href="/blog">Blog del Motor</Link>}
+            {on('catalog') && <Link href="/guia-de-compra">Guía de compra</Link>}
+            {on('catalog') && <Link href="/compare">Comparador</Link>}
+            {on('events') && <Link href="/eventos">Eventos</Link>}
+            {on('classifieds') && <Link href="/clasificados">Clasificados</Link>}
+            {on('storefronts') && <Link href="/comercios">Comercios</Link>}
             <a href="mailto:contacto@todomotor.uy">Escribinos</a>
           </div>
           {/* The advertising policy lives in the footer rather than buried in a

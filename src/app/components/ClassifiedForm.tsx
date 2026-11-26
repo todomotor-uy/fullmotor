@@ -4,17 +4,16 @@ import { useRouter } from 'next/navigation'
 import { useEffect, useRef, useState } from 'react'
 import { AlertCircle, ImagePlus, Star, X } from 'lucide-react'
 import {
-  CLASSIFIED_CATEGORIES,
   Classified,
   ClassifiedCategory,
   ClassifiedFacets,
   ALLOWED_IMAGE_TYPES,
   MAX_CLASSIFIED_IMAGES,
   MAX_IMAGE_SIZE_BYTES,
-  categoryHasVehicleFields,
   fuelTypeLabels,
   transmissionLabels,
 } from '@/types/classified'
+import { useCategories } from './SiteSettingsProvider'
 import {
   CreateClassifiedPayload,
   UpdateClassifiedPayload,
@@ -51,8 +50,9 @@ export default function ClassifiedForm({ mode, initial, facets }: ClassifiedForm
 
   const [title, setTitle] = useState(initial?.title || '')
   const [description, setDescription] = useState(initial?.description || '')
+  const categories = useCategories()
   const [category, setCategory] = useState<ClassifiedCategory>(
-    initial?.category || CLASSIFIED_CATEGORIES[0].id
+    initial?.category || categories[0]?.key || ''
   )
   const [priceOnRequest, setPriceOnRequest] = useState(initial?.priceOnRequest ?? false)
   const [price, setPrice] = useState<string>(initial?.price ? String(initial.price) : '')
@@ -145,7 +145,7 @@ export default function ClassifiedForm({ mode, initial, facets }: ClassifiedForm
     }
   }, [])
 
-  const showsVehicleFields = categoryHasVehicleFields(category)
+  const showsVehicleFields = !!categories.find((c) => c.key === category)?.vehicleFields
   const showsPin = PIN_CATEGORIES.includes(category)
 
   /**
@@ -350,7 +350,7 @@ export default function ClassifiedForm({ mode, initial, facets }: ClassifiedForm
             label="Categoría"
             value={category}
             onChange={(e) => setCategory(e.target.value as ClassifiedCategory)}
-            options={CLASSIFIED_CATEGORIES.map((c) => ({ value: c.id, label: c.label }))}
+            options={categories.map((c) => ({ value: c.key, label: c.label }))}
           />
           <Select
             label="Departamento"

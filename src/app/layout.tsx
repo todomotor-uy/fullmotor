@@ -8,6 +8,8 @@ import SavedProvider from "./components/SavedProvider";
 import SiteHeader from "./components/SiteHeader";
 import SiteFooter from "./components/SiteFooter";
 import SiteAnalytics from "./components/SiteAnalytics";
+import SiteSettingsProvider from "./components/SiteSettingsProvider";
+import { getSiteSettings } from "@/lib/site-settings.server";
 
 const OG_DESCRIPTION = IS_NAUTI
   ? "Clasificados y noticias de la náutica uruguaya"
@@ -52,23 +54,26 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const settings = await getSiteSettings();
   return (
     <html lang="es" data-tenant={IS_NAUTI ? "nauti" : undefined} className={`${spaceGrotesk.variable} ${hankenGrotesk.variable} ${jetbrainsMono.variable}`}>
       <body className="antialiased">
-        <AuthProvider>
-          <SavedProvider>
-            <SiteHeader />
-            <main className="min-h-screen">
-              {children}
-            </main>
-            <SiteFooter />
-          </SavedProvider>
-        </AuthProvider>
+        <SiteSettingsProvider settings={settings}>
+          <AuthProvider>
+            <SavedProvider>
+              <SiteHeader />
+              <main className="min-h-screen">
+                {children}
+              </main>
+              <SiteFooter />
+            </SavedProvider>
+          </AuthProvider>
+        </SiteSettingsProvider>
         {/* Outside the providers on purpose: none of these read app context,
             and keeping them out means a provider re-render cannot remount a
             measurement tag and double-count a pageview. */}

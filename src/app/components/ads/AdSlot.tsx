@@ -6,7 +6,7 @@ import { seenParam } from './ad-queue'
 import { useAdImpression } from './useAdImpression'
 import AdCreativeRender from './AdCreativeRender'
 import type { AdTargeting, ServedAd } from './types'
-import { SITE_CONFIG } from '@/lib/tenant'
+import { useModule } from '../SiteSettingsProvider'
 
 /**
  * One ad slot.
@@ -54,7 +54,8 @@ function currentDevice(): 'desktop' | 'mobile' {
  * return inside the slot, which would put its hooks behind a condition.
  */
 export default function AdSlot(props: AdSlotProps) {
-  if (!SITE_CONFIG.features.ads) return null
+  const ads = useModule('ads')
+  if (!ads) return null
   return <AdSlotInner {...props} />
 }
 
