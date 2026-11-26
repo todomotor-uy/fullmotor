@@ -33,6 +33,7 @@ Ver [`.env.example`](.env.example). Las principales:
 - `NEXT_PUBLIC_SITE_URL`: el dominio canónico del sitio.
 - `NEXT_PUBLIC_GOOGLE_CLIENT_ID`: el cliente de Google Sign-In del sitio.
 - `BLOB_READ_WRITE_TOKEN`: Vercel Blob, donde se guardan las imágenes.
+- `NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION`: el código de la etiqueta meta de Search Console de ese sitio. Google lo pide para mostrar el nombre del sitio en su login.
 - Secretos de servidor: `API_SECRET_KEY`, `UPLOAD_API_KEY`, `REVALIDATE_SECRET`, `INDEXNOW_TRIGGER_SECRET`, `INDEXNOW_KEY`.
 
 ## Deploy

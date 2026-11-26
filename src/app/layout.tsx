@@ -38,6 +38,11 @@ export const metadata: Metadata = {
     title: SITE_CONFIG.name,
     description: OG_DESCRIPTION,
   },
+  // Search Console ownership, per site (each Vercel project sets its own).
+  // Google also needs it before it shows the site's name on its sign-in.
+  ...(process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION
+    ? { verification: { google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION } }
+    : {}),
   robots: {
     // A tenant on a preview domain stays out of the index until launch.
     index: !IS_NAUTI || process.env.NEXT_PUBLIC_INDEXABLE === '1',
