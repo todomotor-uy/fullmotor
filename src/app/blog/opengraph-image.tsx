@@ -1,7 +1,7 @@
 import { OG_SIZE, OG_CONTENT_TYPE, renderOgImage } from '@/lib/og'
 import { IS_NAUTI } from '@/lib/tenant'
 
-export const alt = IS_NAUTI ? 'Noticias náuticas en Uruguay — Nauti' : 'Noticias del motor en Uruguay — TodoMotor'
+export const alt = IS_NAUTI ? 'Noticias náuticas en Uruguay — Cardinal Sur' : 'Noticias del motor en Uruguay — TodoMotor'
 export const size = OG_SIZE
 export const contentType = OG_CONTENT_TYPE
 

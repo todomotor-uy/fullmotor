@@ -43,6 +43,8 @@ export interface SiteConfig {
   id: TenantId
   brand: 'todomotor' | 'nauti'
   name: string
+  /** The brand on its own, for running text ("con vidriera en TodoMotor"). */
+  shortName: string
   /** Used in `<title>` templates and Open Graph. */
   title: string
   description: string
@@ -62,6 +64,7 @@ const TODOMOTOR: SiteConfig = {
   id: 'todomotor-uy',
   brand: 'todomotor',
   name: 'TodoMotor Uruguay',
+  shortName: 'TodoMotor',
   title: 'TodoMotor Uruguay | Fichas Técnicas de Vehículos',
   description:
     'Encontrá las fichas técnicas completas de autos, SUVs, camionetas y motos disponibles en Uruguay. Especificaciones, precios y equipamiento.',
@@ -84,16 +87,17 @@ const TODOMOTOR: SiteConfig = {
 const NAUTI: SiteConfig = {
   id: 'nauti-uy',
   brand: 'nauti',
-  name: 'Nauti',
-  title: 'Nauti | Náutica en Uruguay: clasificados y noticias',
+  name: 'Cardinal Sur',
+  shortName: 'Cardinal Sur',
+  title: 'Cardinal Sur | Náutica en Uruguay: clasificados y noticias',
   description:
     'Comprá y vendé lanchas, veleros, motos de agua y equipamiento en Uruguay. Noticias, guías y todo sobre la náutica uruguaya.',
   keywords: 'lanchas uruguay, veleros en venta, motos de agua, náutica uruguay, clasificados náuticos',
-  defaultUrl: 'https://nauti.uy',
-  contactEmail: 'contacto@nauti.uy',
-  logo: ['nau', 'ti'],
+  defaultUrl: 'https://cardinalsur.uy',
+  contactEmail: 'contacto@cardinalsur.uy',
+  logo: ['cardinal', 'sur'],
   nav: [
-    // The blog is called Novedades on Nauti, for now; the URL stays /blog.
+    // The blog is called Novedades on Cardinal Sur, for now; the URL stays /blog.
     { href: '/blog', label: 'Novedades' },
     { href: '/eventos', label: 'Eventos' },
     { href: '/clasificados', label: 'Clasificados' },
@@ -101,7 +105,7 @@ const NAUTI: SiteConfig = {
   ],
   features: { catalog: false, guide: false, compare: false, saved: false, dealerships: true, ads: false, events: true },
   dealershipLabel: { plural: 'Comercios', singular: 'Comercio' },
-  rssTitle: 'Noticias náuticas — Nauti',
+  rssTitle: 'Noticias náuticas — Cardinal Sur',
 }
 
 export const SITE_CONFIG: SiteConfig = TENANT_ID === 'nauti-uy' ? NAUTI : TODOMOTOR

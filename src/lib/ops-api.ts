@@ -482,6 +482,12 @@ export async function deleteEvent(id: string): Promise<void> {
 export interface AdminSiteSettings {
   tenantId: string
   name: string
+  /** Opens every Instagram caption, without the "#". */
+  hashtag: string
+  /** Public origin: where cache revalidation and IndexNow point. */
+  baseUrl: string
+  /** The site's own Google OAuth client; "" falls back to the API's default. */
+  googleClientId: string
   modules: ModuleName[]
   availableModules: ModuleName[]
   categories: CategoryOption[]
@@ -493,6 +499,12 @@ export interface AdminSiteSettings {
 }
 
 export interface SiteSettingsInput {
+  name?: string
+  hashtag?: string
+  /** Super admins only. */
+  baseUrl?: string
+  /** Super admins only. */
+  googleClientId?: string
   modules?: ModuleName[]
   categories?: CategoryOption[]
   listingDays?: number

@@ -3,8 +3,8 @@ import { absoluteUrl, SITE_URL } from '@/lib/site'
 import { IS_NAUTI } from '@/lib/tenant'
 
 export default function robots(): MetadataRoute.Robots {
-  // Nauti is on a temporary preview domain until launch: keep it out of the
-  // index so the preview URL never competes with nauti.uy. Set
+  // Cardinal Sur is on a temporary preview domain until launch: keep it out of the
+  // index so the preview URL never competes with cardinalsur.uy. Set
   // NEXT_PUBLIC_INDEXABLE=1 on the project once the real domain is live.
   if (IS_NAUTI && process.env.NEXT_PUBLIC_INDEXABLE !== '1') {
     return { rules: [{ userAgent: '*', disallow: '/' }] }

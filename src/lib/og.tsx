@@ -28,9 +28,9 @@ const MARK_SVG = `<svg width="120" height="120" viewBox="0 0 48 48" fill="none" 
 
 const NAUTI_MARK_SVG = `<svg width="120" height="120" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
   <rect x="1" y="1" width="46" height="46" rx="12" fill="${ACCENT}"/>
-  <path d="M25 9 L25 30 L36 30 Z" fill="#fff"/>
-  <path d="M22.5 13 L22.5 30 L13 30 Z" fill="#fff" opacity="0.75"/>
-  <path d="M10 34.5 C13.5 32 16.5 32 20 34.5 C23.5 37 26.5 37 30 34.5 C33.5 32 36.5 32 38 33.6" stroke="#fff" stroke-width="2.4" stroke-linecap="round" fill="none"/>
+  <path d="M14 9 H34 L24 20 Z" fill="#fff"/>
+  <path d="M14 22 H34 L24 33 Z" fill="#fff" opacity="0.75"/>
+  <path d="M10 38 C13.5 35.5 16.5 35.5 20 38 C23.5 40.5 26.5 40.5 30 38 C33.5 35.5 36.5 35.5 38 37.1" stroke="#fff" stroke-width="2.4" stroke-linecap="round" fill="none"/>
 </svg>`
 
 const MARK_DATA_URI = `data:image/svg+xml;base64,${Buffer.from(IS_NAUTI ? NAUTI_MARK_SVG : MARK_SVG).toString('base64')}`

@@ -7,6 +7,7 @@ import { MODULES, type CategoryOption, type ModuleName } from '@/lib/site-settin
 import { translateApiError } from '@/lib/api-error'
 import { Button } from '../../components/ui/Button'
 import { Input } from '../../components/ui/Input'
+import { useAuth } from '../../components/AuthProvider'
 
 interface CategoryRow extends CategoryOption {
   /** A key already saved: listings may carry it, so it cannot be renamed. */
@@ -73,7 +74,13 @@ function Card({ title, hint, children }: { title: string; hint?: string; childre
 }
 
 export default function SiteSettingsPage() {
+  const { user } = useAuth()
+  const superAdmin = !!user?.superAdmin
   const [loaded, setLoaded] = useState<AdminSiteSettings | null>(null)
+  const [name, setName] = useState('')
+  const [hashtag, setHashtag] = useState('')
+  const [baseUrl, setBaseUrl] = useState('')
+  const [googleClientId, setGoogleClientId] = useState('')
   const [modules, setModules] = useState<ModuleName[]>([])
   const [rows, setRows] = useState<CategoryRow[]>([])
   const [listingDays, setListingDays] = useState('30')
@@ -84,6 +91,10 @@ export default function SiteSettingsPage() {
 
   const apply = (s: AdminSiteSettings) => {
     setLoaded(s)
+    setName(s.name)
+    setHashtag(s.hashtag)
+    setBaseUrl(s.baseUrl)
+    setGoogleClientId(s.googleClientId)
     setModules(s.modules)
     setRows(toRows(s.categories))
     setListingDays(String(s.listingDays))
@@ -98,6 +109,10 @@ export default function SiteSettingsPage() {
 
   const payload = useMemo(
     () => ({
+      name: name.trim(),
+      hashtag: hashtag.trim().replace(/^#/, ''),
+      // Only a super admin may send these; the API answers 403 otherwise.
+      ...(superAdmin ? { baseUrl: baseUrl.trim().replace(/\/+$/, ''), googleClientId: googleClientId.trim() } : {}),
       modules,
       categories: rows.map(({ key, label, neverExpires, vehicleFields }) => ({
         key: key.trim(),
@@ -108,12 +123,15 @@ export default function SiteSettingsPage() {
       listingDays: Number(listingDays),
       storefrontListingsNeverExpire: storefrontNeverExpire,
     }),
-    [modules, rows, listingDays, storefrontNeverExpire]
+    [name, hashtag, baseUrl, googleClientId, superAdmin, modules, rows, listingDays, storefrontNeverExpire]
   )
 
   const dirty = useMemo(() => {
     if (!loaded) return false
     const before = {
+      name: loaded.name,
+      hashtag: loaded.hashtag,
+      ...(superAdmin ? { baseUrl: loaded.baseUrl, googleClientId: loaded.googleClientId } : {}),
       modules: loaded.modules,
       categories: loaded.categories.map(({ key, label, neverExpires, vehicleFields }) => ({
         key,
@@ -125,7 +143,7 @@ export default function SiteSettingsPage() {
       storefrontListingsNeverExpire: loaded.storefrontListingsNeverExpire,
     }
     return JSON.stringify(before) !== JSON.stringify(payload)
-  }, [loaded, payload])
+  }, [loaded, payload, superAdmin])
 
   if (!loaded) {
     return (
@@ -164,6 +182,10 @@ export default function SiteSettingsPage() {
       setError('La duración de los avisos tiene que ser entre 1 y 365 días.')
       return
     }
+    if (!name.trim()) {
+      setError('El sitio necesita un nombre.')
+      return
+    }
     if (rows.length === 0) {
       setError('El sitio necesita al menos un rubro.')
       return
@@ -194,6 +216,41 @@ export default function SiteSettingsPage() {
           publicar una versión nueva.
         </p>
       </div>
+
+      <Card title="Identidad" hint="El nombre del sitio en la API y en este panel. El de las páginas públicas todavía sale del código.">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <Input label="Nombre" value={name} maxLength={100} onChange={(e) => setName(e.target.value)} />
+          <Input
+            label="Hashtag de Instagram"
+            value={hashtag}
+            maxLength={51}
+            onChange={(e) => setHashtag(e.target.value)}
+            hint="Una sola palabra, sin espacios."
+          />
+        </div>
+        {superAdmin && (
+          <div className="grid grid-cols-1 gap-3 pt-2 border-t border-line">
+            <p className="text-xs text-muted pt-2">
+              Solo para superadmins. Cambiarlos mal corta el login o la actualización de las páginas.
+            </p>
+            <Input
+              label="Dirección pública"
+              value={baseUrl}
+              placeholder="https://ejemplo.uy"
+              onChange={(e) => setBaseUrl(e.target.value)}
+              hint="Adonde la API manda la actualización de cache e IndexNow."
+            />
+            <Input
+              label="Cliente de Google (OAuth)"
+              value={googleClientId}
+              className="[&_input]:font-mono"
+              placeholder="…apps.googleusercontent.com"
+              onChange={(e) => setGoogleClientId(e.target.value)}
+              hint="Tiene que ser el mismo que usa el front de este sitio. Vacío usa el de la API."
+            />
+          </div>
+        )}
+      </Card>
 
       <Card
         title="Módulos"
