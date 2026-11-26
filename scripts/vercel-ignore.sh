@@ -6,6 +6,7 @@
 # Exit 0 = skip the build, exit 1 = build (Vercel's convention).
 #
 # Rules, applied to the files changed since the last deployed commit:
+#   - a redeploy of the last deployed commit always builds;
 #   - docs-only files (*.md, resources/**) are ignored;
 #   - nothing left            -> skip;
 #   - any file left that is NOT exclusive to the OTHER site -> build;
@@ -37,6 +38,13 @@ if ! git cat-file -e "${BASE}^{commit}" 2>/dev/null; then
 fi
 if ! git cat-file -e "${BASE}^{commit}" 2>/dev/null; then
   echo "[$SITE] base $BASE not available -> build"
+  exit 1
+fi
+
+# Same commit as the last deploy: someone pressed Redeploy (usually to pick up
+# a changed environment variable), so the build is wanted.
+if [ "$(git rev-parse "${BASE}^{commit}")" = "$(git rev-parse HEAD)" ]; then
+  echo "[$SITE] redeploy of $BASE -> build"
   exit 1
 fi
 
