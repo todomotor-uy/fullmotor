@@ -129,11 +129,29 @@ Problemas que tuvimos con la verificación de marca:
 
 El sitio muestra `contacto@<dominio>`: tiene que llegar a los admins del sitio.
 
-- **Cloudflare → Email Service → Email Routing**. Necesita la zona **activa** (paso 6).
-- **Destination addresses**: cada destino recibe un mail de Cloudflare y tiene que confirmarlo (los ya confirmados en la cuenta sirven para cualquier dominio).
-- Regla `contacto@<dominio>` → destino. Una regla reenvía a **un** destino; para varios se usa un *Email Worker* que haga `message.forward()` a cada uno.
+- **Cloudflare → Email Service → Email Routing → Onboard Domain**. Necesita la zona **activa** (paso 6). Agrega solo los MX (`route1/2/3.mx.cloudflare.net`) y el SPF. Esperar a que *Routing status* pase de *Syncing* a **Enabled**: lo que llega antes rebota.
+- **Destination addresses**: cada destino recibe un mail de Cloudflare y tiene que confirmarlo. Las direcciones ya confirmadas en la cuenta sirven para cualquier dominio. Mientras un destino no confirma, sus reenvíos fallan con `destination address not verified` y los demás salen igual.
+- Una regla reenvía a **un** destino. Para varios, un **Email Worker** (Workers & Pages → Create → Hello World), por ejemplo `<marca>-contacto`:
 
-No usar **Forward Email** en su plan gratis: bloquea los dominios `.uy` ("Emails blocked via abuse prevention").
+  ```js
+  export default {
+    async fetch() { return new Response("Not found", { status: 404 }); },
+    async email(message) {
+      const destinos = ["admin1@gmail.com", "admin2@gmail.com"];
+      const r = await Promise.allSettled(destinos.map((d) => message.forward(d)));
+      r.forEach((x, i) => { if (x.status === "rejected") console.error("forward failed", destinos[i], String(x.reason)); });
+      if (r.every((x) => x.status === "rejected")) message.setReject("No se pudo entregar el mensaje");
+    },
+  };
+  ```
+
+  Y la regla **Routing rules → `contacto@<dominio>` → Send to a Worker →** el worker. Si cambian los admins, se edita la lista del worker.
+- Comprobar en **Email Routing → Activity log** (tiene que decir *Forwarded*) y en **Workers → el worker → Observability** (ahí se ven los errores por destino).
+
+Problemas que tuvimos:
+
+- **Forward Email gratis no sirve**: bloquea los dominios `.uy` ("Emails blocked via abuse prevention").
+- **Cambio de nameservers con correo andando**: el `.uy` publica los NS con TTL de 24 h, así que durante un día algunos servidores siguen preguntando al DNS anterior. Si el dominio estaba en Vercel DNS, copiar ahí también los MX de Cloudflare (con prioridad más alta) hasta que expire.
 
 ## 10. Lanzamiento
 
