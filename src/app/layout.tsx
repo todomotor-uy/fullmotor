@@ -8,6 +8,7 @@ import SavedProvider from "./components/SavedProvider";
 import SiteHeader from "./components/SiteHeader";
 import SiteFooter from "./components/SiteFooter";
 import SiteAnalytics from "./components/SiteAnalytics";
+import ErrorReporter from "./components/ErrorReporter";
 import SiteSettingsProvider from "./components/SiteSettingsProvider";
 import { getSiteSettings } from "@/lib/site-settings.server";
 
@@ -83,6 +84,7 @@ export default async function RootLayout({
             and keeping them out means a provider re-render cannot remount a
             measurement tag and double-count a pageview. */}
         <SiteAnalytics />
+        <ErrorReporter />
       </body>
     </html>
   );

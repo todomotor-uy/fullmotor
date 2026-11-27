@@ -15,7 +15,14 @@ import { useSiteSettings } from '../components/SiteSettingsProvider'
  * section the operator's role does not cover, or whose module the site has
  * switched off, is not shown; the API would answer 403 or 404 anyway.
  */
-const ALL_SECTIONS: { href: string; label: string; permission: Permission; module?: ModuleName }[] = [
+const ALL_SECTIONS: {
+  href: string
+  label: string
+  permission: Permission
+  module?: ModuleName
+  /** Only for super admins: the screen reads across every site. */
+  superAdminOnly?: boolean
+}[] = [
   { href: '/admin', label: 'Imágenes', permission: PERM.catalog, module: 'catalog' },
   { href: '/admin/blog', label: SITE_CONFIG.brand === 'nauti' ? 'Novedades' : 'Blog', permission: PERM.blog, module: 'news' },
   { href: '/admin/eventos', label: 'Eventos', permission: PERM.events, module: 'events' },
@@ -24,6 +31,7 @@ const ALL_SECTIONS: { href: string; label: string; permission: Permission; modul
   { href: '/admin/clasificados', label: 'Clasificados', permission: PERM.moderation, module: 'classifieds' },
   { href: '/admin/comercios', label: BIZ.Many, permission: PERM.dealerships, module: 'storefronts' },
   { href: '/admin/sitio', label: 'Sitio', permission: PERM.site },
+  { href: '/admin/superadmin', label: 'Todos los sitios', permission: PERM.site, superAdminOnly: true },
 ]
 
 function Shell({ children }: { children: React.ReactNode }) {
@@ -32,7 +40,10 @@ function Shell({ children }: { children: React.ReactNode }) {
   const router = useRouter()
   const { modules } = useSiteSettings()
   const sections = ALL_SECTIONS.filter(
-    (s) => (!s.module || modules.includes(s.module)) && can(user, s.permission)
+    (s) =>
+      (!s.module || modules.includes(s.module)) &&
+      can(user, s.permission) &&
+      (!s.superAdminOnly || !!user?.superAdmin)
   )
 
   // /admin is the catalogue screen. An operator who cannot use it — an

@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import FeedbackButton from '../FeedbackButton'
 import { SITE_CONFIG } from '@/lib/tenant'
 import { getSiteSettings } from '@/lib/site-settings.server'
 import { hasModule } from '@/lib/site-settings'
@@ -34,6 +35,7 @@ export default async function NautiFooter() {
             {on('classifieds') && <Link href="/clasificados/nuevo">Publicar un aviso</Link>}
             {on('storefronts') && <Link href="/comercios">Comercios</Link>}
             <a href={`mailto:${email}`}>Escribinos</a>
+            <FeedbackButton className="k-footer__btn" />
           </div>
           <div className="k-footer__col">
             <h5>Legal</h5>
