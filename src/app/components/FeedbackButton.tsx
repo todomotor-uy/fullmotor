@@ -13,7 +13,7 @@ const MAX = 2000
 
 /**
  * "Enviar comentario": a link in the footer that opens a small form. What is
- * sent lands in the super admin panel with the site, the page and — when the
+ * sent is stored by the API with the site, the page and — when the
  * visitor is signed in — their account. Anyone else may leave an address.
  */
 export default function FeedbackButton({ className }: { className?: string }) {

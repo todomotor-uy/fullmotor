@@ -16,8 +16,7 @@ export function reportClientError(message: string, detail?: string, digest?: str
 }
 
 /**
- * Sends uncaught browser errors to the API so they show in the super admin
- * panel. Errors from other origins (extensions, third-party tags) arrive as a
+ * Sends uncaught browser errors to the API (POST /api/client-errors). Errors from other origins (extensions, third-party tags) arrive as a
  * bare "Script error." with nothing to act on, and are skipped.
  */
 export default function ErrorReporter() {

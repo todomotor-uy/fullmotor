@@ -1,7 +1,7 @@
 import type { Instrumentation } from 'next'
 
 /**
- * Server-render errors, reported to the API for the super admin panel. Next
+ * Server-render errors, reported to the API (POST /api/client-errors). Next
  * calls this for failures in server components, route handlers and server
  * actions; the digest is the same one the browser's error boundary sees.
  */

@@ -5,9 +5,9 @@ import { reportClientError } from './components/ErrorReporter'
 import { Button } from './components/ui/Button'
 
 /**
- * A page that failed to render. Reported so it shows in the super admin
- * panel; in production a server error arrives here as a digest only, which
- * matches the server-side report from instrumentation.ts.
+ * A page that failed to render, reported to the API. In production a server
+ * error arrives here as a digest only, which matches the server-side report
+ * from instrumentation.ts.
  */
 export default function ErrorPage({ error, reset }: { error: Error & { digest?: string }; reset: () => void }) {
   useEffect(() => {
