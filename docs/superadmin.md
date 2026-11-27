@@ -29,6 +29,8 @@ Hay dos barreras:
 1. **Vercel Authentication**, en todas las URLs, producción incluida. Solo entran los miembros del equipo de Vercel.
 2. **La API**, que solo responde a los emails que están en `SUPERADMIN_EMAILS`. Otra cuenta de Google puede iniciar sesión, pero ve "No tenés acceso".
 
+Por ahora solo entra el dueño: es el único miembro del equipo de Vercel y el único email en `SUPERADMIN_EMAILS`. Los admins de los portales no tienen que estar en ninguna de las dos listas. Sumar a alguien al equipo de Vercel le abre la primera barrera. Además, el código de los portales no linkea ni menciona el panel.
+
 Ninguna página se indexa: hay `noindex` en el HTML y en el header `X-Robots-Tag`, y un `robots.txt` que bloquea todo.
 
 ## Cómo se despliega
