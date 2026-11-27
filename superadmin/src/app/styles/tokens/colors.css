@@ -1,0 +1,75 @@
+/* ============================================================
+   TodoMotor — Color Palette (raw values)
+   Light/airy catalog. Cool-tinted neutrals + electric cobalt.
+   These are RAW values; semantic.css maps them to roles.
+   ============================================================ */
+:root {
+  /* ---- Neutrals (cool-tinted, showroom white) ---- */
+  --c-paper:        #F6F8FB;  /* app background */
+  --c-paper-2:      #EEF1F6;  /* alt section background */
+  --c-white:        #FFFFFF;  /* card / raised surface */
+  --c-sunken:       #EDF0F5;  /* wells, input fill */
+
+  --c-ink-900:      #0E131B;  /* near-black, primary text */
+  --c-ink-800:      #1A212C;
+  --c-ink-700:      #333D4C;  /* secondary text */
+  --c-ink-600:      #4C5664;
+  --c-ink-500:      #6B7686;  /* tertiary / muted */
+  --c-ink-400:      #8C97A6;  /* faint / placeholder */
+  --c-ink-300:      #AEB7C4;
+  --c-ink-200:      #CDD4DE;  /* strong border */
+  --c-ink-150:      #DFE4EC;  /* border */
+  --c-ink-100:      #E9EDF3;  /* hairline / divider */
+  --c-ink-50:       #F2F5F9;
+
+  /* ---- Cobalt (Direction A primary accent) ---- */
+  --c-cobalt-700:   #1740BE;  /* press */
+  --c-cobalt-600:   #1F4FE0;  /* base accent */
+  --c-cobalt-500:   #3A66F0;  /* hover */
+  --c-cobalt-300:   #9DB6FA;
+  --c-cobalt-100:   #DEE8FF;  /* soft fill */
+  --c-cobalt-50:    #EDF2FF;  /* faint tint */
+  --c-cobalt-ink:   #102B78;  /* text on soft tint */
+
+  /* ---- Showroom Navy (deep brand surface) ---- */
+  --c-navy-900:     #08152E;
+  --c-navy-800:     #0B1F44;  /* footer / dark hero */
+  --c-navy-700:     #122B58;
+  --c-navy-600:     #1C3D72;
+
+  /* ---- Signal Red (Direction B accent) ---- */
+  --c-signal-700:   #C42E1C;
+  --c-signal-600:   #E5402A;
+  --c-signal-500:   #F25640;
+  --c-signal-100:   #FBE0DB;
+  --c-signal-50:    #FDEEEB;
+  --c-signal-ink:   #8A2415;
+
+  /* ---- Warm paper (Direction B neutrals) ---- */
+  --c-cream:        #F5F1E8;
+  --c-cream-2:      #ECE6D8;
+  --c-cream-white:  #FFFEFA;
+  --c-warm-ink:     #1C1813;
+  --c-warm-ink-500: #756B5C;
+
+  /* ---- Status ---- */
+  --c-green-600:    #0E9F6E;  /* available / price drop / OK */
+  --c-green-100:    #DCF4EA;
+  --c-green-ink:    #086B49;
+  --c-amber-600:    #D98412;  /* warning / por encargo */
+  --c-amber-100:    #FBEBCF;
+  --c-amber-ink:    #8A5306;
+  --c-red-600:      #DC3B30;  /* error / agotado */
+  --c-red-100:      #FBE2E0;
+  --c-red-ink:      #99261E;
+
+  /* ---- Fuel / powertrain domain colors ---- */
+  --c-fuel-nafta:   #2A6FDB;  /* gasoline — blue */
+  --c-fuel-nafta-bg:#E4EEFB;
+  --c-fuel-elec:    #0E9F6E;  /* electric — green */
+  --c-fuel-elec-bg: #DCF4EA;
+  --c-fuel-hibrido: #0E9CB0;  /* hybrid — teal */
+  --c-fuel-hibrido-bg:#D6F1F5;
+  --c-fuel-diesel:  #6B7686;  /* diesel — graphite */
+  --c-fuel-diesel-bg:#E9EDF3;
+}

@@ -1,0 +1,73 @@
+/* ============================================================
+   TodoMotor — Spacing, radii, shadows, sizing, motion
+   ============================================================ */
+:root {
+  /* ---- Spacing scale (4px base) ---- */
+  --space-0:   0;
+  --space-1:   4px;
+  --space-2:   8px;
+  --space-3:   12px;
+  --space-4:   16px;
+  --space-5:   20px;
+  --space-6:   24px;
+  --space-7:   32px;
+  --space-8:   40px;
+  --space-9:   48px;
+  --space-10:  64px;
+  --space-11:  80px;
+  --space-12:  96px;
+  --space-13:  128px;
+
+  /* ---- Radii ---- */
+  --radius-xs:   4px;
+  --radius-sm:   6px;
+  --radius-md:   10px;
+  --radius-lg:   14px;   /* default card */
+  --radius-xl:   20px;
+  --radius-2xl:  28px;
+  --radius-pill: 999px;
+  --radius-card: var(--radius-lg);
+
+  /* ---- Border widths ---- */
+  --border-w:        1px;
+  --border-w-strong: 1.5px;
+  --border-w-focus:  2px;
+
+  /* ---- Shadows (light, airy — short cool-tinted) ---- */
+  --shadow-xs:   0 1px 2px rgba(11,31,68,0.05);
+  --shadow-sm:   0 1px 2px rgba(11,31,68,0.06), 0 1px 1px rgba(11,31,68,0.04);
+  --shadow-md:   0 4px 14px -4px rgba(11,31,68,0.12);
+  --shadow-lg:   0 14px 32px -10px rgba(11,31,68,0.18);
+  --shadow-xl:   0 28px 56px -18px rgba(8,21,46,0.28);
+  --shadow-card: 0 1px 2px rgba(11,31,68,0.05), 0 10px 24px -16px rgba(11,31,68,0.22);
+  --shadow-pop:  0 8px 28px -8px rgba(8,21,46,0.24);
+  --shadow-inset: inset 0 1px 2px rgba(11,31,68,0.06);
+
+  /* ---- Sizing (controls) ---- */
+  --control-h-sm: 32px;
+  --control-h-md: 40px;
+  --control-h-lg: 48px;
+  --control-h-xl: 56px;
+  --tap-min:      44px;   /* minimum touch target */
+
+  /* ---- Layout ---- */
+  --container:     1200px;
+  --container-wide:1360px;
+  --gutter:        24px;
+
+  /* ---- Z-index ---- */
+  --z-base:    0;    /* @kind other */
+  --z-raised:  10;   /* @kind other */
+  --z-sticky:  100;  /* @kind other */
+  --z-overlay: 1000; /* @kind other */
+  --z-modal:   1100; /* @kind other */
+  --z-toast:   1200; /* @kind other */
+
+  /* ---- Motion ---- */
+  --dur-fast:  120ms; /* @kind other */
+  --dur:       200ms; /* @kind other */
+  --dur-slow:  320ms; /* @kind other */
+  --ease-out:    cubic-bezier(0.2, 0.7, 0.3, 1);  /* @kind other */
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);  /* @kind other */
+  --ease-spring: cubic-bezier(0.34, 1.4, 0.64, 1); /* @kind other */
+}

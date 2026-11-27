@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import FeedbackButton from './FeedbackButton'
 import { Logo } from './ui/Logo'
 import { IS_NAUTI } from '@/lib/tenant'
 import NautiFooter from './nauti/NautiFooter'
@@ -41,6 +42,7 @@ export default async function SiteFooter() {
             {on('classifieds') && <Link href="/clasificados">Clasificados</Link>}
             {on('storefronts') && <Link href="/comercios">Comercios</Link>}
             <a href="mailto:contacto@todomotor.uy">Escribinos</a>
+            <FeedbackButton className="k-footer__btn" />
           </div>
           {/* The advertising policy lives in the footer rather than buried in a
               legal page nobody links to: it is the public promise that the

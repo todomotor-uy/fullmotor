@@ -1,7 +1,12 @@
 #!/usr/bin/env bash
-# Vercel "Ignored Build Step" for the two sites built from this repo.
+# Vercel "Ignored Build Step" for the projects built from this repo: the two
+# sites, and the super admin panel in superadmin/.
 #
-#   bash scripts/vercel-ignore.sh <todomotor|nauti>
+#   bash scripts/vercel-ignore.sh <todomotor|nauti|superadmin>
+#
+# The superadmin project's Root Directory is superadmin/, so it runs this as
+# `bash ../scripts/vercel-ignore.sh superadmin`; git paths are repo-relative
+# either way.
 #
 # Exit 0 = skip the build, exit 1 = build (Vercel's convention).
 #
@@ -9,26 +14,33 @@
 #   - a redeploy of the last deployed commit always builds;
 #   - docs-only files (*.md, resources/**) are ignored;
 #   - nothing left            -> skip;
-#   - any file left that is NOT exclusive to the OTHER site -> build;
-#   - everything left belongs only to the other site       -> skip.
+#   - a site: superadmin/** is ignored too; any file left that is NOT exclusive
+#     to the OTHER site -> build; everything left belongs only to the other
+#     site -> skip;
+#   - superadmin: builds only when something under superadmin/ changed.
 # Whenever the diff can't be computed, build (fail-safe).
 
 set -u
 
 SITE="${1:-}"
 case "$SITE" in
-  todomotor|nauti) ;;
-  *) echo "usage: $0 <todomotor|nauti>" >&2; exit 1 ;;
+  todomotor|nauti|superadmin) ;;
+  *) echo "usage: $0 <todomotor|nauti|superadmin>" >&2; exit 1 ;;
 esac
 
 # Paths that only matter to Nauti.
 NAUTI_ONLY='^(src/app/components/nauti/|src/app/styles/nauti\.css$|public/brand/nauti-)'
 # Paths that only matter to TodoMotor.
 TODOMOTOR_ONLY='^(src/app/(vehiculo|vehiculos|marcas|compare|guia-de-compra|guardados)/|src/lib/buying-guide/|src/data/|src/app/components/(guide|ads)/|public/brand/todomotor-|scripts/(acau-import|ads-check|guide-check|guide-images)\.ts$)'
-# Paths that never affect either build.
+# The super admin panel: its own app, its own project.
+SUPERADMIN='^superadmin/'
+# Paths that never affect any build.
 IGNORABLE='(\.md$|^resources/)'
 
-if [ "$SITE" = "todomotor" ]; then OTHER_ONLY="$NAUTI_ONLY"; else OTHER_ONLY="$TODOMOTOR_ONLY"; fi
+case "$SITE" in
+  todomotor) OTHER_ONLY="$NAUTI_ONLY|$SUPERADMIN" ;;
+  nauti)     OTHER_ONLY="$TODOMOTOR_ONLY|$SUPERADMIN" ;;
+esac
 
 BASE="${VERCEL_GIT_PREVIOUS_SHA:-HEAD^}"
 
@@ -59,12 +71,16 @@ if [ -z "$RELEVANT" ]; then
   exit 0
 fi
 
-MINE="$(printf '%s\n' "$RELEVANT" | grep -Ev "$OTHER_ONLY" || true)"
+if [ "$SITE" = "superadmin" ]; then
+  MINE="$(printf '%s\n' "$RELEVANT" | grep -E "$SUPERADMIN" || true)"
+else
+  MINE="$(printf '%s\n' "$RELEVANT" | grep -Ev "$OTHER_ONLY" || true)"
+fi
 if [ -n "$MINE" ]; then
   echo "[$SITE] relevant changes since $BASE -> build:"
   printf '  %s\n' $MINE | head -20
   exit 1
 fi
 
-echo "[$SITE] only the other site's files changed since $BASE -> skip"
+echo "[$SITE] only other projects' files changed since $BASE -> skip"
 exit 0

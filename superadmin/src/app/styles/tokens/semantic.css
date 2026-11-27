@@ -1,0 +1,93 @@
+/* ============================================================
+   TodoMotor — Semantic color roles
+   Map raw palette → meaningful roles. Components reference THESE.
+   [data-theme="signal"] overrides the accent + paper for the
+   warm editorial "Signal" direction (Direction B).
+   ============================================================ */
+:root {
+  /* Surfaces */
+  --bg-app:          var(--c-paper);
+  --bg-alt:          var(--c-paper-2);
+  --surface:         var(--c-white);
+  --surface-sunken:  var(--c-sunken);
+  --surface-inverse: var(--c-navy-800);
+
+  /* Text */
+  --text-strong:     var(--c-ink-900);
+  --text-body:       var(--c-ink-700);
+  --text-muted:      var(--c-ink-500);
+  --text-faint:      var(--c-ink-400);
+  --text-on-accent:  #FFFFFF;
+  --text-on-inverse: #EAF0FB;
+  --text-inverse-muted: #9DB0CC;
+
+  /* Lines */
+  --border:          var(--c-ink-150);
+  --border-strong:   var(--c-ink-200);
+  --hairline:        var(--c-ink-100);
+  --border-inverse:  rgba(255,255,255,0.12);
+
+  /* Accent (brand) — themeable */
+  --accent:          var(--c-cobalt-600);
+  --accent-hover:    var(--c-cobalt-500);
+  --accent-press:    var(--c-cobalt-700);
+  --accent-soft:     var(--c-cobalt-100);
+  --accent-faint:    var(--c-cobalt-50);
+  --accent-ink:      var(--c-cobalt-ink);
+  --accent-ring:     rgba(31,79,224,0.30);
+
+  /* Brand deep surface */
+  --brand-deep:      var(--c-navy-800);
+  --brand-deep-2:    var(--c-navy-900);
+
+  /* Status roles */
+  --positive:        var(--c-green-600);
+  --positive-soft:   var(--c-green-100);
+  --positive-ink:    var(--c-green-ink);
+  --warning:         var(--c-amber-600);
+  --warning-soft:    var(--c-amber-100);
+  --warning-ink:     var(--c-amber-ink);
+  --danger:          var(--c-red-600);
+  --danger-soft:     var(--c-red-100);
+  --danger-ink:      var(--c-red-ink);
+
+  /* Price highlight (kept brand-blue even in Signal for legibility) */
+  --price:           var(--c-ink-900);
+  --price-drop:      var(--c-green-600);
+
+  /* Focus ring */
+  --focus-ring:      0 0 0 3px var(--accent-ring);
+}
+
+/* ---- Direction B: Signal (warm editorial) ---- */
+[data-theme="signal"] {
+  --bg-app:          var(--c-cream);
+  --bg-alt:          var(--c-cream-2);
+  --surface:         var(--c-cream-white);
+  --surface-sunken:  var(--c-cream-2);
+  --surface-inverse: var(--c-warm-ink);
+
+  --text-strong:     var(--c-warm-ink);
+  --text-body:       #3A332A;
+  --text-muted:      var(--c-warm-ink-500);
+  --text-faint:      #A99E8C;
+  --text-on-inverse: #F3EEE2;
+  --text-inverse-muted: #B9AE9A;
+
+  --border:          #E2DBCC;
+  --border-strong:   #D2C8B4;
+  --hairline:        #ECE6D8;
+
+  --accent:          var(--c-signal-600);
+  --accent-hover:    var(--c-signal-500);
+  --accent-press:    var(--c-signal-700);
+  --accent-soft:     var(--c-signal-100);
+  --accent-faint:    var(--c-signal-50);
+  --accent-ink:      var(--c-signal-ink);
+  --accent-ring:     rgba(229,64,42,0.28);
+
+  --brand-deep:      var(--c-warm-ink);
+  --brand-deep-2:    #120F0A;
+
+  --price:           var(--c-warm-ink);
+}
