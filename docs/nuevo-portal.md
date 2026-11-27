@@ -60,7 +60,7 @@ Hasta la fase 4 del plan de Vitri, la marca todavía vive en código. Para un si
 - Logo: componente en `src/app/components/<marca>/` y `public/brand/<marca>-mark.svg`. El ícono de las imágenes OG está en [`src/lib/og.tsx`](../src/lib/og.tsx).
 - Portada, header y footer propios si hacen falta (ver `components/nauti/`).
 - Hoy varias pantallas preguntan `IS_NAUTI` para textos y casos especiales. Para un tercer sitio hay que generalizarlo: `git grep -n IS_NAUTI src` da la lista (manifest, robots, sitemap, OG, blog, clasificados, comercios, etc.).
-- [`scripts/vercel-ignore.sh`](../scripts/vercel-ignore.sh) solo conoce `todomotor` y `nauti`: sumar la marca nueva y sus carpetas exclusivas.
+- [`scripts/vercel-ignore.sh`](../scripts/vercel-ignore.sh) solo conoce los sitios `todomotor` y `nauti` (y el panel `superadmin`): sumar la marca nueva y sus carpetas exclusivas.
 
 Probar en local con `NEXT_PUBLIC_TENANT=<id>` y `NEXT_PUBLIC_API_URL=https://api.todomotor.uy`.
 

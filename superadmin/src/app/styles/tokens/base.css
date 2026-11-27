@@ -1,0 +1,71 @@
+/* ============================================================
+   TodoMotor — Base element defaults & shared utility classes
+   Lightweight reset + brand-aware element baselines.
+   ============================================================ */
+*, *::before, *::after { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  font-family: var(--font-sans);
+  font-size: var(--text-base);
+  line-height: var(--leading-normal);
+  color: var(--text-body);
+  background: var(--bg-app);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  font-feature-settings: "ss01", "cv01";
+}
+
+h1, h2, h3, h4, h5 {
+  font-family: var(--font-display);
+  color: var(--text-strong);
+  font-weight: var(--weight-bold);
+  line-height: var(--leading-tight);
+  letter-spacing: var(--tracking-tight);
+  margin: 0;
+}
+
+a { color: var(--accent); text-decoration: none; }
+a:hover { color: var(--accent-hover); }
+
+::selection { background: var(--accent-soft); color: var(--accent-ink); }
+
+:focus-visible {
+  outline: none;
+  box-shadow: var(--focus-ring);
+  border-radius: var(--radius-sm);
+}
+
+/* ---- Shared display helpers ---- */
+.tm-eyebrow {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  font-weight: var(--weight-medium);
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.tm-mono {
+  font-family: var(--font-mono);
+  font-feature-settings: "tnum";
+  letter-spacing: var(--tracking-mono);
+}
+
+/* Tabular price figure — the "ficha técnica" voice */
+.tm-price {
+  font-family: var(--font-mono);
+  font-weight: var(--weight-medium);
+  color: var(--price);
+  font-feature-settings: "tnum";
+}
+
+.tm-display {
+  font-family: var(--font-display);
+  font-weight: var(--weight-bold);
+  letter-spacing: var(--tracking-tight);
+  line-height: var(--leading-tight);
+  color: var(--text-strong);
+}

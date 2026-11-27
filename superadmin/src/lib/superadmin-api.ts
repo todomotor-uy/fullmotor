@@ -1,16 +1,10 @@
-import { ApiError } from './api-error'
+import { API_URL, ApiError, type PaginationMeta, tenantHeader } from './api'
 import { getStoredToken } from './auth'
-import { tenantHeader } from '@/lib/tenant'
-import type { PaginationMeta } from './ops-api'
 
 /**
  * The super admin side of the API — `/api/superadmin/*`, which reads across
- * every site and answers 403 to anyone not in SUPERADMIN_EMAILS. Only
- * imported from /admin/superadmin.
+ * every site and answers 403 to anyone not in SUPERADMIN_EMAILS.
  */
-
-const API_URL = process.env.NEXT_PUBLIC_API_URL || 'https://api.todomotor.uy'
-const COUNTRY = process.env.NEXT_PUBLIC_COUNTRY || 'uy'
 
 async function superFetch(path: string, init: RequestInit = {}): Promise<Response> {
   const token = getStoredToken()
@@ -19,7 +13,6 @@ async function superFetch(path: string, init: RequestInit = {}): Promise<Respons
     cache: 'no-store',
     ...init,
     headers: {
-      'X-Country': COUNTRY,
       ...tenantHeader(),
       Authorization: `Bearer ${token}`,
       ...(init.body ? { 'Content-Type': 'application/json' } : {}),

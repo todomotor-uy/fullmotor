@@ -2,15 +2,14 @@
 
 import { useCallback, useEffect, useMemo, useState } from 'react'
 import { AlertCircle, AlertTriangle, Check, ExternalLink, MessageSquare, RefreshCw, Undo2 } from 'lucide-react'
-import { useAuth } from '../../components/AuthProvider'
-import { Button } from '../../components/ui/Button'
-import { FilterChip } from '../../components/ui/FilterChip'
-import { Select } from '../../components/ui/Select'
-import { translateApiError } from '@/lib/api-error'
+import { useAuth } from './AuthProvider'
+import { Button } from './ui/Button'
+import { FilterChip } from './ui/FilterChip'
+import { Select } from './ui/Select'
+import { ApiError, translateApiError } from '@/lib/api'
+import { useFetch } from '@/lib/use-fetch'
 import {
   type DayPoint,
-  type ErrorGroup,
-  type ErrorLog,
   type FeedbackItem,
   type Overview,
   type SiteMetrics,
@@ -367,33 +366,19 @@ const SOURCE_LABEL: Record<string, string> = { api: 'API', 'web-client': 'Navega
 function ErrorsPanel({ from, to, tenant, siteName }: { from: string; to: string; tenant: string; siteName: (id: string) => string }) {
   const [source, setSource] = useState('all')
   const [page, setPage] = useState(1)
-  const [rows, setRows] = useState<ErrorLog[]>([])
-  const [groups, setGroups] = useState<ErrorGroup[]>([])
-  const [total, setTotal] = useState(0)
-  const [lastPage, setLastPage] = useState(1)
   const [open, setOpen] = useState<string | null>(null)
-  const [loading, setLoading] = useState(true)
-  const [error, setError] = useState<string | null>(null)
 
-  const load = useCallback(async () => {
-    setLoading(true)
-    try {
-      const res = await fetchErrors({ from, to, source, tenant: tenant || undefined, page })
-      setRows(res.data)
-      setGroups(res.groups)
-      setTotal(res.meta.total)
-      setLastPage(res.meta.lastPage)
-      setError(null)
-    } catch (err) {
-      setError(translateApiError(err, 'No pudimos cargar los errores'))
-    } finally {
-      setLoading(false)
-    }
-  }, [from, to, source, tenant, page])
-
-  useEffect(() => {
-    void load()
-  }, [load])
+  const fetcher = useCallback(
+    () => fetchErrors({ from, to, source, tenant: tenant || undefined, page }),
+    [from, to, source, tenant, page]
+  )
+  const res = useFetch(fetcher)
+  const loading = res.loading
+  const error = res.error ? translateApiError(res.error, 'No pudimos cargar los errores') : null
+  const rows = res.data?.data ?? []
+  const groups = res.data?.groups ?? []
+  const total = res.data?.meta.total ?? 0
+  const lastPage = res.data?.meta.lastPage ?? 1
 
   return (
     <Section
@@ -532,40 +517,26 @@ function FeedbackPanel({
 }) {
   const [status, setStatus] = useState('unread')
   const [page, setPage] = useState(1)
-  const [items, setItems] = useState<FeedbackItem[]>([])
-  const [unread, setUnread] = useState(0)
-  const [lastPage, setLastPage] = useState(1)
-  const [loading, setLoading] = useState(true)
   const [busy, setBusy] = useState<string | null>(null)
-  const [error, setError] = useState<string | null>(null)
+  const [actionError, setActionError] = useState<string | null>(null)
 
-  const load = useCallback(async () => {
-    setLoading(true)
-    try {
-      const res = await fetchFeedback({ status, tenant: tenant || undefined, page })
-      setItems(res.data)
-      setUnread(res.unread)
-      setLastPage(res.meta.lastPage)
-      setError(null)
-    } catch (err) {
-      setError(translateApiError(err, 'No pudimos cargar los comentarios'))
-    } finally {
-      setLoading(false)
-    }
-  }, [status, tenant, page])
-
-  useEffect(() => {
-    void load()
-  }, [load])
+  const fetcher = useCallback(() => fetchFeedback({ status, tenant: tenant || undefined, page }), [status, tenant, page])
+  const res = useFetch(fetcher)
+  const loading = res.loading
+  const error = actionError ?? (res.error ? translateApiError(res.error, 'No pudimos cargar los comentarios') : null)
+  const items = res.data?.data ?? []
+  const unread = res.data?.unread ?? 0
+  const lastPage = res.data?.meta.lastPage ?? 1
 
   const toggle = async (item: FeedbackItem) => {
     setBusy(item.id)
+    setActionError(null)
     try {
       await markFeedback(item.id, !item.readAt)
-      await load()
+      res.reload()
       onChange()
     } catch (err) {
-      setError(translateApiError(err, 'No pudimos actualizar el comentario'))
+      setActionError(translateApiError(err, 'No pudimos actualizar el comentario'))
     } finally {
       setBusy(null)
     }
@@ -670,46 +641,29 @@ function FeedbackPanel({
 // Page
 // ============================================
 
-export default function SuperAdminPage() {
-  const { user } = useAuth()
+/** Everything below the header. Only rendered for a super admin (see Gate). */
+export default function Panel() {
+  const { logout } = useAuth()
   const [from, setFrom] = useState(() => daysAgo(29))
   const [to, setTo] = useState(() => isoDay(new Date()))
   const [tenant, setTenant] = useState('')
   const [grouping, setGrouping] = useState<'day' | 'week'>('day')
-  const [overview, setOverview] = useState<Overview | null>(null)
-  const [loading, setLoading] = useState(true)
-  const [error, setError] = useState<string | null>(null)
+  const fetcher = useCallback(() => fetchOverview(from, to), [from, to])
+  const res = useFetch<Overview>(fetcher)
+  const overview = res.data ?? null
+  const loading = res.loading
+  const load = res.reload
+  const error = res.error ? translateApiError(res.error, 'No pudimos cargar las métricas') : null
 
-  const load = useCallback(async () => {
-    setLoading(true)
-    try {
-      setOverview(await fetchOverview(from, to))
-      setError(null)
-    } catch (err) {
-      setError(translateApiError(err, 'No pudimos cargar las métricas'))
-    } finally {
-      setLoading(false)
-    }
-  }, [from, to])
-
+  // An expired session: back to the sign-in screen rather than a panel full
+  // of 401s.
   useEffect(() => {
-    if (user?.superAdmin) void load()
-  }, [load, user?.superAdmin])
+    if (res.error instanceof ApiError && res.error.status === 401) logout()
+  }, [res.error, logout])
 
   const sitesById = useMemo(() => new Map((overview?.sites ?? []).map((s) => [s.tenantId, s])), [overview])
   const siteName = useCallback((id: string) => sitesById.get(id)?.name ?? id, [sitesById])
   const siteUrl = useCallback((id: string) => sitesById.get(id)?.baseUrl ?? '', [sitesById])
-
-  // The panel is behind the API's own check; this only spares a site admin
-  // who typed the URL a screen of 403s.
-  if (user && !user.superAdmin) {
-    return (
-      <div className="max-w-2xl mx-auto px-4 py-20 text-center">
-        <h1 className="font-display text-2xl font-bold text-ink mb-2">Solo para superadmins</h1>
-        <p className="text-sm text-muted">Esta pantalla muestra datos de todos los sitios.</p>
-      </div>
-    )
-  }
 
   const selected = tenant ? overview?.sites.find((s) => s.tenantId === tenant) : undefined
   const metrics = selected?.metrics ?? overview?.total.metrics
@@ -766,7 +720,7 @@ export default function SuperAdminPage() {
           variant="ghost"
           loading={loading}
           iconLeft={<RefreshCw size={14} aria-hidden="true" />}
-          onClick={() => void load()}
+          onClick={load}
           className="ml-auto"
         >
           Actualizar
@@ -827,12 +781,8 @@ export default function SuperAdminPage() {
         </>
       )}
 
-      {user?.superAdmin && (
-        <>
-          <FeedbackPanel key={tenant} tenant={tenant} siteName={siteName} siteUrl={siteUrl} onChange={() => void load()} />
-          <ErrorsPanel key={`${from}|${to}|${tenant}`} from={from} to={to} tenant={tenant} siteName={siteName} />
-        </>
-      )}
+      <FeedbackPanel key={tenant} tenant={tenant} siteName={siteName} siteUrl={siteUrl} onChange={load} />
+      <ErrorsPanel key={`${from}|${to}|${tenant}`} from={from} to={to} tenant={tenant} siteName={siteName} />
     </div>
   )
 }

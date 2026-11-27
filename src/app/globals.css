@@ -6,6 +6,8 @@
    Tailwind defaults. Never hard-code hex values — use tokens.
    ============================================================ */
 @import "tailwindcss";
+/* The super admin panel (superadmin/) is a separate app: keep its classes out. */
+@source not "../../superadmin";
 
 @import "./styles/tokens/colors.css";
 @import "./styles/tokens/typography.css";

@@ -1,0 +1,60 @@
+/* ============================================================
+   Superadmin — global styles. The design-system tokens are a copy
+   of vitri-web's src/app/styles/tokens (imported after tailwind so
+   their :root values win), mapped to Tailwind utilities below.
+   ============================================================ */
+@import "tailwindcss";
+
+@import "./styles/tokens/colors.css";
+@import "./styles/tokens/typography.css";
+@import "./styles/tokens/spacing.css";
+@import "./styles/tokens/semantic.css";
+@import "./styles/tokens/base.css";
+
+@import "./styles/components.css";
+
+/* Map design-system tokens to Tailwind utilities
+   (bg-surface, text-muted, border-line, font-display, …) */
+@theme inline {
+  --color-*: initial;
+  --color-paper: var(--bg-app);
+  --color-paper-alt: var(--bg-alt);
+  --color-surface: var(--surface);
+  --color-sunken: var(--surface-sunken);
+  --color-ink: var(--text-strong);
+  --color-body: var(--text-body);
+  --color-muted: var(--text-muted);
+  --color-faint: var(--text-faint);
+  --color-line: var(--border);
+  --color-line-strong: var(--border-strong);
+  --color-hairline: var(--hairline);
+  --color-accent: var(--accent);
+  --color-accent-hover: var(--accent-hover);
+  --color-accent-soft: var(--accent-soft);
+  --color-accent-faint: var(--accent-faint);
+  --color-accent-ink: var(--accent-ink);
+  --color-navy: var(--brand-deep);
+  --color-navy-deep: var(--brand-deep-2);
+  --color-positive: var(--positive);
+  --color-positive-soft: var(--positive-soft);
+  --color-positive-ink: var(--positive-ink);
+  --color-warning: var(--warning);
+  --color-warning-soft: var(--warning-soft);
+  --color-warning-ink: var(--warning-ink);
+  --color-danger: var(--danger);
+  --color-danger-soft: var(--danger-soft);
+  --color-danger-ink: var(--danger-ink);
+  --color-white: #ffffff;
+  --color-transparent: transparent;
+
+  --font-display: var(--font-space-grotesk);
+  --font-sans: var(--font-hanken);
+  --font-mono: var(--font-jetbrains);
+
+  --shadow-xs: 0 1px 2px rgba(11, 31, 68, 0.05);
+  --shadow-sm: 0 1px 2px rgba(11, 31, 68, 0.06), 0 1px 1px rgba(11, 31, 68, 0.04);
+  --shadow-md: 0 4px 14px -4px rgba(11, 31, 68, 0.12);
+  --shadow-lg: 0 14px 32px -10px rgba(11, 31, 68, 0.18);
+  --shadow-card: 0 1px 2px rgba(11, 31, 68, 0.05), 0 10px 24px -16px rgba(11, 31, 68, 0.22);
+  --shadow-pop: 0 8px 28px -8px rgba(8, 21, 46, 0.24);
+}
