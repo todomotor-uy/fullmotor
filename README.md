@@ -1,18 +1,20 @@
 # Vitri Web
 
-El front de los portales que corren sobre [Vitri API](https://github.com/todomotor-uy/vitri-api): Novedades, clasificados y comercios, eventos y, donde corresponde, el catálogo de vehículos. Hoy sirve **TodoMotor** (todomotor.uy) y **Nauti**.
+El front de los portales que corren sobre [Vitri API](https://github.com/todomotor-uy/vitri-api): Novedades, clasificados y comercios, eventos y, donde corresponde, el catálogo de vehículos. Hoy sirve **TodoMotor** (todomotor.uy) y **Cardinal Sur** (cardinalsur.uy, ex Nauti).
 
 Es una sola app de Next.js. Cada sitio es un proyecto de Vercel con el mismo repo y su propio `NEXT_PUBLIC_TENANT`:
 
 | Sitio | Proyecto de Vercel | `NEXT_PUBLIC_TENANT` |
 |---|---|---|
 | TodoMotor | `fullmotor` | `todomotor-uy` (o vacío) |
-| Nauti | `nauti` | `nauti-uy` |
+| Cardinal Sur | `nauti` | `nauti-uy` |
 
 La configuración de cada sitio está repartida en dos lugares:
 
 - **En la API**, en la fila del sitio, editable desde **/admin/sitio**: qué módulos usa (Novedades, Eventos, Clasificados, Comercios, Catálogo de vehículos, Publicidad), sus rubros de clasificados y cuánto duran los avisos. El front la lee en [`src/lib/site-settings.server.ts`](src/lib/site-settings.server.ts). Un módulo apagado desaparece del menú y sus páginas dan 404. También viven ahí la moneda, el dominio y el hashtag.
 - **En [`src/lib/tenant.ts`](src/lib/tenant.ts)**: nombre, textos de SEO, menú y logo. Si la API no responde, los módulos y rubros también salen de acá.
+
+Para poner en línea un portal nuevo (dominio, Vercel, DNS, login de Google, correo y lanzamiento), seguir [docs/nuevo-portal.md](docs/nuevo-portal.md).
 
 ## Desarrollo
 
@@ -22,7 +24,7 @@ cp .env.example .env.local   # completar NEXT_PUBLIC_API_URL y el resto
 npm run dev
 ```
 
-Para levantar Nauti en local, agregar `NEXT_PUBLIC_TENANT=nauti-uy` a `.env.local`.
+Para levantar Cardinal Sur en local, agregar `NEXT_PUBLIC_TENANT=nauti-uy` a `.env.local`.
 
 ## Variables de entorno
 
@@ -33,6 +35,7 @@ Ver [`.env.example`](.env.example). Las principales:
 - `NEXT_PUBLIC_SITE_URL`: el dominio canónico del sitio.
 - `NEXT_PUBLIC_GOOGLE_CLIENT_ID`: el cliente de Google Sign-In del sitio.
 - `BLOB_READ_WRITE_TOKEN`: Vercel Blob, donde se guardan las imágenes.
+- `NEXT_PUBLIC_INDEXABLE=1`: abre a buscadores un sitio que no es TodoMotor. Sin ella el sitio manda `noindex` (ver la guía de lanzamiento).
 - `NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION`: el código de la etiqueta meta de Search Console de ese sitio. Google lo pide para mostrar el nombre del sitio en su login.
 - Secretos de servidor: `API_SECRET_KEY`, `UPLOAD_API_KEY`, `REVALIDATE_SECRET`, `INDEXNOW_TRIGGER_SECRET`, `INDEXNOW_KEY`.
 
