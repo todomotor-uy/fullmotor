@@ -12,7 +12,6 @@ import {
 import { useCategories } from './SiteSettingsProvider'
 import { Button } from './ui/Button'
 import { Select } from './ui/Select'
-import { IS_NAUTI } from '@/lib/tenant'
 import { UY_DEPARTMENTS } from '@/lib/location'
 
 const CURRENCIES = [
@@ -110,12 +109,14 @@ export default function ClassifiedFilters({ facets }: { facets: ClassifiedFacets
     return () => clearTimeout(t)
   }, [city, minPrice, maxPrice, minYear, maxYear, maxMileage, urlKey, update])
 
-  // Year, mileage and brand only describe vehicles, so they are hidden on
-  // repuestos and accesorios where every listing would match anything.
-  // Nauti has no vehicle categories, so none of these apply there.
+  // Year, mileage and brand only describe vehicles, so they show on the
+  // categories the site marks with vehicle fields (and on "all", if it has
+  // any), and stay hidden on repuestos and accesorios where every listing
+  // would match anything. A site with no such category never shows them.
   const showsVehicleFilters =
-    !IS_NAUTI &&
-    (currentCategory === '' || ['cars', 'motorcycles', 'trucks'].includes(currentCategory))
+    currentCategory === ''
+      ? categories.some((c) => c.vehicleFields)
+      : !!categories.find((c) => c.key === currentCategory)?.vehicleFields
 
   return (
     <>

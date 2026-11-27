@@ -10,7 +10,7 @@ import AdSlot from "./components/ads/AdSlot";
 import BrandStrip from "./components/BrandStrip";
 import BlogPreviewSection from "./components/BlogPreviewSection";
 import { getLatestBlogPosts } from "@/lib/blog";
-import { IS_NAUTI } from "@/lib/tenant";
+import { IS_NAUTI, SITE_CONFIG } from "@/lib/tenant";
 import NautiHome from "./components/nauti/NautiHome";
 
 /**
@@ -35,7 +35,7 @@ const organizationJsonLd = {
   logo: { '@type': 'ImageObject', url: SITE_LOGO },
   contactPoint: {
     '@type': 'ContactPoint',
-    email: 'contacto@todomotor.uy',
+    email: SITE_CONFIG.contactEmail,
     contactType: 'customer service',
   },
 };

@@ -19,7 +19,8 @@ import { hasBattery, isElectric, showsDisplacement, showsFuelTank, showsGearCoun
 import { absoluteUrl, SITE_URL } from "@/lib/site";
 import { brandSlug } from "@/lib/catalog";
 import type { Vehicle } from "@/types/vehicle";
-import { SITE_CONFIG } from '@/lib/tenant';
+import { getSiteSettings } from '@/lib/site-settings.server';
+import { hasModule } from '@/lib/site-settings';
 
 type Params = Promise<{ slug: string }>
 
@@ -84,8 +85,8 @@ export async function generateMetadata({ params }: { params: Params }) {
 }
 
 export async function generateStaticParams() {
-  // Sites without the catalogue 404 these routes in middleware; don't build them.
-  if (!SITE_CONFIG.features.catalog) return [];
+  // Sites without the catalogue 404 these routes from their layout; don't build them.
+  if (!hasModule(await getSiteSettings(), 'catalog')) return [];
   const vehicles = await getAllVehicles();
   return vehicles.map(v => ({ slug: v.slug }));
 }
